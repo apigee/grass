@@ -22,11 +22,12 @@ This example API documentation page was created with [Slate](http://github.com/t
 
 ```shell
 curl
+  "http://api.grass.com/v1/token/{type}/{identifier}"
   --verbose
-  --request POST "http://api.grass.com/v1/token/{type}/{identifier}"
-  --header "apikey: {client_id}"
-  --header "content-type: application/json"
-  --data "{"type":"alphanumberic / numeric etc","length":6,"text":"One time PIN: {token} has been generated for your request# 12346","expiry":300}"
+  --request POST
+  --header  "apikey: {client_id}"
+  --header  "content-type: application/json"
+  --data    "{"type":"alphanumberic / numeric etc","length":6,"text":"One time PIN: {token} has been generated for your request# 12346","expiry":300}"
 ```
 
 > Response:
@@ -74,8 +75,10 @@ Upon failure, Developer gets a 400 Bad Request
 
 ```shell
 curl
-  --verbose "http://api.grass.com/v1/token/{type}/{identifier}/{token}"
-  --header "apikey: {client_id}"
+  "http://api.grass.com/v1/token/{type}/{identifier}/{token}"
+  --verbose
+  --request GET
+  --header  "apikey: {client_id}"
 ```
 
 > Response:
