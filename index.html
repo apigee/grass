@@ -82,7 +82,7 @@
 <p>Request:</p>
 </blockquote>
 <pre class="highlight shell">curl
-  <span class="s2">"http://api.grass.com/v1/token/{type}/{identifier}"</span>
+  <span class="s2">"http://api.example.com/v1/token/{type}/{identifier}"</span>
   --verbose
   --request POST
   --header  <span class="s2">"apikey: {client_id}"</span>
@@ -98,7 +98,7 @@
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST http://api.grass.com/v1/token/{type}/{identifier}</code></p>
+<p><code class="prettyprint">POST http://api.example.com/v1/token/{type}/{identifier}</code></p>
 
 <h3 id="path-parameters">Path Parameters</h3>
 
@@ -173,7 +173,7 @@ Upon failure, Developer gets a 400 Bad Request
 <p>Request:</p>
 </blockquote>
 <pre class="highlight shell">curl
-  <span class="s2">"http://api.grass.com/v1/token/{type}/{identifier}/{token}"</span>
+  <span class="s2">"http://api.example.com/v1/token/{type}/{identifier}/{token}"</span>
   --verbose
   --request GET
   --header  <span class="s2">"apikey: {client_id}"</span>
@@ -187,7 +187,7 @@ Upon failure, Developer gets a 400 Bad Request
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://api.grass.com/v1/token/{type}/{identifier}/{token}</code></p>
+<p><code class="prettyprint">GET http://api.example.com/v1/token/{type}/{identifier}/{token}</code></p>
 
 <h3 id="path-parameters">Path Parameters</h3>
 

@@ -22,7 +22,7 @@ This example API documentation page was created with [Slate](http://github.com/t
 
 ```shell
 curl
-  "http://api.grass.com/v1/token/{type}/{identifier}"
+  "http://api.example.com/v1/token/{type}/{identifier}"
   --verbose
   --request POST
   --header  "apikey: {client_id}"
@@ -40,7 +40,7 @@ This endpoint creates a Token, and sends it to the given identifier.
 
 ### HTTP Request
 
-`POST http://api.grass.com/v1/token/{type}/{identifier}`
+`POST http://api.example.com/v1/token/{type}/{identifier}`
 
 ### Path Parameters
 
@@ -75,7 +75,7 @@ Upon failure, Developer gets a 400 Bad Request
 
 ```shell
 curl
-  "http://api.grass.com/v1/token/{type}/{identifier}/{token}"
+  "http://api.example.com/v1/token/{type}/{identifier}/{token}"
   --verbose
   --request GET
   --header  "apikey: {client_id}"
@@ -91,7 +91,7 @@ This endpoint validates a Token, with its identifier.
 
 ### HTTP Request
 
-`GET http://api.grass.com/v1/token/{type}/{identifier}/{token}`
+`GET http://api.example.com/v1/token/{type}/{identifier}/{token}`
 
 ### Path Parameters
 
