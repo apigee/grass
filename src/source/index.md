@@ -27,7 +27,7 @@ curl
   --request POST
   --header  "apikey: {client_id}"
   --header  "content-type: application/json"
-  --data    "{"type":"alphanumberic / numeric etc","length":6,"text":"One time PIN: {token} has been generated for your request# 12346","expiry":300}"
+  --data    "{"type":"alphanumeric / numeric etc","length":6,"text":"One time PIN: {token} has been generated for your request# 12346","expiry":300}"
 ```
 
 > Response:
