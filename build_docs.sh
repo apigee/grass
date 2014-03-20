@@ -34,6 +34,7 @@ git commit -m "docs auto-built at $(date)"
 # Push the new files up to GitHub
 git push origin gh-pages
 
-# Delete our temp folder
+# Delete our temp & build folders
 cd ..
 rm -rf $DIR
+rm -rf ./docs/build
