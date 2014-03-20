@@ -5,7 +5,7 @@ language_tabs:
   - shell
 
 toc_footers:
- - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+ - <a href='http://github.com/tripit/slate' target="_blank">Documentation Powered by Slate</a>
 ---
 
 # Introduction
