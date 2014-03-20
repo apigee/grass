@@ -8,7 +8,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
     <!-- Use title if it's in the page YAML frontmatter -->
-    <title>Token API Reference</title>
+    <title>Identity API Specs</title>
 
     <link href="stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
@@ -59,8 +59,6 @@
       
       <ul class="toc-footer">
         
-          <li><a href='#'>Sign Up for a Developer Key</a></li>
-        
           <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         
       </ul>
@@ -70,7 +68,7 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Grass API !!</p>
+<p>Welcome to the Grass APIs !!</p>
 
 <p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>.</p>
 
@@ -246,6 +244,358 @@ If Token is not valid for the given identifier, Developer gets a 400 Bad Request
 <td>Bad Request &ndash; Your request sucks, go home man !!##@@</td>
 </tr>
 </tbody></table>
+
+<h1 id="user-management">User Management</h1>
+
+<p>This API is supposed to proxy the Usergrid API, and provide a SPI reference for
+the other adapters. This will be invoked by the Identity API, and is a internal
+facing API.</p>
+
+<h2 id="authorization">Authorization</h2>
+
+<p>User Management API is an internal facing one, and thus requires only apikey
+validation.</p>
+
+<h2 id="create-user">Create User</h2>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell">curl
+  <span class="s2">"http://api.example.com/v1/users"</span>
+  --verbose
+  --request POST
+  --header  <span class="s2">"apikey: {client_id}"</span>
+  --header  <span class="s2">"content-type: application/json"</span>
+  --data    <span class="s2">"{"</span>personal-info<span class="s2">":{"</span>name<span class="s2">":{"</span>surname<span class="s2">":"</span>Shell<span class="s2">","</span>given<span class="s2">":"</span>Ron<span class="s2">","</span>title<span class="s2">":"</span>Mr<span class="s2">","</span><span class="nb">complete</span><span class="s2">":"</span>Mr. Ron Shell<span class="s2">"},"</span>dob<span class="s2">":"</span>12-12-1980<span class="s2">","</span>gender<span class="s2">":"</span>male<span class="s2">","</span>image<span class="s2">":"</span>http://gravatar.com/avatar/d43903a7f1db7f4246ecdd6hj6ed54gh<span class="s2">","</span>secrets<span class="s2">":{"</span>what is your dob<span class="s2">":"</span>54431df57f827c3d38b49dd2bf9a29fa<span class="s2">","</span>what is your birthplace<span class="s2">":"</span>11d0c7bdbc6cade41f2b2fcb36ac6b90<span class="s2">"}},"</span>external-info<span class="s2">":{"</span>id<span class="s2">":"</span>rshell<span class="s2">","</span>crmid<span class="s2">":1238347384728723700,"</span>dept<span class="s2">":"</span>something<span class="s2">"},"</span>email<span class="s2">":{"</span>0<span class="s2">":"</span>xyz@some.com<span class="s2">","</span>1<span class="s2">":"</span>abc@another.com<span class="s2">"},"</span>phone<span class="s2">":{"</span>0<span class="s2">":"</span>+561234567890<span class="s2">","</span>1<span class="s2">":"</span>+561234567891<span class="s2">","</span>2<span class="s2">":"</span>+561234567892<span class="s2">"},"</span>address<span class="s2">":{"</span>house<span class="s2">":"</span>number something<span class="s2">","</span>street<span class="s2">":"</span>something<span class="s2">","</span>locality<span class="s2">":"</span>another<span class="s2">","</span>city<span class="s2">":"</span>some<span class="s2">","</span>state<span class="s2">":"</span>some<span class="s2">","</span>country<span class="s2">":"</span>another<span class="s2">","</span>postalcode<span class="s2">":"</span>4FCDG78<span class="s2">","</span>landmark<span class="s2">":"</span>near some market<span class="s2">"},"</span>social<span class="s2">":{"</span>twitter<span class="s2">":"</span>handle<span class="s2">","</span>google<span class="s2">":"</span>plusprofile<span class="s2">","</span>facebook<span class="s2">":"</span>faceid<span class="s2">","</span>live<span class="s2">":"</span>windowsliveid<span class="s2">"},"</span>groups<span class="s2">":["</span>somegroup1<span class="s2">","</span>somegroup2<span class="s2">","</span>somegroup3<span class="s2">"]}"</span>
+</pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+
+{
+    "id": "b1615ce7-0f73-464d-bb15-45f701015aa0",
+    "metadata": {
+        "type": "user",
+        "created": 1394800072652,
+        "modified": 1394800072652,
+        "uri": "https://api.example.com/v1/users/b1615ce7-0f73-464d-bb15-45f701015aa0"
+    },
+    "personal-info": {
+        "name": {
+            "surname": "Shell",
+            "given": "Ron",
+            "title": "Mr",
+            "complete": "Mr. Ron Shell"
+        },
+        "dob": "12-12-1980",
+        "gender": "male",
+        "image": "http://gravatar.com/image/id/1238347384728723839",
+        "secrets": {
+            "what is your dob": "54431df57f827c3d38b49dd2bf9a29fa",
+            "what is your birthplace": "11d0c7bdbc6cade41f2b2fcb36ac6b90"
+        }
+    },
+    "external-info": {
+        "id": "rshell",
+        "crmid": 1238347384728723700,
+        "dept": "something",
+        "custom": {
+            "salaryindex": "150K"
+        }
+    },
+    "username": "rshell",
+    "email": {
+        "0": "xyz@some.com",
+        "1": "abc@another.com"
+    },
+    "phone": {
+        "0": "+561234567890",
+        "1": "+561234567891",
+        "2": "+561234567892"
+    },
+    "address": {
+        "house": "number something",
+        "street": "something",
+        "locality": "another",
+        "city": "some",
+        "state": "some",
+        "country": "another",
+        "postalcode": "4FCDG78",
+        "landmark": "near some market"
+    },
+    "social": {
+        "twitter": "handle",
+        "google": "plusprofile",
+        "facebook": "faceid",
+        "live": "windowsliveid",
+        "skype": "skypeid",
+        "linkedin": "profileid",
+        "personaluri": "bloguri"
+    },
+    "groups": [
+        "somegroup1",
+        "somegroup2",
+        "somegroup3"
+    ]
+}
+</pre>
+<h3 id="purpose">Purpose</h3>
+
+<p>CREATE a User entity</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://api.example.com/v1/users</code></p>
+
+<h3 id="body">Body</h3>
+
+<p>Body is self-explanatory. Please look at the curl request, to learn more</p>
+
+<p><aside class="success">
+Upon successful, Developer gets a 201 Created
+</aside></p>
+
+<p><aside class="warning">
+Upon failure, Developer gets a 400 Bad Request
+</aside></p>
+
+<h2 id="get-user">Get User</h2>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell">curl
+  <span class="s2">"http://api.example.com/v1/users/{userid/email/username}"</span>
+  --verbose
+  --request GET
+  --header  <span class="s2">"apikey: {client_id}"</span>
+</pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+
+{
+    "id": "b1615ce7-0f73-464d-bb15-45f701015aa0",
+    "metadata": {
+        "type": "user",
+        "created": 1394800072652,
+        "modified": 1394800072652,
+        "uri": "https://api.example.com/v1/users/b1615ce7-0f73-464d-bb15-45f701015aa0"
+    },
+    "personal-info": {
+        "name": {
+            "surname": "Shell",
+            "given": "Ron",
+            "title": "Mr",
+            "complete": "Mr. Ron Shell"
+        },
+        "dob": "12-12-1980",
+        "gender": "male",
+        "image": "http://gravatar.com/image/id/1238347384728723839",
+        "secrets": {
+            "what is your dob": "54431df57f827c3d38b49dd2bf9a29fa",
+            "what is your birthplace": "11d0c7bdbc6cade41f2b2fcb36ac6b90"
+        }
+    },
+    "external-info": {
+        "id": "rshell",
+        "crmid": 1238347384728723700,
+        "dept": "something",
+        "custom": {
+            "salaryindex": "150K"
+        }
+    },
+    "username": "rshell",
+    "email": {
+        "0": "xyz@some.com",
+        "1": "abc@another.com"
+    },
+    "phone": {
+        "0": "+561234567890",
+        "1": "+561234567891",
+        "2": "+561234567892"
+    },
+    "address": {
+        "house": "number something",
+        "street": "something",
+        "locality": "another",
+        "city": "some",
+        "state": "some",
+        "country": "another",
+        "postalcode": "4FCDG78",
+        "landmark": "near some market"
+    },
+    "social": {
+        "twitter": "handle",
+        "google": "plusprofile",
+        "facebook": "faceid",
+        "live": "windowsliveid",
+        "skype": "skypeid",
+        "linkedin": "profileid",
+        "personaluri": "bloguri"
+    },
+    "groups": [
+        "somegroup1",
+        "somegroup2",
+        "somegroup3"
+    ]
+}
+</pre>
+<h3 id="purpose">Purpose</h3>
+
+<p>GET a User entity</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.example.com/v1/users/{userid/email/username}</code></p>
+
+<p><aside class="success">
+Upon successful, Developer gets a 200 OK
+</aside></p>
+
+<p><aside class="warning">
+Upon failure, Developer gets a 400 Bad Request
+</aside></p>
+
+<h2 id="update-user">Update User</h2>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell">curl
+  <span class="s2">"http://api.example.com/v1/users/{userid/email/username}"</span>
+  --verbose
+  --request PUT
+  --header  <span class="s2">"apikey: {client_id}"</span>
+  --header  <span class="s2">"content-type: application/json"</span>
+  --data    <span class="s2">"{"</span>personal-info<span class="s2">":{"</span>name<span class="s2">":{"</span>surname<span class="s2">":"</span>Shell<span class="s2">","</span>given<span class="s2">":"</span>Ron<span class="s2">","</span>title<span class="s2">":"</span>Mr<span class="s2">","</span><span class="nb">complete</span><span class="s2">":"</span>Mr. Ron Shell<span class="s2">"},"</span>dob<span class="s2">":"</span>12-12-1980<span class="s2">","</span>gender<span class="s2">":"</span>male<span class="s2">","</span>image<span class="s2">":"</span>http://gravatar.com/avatar/d43903a7f1db7f4246ecdd6hj6ed54gh<span class="s2">","</span>secrets<span class="s2">":{"</span>what is your dob<span class="s2">":"</span>54431df57f827c3d38b49dd2bf9a29fa<span class="s2">","</span>what is your birthplace<span class="s2">":"</span>11d0c7bdbc6cade41f2b2fcb36ac6b90<span class="s2">"}},"</span>external-info<span class="s2">":{"</span>id<span class="s2">":"</span>rshell<span class="s2">","</span>crmid<span class="s2">":1238347384728723700,"</span>dept<span class="s2">":"</span>something<span class="s2">"},"</span>email<span class="s2">":{"</span>0<span class="s2">":"</span>xyz@some.com<span class="s2">","</span>1<span class="s2">":"</span>abc@another.com<span class="s2">"},"</span>phone<span class="s2">":{"</span>0<span class="s2">":"</span>+561234567890<span class="s2">","</span>1<span class="s2">":"</span>+561234567891<span class="s2">","</span>2<span class="s2">":"</span>+561234567892<span class="s2">"},"</span>address<span class="s2">":{"</span>house<span class="s2">":"</span>number something<span class="s2">","</span>street<span class="s2">":"</span>something<span class="s2">","</span>locality<span class="s2">":"</span>another<span class="s2">","</span>city<span class="s2">":"</span>some<span class="s2">","</span>state<span class="s2">":"</span>some<span class="s2">","</span>country<span class="s2">":"</span>another<span class="s2">","</span>postalcode<span class="s2">":"</span>4FCDG78<span class="s2">","</span>landmark<span class="s2">":"</span>near some market<span class="s2">"},"</span>social<span class="s2">":{"</span>twitter<span class="s2">":"</span>handle<span class="s2">","</span>google<span class="s2">":"</span>plusprofile<span class="s2">","</span>facebook<span class="s2">":"</span>faceid<span class="s2">","</span>live<span class="s2">":"</span>windowsliveid<span class="s2">"},"</span>groups<span class="s2">":["</span>somegroup1<span class="s2">","</span>somegroup2<span class="s2">","</span>somegroup3<span class="s2">"]}"</span>
+</pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+
+{
+    "id": "b1615ce7-0f73-464d-bb15-45f701015aa0",
+    "metadata": {
+        "type": "user",
+        "created": 1394800072652,
+        "modified": 1394800072652,
+        "uri": "https://api.example.com/v1/users/b1615ce7-0f73-464d-bb15-45f701015aa0"
+    },
+    "personal-info": {
+        "name": {
+            "surname": "Shell",
+            "given": "Ron",
+            "title": "Mr",
+            "complete": "Mr. Ron Shell"
+        },
+        "dob": "12-12-1980",
+        "gender": "male",
+        "image": "http://gravatar.com/image/id/1238347384728723839",
+        "secrets": {
+            "what is your dob": "54431df57f827c3d38b49dd2bf9a29fa",
+            "what is your birthplace": "11d0c7bdbc6cade41f2b2fcb36ac6b90"
+        }
+    },
+    "external-info": {
+        "id": "rshell",
+        "crmid": 1238347384728723700,
+        "dept": "something",
+        "custom": {
+            "salaryindex": "150K"
+        }
+    },
+    "username": "rshell",
+    "email": {
+        "0": "xyz@some.com",
+        "1": "abc@another.com"
+    },
+    "phone": {
+        "0": "+561234567890",
+        "1": "+561234567891",
+        "2": "+561234567892"
+    },
+    "address": {
+        "house": "number something",
+        "street": "something",
+        "locality": "another",
+        "city": "some",
+        "state": "some",
+        "country": "another",
+        "postalcode": "4FCDG78",
+        "landmark": "near some market"
+    },
+    "social": {
+        "twitter": "handle",
+        "google": "plusprofile",
+        "facebook": "faceid",
+        "live": "windowsliveid",
+        "skype": "skypeid",
+        "linkedin": "profileid",
+        "personaluri": "bloguri"
+    },
+    "groups": [
+        "somegroup1",
+        "somegroup2",
+        "somegroup3"
+    ]
+}
+</pre>
+<h3 id="purpose">Purpose</h3>
+
+<p>UPDATE a User entity</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://api.example.com/v1/users/{userid/email/username}</code></p>
+
+<h3 id="body">Body</h3>
+
+<p>Body is self-explanatory. Please look at the curl request, to learn more</p>
+
+<p><aside class="success">
+Upon successful, Developer gets a 200 OK
+</aside></p>
+
+<p><aside class="warning">
+Upon failure, Developer gets a 400 Bad Request
+</aside></p>
+
+<h2 id="delete-user">Delete User</h2>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell">curl
+  <span class="s2">"http://api.example.com/v1/users/{userid/email/username}"</span>
+  --verbose
+  --request DELETE
+  --header  <span class="s2">"apikey: {client_id}"</span>
+</pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</pre>
+<h3 id="purpose">Purpose</h3>
+
+<p>DELETE a User entity</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE http://api.example.com/v1/users/{userid/email/username}</code></p>
+
+<p><aside class="success">
+Upon successful, Developer gets a 200 OK
+</aside></p>
+
+<p><aside class="warning">
+Upon failure, Developer gets a 400 Bad Request
+</aside></p>
 
       </div>
       <div class="dark-box">
