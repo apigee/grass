@@ -138,13 +138,66 @@ curl
   --request POST
   --header  "apikey: {client_id}"
   --header  "content-type: application/json"
-  --data    "{"personal-info":{"name":{"surname":"Shell","given":"Ron","title":"Mr","complete":"Mr. Ron Shell"},"dob":"12-12-1980","gender":"male","image":"http://gravatar.com/avatar/d43903a7f1db7f4246ecdd6hj6ed54gh","secrets":{"what is your dob":"54431df57f827c3d38b49dd2bf9a29fa","what is your birthplace":"11d0c7bdbc6cade41f2b2fcb36ac6b90"}},"external-info":{"id":"rshell","crmid":1238347384728723700,"dept":"something"},"email":{"0":"xyz@some.com","1":"abc@another.com"},"phone":{"0":"+561234567890","1":"+561234567891","2":"+561234567892"},"address":{"house":"number something","street":"something","locality":"another","city":"some","state":"some","country":"another","postalcode":"4FCDG78","landmark":"near some market"},"social":{"twitter":"handle","google":"plusprofile","facebook":"faceid","live":"windowsliveid"},"groups":["somegroup1","somegroup2","somegroup3"]}"
+  --data    "{
+    "personal-info": {
+        "name": {
+            "surname": "Shell",
+            "given": "Ron",
+            "title": "Mr",
+            "complete": "Mr. Ron Shell"
+        },
+        "dob": "12-12-1980",
+        "gender": "male",
+        "image": "http://gravatar.com/avatar/d43903a7f1db7f4246ecdd6hj6ed54gh",
+        "secrets": {
+            "what is your dob": "54431df57f827c3d38b49dd2bf9a29fa",
+            "what is your birthplace": "11d0c7bdbc6cade41f2b2fcb36ac6b90"
+        }
+    },
+    "external-info": {
+        "id": "rshell",
+        "crmid": 1238347384728723700,
+        "dept": "something"
+    },
+    "email": {
+        "0": "xyz@some.com",
+        "1": "abc@another.com"
+    },
+    "phone": {
+        "0": "+561234567890",
+        "1": "+561234567891",
+        "2": "+561234567892"
+    },
+    "address": {
+        "house": "number something",
+        "street": "something",
+        "locality": "another",
+        "city": "some",
+        "state": "some",
+        "country": "another",
+        "postalcode": "4FCDG78",
+        "landmark": "near some market"
+    },
+    "social": {
+        "twitter": "handle",
+        "google": "plusprofile",
+        "facebook": "faceid",
+        "live": "windowsliveid"
+    },
+    "status": "active",
+    "groups": [
+        "somegroup1",
+        "somegroup2",
+        "somegroup3"
+    ]
+}"
 ```
 
 > Response:
 
 ```http
 HTTP/1.1 201 Created
+Content-Type: application/json
 
 {
     "id": "b1615ce7-0f73-464d-bb15-45f701015aa0",
@@ -206,6 +259,7 @@ HTTP/1.1 201 Created
         "linkedin": "profileid",
         "personaluri": "bloguri"
     },
+    "status": "active",
     "groups": [
         "somegroup1",
         "somegroup2",
@@ -249,6 +303,7 @@ curl
 
 ```http
 HTTP/1.1 200 OK
+Content-Type: application/json
 
 {
     "id": "b1615ce7-0f73-464d-bb15-45f701015aa0",
@@ -310,6 +365,7 @@ HTTP/1.1 200 OK
         "linkedin": "profileid",
         "personaluri": "bloguri"
     },
+    "status": "active",
     "groups": [
         "somegroup1",
         "somegroup2",
@@ -344,13 +400,66 @@ curl
   --request PUT
   --header  "apikey: {client_id}"
   --header  "content-type: application/json"
-  --data    "{"personal-info":{"name":{"surname":"Shell","given":"Ron","title":"Mr","complete":"Mr. Ron Shell"},"dob":"12-12-1980","gender":"male","image":"http://gravatar.com/avatar/d43903a7f1db7f4246ecdd6hj6ed54gh","secrets":{"what is your dob":"54431df57f827c3d38b49dd2bf9a29fa","what is your birthplace":"11d0c7bdbc6cade41f2b2fcb36ac6b90"}},"external-info":{"id":"rshell","crmid":1238347384728723700,"dept":"something"},"email":{"0":"xyz@some.com","1":"abc@another.com"},"phone":{"0":"+561234567890","1":"+561234567891","2":"+561234567892"},"address":{"house":"number something","street":"something","locality":"another","city":"some","state":"some","country":"another","postalcode":"4FCDG78","landmark":"near some market"},"social":{"twitter":"handle","google":"plusprofile","facebook":"faceid","live":"windowsliveid"},"groups":["somegroup1","somegroup2","somegroup3"]}"
+  --data    "{
+    "personal-info": {
+        "name": {
+            "surname": "Shell",
+            "given": "Ron",
+            "title": "Mr",
+            "complete": "Mr. Ron Shell"
+        },
+        "dob": "12-12-1980",
+        "gender": "male",
+        "image": "http://gravatar.com/avatar/d43903a7f1db7f4246ecdd6hj6ed54gh",
+        "secrets": {
+            "what is your dob": "54431df57f827c3d38b49dd2bf9a29fa",
+            "what is your birthplace": "11d0c7bdbc6cade41f2b2fcb36ac6b90"
+        }
+    },
+    "external-info": {
+        "id": "rshell",
+        "crmid": 1238347384728723700,
+        "dept": "something"
+    },
+    "email": {
+        "0": "xyz@some.com",
+        "1": "abc@another.com"
+    },
+    "phone": {
+        "0": "+561234567890",
+        "1": "+561234567891",
+        "2": "+561234567892"
+    },
+    "address": {
+        "house": "number something",
+        "street": "something",
+        "locality": "another",
+        "city": "some",
+        "state": "some",
+        "country": "another",
+        "postalcode": "4FCDG78",
+        "landmark": "near some market"
+    },
+    "social": {
+        "twitter": "handle",
+        "google": "plusprofile",
+        "facebook": "faceid",
+        "live": "windowsliveid"
+    },
+    "status": "active",
+    "groups": [
+        "somegroup1",
+        "somegroup2",
+        "somegroup3"
+    ]
+}"
 ```
 
 > Response:
 
 ```http
 HTTP/1.1 200 OK
+Content-Type: application/json
 
 {
     "id": "b1615ce7-0f73-464d-bb15-45f701015aa0",
@@ -412,6 +521,7 @@ HTTP/1.1 200 OK
         "linkedin": "profileid",
         "personaluri": "bloguri"
     },
+    "status": "active",
     "groups": [
         "somegroup1",
         "somegroup2",
