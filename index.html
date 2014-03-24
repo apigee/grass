@@ -267,80 +267,134 @@ validation.</p>
   --request POST
   --header  <span class="s2">"apikey: {client_id}"</span>
   --header  <span class="s2">"content-type: application/json"</span>
-  --data    <span class="s2">"{"</span>personal-info<span class="s2">":{"</span>name<span class="s2">":{"</span>surname<span class="s2">":"</span>Shell<span class="s2">","</span>given<span class="s2">":"</span>Ron<span class="s2">","</span>title<span class="s2">":"</span>Mr<span class="s2">","</span><span class="nb">complete</span><span class="s2">":"</span>Mr. Ron Shell<span class="s2">"},"</span>dob<span class="s2">":"</span>12-12-1980<span class="s2">","</span>gender<span class="s2">":"</span>male<span class="s2">","</span>image<span class="s2">":"</span>http://gravatar.com/avatar/d43903a7f1db7f4246ecdd6hj6ed54gh<span class="s2">","</span>secrets<span class="s2">":{"</span>what is your dob<span class="s2">":"</span>54431df57f827c3d38b49dd2bf9a29fa<span class="s2">","</span>what is your birthplace<span class="s2">":"</span>11d0c7bdbc6cade41f2b2fcb36ac6b90<span class="s2">"}},"</span>external-info<span class="s2">":{"</span>id<span class="s2">":"</span>rshell<span class="s2">","</span>crmid<span class="s2">":1238347384728723700,"</span>dept<span class="s2">":"</span>something<span class="s2">"},"</span>email<span class="s2">":{"</span>0<span class="s2">":"</span>xyz@some.com<span class="s2">","</span>1<span class="s2">":"</span>abc@another.com<span class="s2">"},"</span>phone<span class="s2">":{"</span>0<span class="s2">":"</span>+561234567890<span class="s2">","</span>1<span class="s2">":"</span>+561234567891<span class="s2">","</span>2<span class="s2">":"</span>+561234567892<span class="s2">"},"</span>address<span class="s2">":{"</span>house<span class="s2">":"</span>number something<span class="s2">","</span>street<span class="s2">":"</span>something<span class="s2">","</span>locality<span class="s2">":"</span>another<span class="s2">","</span>city<span class="s2">":"</span>some<span class="s2">","</span>state<span class="s2">":"</span>some<span class="s2">","</span>country<span class="s2">":"</span>another<span class="s2">","</span>postalcode<span class="s2">":"</span>4FCDG78<span class="s2">","</span>landmark<span class="s2">":"</span>near some market<span class="s2">"},"</span>social<span class="s2">":{"</span>twitter<span class="s2">":"</span>handle<span class="s2">","</span>google<span class="s2">":"</span>plusprofile<span class="s2">","</span>facebook<span class="s2">":"</span>faceid<span class="s2">","</span>live<span class="s2">":"</span>windowsliveid<span class="s2">"},"</span>groups<span class="s2">":["</span>somegroup1<span class="s2">","</span>somegroup2<span class="s2">","</span>somegroup3<span class="s2">"]}"</span>
+  --data    <span class="s2">"{
+    "</span>personal-info<span class="s2">": {
+        "</span>name<span class="s2">": {
+            "</span>surname<span class="s2">": "</span>Shell<span class="s2">",
+            "</span>given<span class="s2">": "</span>Ron<span class="s2">",
+            "</span>title<span class="s2">": "</span>Mr<span class="s2">",
+            "</span><span class="nb">complete</span><span class="s2">": "</span>Mr. Ron Shell<span class="s2">"
+        },
+        "</span>dob<span class="s2">": "</span>12-12-1980<span class="s2">",
+        "</span>gender<span class="s2">": "</span>male<span class="s2">",
+        "</span>image<span class="s2">": "</span>http://gravatar.com/avatar/d43903a7f1db7f4246ecdd6hj6ed54gh<span class="s2">",
+        "</span>secrets<span class="s2">": {
+            "</span>what is your dob<span class="s2">": "</span>54431df57f827c3d38b49dd2bf9a29fa<span class="s2">",
+            "</span>what is your birthplace<span class="s2">": "</span>11d0c7bdbc6cade41f2b2fcb36ac6b90<span class="s2">"
+        }
+    },
+    "</span>external-info<span class="s2">": {
+        "</span>id<span class="s2">": "</span>rshell<span class="s2">",
+        "</span>crmid<span class="s2">": 1238347384728723700,
+        "</span>dept<span class="s2">": "</span>something<span class="s2">"
+    },
+    "</span>email<span class="s2">": {
+        "</span>0<span class="s2">": "</span>xyz@some.com<span class="s2">",
+        "</span>1<span class="s2">": "</span>abc@another.com<span class="s2">"
+    },
+    "</span>phone<span class="s2">": {
+        "</span>0<span class="s2">": "</span>+561234567890<span class="s2">",
+        "</span>1<span class="s2">": "</span>+561234567891<span class="s2">",
+        "</span>2<span class="s2">": "</span>+561234567892<span class="s2">"
+    },
+    "</span>address<span class="s2">": {
+        "</span>house<span class="s2">": "</span>number something<span class="s2">",
+        "</span>street<span class="s2">": "</span>something<span class="s2">",
+        "</span>locality<span class="s2">": "</span>another<span class="s2">",
+        "</span>city<span class="s2">": "</span>some<span class="s2">",
+        "</span>state<span class="s2">": "</span>some<span class="s2">",
+        "</span>country<span class="s2">": "</span>another<span class="s2">",
+        "</span>postalcode<span class="s2">": "</span>4FCDG78<span class="s2">",
+        "</span>landmark<span class="s2">": "</span>near some market<span class="s2">"
+    },
+    "</span>social<span class="s2">": {
+        "</span>twitter<span class="s2">": "</span>handle<span class="s2">",
+        "</span>google<span class="s2">": "</span>plusprofile<span class="s2">",
+        "</span>facebook<span class="s2">": "</span>faceid<span class="s2">",
+        "</span>live<span class="s2">": "</span>windowsliveid<span class="s2">"
+    },
+    "</span>status<span class="s2">": "</span>active<span class="s2">",
+    "</span>groups<span class="s2">": [
+        "</span>somegroup1<span class="s2">",
+        "</span>somegroup2<span class="s2">",
+        "</span>somegroup3<span class="s2">"
+    ]
+}"</span>
 </pre>
 <blockquote>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
-{
-    "id": "b1615ce7-0f73-464d-bb15-45f701015aa0",
-    "metadata": {
-        "type": "user",
-        "created": 1394800072652,
-        "modified": 1394800072652,
-        "uri": "https://api.example.com/v1/users/b1615ce7-0f73-464d-bb15-45f701015aa0"
-    },
-    "personal-info": {
-        "name": {
-            "surname": "Shell",
-            "given": "Ron",
-            "title": "Mr",
-            "complete": "Mr. Ron Shell"
-        },
-        "dob": "12-12-1980",
-        "gender": "male",
-        "image": "http://gravatar.com/image/id/1238347384728723839",
-        "secrets": {
-            "what is your dob": "54431df57f827c3d38b49dd2bf9a29fa",
-            "what is your birthplace": "11d0c7bdbc6cade41f2b2fcb36ac6b90"
-        }
-    },
-    "external-info": {
-        "id": "rshell",
-        "crmid": 1238347384728723700,
-        "dept": "something",
-        "custom": {
-            "salaryindex": "150K"
-        }
-    },
-    "username": "rshell",
-    "email": {
-        "0": "xyz@some.com",
-        "1": "abc@another.com"
-    },
-    "phone": {
-        "0": "+561234567890",
-        "1": "+561234567891",
-        "2": "+561234567892"
-    },
-    "address": {
-        "house": "number something",
-        "street": "something",
-        "locality": "another",
-        "city": "some",
-        "state": "some",
-        "country": "another",
-        "postalcode": "4FCDG78",
-        "landmark": "near some market"
-    },
-    "social": {
-        "twitter": "handle",
-        "google": "plusprofile",
-        "facebook": "faceid",
-        "live": "windowsliveid",
-        "skype": "skypeid",
-        "linkedin": "profileid",
-        "personaluri": "bloguri"
-    },
-    "groups": [
-        "somegroup1",
-        "somegroup2",
-        "somegroup3"
-    ]
-}
-</pre>
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b1615ce7-0f73-464d-bb15-45f701015aa0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1394800072652</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"modified"</span><span class="p">:</span><span class="w"> </span><span class="mi">1394800072652</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.example.com/v1/users/b1615ce7-0f73-464d-bb15-45f701015aa0"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"personal-info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"surname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shell"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"given"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ron"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mr"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"complete"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mr. Ron Shell"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"dob"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12-12-1980"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"male"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://gravatar.com/image/id/1238347384728723839"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"secrets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"what is your dob"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54431df57f827c3d38b49dd2bf9a29fa"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"what is your birthplace"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11d0c7bdbc6cade41f2b2fcb36ac6b90"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"external-info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rshell"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"crmid"</span><span class="p">:</span><span class="w"> </span><span class="mi">1238347384728723700</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dept"</span><span class="p">:</span><span class="w"> </span><span class="s2">"something"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"salaryindex"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150K"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rshell"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"0"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xyz@some.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc@another.com"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"0"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+561234567890"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+561234567891"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+561234567892"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"house"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number something"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"something"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"locality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"another"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"another"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postalcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4FCDG78"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"landmark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"near some market"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"social"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"twitter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"handle"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"google"</span><span class="p">:</span><span class="w"> </span><span class="s2">"plusprofile"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"facebook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"faceid"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"live"</span><span class="p">:</span><span class="w"> </span><span class="s2">"windowsliveid"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"skype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"skypeid"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"linkedin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"profileid"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"personaluri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bloguri"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"somegroup1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"somegroup2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"somegroup3"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
 <h3 id="purpose">Purpose</h3>
 
 <p>CREATE a User entity</p>
@@ -376,74 +430,76 @@ Upon failure, Developer gets a 400 Bad Request
 <p>Response:</p>
 </blockquote>
 <pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
-{
-    "id": "b1615ce7-0f73-464d-bb15-45f701015aa0",
-    "metadata": {
-        "type": "user",
-        "created": 1394800072652,
-        "modified": 1394800072652,
-        "uri": "https://api.example.com/v1/users/b1615ce7-0f73-464d-bb15-45f701015aa0"
-    },
-    "personal-info": {
-        "name": {
-            "surname": "Shell",
-            "given": "Ron",
-            "title": "Mr",
-            "complete": "Mr. Ron Shell"
-        },
-        "dob": "12-12-1980",
-        "gender": "male",
-        "image": "http://gravatar.com/image/id/1238347384728723839",
-        "secrets": {
-            "what is your dob": "54431df57f827c3d38b49dd2bf9a29fa",
-            "what is your birthplace": "11d0c7bdbc6cade41f2b2fcb36ac6b90"
-        }
-    },
-    "external-info": {
-        "id": "rshell",
-        "crmid": 1238347384728723700,
-        "dept": "something",
-        "custom": {
-            "salaryindex": "150K"
-        }
-    },
-    "username": "rshell",
-    "email": {
-        "0": "xyz@some.com",
-        "1": "abc@another.com"
-    },
-    "phone": {
-        "0": "+561234567890",
-        "1": "+561234567891",
-        "2": "+561234567892"
-    },
-    "address": {
-        "house": "number something",
-        "street": "something",
-        "locality": "another",
-        "city": "some",
-        "state": "some",
-        "country": "another",
-        "postalcode": "4FCDG78",
-        "landmark": "near some market"
-    },
-    "social": {
-        "twitter": "handle",
-        "google": "plusprofile",
-        "facebook": "faceid",
-        "live": "windowsliveid",
-        "skype": "skypeid",
-        "linkedin": "profileid",
-        "personaluri": "bloguri"
-    },
-    "groups": [
-        "somegroup1",
-        "somegroup2",
-        "somegroup3"
-    ]
-}
-</pre>
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b1615ce7-0f73-464d-bb15-45f701015aa0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1394800072652</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"modified"</span><span class="p">:</span><span class="w"> </span><span class="mi">1394800072652</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.example.com/v1/users/b1615ce7-0f73-464d-bb15-45f701015aa0"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"personal-info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"surname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shell"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"given"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ron"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mr"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"complete"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mr. Ron Shell"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"dob"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12-12-1980"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"male"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://gravatar.com/image/id/1238347384728723839"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"secrets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"what is your dob"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54431df57f827c3d38b49dd2bf9a29fa"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"what is your birthplace"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11d0c7bdbc6cade41f2b2fcb36ac6b90"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"external-info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rshell"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"crmid"</span><span class="p">:</span><span class="w"> </span><span class="mi">1238347384728723700</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dept"</span><span class="p">:</span><span class="w"> </span><span class="s2">"something"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"salaryindex"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150K"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rshell"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"0"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xyz@some.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc@another.com"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"0"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+561234567890"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+561234567891"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+561234567892"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"house"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number something"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"something"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"locality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"another"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"another"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postalcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4FCDG78"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"landmark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"near some market"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"social"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"twitter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"handle"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"google"</span><span class="p">:</span><span class="w"> </span><span class="s2">"plusprofile"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"facebook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"faceid"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"live"</span><span class="p">:</span><span class="w"> </span><span class="s2">"windowsliveid"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"skype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"skypeid"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"linkedin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"profileid"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"personaluri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bloguri"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"somegroup1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"somegroup2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"somegroup3"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
 <h3 id="purpose">Purpose</h3>
 
 <p>GET a User entity</p>
@@ -471,80 +527,134 @@ Upon failure, Developer gets a 400 Bad Request
   --request PUT
   --header  <span class="s2">"apikey: {client_id}"</span>
   --header  <span class="s2">"content-type: application/json"</span>
-  --data    <span class="s2">"{"</span>personal-info<span class="s2">":{"</span>name<span class="s2">":{"</span>surname<span class="s2">":"</span>Shell<span class="s2">","</span>given<span class="s2">":"</span>Ron<span class="s2">","</span>title<span class="s2">":"</span>Mr<span class="s2">","</span><span class="nb">complete</span><span class="s2">":"</span>Mr. Ron Shell<span class="s2">"},"</span>dob<span class="s2">":"</span>12-12-1980<span class="s2">","</span>gender<span class="s2">":"</span>male<span class="s2">","</span>image<span class="s2">":"</span>http://gravatar.com/avatar/d43903a7f1db7f4246ecdd6hj6ed54gh<span class="s2">","</span>secrets<span class="s2">":{"</span>what is your dob<span class="s2">":"</span>54431df57f827c3d38b49dd2bf9a29fa<span class="s2">","</span>what is your birthplace<span class="s2">":"</span>11d0c7bdbc6cade41f2b2fcb36ac6b90<span class="s2">"}},"</span>external-info<span class="s2">":{"</span>id<span class="s2">":"</span>rshell<span class="s2">","</span>crmid<span class="s2">":1238347384728723700,"</span>dept<span class="s2">":"</span>something<span class="s2">"},"</span>email<span class="s2">":{"</span>0<span class="s2">":"</span>xyz@some.com<span class="s2">","</span>1<span class="s2">":"</span>abc@another.com<span class="s2">"},"</span>phone<span class="s2">":{"</span>0<span class="s2">":"</span>+561234567890<span class="s2">","</span>1<span class="s2">":"</span>+561234567891<span class="s2">","</span>2<span class="s2">":"</span>+561234567892<span class="s2">"},"</span>address<span class="s2">":{"</span>house<span class="s2">":"</span>number something<span class="s2">","</span>street<span class="s2">":"</span>something<span class="s2">","</span>locality<span class="s2">":"</span>another<span class="s2">","</span>city<span class="s2">":"</span>some<span class="s2">","</span>state<span class="s2">":"</span>some<span class="s2">","</span>country<span class="s2">":"</span>another<span class="s2">","</span>postalcode<span class="s2">":"</span>4FCDG78<span class="s2">","</span>landmark<span class="s2">":"</span>near some market<span class="s2">"},"</span>social<span class="s2">":{"</span>twitter<span class="s2">":"</span>handle<span class="s2">","</span>google<span class="s2">":"</span>plusprofile<span class="s2">","</span>facebook<span class="s2">":"</span>faceid<span class="s2">","</span>live<span class="s2">":"</span>windowsliveid<span class="s2">"},"</span>groups<span class="s2">":["</span>somegroup1<span class="s2">","</span>somegroup2<span class="s2">","</span>somegroup3<span class="s2">"]}"</span>
+  --data    <span class="s2">"{
+    "</span>personal-info<span class="s2">": {
+        "</span>name<span class="s2">": {
+            "</span>surname<span class="s2">": "</span>Shell<span class="s2">",
+            "</span>given<span class="s2">": "</span>Ron<span class="s2">",
+            "</span>title<span class="s2">": "</span>Mr<span class="s2">",
+            "</span><span class="nb">complete</span><span class="s2">": "</span>Mr. Ron Shell<span class="s2">"
+        },
+        "</span>dob<span class="s2">": "</span>12-12-1980<span class="s2">",
+        "</span>gender<span class="s2">": "</span>male<span class="s2">",
+        "</span>image<span class="s2">": "</span>http://gravatar.com/avatar/d43903a7f1db7f4246ecdd6hj6ed54gh<span class="s2">",
+        "</span>secrets<span class="s2">": {
+            "</span>what is your dob<span class="s2">": "</span>54431df57f827c3d38b49dd2bf9a29fa<span class="s2">",
+            "</span>what is your birthplace<span class="s2">": "</span>11d0c7bdbc6cade41f2b2fcb36ac6b90<span class="s2">"
+        }
+    },
+    "</span>external-info<span class="s2">": {
+        "</span>id<span class="s2">": "</span>rshell<span class="s2">",
+        "</span>crmid<span class="s2">": 1238347384728723700,
+        "</span>dept<span class="s2">": "</span>something<span class="s2">"
+    },
+    "</span>email<span class="s2">": {
+        "</span>0<span class="s2">": "</span>xyz@some.com<span class="s2">",
+        "</span>1<span class="s2">": "</span>abc@another.com<span class="s2">"
+    },
+    "</span>phone<span class="s2">": {
+        "</span>0<span class="s2">": "</span>+561234567890<span class="s2">",
+        "</span>1<span class="s2">": "</span>+561234567891<span class="s2">",
+        "</span>2<span class="s2">": "</span>+561234567892<span class="s2">"
+    },
+    "</span>address<span class="s2">": {
+        "</span>house<span class="s2">": "</span>number something<span class="s2">",
+        "</span>street<span class="s2">": "</span>something<span class="s2">",
+        "</span>locality<span class="s2">": "</span>another<span class="s2">",
+        "</span>city<span class="s2">": "</span>some<span class="s2">",
+        "</span>state<span class="s2">": "</span>some<span class="s2">",
+        "</span>country<span class="s2">": "</span>another<span class="s2">",
+        "</span>postalcode<span class="s2">": "</span>4FCDG78<span class="s2">",
+        "</span>landmark<span class="s2">": "</span>near some market<span class="s2">"
+    },
+    "</span>social<span class="s2">": {
+        "</span>twitter<span class="s2">": "</span>handle<span class="s2">",
+        "</span>google<span class="s2">": "</span>plusprofile<span class="s2">",
+        "</span>facebook<span class="s2">": "</span>faceid<span class="s2">",
+        "</span>live<span class="s2">": "</span>windowsliveid<span class="s2">"
+    },
+    "</span>status<span class="s2">": "</span>active<span class="s2">",
+    "</span>groups<span class="s2">": [
+        "</span>somegroup1<span class="s2">",
+        "</span>somegroup2<span class="s2">",
+        "</span>somegroup3<span class="s2">"
+    ]
+}"</span>
 </pre>
 <blockquote>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
-{
-    "id": "b1615ce7-0f73-464d-bb15-45f701015aa0",
-    "metadata": {
-        "type": "user",
-        "created": 1394800072652,
-        "modified": 1394800072652,
-        "uri": "https://api.example.com/v1/users/b1615ce7-0f73-464d-bb15-45f701015aa0"
-    },
-    "personal-info": {
-        "name": {
-            "surname": "Shell",
-            "given": "Ron",
-            "title": "Mr",
-            "complete": "Mr. Ron Shell"
-        },
-        "dob": "12-12-1980",
-        "gender": "male",
-        "image": "http://gravatar.com/image/id/1238347384728723839",
-        "secrets": {
-            "what is your dob": "54431df57f827c3d38b49dd2bf9a29fa",
-            "what is your birthplace": "11d0c7bdbc6cade41f2b2fcb36ac6b90"
-        }
-    },
-    "external-info": {
-        "id": "rshell",
-        "crmid": 1238347384728723700,
-        "dept": "something",
-        "custom": {
-            "salaryindex": "150K"
-        }
-    },
-    "username": "rshell",
-    "email": {
-        "0": "xyz@some.com",
-        "1": "abc@another.com"
-    },
-    "phone": {
-        "0": "+561234567890",
-        "1": "+561234567891",
-        "2": "+561234567892"
-    },
-    "address": {
-        "house": "number something",
-        "street": "something",
-        "locality": "another",
-        "city": "some",
-        "state": "some",
-        "country": "another",
-        "postalcode": "4FCDG78",
-        "landmark": "near some market"
-    },
-    "social": {
-        "twitter": "handle",
-        "google": "plusprofile",
-        "facebook": "faceid",
-        "live": "windowsliveid",
-        "skype": "skypeid",
-        "linkedin": "profileid",
-        "personaluri": "bloguri"
-    },
-    "groups": [
-        "somegroup1",
-        "somegroup2",
-        "somegroup3"
-    ]
-}
-</pre>
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b1615ce7-0f73-464d-bb15-45f701015aa0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1394800072652</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"modified"</span><span class="p">:</span><span class="w"> </span><span class="mi">1394800072652</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.example.com/v1/users/b1615ce7-0f73-464d-bb15-45f701015aa0"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"personal-info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"surname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shell"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"given"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ron"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mr"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"complete"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mr. Ron Shell"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"dob"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12-12-1980"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"male"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://gravatar.com/image/id/1238347384728723839"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"secrets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"what is your dob"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54431df57f827c3d38b49dd2bf9a29fa"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"what is your birthplace"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11d0c7bdbc6cade41f2b2fcb36ac6b90"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"external-info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rshell"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"crmid"</span><span class="p">:</span><span class="w"> </span><span class="mi">1238347384728723700</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dept"</span><span class="p">:</span><span class="w"> </span><span class="s2">"something"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"salaryindex"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150K"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rshell"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"0"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xyz@some.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc@another.com"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"0"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+561234567890"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+561234567891"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+561234567892"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"house"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number something"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"something"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"locality"</span><span class="p">:</span><span class="w"> </span><span class="s2">"another"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"another"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postalcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4FCDG78"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"landmark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"near some market"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"social"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"twitter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"handle"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"google"</span><span class="p">:</span><span class="w"> </span><span class="s2">"plusprofile"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"facebook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"faceid"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"live"</span><span class="p">:</span><span class="w"> </span><span class="s2">"windowsliveid"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"skype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"skypeid"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"linkedin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"profileid"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"personaluri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bloguri"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"somegroup1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"somegroup2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"somegroup3"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
 <h3 id="purpose">Purpose</h3>
 
 <p>UPDATE a User entity</p>
