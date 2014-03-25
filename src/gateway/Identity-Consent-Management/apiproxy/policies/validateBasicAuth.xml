@@ -1,0 +1,10 @@
+<OAuthV2 name="validateBasicAuth" enabled="true" continueOnError="false" async="false">
+    <FaultRules/>
+    <Properties/>
+    <Operation>GenerateAccessToken</Operation>
+    <ExpiresIn>4000</ExpiresIn>
+    <SupportedGrantTypes>
+        <GrantType>client_credentials</GrantType>
+    </SupportedGrantTypes>
+    <GrantType>var.grantType</GrantType>
+</OAuthV2>

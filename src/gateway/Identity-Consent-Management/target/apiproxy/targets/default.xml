@@ -1,0 +1,12 @@
+<TargetEndpoint name="default">
+	<PreFlow>
+<!-- 		<Request> -->
+<!-- 		    <Step><Name>SetRedirectUriToRequest</Name></Step> -->
+<!-- 		</Request> -->
+	</PreFlow>
+
+
+	<ScriptTarget>
+		<ResourceURL>node://app.js</ResourceURL>
+	</ScriptTarget>
+</TargetEndpoint>

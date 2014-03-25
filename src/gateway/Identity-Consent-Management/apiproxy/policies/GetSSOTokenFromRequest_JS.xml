@@ -1,0 +1,6 @@
+<Javascript timeLimit="0" enabled="true" continueOnError="false" async="false" name="GetSSOTokenFromRequest_JS">
+<DisplayName>ValidateRequestJSONParams_JS</DisplayName>
+	<FaultRules/>
+	<Properties/>
+	<ResourceURL>jsc://getSSOTokenFromRequest.js</ResourceURL>
+</Javascript>

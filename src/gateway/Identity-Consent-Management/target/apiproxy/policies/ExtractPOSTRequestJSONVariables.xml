@@ -1,0 +1,43 @@
+<ExtractVariables enabled="true" continueOnError="true" async="false" name="ExtractPOSTRequestJSONVariables">
+    <DisplayName>ExtractPOSTRequestJSONVariables</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">request</Source>
+    <JSONPayload > 
+		<Variable  name="developer_id">
+			<JSONPath>$.developer_id</JSONPath>
+		</Variable>	
+		<Variable  name="client_id">
+			<JSONPath>$.client_id</JSONPath>
+		</Variable>	
+		<Variable  name="end_user_id">
+			<JSONPath>$.end_user_id</JSONPath>
+		</Variable>	
+		<Variable  name="device_type">
+			<JSONPath>$.device_type</JSONPath>
+		</Variable>	
+		<Variable  name="authorization_code">
+			<JSONPath>$.authorization_code</JSONPath>
+		</Variable>
+		<Variable  name="access_token">
+			<JSONPath>$.access_token</JSONPath>
+		</Variable>	
+		<Variable  name="refresh_token">
+			<JSONPath>$.refresh_token</JSONPath>
+		</Variable>	
+		<Variable  name="sso_token">
+			<JSONPath>$.sso_token</JSONPath>
+		</Variable>	
+		<Variable  name="scope">
+			<JSONPath>$.scope</JSONPath>
+		</Variable>	
+		<Variable  name="status">
+			<JSONPath>$.status</JSONPath>
+		</Variable>
+		<Variable  name="application_name">
+			<JSONPath>$.application_name</JSONPath>
+		</Variable>		
+    </JSONPayload>
+    </ExtractVariables>
+
