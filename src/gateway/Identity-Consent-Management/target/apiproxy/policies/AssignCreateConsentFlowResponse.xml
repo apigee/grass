@@ -1,0 +1,21 @@
+<AssignMessage enabled="true" continueOnError="false" async="false" name="AssignCreateConsentFlowResponse">
+	<DisplayName>AssignCreateConsentFlowResponse</DisplayName>
+	<FaultRules />
+	<Properties />
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignTo createNew="true" transport="http" type="response">response
+	</AssignTo>
+	<Set>
+		<Headers>
+			<Header name="Access-Control-Allow-Origin">{request.header.Origin}</Header>
+			<Header name="Access-Control-Allow-Credentials">true</Header>
+			<Header name="Access-Control-Allow-Methods">OPTIONS,GET,POST,PUT,DELETE,HEAD</Header>
+			<Header name="Access-Control-Allow-Headers">Authorization,Content-Type,Accept,Origin,X-Requested-With,X-CSDKVersion</Header>
+			<Header name="Access-Control-Max-Age">86400</Header>
+		</Headers>
+		<Payload contentType="application/json" variablePrefix="%"
+			variableSuffix="#">%responsePayload#</Payload>
+
+		<StatusCode>200</StatusCode>
+	</Set>
+</AssignMessage>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+	<Description />
+
+<!-- TODO:: Authentication in Pre-flow -->
+<FaultRules>
+	<FaultRule name="InvalidApiKey">
+		<Condition>fault.name = "invalid_client"</Condition>
+		<Step>
+			<FaultRules />
+			<Name>authenticationFailed</Name>
+		</Step>
+	</FaultRule>
+	<FaultRule name="InvalidProduct">
+		<Condition>fault.name = "InvalidAPICallAsNoApiProductMatchFound"</Condition>
+		<Step>
+			<FaultRules />
+			<Name>authorizationFailed</Name>
+		</Step>
+	</FaultRule>
+</FaultRules> 
+
+<PreFlow>
+<Request>
+					<Step>
+					<Condition>(request.header.Authorization.values.count = 0)</Condition>
+					<FaultRules />
+					<Name>challengeResponse</Name>
+				</Step>
+				<Step>
+					<FaultRules />
+					<Name>setGrantType</Name>
+				</Step>
+				<Step>
+					<Condition>(request.header.Authorization =| "Basic") and !(proxy.pathsuffix MatchesPath &quot;/token/sso&quot;)</Condition>
+					<FaultRules />
+					<Name>validateBasicAuth</Name>
+				</Step>
+</Request>
+
+
+</PreFlow>
+
+
+	<Flows>
+		<Flow name="Create Consent">
+			<Request>
+				<Step>
+					<Name>ExtractPOSTRequestJSONVariables</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				<Step>
+					<Name>AssignRequestPayloadToFlowVar</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				<Step>
+					<Name>ValidateRequestJSONParams_JS</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				<Step>
+					<Condition>errorType != null</Condition>
+					<Name>RaiseFault_BadRequest</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				<Step>
+					<Name>ModifyRequestToAddParams</Name>
+					<FaultRules></FaultRules>
+				</Step>
+			</Request>
+			<Response>
+			<Step>
+				<Condition>response.status.code = 200</Condition>
+				<Name>ExtractTargetResponseParameters</Name>
+				<FaultRules></FaultRules>
+			</Step>
+			<Step>
+				<Condition>response.status.code = 200</Condition>
+				<Name>CreateResposneContent_JS</Name>
+				<FaultRules></FaultRules>
+			</Step>
+			<Step>
+				<Condition>response.status.code = 200</Condition>
+				<Name>AssignCreateConsentFlowResponse</Name>
+				<FaultRules></FaultRules>
+			</Step>
+			</Response>
+
+			<Condition>(proxy.pathsuffix MatchesPath &quot;/consents&quot;) and (request.verb = &quot;POST&quot;)</Condition>
+		</Flow>
+			<Flow name="Update Consent">
+			<Request>
+				<Step>
+					<Name>ExtractPUTRequestJSONVariables</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				<Step>
+					<Name>ValidatePUTRequestJSONParams_JS</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				<Step>
+					<Condition>errorType != null</Condition>
+					<Name>RaiseFault_BadRequest</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				<Step>
+					<Name>ModifyPUTRequestToAddParams</Name>
+					<FaultRules></FaultRules>
+				</Step>
+			</Request>
+			<Response>
+
+			</Response>
+
+			<Condition>(proxy.pathsuffix MatchesPath &quot;/consents/{consentId}&quot;) and (request.verb = &quot;PUT&quot;)</Condition>
+		</Flow>
+	
+	
+	
+		<Flow name="Get Consent By User">
+			<Request>
+
+			</Request>
+			<Response>
+
+			</Response>
+
+			<Condition>(proxy.pathsuffix MatchesPath &quot;/consents&quot;) and (request.verb = &quot;GET&quot;) and (request.queryparam.user_id != null)</Condition>
+		</Flow>
+		<Flow name="SSO Token Validation">
+			<Request>
+			<Step>
+					<Name>GetSSOTokenFromRequest_JS</Name>
+					<FaultRules></FaultRules>
+			</Step>
+			<Step>
+					<Condition>errorType != null</Condition>
+					<Name>RaiseFault_Unauthorized</Name>
+					<FaultRules></FaultRules>
+				</Step>
+			</Request>
+			<Response>
+
+			</Response>
+
+			<Condition>(proxy.pathsuffix MatchesPath &quot;/token/sso&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+		</Flow>		
+		
+		<Flow name="OPTIONS">
+			<Condition>(request.verb = &quot;OPTIONS&quot;)</Condition>
+			<Request>
+			</Request>
+			<Response>
+				<Step>
+					<Name>Option.AssignResponse</Name>
+					<FaultRules></FaultRules>
+				</Step>
+			</Response>
+		</Flow>
+	</Flows>
+
+<PostFlow>
+<Response>
+	<!-- ConstructErrorResponse proxy is added because of a platform bug, which 
+		sends error json elements, which are set in response from node.js target, as header instead of payload -->
+	<Step>
+		<Condition>(response.header.error != null)</Condition>
+		<FaultRules />
+		<Name>ConstructErrorResponse</Name>
+	</Step>
+</Response>
+
+</PostFlow>
+
+
+
+
+	<HTTPProxyConnection>
+		<BasePath>/identity</BasePath>
+		<VirtualHost>default</VirtualHost>
+		<VirtualHost>secure</VirtualHost>
+	</HTTPProxyConnection>
+	<RouteRule name="default">
+		<TargetEndpoint>default</TargetEndpoint>
+	</RouteRule>
+</ProxyEndpoint>

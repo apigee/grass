@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="true" enabled="true" name="ModifyRequestToAddParams">
+    <DisplayName>ModifyRequestToAddParams</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Add>
+        <Headers/>
+        <FormParams>
+                      <FormParam name="developer_id">{developer_id}</FormParam>
+                      <FormParam name="client_id">{client_id}</FormParam>
+                      <FormParam name="end_user_id">{end_user_id}</FormParam>
+                      <FormParam name="device_type">{device_type}</FormParam>
+                      <FormParam name="authorization_code">{authorization_code}</FormParam>
+                      <FormParam name="access_token">{access_token}</FormParam>
+                      <FormParam name="refresh_token">{refresh_token}</FormParam>
+		              <FormParam name="sso_token">{sso_token}</FormParam>
+		              <FormParam name="scope">{scope}</FormParam>
+		              <FormParam name="status">{status}</FormParam>
+        </FormParams>
+        <FormParams/>
+    </Add>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>
