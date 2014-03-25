@@ -1,0 +1,9 @@
+<AssignMessage enabled="true" continueOnError="false" async="false" name="AssignRequestPayloadToFlowVar">
+	<DisplayName>AssignRequestPayloadToFlowVar</DisplayName>
+	<AssignVariable>
+		<Name>requestPayload</Name>
+		<Ref>request.content</Ref>
+	</AssignVariable>
+</AssignMessage>
+
+

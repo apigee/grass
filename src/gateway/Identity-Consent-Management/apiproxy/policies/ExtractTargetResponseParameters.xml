@@ -1,0 +1,16 @@
+<ExtractVariables enabled="true" continueOnError="true" async="false" name="ExtractTargetResponseParameters">
+    <DisplayName>ExtractResponseParameters</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">response</Source>
+    <JSONPayload > 
+		<Variable  name="consent_id">
+			<JSONPath>$.consent_id</JSONPath>
+		</Variable>	
+		<Variable  name="last_updated">
+			<JSONPath>$.last_updated</JSONPath>
+		</Variable>			
+    </JSONPayload>
+    </ExtractVariables>
+
