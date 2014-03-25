@@ -1,0 +1,32 @@
+<% layout('layout') -%> 
+
+     <form class="form-signin" action="/openId/redirect/<%= sessionid%>?userId=<%= userId%>"  method="POST" style="padding-top: 60px;">
+       <h3>Access Authorization</h3>
+        <p>  Application <b>Spots</b> is requesting your permission to share following details .
+        <br>
+		<li>Name, Email id, Phone Number</li><br>
+		Please press <b>Allow</b> to authenticate else cancel.  <br></p>     
+      <fieldset class="ui-grid-a">
+				<div class="ui-block-a"><button class="btn btn-medium btn-primary" type="submit" data-theme="c">Allow</button></div>
+				<div class="ui-block-b"><button class="btn btn-medium btn-error" type="button" data-theme="b" onclick="window.location='<%= redirectURL%>'" >Cancel</button></div>
+		    </fieldset>
+     </form>
+
+<script type="text/javascript">
+    function allowConsent(){ 
+    	$.ajax({
+    		  type: 'POST',
+    		  url: '/openId/redirect/<%= sessionid%>',
+    		  success: function(response){
+    			  alert("success -" + response);
+    		  },
+    		  complete : function( xmlHttp ){
+    			 parent.close();
+
+    		  }, error : function(e){
+				//alert(JSON.stringify(e));
+		 }
+    	});
+   }
+</script>
+

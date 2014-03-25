@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="identity-consent-management">
+    <ConfigurationVersion minorVersion="0" majorVersion="4"/>
+    <CreatedAt>1387429921493</CreatedAt>
+    <CreatedBy>aagrawal@apigee.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>identity-consent-management</DisplayName>
+    <LastModifiedAt>1387429921493</LastModifiedAt>
+    <LastModifiedBy>aagrawal@apigee.com</LastModifiedBy>
+    <Policies>
+        <Policy>AssignMessage-1</Policy>
+        <Policy>responsecache</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources/>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+    <validate>false</validate>
+</APIProxy>
