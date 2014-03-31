@@ -86,7 +86,7 @@ engine.put(pkginfo.regex_username, User.parse, function (req, res) {
   'use strict';
   User.update(req.params.username, req.body, function(err, user) {
     if (err) res.send(S_BDREQST);
-    else res.json(S_CREATED, user);
+    else res.json(S_ALL_OKS, user);
   });
 });
 
@@ -99,7 +99,7 @@ engine.post(pkginfo.regex_password, User.auth, function (req, res) {
   'use strict';
   User.password(req.params.username, req.body, function(err, user) {
     if (err) res.send(S_BDREQST);
-    else res.json(S_ALL_OKS, user);
+    else res.json(S_CREATED, user);
   });
 });
 
