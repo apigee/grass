@@ -1,6 +1,0 @@
-<XMLToJSON name="ConvertToJSON">
-  <Options>
-  </Options>
-  <OutputVariable>apiProductJSON</OutputVariable>
-  <Source>AccessEntity.GetApiProduct</Source>
-</XMLToJSON>

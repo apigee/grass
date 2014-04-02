@@ -1,4 +1,0 @@
-<JavaCallout name="JwtTokenSigning">
-        <ResourceURL>java://JwtTokenSigning.zip</ResourceURL>
-        <ClassName>com.google.iapsample.MainClass</ClassName>
-</JavaCallout>

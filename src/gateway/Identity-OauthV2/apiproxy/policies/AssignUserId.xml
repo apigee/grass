@@ -1,8 +1,0 @@
-<AssignMessage name="AssignUserId">
-<IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
- 
-<AssignVariable>
-    <Name>AssignUserId</Name>
-    <Value>AssignUserId</Value>
-</AssignVariable>
-</AssignMessage>

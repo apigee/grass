@@ -1,6 +1,0 @@
-<Javascript timeLimit="0" enabled="true" continueOnError="false" async="false" name="PageInterceptorJS">
-<DisplayName>PageInterceptorJS</DisplayName>
-	<FaultRules/>
-	<Properties/>
-	<ResourceURL>jsc://PageInterceptor.js</ResourceURL>
-</Javascript>

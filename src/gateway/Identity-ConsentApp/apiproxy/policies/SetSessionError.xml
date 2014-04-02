@@ -1,7 +1,0 @@
-<AssignMessage name="SetSessionError">
-	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-	<AssignVariable>
-		<Name>flowError</Name>
-		<Value>SESSION_INVALID</Value>
-	</AssignVariable>
-</AssignMessage>
