@@ -1,0 +1,19 @@
+<AssignMessage name="GenerateRequest">
+  <AssignTo createNew="false" type="request">request</AssignTo>
+  <Set>
+    <QueryParams>
+      <QueryParam name="response_type">code</QueryParam>
+    </QueryParams>
+     <QueryParams>
+      <QueryParam name="redirect_uri">{redirect_uri}</QueryParam>
+    </QueryParams>
+     <QueryParams>
+      <QueryParam name="scope">{scope}</QueryParam>
+    </QueryParams>
+    <QueryParams>
+      <QueryParam name="client_id">{client_id}</QueryParam>
+    </QueryParams>
+    <Verb>GET</Verb>
+  </Set>
+   <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+</AssignMessage>

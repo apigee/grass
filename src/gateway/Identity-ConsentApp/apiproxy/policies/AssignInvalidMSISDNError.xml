@@ -1,0 +1,9 @@
+<AssignMessage enabled="true" continueOnError="false" async="false" name="AssignInvalidMSISDNError">
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignTo createNew="false" transport="http" type="request">request</AssignTo>
+	<Set>
+	 	<QueryParams>
+			     <QueryParam name="error">Mobile Number is not registered</QueryParam>
+	 </QueryParams>
+	</Set>
+</AssignMessage>

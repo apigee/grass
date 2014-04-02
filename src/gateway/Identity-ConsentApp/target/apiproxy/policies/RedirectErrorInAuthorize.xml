@@ -1,0 +1,12 @@
+<RaiseFault name="RedirectErrorInAuthorize">
+ <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+ <FaultResponse>
+		<Set>
+			<StatusCode>302</StatusCode>
+			<Headers>
+         		<Header name="Location">/openid/errorflow?error={flowError}&amp;discription=invalid%20session</Header>
+      		</Headers>
+      		<Payload contentType="text/plain"> </Payload>
+		</Set>
+ </FaultResponse>
+</RaiseFault>

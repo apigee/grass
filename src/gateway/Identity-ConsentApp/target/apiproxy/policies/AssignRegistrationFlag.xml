@@ -1,0 +1,7 @@
+<AssignMessage name="AssignRegistrationFlag">
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignVariable>
+		<Name>registrationFlag</Name>
+		<Value>true</Value>
+	</AssignVariable>
+</AssignMessage>

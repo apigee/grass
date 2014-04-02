@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="true" async="false" name="AssignIdentityMessageResponse">
+<DisplayName>AssignIdentityMessageResponse</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    	<Set>
+		<Verb>POST</Verb>
+		  <Payload contentType="application/json" variablePrefix="$" variableSuffix="%">$userProfileJson%</Payload>
+		  <StatusCode>200</StatusCode>
+			<ReasonPhrase>Response</ReasonPhrase>
+		</Set>
+</AssignMessage>

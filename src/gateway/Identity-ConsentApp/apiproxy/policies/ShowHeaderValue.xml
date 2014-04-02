@@ -1,0 +1,7 @@
+<AssignMessage name="ShowHeaderValue">
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignVariable>
+		<Name>process1</Name>
+		<Ref>response.content</Ref>
+	</AssignVariable>
+</AssignMessage>

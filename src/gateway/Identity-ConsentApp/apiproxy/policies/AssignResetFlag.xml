@@ -1,0 +1,7 @@
+<AssignMessage name="AssignResetFlag">
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignVariable>
+		<Name>resetFalg</Name>
+		<Value>true</Value>
+	</AssignVariable>
+</AssignMessage>

@@ -1,0 +1,6 @@
+<Javascript timeLimit="0" enabled="true" continueOnError="true" async="false" name="ValidateRequest">
+<DisplayName>ValidateRequest</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <ResourceURL>jsc://ValidateRequest.js</ResourceURL>
+</Javascript>
