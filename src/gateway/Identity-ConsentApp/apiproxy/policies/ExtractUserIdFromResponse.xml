@@ -1,0 +1,10 @@
+<ExtractVariables name="ExtractUserIdFromResponse">
+	<DisplayName>ExtractUserIdFromResponse</DisplayName>
+	<Source>userManagement.response</Source>
+		<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<JSONPayload>
+		<Variable name="userid">
+			<JSONPath>$.username</JSONPath>
+		</Variable>
+	</JSONPayload>
+</ExtractVariables>

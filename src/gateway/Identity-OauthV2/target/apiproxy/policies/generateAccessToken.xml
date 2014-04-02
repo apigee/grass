@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OAuthV2 name="generateAccessToken">
+	<GenerateResponse />
+	<Operation>GenerateAccessToken</Operation>
+	
+	<ExpiresIn>3600000</ExpiresIn> <!-- this is in milliseconds , try -1 for long lived token -->
+	
+	<SupportedGrantTypes>
+		<GrantType>authorization_code</GrantType>
+	</SupportedGrantTypes>
+	
+	<GrantType>request.formparam.grant_type</GrantType>
+	<Code>request.formparam.code</Code>
+	<ClientId>request.formparam.client_id</ClientId>
+	<RedirectUri>request.formparam.redirect_uri</RedirectUri>
+	<Scope>request.formparam.scope</Scope>
+</OAuthV2>
+

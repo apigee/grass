@@ -1,0 +1,12 @@
+<LookupCache enabled="true" continueOnError="false" async="false" name="Session.GetFromCache">
+    <DisplayName>Session.GetFromCache</DisplayName>
+    <CacheResource>consent-session-cache</CacheResource>
+    <AssignTo>session.Payload</AssignTo>
+    <Scope>Global</Scope>
+    <CacheKey>
+        <KeyFragment ref="sessionid"></KeyFragment>
+    </CacheKey>
+</LookupCache>
+
+
+

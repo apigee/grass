@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 name="AccesstokenValidation" continueOnError="false" enabled="true">
+	<DisplayName>AccessToken Validation</DisplayName>
+	<Description>Authenticates the request, using OAuth 2.0 Access Token</Description>
+    <Operation>VerifyAccessToken</Operation>
+</OAuthV2>

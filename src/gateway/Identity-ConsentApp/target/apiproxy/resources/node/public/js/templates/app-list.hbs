@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <div><h4>Your Application Consents</h4></div>
+    <div class="panel-group" id="accordian">
+      {{#each application in model}}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title"><a data-toggle="collapse" data-parent="accordian" href="#app1">{{application.name}}</a></h4>
+        </div>
+        <div id="app1" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p>The application <strong>{{application.name}}</strong> can access your</p>
+            {{partial 'scopes'}}
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

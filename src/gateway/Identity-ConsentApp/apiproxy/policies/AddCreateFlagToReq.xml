@@ -1,0 +1,7 @@
+<AssignMessage name="AddCreateFlagToReq">
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignVariable>
+		<Name>process</Name>
+		<Value>create</Value>
+	</AssignVariable>
+</AssignMessage>

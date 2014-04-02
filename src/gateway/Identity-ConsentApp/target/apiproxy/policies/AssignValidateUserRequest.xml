@@ -1,0 +1,21 @@
+<AssignMessage enabled="true" continueOnError="false" async="false" name="AssignValidateUserRequest">
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignTo createNew="true" transport="http" type="request">validateUserRequest</AssignTo>
+	<Set>
+<!-- 	 	<FormParams> -->
+<!-- 			     <FormParam name="username">{request.formparam.username}</FormParam> -->
+<!-- 			  	 <FormParam name="password">{request.formparam.password}</FormParam> -->
+<!-- 	 </FormParams> -->
+	 
+	
+
+	<Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+		 {
+    "grant_type": "password",
+    "username": "%request.formparam.username#",
+    "password": "%request.formparam.password#"
+}
+			</Payload>
+
+	</Set>
+</AssignMessage>

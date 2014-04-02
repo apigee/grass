@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+	<Description />
+	<Flows>
+		<Flow name="validate Login">
+	<Request>
+		<Step>
+			<Condition>request.formparam.username == null || request.formparam.password = null || request.formparam.password = "" || request.formparam.username = ""</Condition>
+			<Name>RaiseFault.BadRequest</Name>
+		</Step>
+		<Step>
+			<Name>AssignRequestToValidateUser</Name>
+		</Step>
+		<Step>
+			<Name>ServiceCallout.ValidateUser</Name>
+		</Step>
+		<Step>
+			<Condition>validateUser.response.status.code = 200</Condition>
+			<Name>ExtractValidateUserCalloutResponse</Name>
+		</Step>		
+	</Request>
+	<Response>
+		<Step>
+			<Condition>validateUser.response.status.code = 200</Condition>
+			<Name>AssignValidateLoginResponse</Name>
+		</Step>	
+		<Step>
+			<Condition>validateUser.response.status.code != 200</Condition>
+			<Name>AssignValidateLoginErrorResponse</Name>
+		</Step>		
+	</Response>
+
+			<Condition>(proxy.pathsuffix MatchesPath &quot;/validate/login&quot;) and (request.verb = &quot;POST&quot;)</Condition>
+		</Flow>
+
+		<Flow name="GetIdentifier">
+	<Request>
+		<Step>
+			<Condition>(request.formparam.username = null) or (request.formparam.username = "")</Condition>
+			<Name>RaiseFault.BadRequest</Name>
+		</Step>
+	</Request>
+	<Response>
+		<Step>
+			<Condition>request.formparam.username != null</Condition>
+			<Name>AssignIdentifierResponse</Name>
+		</Step>
+	</Response>
+
+			<Condition>(proxy.pathsuffix MatchesPath &quot;/identify&quot;) and (request.verb = &quot;POST&quot;)</Condition>
+		</Flow>
+				
+		<Flow name="OPTIONS">
+			<Condition>(request.verb = &quot;OPTIONS&quot;)</Condition>
+			<Request>
+			</Request>
+			<Response>
+				<Step>
+					<Name>Option.AssignResponse</Name>
+					<FaultRules></FaultRules>
+				</Step>
+			</Response>
+		</Flow>
+	</Flows>
+	<HTTPProxyConnection>
+		<BasePath>/authenticate</BasePath>
+		<VirtualHost>default</VirtualHost>
+		<VirtualHost>secure</VirtualHost>
+	</HTTPProxyConnection>
+	<RouteRule name="default">
+	</RouteRule>
+</ProxyEndpoint>

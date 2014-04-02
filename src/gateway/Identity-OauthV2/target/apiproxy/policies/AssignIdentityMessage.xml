@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="true" async="false" name="AssignIdentityMessage">
+	<DisplayName>AssignIdentityMessage</DisplayName>
+	<FaultRules />
+	<Properties />
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<Remove>
+		<Headers />
+	</Remove>
+	<Set>
+		<Headers>
+			<Header name="SOAPAction">getWirelessNetworkSubscriberProfile</Header>
+			<Header name="Content-Type">text/xml</Header>
+		</Headers>
+		<Verb>POST</Verb>
+		<Payload contentType="text/xml">
+			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+				xmlns:net="http://xmlschema.tmi.telus.com/srv/SMO/SpecificationMgmt/NetworkSubscriberProfileRequestResponse_v3"
+				xmlns:java="java:com.telus.tmi.xmlschema.srv.smo.specificationmgmt.networksubscriberprofilerequestresponse_v3">
+				<soapenv:Header />
+				<soapenv:Body>
+					<net:getWirelessNetworkSubscriberProfile>
+						<java:EndUserIdentifier>tel:{accesstoken.userid}</java:EndUserIdentifier>
+					</net:getWirelessNetworkSubscriberProfile>
+				</soapenv:Body>
+			</soapenv:Envelope>
+		</Payload>
+	</Set>
+</AssignMessage>

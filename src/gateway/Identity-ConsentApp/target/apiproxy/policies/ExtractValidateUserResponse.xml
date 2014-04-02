@@ -1,0 +1,10 @@
+<ExtractVariables name="ExtractValidateUserResponse">
+	<DisplayName>ExtractValidateUserResponse</DisplayName>
+	<Source>validateUserResponse</Source>
+		<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<JSONPayload>
+		<Variable name="userid">
+			<JSONPath>$.user.username</JSONPath>
+		</Variable>
+	</JSONPayload>
+</ExtractVariables>

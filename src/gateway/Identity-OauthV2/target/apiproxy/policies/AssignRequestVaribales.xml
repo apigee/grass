@@ -1,0 +1,15 @@
+<AssignMessage enabled="true" continueOnError="false"
+	async="false" name="AssignRequestVaribales">
+	<AssignVariable>
+		<Name>client_id</Name>
+		<Ref>request.header.client_id</Ref>
+	</AssignVariable>
+	<AssignVariable>
+		<Name>scope</Name>
+		<Ref>request.header.scope</Ref>
+	</AssignVariable>
+	<AssignVariable>
+		<Name>grant_type</Name>
+		<Ref>request.header.grant_type</Ref>
+	</AssignVariable>
+</AssignMessage>
