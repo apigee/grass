@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProxyEndpoint name="default">
+	<Description>Default Proxy to create flows on an API</Description>
+    <FaultRules/>
+    <Flows>
+     
+          
+        <Flow name="Index">
+            <Description>This flow is to render the index page</Description>
+            <Request>
+                
+            	 <Step>
+                    <Condition>(request.header.msisdn != null)</Condition>
+                    <Name>AssignIdentifyUserRequest</Name>
+                </Step>   
+               <Step>
+                    <Condition>(request.header.msisdn != null)</Condition>
+                    <Name>ServiceCallout.IdentifyUser</Name>
+                </Step>  
+                <Step>
+                    <Condition>(request.header.msisdn != null and identifyUserResponse.status.code == 200)</Condition>
+                    <Name>ExtractIdentifyUserResponse</Name>
+                </Step>  
+                 <Step>
+                    <Condition>(userid != null)</Condition>
+                    <Name>ModifyNodeTargetRequestForIdentifiedUser</Name>
+                </Step> 
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>SetVariablesInSession</Name>
+                </Step>
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>Session.SetInCache</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath &quot;/index&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+        </Flow>
+      
+        <Flow name="SMS Login flow">
+            <Description>This flow is for SMS log in</Description>
+            <Request>
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>GetMsisdnFromRequest</Name>
+                </Step>
+				<!--  TODO:      Validate Fields -->
+                  <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>CheckMSISDNExists.ServiceCallout</Name>
+                </Step>  
+                <Step>
+                    <Condition>userManagement.response.status.code = "200"</Condition>
+                    <Name>ExtractUserIdFromResponse</Name>
+                </Step>               
+                <Step>
+                    <Condition>userManagement.response.status.code != 200</Condition>
+                    <Name>AssignInvalidMSISDNError</Name>
+                </Step>               
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>SetVariablesInSession</Name>
+                </Step>
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>Session.SetInCache</Name>
+                </Step>
+            </Request>
+            <Response>
+              
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;) and (request.verb = &quot;POST&quot;)</Condition>
+        </Flow>
+      
+       <Flow name="Password login Flow">
+            <Description>This flow is for Allow Consent</Description>
+            <Request>
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>ExtractUserCredentails</Name>
+                </Step>
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>AssignValidateUserRequest</Name>
+                </Step>   
+               <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>ServiceCallout.ValidateUser</Name>
+                </Step>  
+                <Step>
+                    <Condition>(flowError = null and  validateUserResponse.status.code == 200)</Condition>
+                    <Name>ExtractValidateUserResponse</Name>
+                </Step>  
+                 <Step>
+                    <Condition>(userid != null)</Condition>
+                    <Name>ModifyNodeTargetRequestForIdentifiedUser</Name>
+                </Step> 
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>SetVariablesInSession</Name>
+                </Step>
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>Session.SetInCache</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath &quot;/login&quot;) and (request.verb = &quot;POST&quot;)</Condition>
+        </Flow>
+        
+        <Flow name="Redirect-Flow">
+            <Description>This flow is for redirect</Description>
+            <Request>
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <FaultRules/>
+                    <Name>GenerateAuthCode.AssignRequest</Name>
+                </Step>
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <FaultRules/>
+                    <Name>GenerateAuthCode.Callout</Name>
+                </Step>
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <FaultRules/>
+                    <Name>GenerateAuthCode.ExtractResponse</Name>
+                </Step>
+                <Step>
+                    <Condition>(flowError = null) and authcode.response.status.code = 302</Condition>
+                    <Name>RetrieveCodeFromURL_JS</Name>
+                </Step>
+                 <Step>
+                    <Condition>code != null and code != ""</Condition>
+                    <FaultRules/>
+                    <Name>AssignAuthReqParams</Name>
+                </Step>
+                 <Step>
+                    <Condition>code != null and code != ""</Condition>
+                    <FaultRules/>
+                    <Name>SetAuthReqVariablesIncache</Name>
+                </Step>     
+<!--                 <Step> -->
+<!--                     <Condition>code != null and code != ""</Condition> -->
+<!--                     <FaultRules/> -->
+<!--                     <Name>RetrieveCodeFromURL_JS</Name> -->
+<!--                 </Step>   -->
+                
+                
+            </Request>
+            <Response>
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>OauthAOC.redirectToRedirectFlow</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath &quot;/redirect/{sessionid}&quot;) and ((request.verb = &quot;GET&quot;) or (request.verb = &quot;POST&quot;))</Condition>
+        </Flow>
+        
+        <Flow name="create">
+            <Description>This flow is for creating a user</Description>
+            <Request>
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>ExtractUserDetails</Name>
+                </Step>
+				<!--  TODO:      Validate Fields -->
+                 <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>AssignRegistrationFlag</Name>
+                </Step>
+				<!--  TODO check whether user exists or not   -->
+                  <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>CheckUserExists.ServiceCallout</Name>
+                </Step>               
+                <Step>
+                    <Condition>userManagement.response.status.code != "404"</Condition>
+                    <Name>AssignUserAlreadyExistsError</Name>
+                </Step>               
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>SetVariablesInSession</Name>
+                </Step>
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>Session.SetInCache</Name>
+                </Step>
+            </Request>
+            <Response>
+              
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath &quot;/create&quot;) and (request.verb = &quot;POST&quot;)</Condition>
+        </Flow>
+      
+        <Flow name="reset">
+            <Description>This flow is for creating a user</Description>
+            <Request>
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>ExtractResetPasswordUserDetails</Name>
+                </Step>
+<!-- 	               TODO Validation for request params -->
+                  <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>AssignResetFlag</Name>
+                </Step>
+
+                  <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>CheckUserExists.ServiceCallout</Name>
+                </Step>       
+                <Step>
+                    <Condition>userManagement.response.status.code = "200"</Condition>
+                    <Name>ExtractUserIdFromResponse</Name>
+                </Step>               
+                <Step>
+                    <Condition>userManagement.response.status.code != "200"</Condition>
+                    <Name>AssignUserDoesntExistError</Name>
+                </Step>               
+
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>SetVariablesInSession</Name>
+                </Step>
+                <Step>
+                    <Condition>(flowError = null)</Condition>
+                    <Name>Session.SetInCache</Name>
+                </Step>
+            </Request>
+            <Response>
+             
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath &quot;/reset&quot;) and (request.verb = &quot;POST&quot;)</Condition>
+        </Flow>
+      
+        <Flow name="pin submit Flow for registeration">
+            <Description>This flow is for pin Validation</Description>
+		<Request>
+           	<Step>
+                    <Name>AssignRequestToCreateUser</Name>
+            </Step>
+           <Step>
+                    <Name>CreateUser.ServiceCallout</Name>
+            </Step>
+           <Step>
+           <Condition>createUser.response.status.code = "201"</Condition>
+                    <Name>AssignRequestToSetPassword</Name>
+            </Step>
+             <Step>
+                <Condition>createUser.response.status.code = "201"</Condition>
+                    <Name>SetPassword.ServiceCallout</Name>
+            </Step>
+    	     <Step>
+               		<Condition>setPassword.response.status.code != "201"</Condition>
+                    <Name>AssignUserRegistrationFailedError</Name>
+        	 </Step>         
+         </Request>
+            <Response>
+              
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;) and (request.verb = &quot;POST&quot;) and (registrationFlag="true")</Condition>
+       
+        </Flow>  
+     
+        <Flow name="pin submit for forget password flow">
+            <Description>This flow is for pin Validation</Description>
+            <Request>
+             <Step>
+                    <Name>AssignRequestToResetPassword</Name>
+            </Step>
+             <Step>
+                    <Name>ResetPassword.ServiceCallout</Name>
+            </Step>
+            <Step>
+               		<Condition>rsetPassword.response.status.code != "201"</Condition>
+                    <Name>AssignPasswordResttingFailedError</Name>
+        	 </Step>         
+           </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;) and (request.verb = &quot;POST&quot;) and (resetFalg="true") </Condition>
+        </Flow>
+
+		<Flow name="pin submit for sms login flow">
+		<Description>This flow is for pin Validation</Description>
+		<Request/>
+		<Response />
+		<Condition>(proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;) and (request.verb = &quot;POST&quot;) </Condition>
+	</Flow>  
+       
+    </Flows>
+   
+    <PreFlow name="PreFlow">
+        <Request>            
+            <Step>
+                <Condition>(request.verb=&quot;OPTIONS&quot;)</Condition>
+                <Name>CORSPreflight</Name>
+            </Step>
+            <Step>
+                <Condition>(proxy.pathsuffix MatchesPath &quot;/index&quot;) or (proxy.pathsuffix MatchesPath &quot;/reset&quot;) or (proxy.pathsuffix MatchesPath &quot;/login&quot;)  or (proxy.pathsuffix MatchesPath &quot;/create&quot;) or (proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;) or (proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;) </Condition> 
+                <Name>ExtractSessionId</Name>
+            </Step>
+            <Step>
+                <Condition>(proxy.pathsuffix MatchesPath &quot;/index&quot;) or (proxy.pathsuffix MatchesPath &quot;/reset&quot;) or (proxy.pathsuffix MatchesPath &quot;/login&quot;)  or (proxy.pathsuffix MatchesPath &quot;/create&quot;) or (proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;) or (proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;) </Condition> 
+                <Name>ExtractSessionId</Name>
+            </Step>
+            
+            <Step>
+                <Condition>(proxy.pathsuffix MatchesPath &quot;/redirect/{sessionid}&quot;)</Condition> 
+                <Name>ExtractSessionIdFromURL</Name>
+            </Step>
+         
+            <Step>
+                <Condition>(proxy.pathsuffix MatchesPath &quot;/redirect/{sessionid}&quot;) or (proxy.pathsuffix MatchesPath &quot;/reset&quot;) or (proxy.pathsuffix MatchesPath &quot;/index&quot;) or (proxy.pathsuffix MatchesPath &quot;/login&quot;)   or (proxy.pathsuffix MatchesPath &quot;/create&quot;) or (proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;) or (proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;)</Condition>
+                 <Name>AssignSessionVariables</Name>
+            </Step>
+            <Step>
+                <Condition>(proxy.pathsuffix MatchesPath &quot;/redirect/{sessionid}&quot;) or (proxy.pathsuffix MatchesPath &quot;/reset&quot;) or (proxy.pathsuffix MatchesPath &quot;/index&quot;) or (proxy.pathsuffix MatchesPath &quot;/login&quot;)   or (proxy.pathsuffix MatchesPath &quot;/create&quot;) or (proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;) or (proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;)</Condition>
+                <Name>Session.GetFromCache</Name>
+            </Step>
+            <Step>
+                <Condition>((session.Payload = null) or (session.Payload = "")) and ((proxy.pathsuffix MatchesPath &quot;/redirect/{sessionid}&quot;) or (proxy.pathsuffix MatchesPath &quot;/reset&quot;) or (proxy.pathsuffix MatchesPath &quot;/index&quot;) or (proxy.pathsuffix MatchesPath &quot;/login&quot;)  or (proxy.pathsuffix MatchesPath &quot;/create&quot;) or (proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;) or (proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;))</Condition>
+                <Name>SetSessionError</Name>
+            </Step>
+            <Step>
+                <Condition>(flowError = null) and ((proxy.pathsuffix MatchesPath &quot;/redirect/{sessionid}&quot;) or (proxy.pathsuffix MatchesPath &quot;/reset&quot;) or (proxy.pathsuffix MatchesPath &quot;/index&quot;) or (proxy.pathsuffix MatchesPath &quot;/login&quot;)   or (proxy.pathsuffix MatchesPath &quot;/create&quot;) or (proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;) or (proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;) )</Condition>
+                <Name>ExtractSessionVariables</Name>
+            </Step>
+            <Step>
+			     <Condition>((session.Payload = null) or (session.Payload = EMPTY)) and ((proxy.pathsuffix MatchesPath &quot;/reset&quot;) or (proxy.pathsuffix MatchesPath &quot;/index&quot;) or (proxy.pathsuffix MatchesPath &quot;/login&quot;)  or (proxy.pathsuffix MatchesPath &quot;/create&quot;) or (proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;) or (proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;))</Condition>
+ 				 <Name>PageInterceptorJS</Name>
+            </Step>
+            <Step>
+                <Condition>(flowError != null)</Condition>
+                <Name>RedirectErrorInAuthorize</Name>
+            </Step>
+        </Request>
+    </PreFlow>
+	
+   <PostFlow name="PostFlow">
+        <Response>
+            <Step>
+                <Condition>(request.verb!=&quot;OPTIONS&quot;)</Condition>
+                <Name>CORS</Name>
+            </Step>
+             <Step>
+             <Condition>(cookieId = null and userid != null)</Condition>
+                <Name>GenerateCookieUUID</Name>
+            </Step>
+             <Step>
+             <Condition>(userid != null)</Condition>
+                <Name>SendCookieInResposne</Name>
+            </Step>
+        </Response>    
+    </PostFlow>  
+    
+	<HTTPProxyConnection>
+		<BasePath>/openid</BasePath>
+		<VirtualHost>default</VirtualHost>
+	</HTTPProxyConnection>
+	<RouteRule name="default">
+		<TargetEndpoint>default</TargetEndpoint>
+	</RouteRule>
+</ProxyEndpoint>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><APIProxy name="oauthv2" revision="16">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1368621989319</CreatedAt>
+    <CreatedBy>dey.santanu@gmail.com</CreatedBy>
+    <Description>anshul git: a06ccedd anshul ::santanudey git: 379128b9 Santanu-Deys-MacBook-Pro.local ::Lab07 - to demonstrate OAuth</Description>
+    <DisplayName>oauthv2</DisplayName>
+    <LastModifiedAt>1368621989319</LastModifiedAt>
+    <LastModifiedBy>dey.santanu@gmail.com</LastModifiedBy>
+    <Policies>
+        <Policy>generateAccessToken</Policy>
+        <Policy>generateAuthCode</Policy>
+        <Policy>generateRefreshToken</Policy>
+        <Policy>handleBadRequest</Policy>
+        <Policy>redirectToConsent</Policy>
+        <Policy>validateApiKey</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources/>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

@@ -1,0 +1,9 @@
+<AssignMessage enabled="true" continueOnError="false" async="false" name="AssignIdentifyUserRequest">
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignTo createNew="true" transport="http" type="request">identifyUserRequest</AssignTo>
+	<Set>
+	 	<FormParams>
+			     <FormParam name="username">{request.header.msisdn}</FormParam>
+	 </FormParams>
+	</Set>
+</AssignMessage>
