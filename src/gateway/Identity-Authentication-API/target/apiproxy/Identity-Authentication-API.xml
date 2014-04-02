@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><APIProxy name="identity-consent-management" revision="1">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1387429921493</CreatedAt>
+    <CreatedBy>aagrawal@apigee.com</CreatedBy>
+    <Description>anshul git: a06ccedd anshul</Description>
+    <DisplayName>identity-consent-management</DisplayName>
+    <LastModifiedAt>1387429921493</LastModifiedAt>
+    <LastModifiedBy>aagrawal@apigee.com</LastModifiedBy>
+    <Policies>
+        <Policy>AssignMessage-1</Policy>
+        <Policy>responsecache</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources/>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+    <validate>false</validate>
+</APIProxy>

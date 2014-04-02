@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="true" async="false" name="ModifyReqToRegisterUser">
+	<DisplayName>ModifyReqToRegisterUser</DisplayName>
+	<FaultRules />
+	<Properties />
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignTo createNew="false" transport="http" type="request">request</AssignTo>
+	<Add>
+		<QueryParams>
+	<QueryParam name="process">{process}</QueryParam>
+
+	<QueryParam name="msisdn">{create_msisdn}</QueryParam>
+
+	<QueryParam name="name">{create_name}</QueryParam>
+
+	<QueryParam name="lastName">{create_lastName}</QueryParam>
+
+	<QueryParam name="password">{create_password}</QueryParam>
+
+	<QueryParam name="username">{create_username}</QueryParam>
+</QueryParams>
+			</Add>
+</AssignMessage>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OAuthV2 name="generateRefreshToken">
+	<GenerateResponse/>
+	<Operation>RefreshAccessToken</Operation>
+    <ExpiresIn>-1</ExpiresIn> <!-- try -1 for non-expiring token -->
+	<GrantType>request.formparam.grant_type</GrantType>
+	<RefreshToken>request.formparam.refresh_token</RefreshToken>
+	<ClientId>request.formparam.client_id</ClientId>
+</OAuthV2>

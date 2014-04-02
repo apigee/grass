@@ -1,0 +1,22 @@
+<AssignMessage name="GetUserDetails">
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignVariable>
+		<Name>create_name</Name>
+		<Ref>response.header.x-header-name</Ref>
+	</AssignVariable>
+		<AssignVariable>
+		<Name>create_lastName</Name>
+		<Ref>response.header.x-header-lastName</Ref>
+	</AssignVariable>
+		<AssignVariable>
+		<Name>create_msisdn</Name>
+		<Ref>response.header.x-header-msisdn</Ref>
+	</AssignVariable>
+	<Remove> 
+    <Headers>
+        <Header name="x-header-msisdn"/>
+        <Header name="x-header-lastName"/>
+        <Header name="x-header-name"/>
+    </Headers>
+	</Remove>
+</AssignMessage>
