@@ -1,9 +1,0 @@
-<ExtractVariables name="GetScopes">
-  <Source>apiProductJSON</Source>
-  		<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-  <JSONPayload>
-    <Variable name="productScopes" >
-      <JSONPath>$.ApiProduct.Scopes.Scope</JSONPath>
-    </Variable>
-  </JSONPayload>
-</ExtractVariables>

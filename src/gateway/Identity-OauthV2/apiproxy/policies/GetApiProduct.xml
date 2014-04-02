@@ -1,6 +1,0 @@
-<AccessEntity enabled="true" continueOnError="false" async="false" name="GetApiProduct">
-    <FaultRules/>
-    <Properties/>
-    <EntityIdentifier ref="apiproduct.name"/>
-    <EntityType  value="apiproduct"/>
-</AccessEntity>
