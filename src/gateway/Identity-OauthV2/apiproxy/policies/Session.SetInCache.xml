@@ -1,0 +1,12 @@
+<PopulateCache enabled="true" continueOnError="false" async="false" name="Session.SetInCache">
+    <DisplayName>Session.SetInCache</DisplayName>
+    <CacheResource>consent-session-cache</CacheResource>
+    <Source>session.request.content</Source>
+    <Scope>Global</Scope>
+    <CacheKey>
+        <KeyFragment ref="sessionid"/>
+    </CacheKey>
+    <ExpirySettings>
+        <TimeoutInSec>1200</TimeoutInSec>
+    </ExpirySettings>
+</PopulateCache>

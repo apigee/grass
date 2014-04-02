@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes" />       
+<meta name="viewport" content="width=device-width">
+
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title><%= title %></title>
+     <link rel='stylesheet' href='/openid/stylesheets/clientapp.css' />
+     <link rel='stylesheet' href='/openid/stylesheets/custom.css' />
+     <link rel='stylesheet' href='/openid/stylesheets/jquery.mobile.structure-1.3.1.min.css' />
+     <link href="/openid/bootstrap/css/bootstrap.css" rel="stylesheet">
+     
+     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script>
+			$.ajaxSetup({
+				// Disable caching of AJAX responses
+				cache : false
+			});
+		</script>	
+		
+		
+  </head>
+  <body  class="ui-mobile-viewport">
+		<div class="container" style="width:280px;">
+<div class="imageHead">
+<img id="logo-image" src="/openid/images/logo.png" style="float:left;"></div>
+		<%- body %>
+
+<div class="footer">
+Copyright ©Atel. All rights reserved</div>
+</div>
+  </body>
+</html>

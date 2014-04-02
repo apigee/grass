@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="false" enabled="true" name="generateAuthCode">
+    <DisplayName>OAuth v2.0 1</DisplayName>
+    <FaultRules/>
+    <Operation>GenerateAuthorizationCode</Operation>
+    <!-- The authorization code expires in 10 minutes -->
+    <ExpiresIn>600000</ExpiresIn>
+    <GenerateResponse/>
+    <Attributes>
+  		<Attribute name="userid" ref="userid" display="true" />
+ 	</Attributes>
+</OAuthV2>

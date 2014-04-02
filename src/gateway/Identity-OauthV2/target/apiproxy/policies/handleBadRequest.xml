@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage name="handleBadRequest">
+	<AssignTo type="response">response</AssignTo>
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<Set>
+		<Payload contentType="applcation/json">
+			{
+				"Message": { "Error" : "BadRequest"} 
+			}
+		</Payload>
+ 		<StatusCode>400</StatusCode>
+	</Set>
+</AssignMessage>

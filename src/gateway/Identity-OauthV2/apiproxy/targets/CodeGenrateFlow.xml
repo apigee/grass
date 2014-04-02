@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TargetEndpoint name="CodeGenrateFlow">
+	<Description>Apigee auto generated target endpoint</Description>
+    <FaultRules/>
+    <Flows/>
+	<HTTPTargetConnection>
+		<URL>http://op101-ex-test.apigee.net/atel/openidconnect/redirect?response_type=code&amp;client_id=rflW6u3ogFMG1V1AwAAnESoEoXfrHO7M</URL>
+	<Properties>
+            <Property name="success.codes">2XX, 1XX, 5XX, 4XX</Property>
+     </Properties>
+     </HTTPTargetConnection>
+</TargetEndpoint>
+

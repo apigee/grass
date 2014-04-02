@@ -1,0 +1,6 @@
+<Javascript timeLimit="0" enabled="true" continueOnError="false" async="false" name="RetrieveCodeFromURL_JS">
+  <DisplayName>RetrieveCodeFromURL_JS</DisplayName>
+	<FaultRules/>
+	<Properties/>
+	<ResourceURL>jsc://retrieveCodeFromURL.js</ResourceURL>
+</Javascript>

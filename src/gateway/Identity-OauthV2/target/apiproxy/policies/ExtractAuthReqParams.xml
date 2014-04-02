@@ -1,0 +1,24 @@
+<ExtractVariables enabled="true" continueOnError="false" async="false" name="ExtractAuthReqParams">
+	<DisplayName>ExtractAuthReqParams</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source>authReqVariableJSON</Source>
+
+    <JSONPayload> 
+		 <Variable name="client_id">  
+			<JSONPath>$.client_id</JSONPath>
+		</Variable>
+		 <Variable name="response_type">  
+			<JSONPath>$.response_type</JSONPath>
+		</Variable>
+		 <Variable name="scope">  
+			<JSONPath>$.scope</JSONPath>
+		</Variable>		
+		 <Variable name="nonce">  
+			<JSONPath>$.nonce</JSONPath>
+		</Variable>
+     </JSONPayload>
+</ExtractVariables>
+
+

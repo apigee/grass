@@ -1,0 +1,6 @@
+<Javascript timeLimit="0" enabled="true" continueOnError="false" async="false" name="CustomizeUserProfile_JS">
+<DisplayName>ValidateScopeValues_JS</DisplayName>
+	<FaultRules/>
+	<Properties/>
+	<ResourceURL>jsc://customizeUserProfileUsingScope.js</ResourceURL>
+</Javascript>

@@ -1,0 +1,86 @@
+{
+   "configurations":[
+     {
+         "name":"prod",
+
+         "policies":[
+         {
+                    "name": "redirectToConsent.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
+                            "value": "http://op102-ex-prod.apigee.net/openid/index?sessionid={sessionid}"
+                        }
+                    ]
+                },
+				{
+                    "name": "GetUserProfileFromAppServices.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "https://api.usergrid.com/op102-ex/identity/users/{accesstoken.userid}"
+                        },
+                         {
+                            "xpath": "/ServiceCallout/Request/Set/QueryParams/QueryParam[@name='client_id']",
+                            "value": "b3U6yQvN8aDyEeKC0gLoGsVOBQ"
+                        },
+                         {
+                            "xpath": "/ServiceCallout/Request/Set/QueryParams/QueryParam[@name='client_secret']",
+                            "value": "b3U6aJFD4MFn5BUqgew1rRmcBT_e7U8"
+                        }
+                    ]
+                }
+         ],
+         "proxies":[
+          ] ,
+         "targets":[
+         ]
+      },
+     {
+         "name":"test",
+
+         "policies":[
+           {
+                    "name": "redirectToConsent.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
+                            "value": "http://op102-ex-test.apigee.net/openid/index?sessionid={sessionid}"
+                        }
+                    ]
+                },
+				{
+                    "name": "GetUserProfileFromAppServices.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "https://api.usergrid.com/op102-ex/identity/users/{accesstoken.userid}"
+                        },
+                         {
+                            "xpath": "/ServiceCallout/Request/Set/QueryParams/QueryParam[@name='client_id']",
+                            "value": "b3U6yQvN8aDyEeKC0gLoGsVOBQ"
+                        },
+                         {
+                            "xpath": "/ServiceCallout/Request/Set/QueryParams/QueryParam[@name='client_secret']",
+                            "value": "b3U6aJFD4MFn5BUqgew1rRmcBT_e7U8"
+                        }
+                    ]
+                }
+         ],
+         "proxies":[
+          ] ,
+         "targets":[
+         ]
+      },
+	{
+         "name":"demo",
+
+         "policies":[
+         ],
+         "proxies":[
+          ] ,
+         "targets":[
+         ]
+      }
+   ]
+}

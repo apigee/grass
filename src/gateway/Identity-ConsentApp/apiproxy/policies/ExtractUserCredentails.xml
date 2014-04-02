@@ -1,0 +1,11 @@
+<ExtractVariables name="ExtractUserCredentails">
+	<Source>request</Source>
+	<IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+	<FormParam name="username">
+		<Pattern>{username}</Pattern>
+	</FormParam>
+	<FormParam name="password">
+		<Pattern>{password}</Pattern>
+	</FormParam>
+</ExtractVariables>
+ 

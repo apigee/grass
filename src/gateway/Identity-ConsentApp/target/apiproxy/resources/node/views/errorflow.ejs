@@ -1,0 +1,7 @@
+ <form class="form-signin" action="<%= redirectURL %>">
+        <p><b>Error : </b> <%= error%></p> 
+         
+         <%if (redirectURL.split()[0] != null) { %>
+         <button class="btn btn-medium btn-error" type="submit">Exit</button>
+        <% } %>
+</form>
