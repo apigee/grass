@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="true" async="false" name="AccessToken.ModifyReponse">
+<DisplayName>AccessToken.ModifyReponse</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    	<Set>
+		<Verb>POST</Verb>
+		  <Payload contentType="application/json" variablePrefix="$" variableSuffix="%">
+		     {
+   				"error": "invalid_request"
+  			}
+		  </Payload>
+		  <StatusCode>200</StatusCode>
+			<ReasonPhrase>Response</ReasonPhrase>
+		</Set>
+</AssignMessage>

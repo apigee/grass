@@ -1,0 +1,12 @@
+<ExtractVariables name="Dt.Payment.ErrorResponse">
+	<DisplayName>Dt.Payment.ErrorResponse</DisplayName>
+	<Source>response</Source>
+	<JSONPayload>
+		<Variable name="saclErrorCode">
+			<JSONPath>$.code</JSONPath>
+		</Variable>
+		<Variable name="backEndErrorCode">
+			<JSONPath>$.code</JSONPath>
+		</Variable>
+	</JSONPayload>
+</ExtractVariables>

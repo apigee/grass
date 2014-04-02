@@ -1,0 +1,6 @@
+<Javascript timeLimit="0" enabled="true" continueOnError="true" async="false" name="GenerateCookieUUID">
+<DisplayName>GenerateUUID</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <ResourceURL>jsc://GenerateIdForCookie.js</ResourceURL>
+</Javascript>

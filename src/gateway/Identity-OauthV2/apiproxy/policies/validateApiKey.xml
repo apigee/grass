@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyAPIKey name="validateApiKey">
+    <DisplayName>Verify API Key</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <APIKey ref="client_id"/>
+</VerifyAPIKey>

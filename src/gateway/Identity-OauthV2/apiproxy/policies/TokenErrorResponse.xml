@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="true" async="false" name="TekenErrorResponse">
+<DisplayName>TekenErrorResponse</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Set>
+		  <Payload contentType="application/json" variablePrefix="$" variableSuffix="%">
+		       {
+   	"error": "invalid_request"
+   }
+		  </Payload>
+		 <StatusCode>400</StatusCode>
+		<ReasonPhrase>Response</ReasonPhrase>
+	</Set>
+</AssignMessage>

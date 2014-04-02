@@ -1,0 +1,13 @@
+<LookupCache enabled="true" continueOnError="true" async="false" name="GetAuthReqParamsFromCache">
+    <DisplayName>GetAuthReqParamsFromCache</DisplayName>
+    <CacheResource>auth-req-param-cache</CacheResource>
+    <AssignTo>authReqVariableJSON</AssignTo>
+    <Scope>Global</Scope>
+    <CacheKey>
+        <KeyFragment ref="request.formparam.client_id"></KeyFragment>
+         <KeyFragment ref="request.formparam.code"></KeyFragment>
+    </CacheKey>
+</LookupCache>
+
+
+
