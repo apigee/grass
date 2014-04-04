@@ -12,6 +12,13 @@
 			<QueryParam name="basePath">/openid</QueryParam>
 			<QueryParam name="appName">{appName}</QueryParam>
 			<QueryParam name="scope">{scope}</QueryParam>
+			<QueryParam name="isUserProfileFlow">{isUserProfileFlow}</QueryParam>
+			<QueryParam name="open_id">{open_id}</QueryParam>
 		</QueryParams>
 	</Add>
+	<Set>
+			<QueryParams>
+				<QueryParam name="sessionid">{sessionid}</QueryParam>
+			</QueryParams>
+	</Set>
 </AssignMessage>

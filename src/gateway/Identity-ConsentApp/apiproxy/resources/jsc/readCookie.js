@@ -1,22 +1,22 @@
-var cookieHeader = context.Variable("request.header.Cookie");
-
+var cookieHeader = context.getVariable("request.header.Cookie");
+cookies=[];
 
 if (cookieHeader != null && cookieHeader !=""){
 	cookies= cookieHeader.split(';')
 }
 
-var cookieId=getCookie("id");
-var username=getCookie("Id");
+var sessionIdForCookie=getCookie("id");
+
+context.setVariable("sessionIdForCookie",sessionIdForCookie)
 
 
-
-
-function getCookie(cname){
+function getCookie(cname)
+{
+var name = cname + "=";
 for(var i=0; i<cookies.length; i++) 
   {
   var c = cookies[i].trim();
-  if (c.indexOf(name)==0) 
-	  return c.substring(name.length,c.length);
+  if (c.indexOf(name)==0) return c.substring(name.length,c.length);
   }
 return "";
 }

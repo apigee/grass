@@ -4,17 +4,14 @@
 
     <FaultRules>
 	<FaultRule name="InvalidApiKey">
-<Condition>(fault.name = "FailedToResolveAPIKey") or (fault.name = "InvalidApiKeyForGivenResource") or (fault.name = "InvalidApiKey")</Condition>
+	<Condition>(fault.name = "FailedToResolveAPIKey") or (fault.name = "InvalidApiKeyForGivenResource") or (fault.name = "InvalidApiKey")</Condition>
 		<Step>
 			<FaultRules />
 			<Name>RaiseFault.ApplicationKey</Name>
 		</Step>
-	</FaultRule>
-	
-	
+		</FaultRule>
 		<FaultRule name="InvalidRequest">
 		<Step>
-			<FaultRules />
 			<Name>RaiseFault.InvalidRequest</Name>
 		</Step>
 	</FaultRule>

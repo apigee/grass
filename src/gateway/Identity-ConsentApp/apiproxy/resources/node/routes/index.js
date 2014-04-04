@@ -25,13 +25,40 @@ res.header('Access-Control-Allow-Origin', '*');
     
     var userid= req.query.userid;
     
-    if (userid != null && userid != ""){
-    
-    var sessionid=req.param("sessionid");
-    res.render('consent', { title: 'Consent',
-        sessionid :req.param("sessionid") ,userId : userid , appName : req.query.appName , scope  : req.query.scope, redirectURL : req.query.redirect_uri+'?error=refused'
-     })
-    }else {
+
+	    if (userid != null && userid != "") {
+
+    		if (req.query.open_id != "true"){
+			res.render('profile', {
+				title : 'profile',
+				sessionid : req.query.sessionid,
+				userId : req.query.userid,
+				redirectURL : req.query.redirect_uri + '?error=refused',
+				username : "",
+				email : req.query.email||"",
+				surname : req.query.surname||"",
+				name : req.query.first_name||"",
+				msisdn : req.query.msisdn||"",
+				country : req.query.country||"",
+				state : req.query.state||"",
+				city : req.query.city||"",
+				addr1 : req.query.house||"",
+				addr2 : req.query.street||""
+			})
+
+		} else {
+			var sessionid = req.param("sessionid");
+			res.render('consent', {
+				title : 'Consent',
+				sessionid : req.param("sessionid"),
+				userId : userid,
+				appName : req.query.appName,
+				scope : req.query.scope,
+				redirectURL : req.query.redirect_uri + '?error=refused'
+			})
+		}
+
+	}else {
     	var sessionid=req.param("sessionid");
         console.log("req.param: " + req.param("sessionid"));
         res.render('index', { title: 'Home' ,
@@ -75,10 +102,32 @@ exports.login = function(req, res){
     	 })
     	} else {
         //success — user has been logged in
+    		if (req.query.open_id != "true"){
+    			  
+    			res.render('profile', {
+    				title : 'profile',
+    				sessionid : req.query.sessionid,
+    				userId : req.query.userid,
+    				redirectURL : req.query.redirect_uri + '?error=refused',
+    				username : "",
+    				email : req.query.email||"",
+    				surname : req.query.surname||"",
+    				name : req.query.first_name||"",
+    				msisdn : req.query.msisdn||"",
+    				country : req.query.country||"",
+    				state : req.query.state||"",
+    				city : req.query.city||"",
+    				addr1 : req.query.house||"",
+    				addr2 : req.query.street||""
+    			})
+
+    			
+    		}else {
 
         res.render('consent', { title: 'Consent',
             sessionid :req.param("sessionid") ,userId : req.query.userid , appName : req.query.appName , scope  : req.query.scope, redirectURL : req.query.redirect_uri+'?error=refused'
          })
+    		}
     }
 };
 
@@ -146,22 +195,39 @@ exports.register = function(req, res){
 	})
 	};
 	
-	exports.pinSubmit = function(req, res){
-		
-		
-		
 
-		
-		var error= req.query.error;
+	exports.pinSubmit = function(req, res){
+				var error= req.query.error;
 
 	    if (error != null){
 		  	res.render('errorflow', { title: 'Error', error : error , redirectURL : req.query.redirect_uri+'?error=true'
 	    	 })
 		    
-	    } else {
+	    } else 
+    		if (req.query.open_id != "true"){
+    			res.render('profile', {
+    				title : 'profile',
+    				sessionid : req.query.sessionid,
+    				userId : req.query.userid,
+    				redirectURL : req.query.redirect_uri + '?error=refused',
+    				username : "",
+    				email : req.query.email||"",
+    				surname : req.query.surname||"",
+    				name : req.query.first_name||"",
+    				msisdn : req.query.msisdn||"",
+    				country : req.query.country||"",
+    				state : req.query.state||"",
+    				city : req.query.city||"",
+    				addr1 : req.query.house||"",
+    				addr2 : req.query.street||""
+    			})
+	
+    			
+    		}else {
+             
 	    	res.render('consent', { title: 'Consent', sessionid :req.param("sessionid") , userId : "userId" , appName : req.query.appName , scope  : req.query.scope, redirectURL : req.query.redirect_uri+'?error=refused'  })
-
-	    }
+    		}
+	    
 
 //		res.header('Access-Control-Allow-Origin', '*');
 //		    res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
