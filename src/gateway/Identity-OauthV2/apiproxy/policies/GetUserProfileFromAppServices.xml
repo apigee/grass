@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ServiceCallout enabled="true" continueOnError="false" async="false" name="GetUserProfileFromAppServices" description="GetUserProfileFromAppServices">
+<ServiceCallout enabled="true" continueOnError="true" async="false" name="GetUserProfileFromAppServices" description="GetUserProfileFromAppServices">
     <DisplayName>GetUserProfileFromAppServices</DisplayName>
     <FaultRules/>
     <Properties/>
@@ -10,14 +10,13 @@
         </Remove>
         <Set>
             <Headers>
-                <Header name="Content-Type">application/json</Header>
                 <Header name="Accept">application/json</Header>
             </Headers>
             
-             <QueryParams>
-        <QueryParam name="client_id">[TO_BE_REPLACED]</QueryParam>
-        <QueryParam name="client_secret">[TO_BE_REPLACED]</QueryParam>
-        </QueryParams>
+<!--              <QueryParams> -->
+<!--         <QueryParam name="client_id">[TO_BE_REPLACED]</QueryParam> -->
+<!--         <QueryParam name="client_secret">[TO_BE_REPLACED]</QueryParam> -->
+<!--         </QueryParams> -->
             <Verb>GET</Verb>
         </Set>
     </Request>

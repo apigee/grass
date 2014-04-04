@@ -1,0 +1,7 @@
+<AssignMessage name="SetFlowErrorFromQueryParam">
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignVariable>
+		<Name>flowError</Name>
+		<Ref>request.queryparam.error</Ref>
+	</AssignVariable>
+</AssignMessage>

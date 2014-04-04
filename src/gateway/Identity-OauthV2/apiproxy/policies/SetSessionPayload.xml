@@ -19,7 +19,8 @@
 			 "appName":"%developer.app.name#",
 			 "nonce":"%nonce#",
 			 "display":"%display#",
-			 "login_hint":"%login_hint#"
+			 "login_hint":"%login_hint#",
+			 "open_id":"true"
 			 			
 			 			 }
 			</Payload>

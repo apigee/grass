@@ -1,8 +1,0 @@
-<ExtractVariables name="ExtractSessionId">
-	<Source>request</Source>
-	<IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
-	<QueryParam name="sessionid">
-		<Pattern>{sessionid}</Pattern>
-	</QueryParam>
-</ExtractVariables>
- 

@@ -8,58 +8,50 @@
 
     <JSONPayload> 
 		 <Variable name="name">  
-			<JSONPath>$.entities[0].name</JSONPath>
+			<JSONPath>$.personal-info.name.given</JSONPath>
 		</Variable>
 		 <Variable name="family_name">
-			<JSONPath>$.entities[0].family_name</JSONPath>
+			<JSONPath>$.personal-info.name.surname</JSONPath>
 		</Variable>
 		<Variable name="given_name">
-			<JSONPath>$.entities[0].given_name</JSONPath>
-		</Variable>
-		<Variable name="middle_name">
-			<JSONPath>$.entities[0].middle_name</JSONPath>
-		</Variable>
-		<Variable name="nickname">
-			<JSONPath>$.entities[0].nickname</JSONPath>
+			<JSONPath>$.personal-info.name.given</JSONPath>
 		</Variable>
 		<Variable name="username">
-			<JSONPath>$.entities[0].username</JSONPath>
+			<JSONPath>$.username</JSONPath>
 		</Variable>
-		<Variable name="profile">
-			<JSONPath>$.entities[0].profile</JSONPath>
-		</Variable>
+<!-- 		<Variable name="profile"> -->
+<!-- 			<JSONPath>$.profile</JSONPath> -->
+<!-- 		</Variable> -->
 		<Variable name="picture">
-			<JSONPath>$.entities[0].picture</JSONPath>
+			<JSONPath>$.personal-info.image</JSONPath>
 		</Variable>
 		<Variable name="website">
-			<JSONPath>$.entities[0].website</JSONPath>
+			<JSONPath>$.website</JSONPath>
 		</Variable>
 		<Variable name="gender">
-			<JSONPath>$.entities[0].gender</JSONPath>
+			<JSONPath>$.personal-info.gender</JSONPath>
 		</Variable>
 		<Variable name="birthdate">
-			<JSONPath>$.entities[0].birthdate</JSONPath>
+			<JSONPath>$.personal-info.dob</JSONPath>
 		</Variable>
 		<Variable name="zoneinfo">
-			<JSONPath>$.entities[0].zoneinfo</JSONPath>
+			<JSONPath>$.zoneinfo</JSONPath>
 		</Variable>
 		<Variable name="locale">
-			<JSONPath>$.entities[0].locale</JSONPath>
+			<JSONPath>$.locale</JSONPath>
 		</Variable>
 		<Variable name="updated_at">
-			<JSONPath>$.entities[0].updated_at</JSONPath>
+			<JSONPath>$.modified</JSONPath>
 		</Variable>
 		<Variable name="email">
-			<JSONPath>$.entities[0].email</JSONPath>
+			<JSONPath>$.email</JSONPath>
 		</Variable>
 		<Variable name="email_verified">
-			<JSONPath>$.entities[0].email_verified</JSONPath>
+			<JSONPath>$.email</JSONPath>
 		</Variable>
 		<Variable name="phone_number">
-			<JSONPath>$.entities[0].phone_number</JSONPath>
-		</Variable>
-				<Variable name="phone_number_verified">
-			<JSONPath>$.entities[0].phone_number_verified</JSONPath>
+			<JSONPath>$.msisdn</JSONPath>
 		</Variable>
     </JSONPayload>
 </ExtractVariables>
+

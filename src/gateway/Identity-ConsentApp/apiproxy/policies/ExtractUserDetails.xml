@@ -22,4 +22,7 @@
 	<FormParam name="username">
 		<Pattern>{create_email}</Pattern>
 	</FormParam>
+	<FormParam name="username">
+		<Pattern>{userid}</Pattern>
+	</FormParam>
 </ExtractVariables>

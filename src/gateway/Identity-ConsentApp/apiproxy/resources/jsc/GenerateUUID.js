@@ -9,4 +9,4 @@ function generateUUID() {
 };
 
 var randomnumber = generateUUID()
-context.setVariable("sessionIdForCookie",randomnumber);
+context.setVariable("sessionid",randomnumber);
