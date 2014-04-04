@@ -71,7 +71,16 @@
 		</Variable>	
 		<Variable name="appName">  
 			<JSONPath>$.appName</JSONPath>
-		</Variable>			
+		</Variable>		
+		<Variable name="isUserProfileFlow">  
+			<JSONPath>$.isUserProfileFlow</JSONPath>
+		</Variable>		
+			<Variable name="req_state">  
+			<JSONPath>$.req_state</JSONPath>
+		</Variable>
+		<Variable name="open_id">  
+			<JSONPath>$.open_id</JSONPath>
+		</Variable>	
      </JSONPayload>
 </ExtractVariables>
 

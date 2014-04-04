@@ -18,7 +18,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "https://api.usergrid.com/op102-ex/identity/users/{accesstoken.userid}"
+                            "value": "http://op102-ex-prod.apigee.net/identity-users/v1/users/{accesstoken.userid}"
                         },
                          {
                             "xpath": "/ServiceCallout/Request/Set/QueryParams/QueryParam[@name='client_id']",
@@ -54,7 +54,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "https://api.usergrid.com/op102-ex/identity/users/{accesstoken.userid}"
+                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/{accesstoken.userid}"
                         },
                          {
                             "xpath": "/ServiceCallout/Request/Set/QueryParams/QueryParam[@name='client_id']",

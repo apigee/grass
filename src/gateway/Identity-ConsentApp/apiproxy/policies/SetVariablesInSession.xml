@@ -31,8 +31,10 @@
 			 ,"resetFalg":"%resetFalg#"
 			 ,"nonce":"%nonce#"
 			 ,"display":"%display#"
-			 ,"state":"%state#"
+			 ,"req_state":"%req_state#"
 			 ,"appName":"%appName#"
+			 ,"isUserProfileFlow":"%isUserProfileFlow#"
+			  ,"open_id":"%open_id#"
 			 
 			 			 }
 			 

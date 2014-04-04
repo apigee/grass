@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage name="RaiseFault.InvalidRequest">
-	<AssignTo type="response">response</AssignTo>
-	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignTo type="response" createNew="false" />
 	<Set>
 		<Payload contentType="applcation/json" variablePrefix="$" variableSuffix="#">
 {
