@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyAPIKey name="verify-api-key">
+  <APIKey ref="request.header.apikey"/>
+</VerifyAPIKey>

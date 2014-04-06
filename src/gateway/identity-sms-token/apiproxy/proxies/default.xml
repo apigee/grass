@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <DefaultFaultRule name="default-fault-rule">
+        <Step>
+            <FaultRules/>
+            <Name>set-failure-token-response</Name>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <FaultRules/>
+                <Name>verify-api-key</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="Create SMS Token">
+            <Request>
+                <Step>
+                    <Name>get-identifier</Name>
+                </Step>
+                <Step>
+                    <Name>generate-token</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <FaultRules/>
+                    <Name>set-token-cache</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>set-create-response</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/sms/{identifier}") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Verify SMS Token">
+            <Description/>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>get-identifier-token</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>get-token-cache</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Condition>(token = token_cache_response)</Condition>
+                    <Name>set-success-token-response</Name>
+                </Step>
+                <Step>
+                    <Condition>(token = token_cache_response)</Condition>
+                    <Name>modify-token-cache</Name>
+                </Step>
+                <Step>
+                    <Condition>(token != token_cache_response)</Condition>
+                    <Name>set-failure-token-response</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/sms/{identifier}/{token}") and (request.verb = "GET")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/v1/token</BasePath>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="nullTarget"/>
+</ProxyEndpoint>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables name="get-identifier-token">
+  <Variable name="proxy.pathsuffix">
+    <Pattern>/sms/{identifier}/{token}</Pattern>
+  </Variable>
+</ExtractVariables>

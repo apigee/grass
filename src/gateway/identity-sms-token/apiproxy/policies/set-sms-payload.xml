@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage name="set-sms-payload">
+  <AssignVariable>
+    <Name>sender_address</Name>
+    <Value>123456</Value>
+  </AssignVariable>
+  <Remove>
+    <Headers>
+      <Header name="apikey"/>
+      <Header name="user-agent"/>
+      <Header name="host"/>
+      <Header name="accept"/>
+      <Header name="content-type"/>
+    </Headers>
+  </Remove>
+  <Set>
+    <Payload variablePrefix="%" variableSuffix="#" contentType="application/json; charset=UTF-8">{"outboundSMSMessageRequest":{"address":["tel:%identifier#"],"senderAddress":"tel:%sender_address#","outboundSMSTextMessage":{"message":"%token_text#"}}}</Payload>
+  </Set>
+</AssignMessage>

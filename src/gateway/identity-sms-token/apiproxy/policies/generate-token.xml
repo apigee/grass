@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript name="generate-token">
+  <IncludeURL>jsc://token.js</IncludeURL>
+  <ResourceURL>jsc://generate-token.js</ResourceURL>
+</Javascript>

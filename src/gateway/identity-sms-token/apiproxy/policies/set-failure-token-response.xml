@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage name="set-failure-token-response">
+  <Remove>
+    <Headers>
+      <Header name="apikey"/>
+      <Header name="user-agent"/>
+      <Header name="host"/>
+      <Header name="accept"/>
+      <Header name="content-type"/>
+    </Headers>
+  </Remove>
+  <Set>
+    <Payload/>
+    <StatusCode>400</StatusCode>
+  </Set>
+</AssignMessage>

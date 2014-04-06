@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache name="set-token-cache">
+  <CacheKey>
+    <KeyFragment ref="developer.app.name"/>
+    <KeyFragment ref="identifier"/>
+  </CacheKey>
+  <Scope>Proxy</Scope>
+  <ExpirySettings>
+    <TimeoutInSec>300</TimeoutInSec>
+  </ExpirySettings>
+  <Source>token_challenge</Source>
+</PopulateCache>

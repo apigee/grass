@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache name="get-token-cache">
+  <CacheKey>
+    <KeyFragment ref="developer.app.name"/>
+    <KeyFragment ref="identifier"/>
+  </CacheKey>
+  <Scope>Proxy</Scope>
+  <AssignTo>token_cache_response</AssignTo>
+</LookupCache>
