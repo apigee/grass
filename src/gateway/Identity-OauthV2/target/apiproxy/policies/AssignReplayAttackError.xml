@@ -1,0 +1,11 @@
+<AssignMessage enabled="true" continueOnError="false"
+	async="false" name="AssignReplayAttackError">
+	<AssignVariable>
+		<Name>error_variable</Name>
+		<Value>Invalid_Request</Value>
+	</AssignVariable>
+	<AssignVariable>
+		<Name>error_type</Name>
+		<Value>Replay%20Attack</Value>
+	</AssignVariable>
+</AssignMessage>

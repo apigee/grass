@@ -1,0 +1,12 @@
+<LookupCache enabled="true" continueOnError="true" async="false" name="GetNumberOfPinTriesFromCache">
+    <DisplayName>GetNumberOfPinTriesFromCache</DisplayName>
+    <CacheResource>pin-cache</CacheResource>
+    <AssignTo>no_of_pin_tries</AssignTo>
+    <Scope>Global</Scope>
+    <CacheKey>
+        <KeyFragment ref="sessionid"></KeyFragment>
+    </CacheKey>
+</LookupCache>
+
+
+

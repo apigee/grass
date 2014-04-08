@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="true" async="false" name="AddVariablesToTargetRequest">
+	<DisplayName>AddVariablesToTargetRequest</DisplayName>
+	<FaultRules />
+	<Properties />
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignTo createNew="false" transport="http" type="request">request</AssignTo>
+	<Add>
+		<QueryParams>
+			<QueryParam name="redirect_uri">/openid/redirect/{sessionid}</QueryParam>
+			<QueryParam name="host">{request.header.host}</QueryParam>
+			<QueryParam name="basePath">/openid</QueryParam>
+			<QueryParam name="appName">{appName}</QueryParam>
+			<QueryParam name="scope">{scope}</QueryParam>
+			<QueryParam name="isUserProfileFlow">{isUserProfileFlow}</QueryParam>
+			<QueryParam name="open_id">{open_id}</QueryParam>
+		</QueryParams>
+	</Add>
+	<Set>
+			<QueryParams>
+				<QueryParam name="sessionid">{sessionid}</QueryParam>
+			</QueryParams>
+	</Set>
+</AssignMessage>

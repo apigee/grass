@@ -1,0 +1,7 @@
+<AssignMessage name="SetFlowErrorForInvalidCode">
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignVariable>
+		<Name>flowError</Name>
+		<Value>Internal_Server_Error</Value>
+	</AssignVariable>
+</AssignMessage>

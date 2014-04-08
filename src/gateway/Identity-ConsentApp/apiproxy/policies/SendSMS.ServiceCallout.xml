@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout enabled="true" continueOnError="true" async="false" name="SendSMS.ServiceCallout">
+    <FaultRules/>
+    <Properties/>
+    <Request variable="send_sms_request" clearPayload="false">
+         <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>send_sms_response</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://blitzkreig-test.apigee.net/v1/token/sms/{msisdn}</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

@@ -34,7 +34,9 @@ app.configure('production', function(){
 app.get('/consents', routes.getConsent);
 app.put('/consents/:consentid', routes.updateConsent);
 app.post('/consents', routes.createConsent);
-app.get('/token/sso', routes.validateSSO);
+app.get('/token/sso/:sso_token', routes.SSOaction);
+app.post('/token/sso', routes.createSSO);
+app.get('/consents/validate', routes.validateConsent);
 
 
 app.listen(3000, function(){

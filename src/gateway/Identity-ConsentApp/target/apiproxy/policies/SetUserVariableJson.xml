@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="false" async="false" name="SetUserVariableJson">
+<DisplayName>SetUserVariableJson</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="http" type="request">userJSON</AssignTo>
+	
+	<Set>
+
+		<Payload contentType="application/json" variablePrefix="%"
+			variableSuffix="#">
+			{
+			"userid" : "%userid#"
+			 			 }
+			 
+			 
+			</Payload>
+	</Set>
+
+</AssignMessage>
+
+
+
+
+
+
+
+

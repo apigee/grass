@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="true" async="false" name="AssignStoreConsentRequest">
+	<DisplayName>AssignStoreConsentRequest</DisplayName>
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignTo createNew="true" transport="http" type="request">storeConsentRequest</AssignTo>
+	<Set>
+		<Headers>
+			<Header name="Accept">application/json</Header>
+			<Header name="Authorization">Basic YWRja2NkdG5qWk5iWHB2WmlIMHI3S1RBYmNBR0dRYnI6Z0VvTXdJRkFVZlQzVG5Ldg==</Header>
+			<Header name="Content-Type">application/json</Header>
+		</Headers>
+		<Payload variablePrefix="%" variableSuffix="#">
+		{
+  "company_id": "%apigee.developer.app.name#",
+  "client_id": "%request.formparam.client_id#",
+  "end_user_id": "%userid#",
+  "scope": %scopes#,
+  "status" : "active",
+  "access_token" : "%apigee.access_token#",
+  "consent_type" : "in-band"
+  }
+		
+		</Payload>
+		<Verb>POST</Verb>
+	</Set>
+	
+</AssignMessage>

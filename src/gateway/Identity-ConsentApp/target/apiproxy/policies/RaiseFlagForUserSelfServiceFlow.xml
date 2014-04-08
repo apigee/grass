@@ -1,0 +1,7 @@
+<AssignMessage name="RaiseFlagForUserSelfServiceFlow">
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignVariable>
+		<Name>isUserProfileFlow</Name>
+		<Value>true</Value>
+	</AssignVariable>
+</AssignMessage>

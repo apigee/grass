@@ -11,12 +11,13 @@
 		</Step>
 		</FaultRule>
 		<FaultRule name="InvalidRequest">
-		<Step>
-			<Name>RaiseFault.InvalidRequest</Name>
-		</Step>
+<!-- 		<Step> -->
+<!-- 			<Name>RaiseFault.InvalidRequest</Name> -->
+<!-- 		</Step> -->
 	</FaultRule>
 	</FaultRules>
 	<Flows>
+
 		<Flow name="Authorization">
 			<Description>This flow is for Authorize call. This flow redirects the user to a consent application. after developer's api key validation. Stores state information.</Description>
 			<!-- Here ADD polocy to validate request parameter -->
@@ -47,10 +48,22 @@
 				<Step>
 					<FaultRules />
 					<Name>ValidateScopeValues_JS</Name>
-				</Step>				
+				</Step>
+				<Step>
+				 	<Condition>nonce != null and nonce != ""</Condition>
+					<Name>CheckNonceReplayAttack</Name>
+				</Step>
+				<Step>
+				 	<Condition>nonce_cache_value != null</Condition>
+					<Name>AssignReplayAttackError</Name>
+				</Step>
 				<Step>
 					<Condition>error_variable != null</Condition>
 					<Name>RaiseFault.InvalidAuthorizationRequest</Name>
+				</Step>
+				<Step>
+				 	<Condition>nonce != null and nonce != ""</Condition>
+					<Name>SaveNonceInCache</Name>
 				</Step>
                 <Step>
                     <Name>GenerateUUID</Name>
@@ -86,7 +99,6 @@
         </Flow>
 
         <Flow name="GenerateAccessToken">
-            
             <Description>This flow is for Access token generation</Description>
             <Request>
                 <Step>
@@ -122,6 +134,18 @@
                   <Condition>response.status.code = "200"</Condition>
                    <Name>JwtTokenSigning</Name>
                </Step>
+              <Step>
+                  <Condition>response.status.code = "200"</Condition>
+                   <Name>CreateScopeArray_JS</Name>
+               </Step>
+        	  	<Step>
+                  <Condition>response.status.code = "200"</Condition>
+                   <Name>AssignStoreConsentRequest</Name>
+               </Step>
+               	<Step>
+                  <Condition>response.status.code = "200"</Condition>
+                   <Name>StoreConsent.ServiceCallout</Name>
+               </Step>
                <Step>
                    <Condition>response.status.code = "200"</Condition>
                     <Name>GenerateAccessToken.Response</Name>
@@ -153,7 +177,7 @@
             <Condition>(proxy.pathsuffix MatchesPath &quot;/refreshtoken&quot;) and (request.verb = &quot;POST&quot;)</Condition>
         </Flow>
    
-   	<Flow name="User Details">
+  		<Flow name="User Details">
 		<Condition>(proxy.pathsuffix MatchesPath "/getdetails") and (request.verb= "GET")</Condition>
 		<Request>
 			<Step>
@@ -184,7 +208,7 @@
 		</Response>
 	</Flow>
 	    
-       <Flow name="Default-Operation">
+       	<Flow name="Default-Operation">
             <Description>Bad requests</Description>
             <Request>
                 <Step>

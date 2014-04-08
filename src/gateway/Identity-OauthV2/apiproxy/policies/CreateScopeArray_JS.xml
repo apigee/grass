@@ -1,0 +1,6 @@
+<Javascript timeLimit="0" enabled="true" continueOnError="false" async="false" name="CreateScopeArray_JS">
+<DisplayName>CreateScopeArray_JS</DisplayName>
+	<FaultRules/>
+	<Properties/>
+	<ResourceURL>jsc://CreateScopeArray.js</ResourceURL>
+</Javascript>

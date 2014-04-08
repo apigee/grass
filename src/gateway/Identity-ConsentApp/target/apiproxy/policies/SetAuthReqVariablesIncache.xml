@@ -1,0 +1,13 @@
+<PopulateCache enabled="true" continueOnError="false" async="false" name="SetAuthReqVariablesIncache">
+    <DisplayName>SetAuthReqVariablesIncache</DisplayName>
+    <CacheResource>auth-req-param-cache</CacheResource>
+    <Source>authReqParams</Source>
+    <Scope>Global</Scope>
+    <CacheKey>
+        <KeyFragment ref="client_id"/>
+        <KeyFragment ref="code"/>
+    </CacheKey>
+    <ExpirySettings>
+        <TimeoutInSec>100</TimeoutInSec>
+    </ExpirySettings>
+</PopulateCache>

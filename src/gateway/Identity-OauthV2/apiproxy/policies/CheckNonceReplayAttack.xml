@@ -1,0 +1,13 @@
+<LookupCache enabled="true" continueOnError="true" async="false" name="CheckNonceReplayAttack">
+    <DisplayName>CheckNonceReplayAttack</DisplayName>
+    <CacheResource>nonce-cache</CacheResource>
+    <AssignTo>nonce_cache_value</AssignTo>
+    <Scope>Global</Scope>
+    <CacheKey>
+        <KeyFragment ref="client_id"/>
+    	<KeyFragment ref="nonce"/>
+    </CacheKey>
+</LookupCache>
+
+
+

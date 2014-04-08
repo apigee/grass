@@ -13,8 +13,9 @@
 			<Header name="Access-Control-Allow-Headers">Authorization,Content-Type,Accept,Origin,X-Requested-With,X-CSDKVersion</Header>
 			<Header name="Access-Control-Max-Age">86400</Header>
 		</Headers>
+		 	 <StatusCode>400</StatusCode>
 				  <Payload contentType="application/json" variablePrefix="$" variableSuffix="%">
-{ "error" : "$response.header.error%",
+{ "error_code" : "$response.header.error_code%",
   "error_description" : "$response.header.error_description%"	 
  }
  	 </Payload>
