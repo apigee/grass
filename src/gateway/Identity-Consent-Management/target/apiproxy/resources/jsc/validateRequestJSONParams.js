@@ -1,13 +1,14 @@
-var developer_id = context.getVariable("developer_id");
 var client_id = context.getVariable("client_id");
 var end_user_id = context.getVariable("end_user_id");
 var authorization_code = context.getVariable("authorization_code");
 var access_token = context.getVariable("access_token");
 var sso_token = context.getVariable("sso_token");
 var status = context.getVariable("status");
-var application_name = context.getVariable("application_name");
 var contentType = context.getVariable("request.header.Content-Type");
 var requestContent= context.getVariable("requestPayload");
+var company_id= context.getVariable("company_id");
+var type= context.getVariable("type");
+
 
 var errorDesc = null;
 var errorType=null;
@@ -22,30 +23,24 @@ else if (requestContent == null || requestContent == "" ){
 	errorDesc = "Empty requst body";
 
 }
-else if (developer_id == null || developer_id == "") {
+else if (company_id == null || company_id == "") {
 	
-	errorType="invalid_developerId";
-	errorDesc = "developerId can't be null or empty";
+	errorType="invalid_company_id";
+	errorDesc = "company_id can't be null or empty";
 } 
-else if (application_name == null || application_name == "") {
-	
-	errorType="invalid_application_name";
-	errorDesc = "application_name can't be null or empty";
-}else if (client_id == null || client_id == "") {
+else if (client_id == null || client_id == "") {
 	errorType="invalid_clientId";
 	errorDesc = "clientId can't be null or empty";
 
 } else if (end_user_id == null || end_user_id == "") {
 	errorType="invalid_end_user_id";
 	errorDesc = "end_user_id can't be null or empty";
-} else if (authorization_code == null || authorization_code == "") {
-	errorType="invalid_authorization_code";
-	errorDesc = "authorization_code can't be null or empty";
-} else if (access_token == null || access_token == "") {
-	errorType="invalid_access_token";
-	errorDesc = "access_token can't be null or empty";
-
-} else if (status == null || status == "" || (status != "active" && status != "revoked" && status != "expired")) {
+}
+else if ((authorization_code == null || authorization_code == "") && (access_token == null || access_token == "" )) {
+	errorType="invalid_authorization_code or access token";
+	errorDesc = "authorization_code or access_token must be present in request";
+} 
+else if (status == null || status == "" || (status != "active" && status != "revoked" && status != "expired")) {
 
 	errorType="invalid_status";
 	errorDesc = "status must be active, revoked or expired";

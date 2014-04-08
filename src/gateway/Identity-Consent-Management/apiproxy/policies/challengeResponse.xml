@@ -14,8 +14,8 @@
      </Headers>
  	 <StatusCode>401</StatusCode>
  	  <Payload contentType="application/json" variablePrefix="$" variableSuffix="%">
-{ "error" : "Unauthorized",
-  "error_description" : "Missing authorization Header"	 
+{ "error_code" : "AUTHENTICATION_FAILED",
+  "error_description" : "Authorization header missing"	 
  }
  	 </Payload>
    </Set>

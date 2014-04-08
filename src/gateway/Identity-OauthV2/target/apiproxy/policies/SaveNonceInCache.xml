@@ -1,0 +1,13 @@
+<PopulateCache enabled="true" continueOnError="false" async="false" name="SaveNonceInCache">
+    <DisplayName>SaveNonceInCache</DisplayName>
+    <CacheResource>nonce-cache</CacheResource>
+    <Source>nonce</Source>
+    <Scope>Global</Scope>
+    <CacheKey>
+        <KeyFragment ref="client_id"/>
+    	<KeyFragment ref="nonce"/>
+    </CacheKey>
+    <ExpirySettings>
+        <TimeoutInSec>2000</TimeoutInSec>
+    </ExpirySettings>
+</PopulateCache>

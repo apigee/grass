@@ -1,0 +1,12 @@
+<PopulateCache enabled="true" continueOnError="false" async="false" name="SetUserVariableInSession">
+    <DisplayName>SetUserVariableInSession</DisplayName>
+    <CacheResource>session-cookie-cache</CacheResource>
+    <Source>userJSON.content</Source>
+    <Scope>Global</Scope>
+    <CacheKey>
+        <KeyFragment ref="sessionIdForCookie"/>
+    </CacheKey>
+    <ExpirySettings>
+        <TimeoutInSec>12000</TimeoutInSec>
+    </ExpirySettings>
+</PopulateCache>

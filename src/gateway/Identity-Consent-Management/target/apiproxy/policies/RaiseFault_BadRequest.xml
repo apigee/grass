@@ -12,7 +12,7 @@
      </Headers>
  	 <StatusCode>400</StatusCode>
 		  <Payload contentType="application/json" variablePrefix="$" variableSuffix="%">
-{ "error" : "$errorType%",
+{ "error_code" : "$errorType%",
   "error_description" : "$errorDesc%"	 
  }
  	 </Payload>

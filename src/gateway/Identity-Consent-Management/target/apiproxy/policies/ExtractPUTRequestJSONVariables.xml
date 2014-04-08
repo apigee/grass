@@ -8,12 +8,6 @@
 		<Variable  name="access_token">
 			<JSONPath>$.access_token</JSONPath>
 		</Variable>	
-		<Variable  name="refresh_token">
-			<JSONPath>$.refresh_token</JSONPath>
-		</Variable>	
-		<Variable  name="sso_token">
-			<JSONPath>$.sso_token</JSONPath>
-		</Variable>	
 		<Variable  name="scope">
 			<JSONPath>$.scope</JSONPath>
 		</Variable>	

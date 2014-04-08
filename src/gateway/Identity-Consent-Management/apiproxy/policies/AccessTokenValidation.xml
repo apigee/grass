@@ -1,0 +1,4 @@
+<OAuthV2 name="AccessTokenValidation" continueOnError="false" enabled="true">
+<Operation>VerifyAccessToken</Operation>
+	<AccessToken>access_token</AccessToken>
+</OAuthV2>

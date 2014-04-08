@@ -1,0 +1,16 @@
+<ExtractVariables enabled="true" continueOnError="true" async="false" name="ExtractCreateSSOTokenReqVariables">
+    <DisplayName>ExtractCreateSSOTokenReqVariables</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">request</Source>
+    <JSONPayload > 
+		<Variable  name="site_id">
+			<JSONPath>$.site_id</JSONPath>
+		</Variable>	
+		<Variable  name="access_token">
+			<JSONPath>$.access_token</JSONPath>
+		</Variable>	
+    </JSONPayload>
+    </ExtractVariables>
+

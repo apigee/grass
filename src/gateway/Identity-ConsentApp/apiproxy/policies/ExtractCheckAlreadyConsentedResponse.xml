@@ -1,0 +1,9 @@
+<ExtractVariables name="ExtractCheckAlreadyConsentedResponse"> 
+  <Source>previousConsentResponse</Source> 
+  	<IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+  <JSONPayload> 
+    <Variable name="previous_consent_scope"> 
+      <JSONPath>$.scope</JSONPath> 
+    </Variable> 
+  </JSONPayload> 
+</ExtractVariables>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="true" enabled="true" name="SetTokenLifeInRequest">
+    <DisplayName>SetTokenLifeInRequest</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Add>
+        <Headers/>
+        <QueryParams>
+                      <QueryParam name="token_life">3000</QueryParam>
+		              
+        </QueryParams>
+        <QueryParams/>
+    </Add>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

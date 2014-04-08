@@ -7,8 +7,6 @@
         <Headers/>
         <FormParams>
                       <FormParam name="access_token">{access_token}</FormParam>
-                      <FormParam name="refresh_token">{refresh_token}</FormParam>
-		              <FormParam name="sso_token">{sso_token}</FormParam>
 		              <FormParam name="scope">{scope}</FormParam>
 		              <FormParam name="status">{status}</FormParam>
         </FormParams>

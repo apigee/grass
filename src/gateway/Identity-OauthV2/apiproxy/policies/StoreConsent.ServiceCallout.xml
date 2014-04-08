@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout enabled="true" continueOnError="true" async="true" name="StoreConsent.ServiceCallout" >
+    <DisplayName>StoreConsent.ServiceCallout</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Request variable="storeConsentRequest" clearPayload="false"/>
+    <Response>storeConsentResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>http://op102-ex-test.apigee.net/identity/consents</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

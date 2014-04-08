@@ -1,0 +1,34 @@
+
+  	    <div class="container">
+    <!-- Reset Password page template -->
+    <div class="row">
+      <div class="login-page-wrapper col-xs-12 col-sm-6 col-sm-offset-3">
+        <div class="grass-form-wrapper">
+          <form role="form" class="form-signin" action="/openid/reset?sessionid=<%= sessionid%>"  onsubmit="" method="post">
+            <h4 class="regi ster-form-title">Reset your password</h4>
+            <div class="form-group">
+              <input name="username" class="form-control" placeholder="Your registered phonenumber" type="text">
+            </div>
+            <div class="form-group">
+              <input name="password" class="form-control" placeholder="New password" type="password">
+            </div>
+            <div class="form-group">
+              <input name="confirmPass" class="form-control" placeholder="Confirm new password" type="password">
+            </div>
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary grass-btn">Reset Password</button>
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="form-group">
+                  <button type="button" class="btn btn-primary btn-error" type="button" onclick="window.location='/openid/index?sessionid=<%= sessionid%>'" >Cancel</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

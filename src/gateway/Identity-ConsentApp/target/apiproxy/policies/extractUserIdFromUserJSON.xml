@@ -1,0 +1,15 @@
+<ExtractVariables enabled="true" continueOnError="false" async="false" name="extractUserIdFromUserJSON">
+	<DisplayName>extractUserIdFromUserJSON</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source>userJSON</Source>
+
+    <JSONPayload> 
+		<Variable name="userid">  
+			<JSONPath>$.userid</JSONPath>
+		</Variable>			
+     </JSONPayload>
+</ExtractVariables>
+
+

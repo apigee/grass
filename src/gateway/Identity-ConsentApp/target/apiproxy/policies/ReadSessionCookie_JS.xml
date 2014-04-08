@@ -1,0 +1,6 @@
+<Javascript timeLimit="0" enabled="true" continueOnError="false" async="false" name="ReadSessionCookie_JS">
+  <DisplayName>ReadSessionCookie_JS</DisplayName>
+	<FaultRules/>
+	<Properties/>
+	<ResourceURL>jsc://readCookie.js</ResourceURL>
+</Javascript>
