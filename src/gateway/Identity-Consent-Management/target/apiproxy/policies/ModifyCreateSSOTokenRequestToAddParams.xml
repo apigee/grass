@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="true" enabled="true" name="ModifyCreateSSOTokenRequestToAddParams">
+    <DisplayName>ModifyCreateSSOTokenRequestToAddParams</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Add>
+        <Headers/>
+        <FormParams>
+                      <FormParam name="access_token">{access_token}</FormParam>
+		              <FormParam name="site_id">{site_id}</FormParam>
+        </FormParams>
+        <FormParams/>
+    </Add>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

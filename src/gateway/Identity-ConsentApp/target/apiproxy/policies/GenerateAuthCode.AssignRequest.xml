@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="true" async="false" name="GenerateAuthCode.AssignRequest">
+	<DisplayName>GenerateAuthCode.AssignRequest</DisplayName>
+	<FaultRules />
+	<Properties />
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignTo createNew="true" transport="http" type="request">authcode.request</AssignTo>
+	<Set>
+		<QueryParams>
+			<QueryParam name="response_type">code</QueryParam>
+		</QueryParams>
+		<QueryParams>
+			<QueryParam name="redirect_uri">{redirect_uri}</QueryParam>
+		</QueryParams>
+		<QueryParams>
+			<QueryParam name="scope">{scope}</QueryParam>
+		</QueryParams>
+		<QueryParams>
+			<QueryParam name="client_id">{client_id}</QueryParam>
+		</QueryParams>
+		<QueryParams>
+			<QueryParam name="userId">{request.queryparam.userId}</QueryParam>
+		</QueryParams>
+		<QueryParams>
+			<QueryParam name="nonce">{nonce}</QueryParam>
+		</QueryParams>
+		
+		<Verb>GET</Verb>
+	</Set>
+</AssignMessage>

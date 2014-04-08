@@ -17,7 +17,7 @@
  	 <StatusCode>401</StatusCode>
  	 
  	 <Payload contentType="application/json" variablePrefix="$" variableSuffix="%">
-{ "error" : "Unauthorized",
+{ "error_code" : "Unauthorized",
   "error_description" : "Invalid client_id"	 
  }
  	 </Payload>	</Set>

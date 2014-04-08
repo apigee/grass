@@ -2,7 +2,6 @@
 <ProxyEndpoint name="default">
 	<Description />
 
-<!-- TODO:: Authentication in Pre-flow -->
 <FaultRules>
 	<FaultRule name="InvalidApiKey">
 		<Condition>fault.name = "invalid_client"</Condition>
@@ -18,32 +17,42 @@
 			<Name>authorizationFailed</Name>
 		</Step>
 	</FaultRule>
-</FaultRules> 
+	<FaultRule name="InvalidClientId">
+		<Condition>(fault.name = "FailedToResolveAPIKey") or (fault.name = "InvalidApiKeyForGivenResource") or (fault.name = "InvalidApiKey") </Condition>
+		<Step>
+			<Name>RaiseFault.ApplicationKey</Name>
+		</Step>
+	</FaultRule>
+	<FaultRule name="InvalidAccessToken">
+		<Condition>(fault.name = "invalid_access_token") or (fault.name = "access_token_expired") </Condition>
+		<Step>
+			<Name>RaiseFault.InvalidAccessToken</Name>
+		</Step>
+	</FaultRule>
+	
+</FaultRules>
 
-<PreFlow>
-<Request>
-					<Step>
-					<Condition>(request.header.Authorization.values.count = 0)</Condition>
-					<FaultRules />
-					<Name>challengeResponse</Name>
-				</Step>
-				<Step>
-					<FaultRules />
-					<Name>setGrantType</Name>
-				</Step>
-				<Step>
-					<Condition>(request.header.Authorization =| "Basic") and !(proxy.pathsuffix MatchesPath &quot;/token/sso&quot;)</Condition>
-					<FaultRules />
-					<Name>validateBasicAuth</Name>
-				</Step>
-</Request>
-
-
-</PreFlow>
-
-
+	<PreFlow>
+		<Request>
+			<Step>
+				<Condition>(request.header.Authorization.values.count = 0)</Condition>
+				<FaultRules />
+				<Name>challengeResponse</Name>
+			</Step>
+			<Step>
+				<FaultRules />
+				<Name>setGrantType</Name>
+			</Step>
+			<Step>
+				<Condition>(request.header.Authorization =| "Basic") </Condition>
+				<FaultRules />
+				<Name>validateBasicAuth</Name>
+			</Step>
+		</Request>
+	</PreFlow>
+	
 	<Flows>
-		<Flow name="Create Consent">
+			<Flow name="Create Consent">
 			<Request>
 				<Step>
 					<Name>ExtractPOSTRequestJSONVariables</Name>
@@ -60,6 +69,30 @@
 				<Step>
 					<Condition>errorType != null</Condition>
 					<Name>RaiseFault_BadRequest</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				<Step>
+					<Condition>access_token != null</Condition>
+					<Name>AccessTokenValidation</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				<Step>
+					<Condition>access_token != null</Condition>
+					<Name>AssignApplicationNameFromAccessToken</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				<Step>
+					<Condition>access_token = null || application_name = null</Condition>
+					<Name>VerifyClientId</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				<Step>
+					<Condition>application_name = null</Condition>
+					<Name>AssignApplicationNameFromVerifyClientId</Name>
+					<FaultRules></FaultRules>
+				</Step>
+					<Step>
+					<Name>DeleteExistingSimilarConsent</Name>
 					<FaultRules></FaultRules>
 				</Step>
 				<Step>
@@ -103,6 +136,17 @@
 					<FaultRules></FaultRules>
 				</Step>
 				<Step>
+					<Condition>access_token != null</Condition>
+					<Name>AccessTokenValidation</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				<Step>
+					<Condition>access_token != null</Condition>
+					<Name>AssignApplicationNameFromAccessToken</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				
+				<Step>
 					<Name>ModifyPUTRequestToAddParams</Name>
 					<FaultRules></FaultRules>
 				</Step>
@@ -113,10 +157,22 @@
 
 			<Condition>(proxy.pathsuffix MatchesPath &quot;/consents/{consentId}&quot;) and (request.verb = &quot;PUT&quot;)</Condition>
 		</Flow>
-	
-	
-	
-		<Flow name="Get Consent By User">
+			<Flow name="Validate Consent">
+			<Request>
+				
+				<Step>
+					<Condition>request.queryparam.client_id = null or request.queryparam.client_id = "" or request.queryparam.user_id = null or request.queryparam.user_id = ""  </Condition>
+					<Name>RaiseFault_InvalidQueryParam</Name>
+					<FaultRules></FaultRules>
+				</Step>
+			</Request>
+			<Response>
+
+			</Response>
+
+			<Condition>(proxy.pathsuffix MatchesPath &quot;/consents/validate&quot;) and (request.verb = &quot;GET&quot;) and (request.queryparam.user_id != null)</Condition>
+		</Flow>
+			<Flow name="Get Consent By User">
 			<Request>
 
 			</Request>
@@ -126,15 +182,53 @@
 
 			<Condition>(proxy.pathsuffix MatchesPath &quot;/consents&quot;) and (request.verb = &quot;GET&quot;) and (request.queryparam.user_id != null)</Condition>
 		</Flow>
-		<Flow name="SSO Token Validation">
+			<Flow name="SSO Token Validation">
 			<Request>
-			<Step>
-					<Name>GetSSOTokenFromRequest_JS</Name>
+
+				<Step>
+					<Condition>request.queryparam.action != "refresh" and request.queryparam.action != "revoke"  and request.queryparam.action != "validate"  </Condition>
+					<Name>RaiseFault_Invalid_SSO_Operation</Name>
 					<FaultRules></FaultRules>
-			</Step>
-			<Step>
+				</Step>
+				<Step>
+					<Name>SetTokenLifeInRequest</Name>
+				</Step>
+
+			</Request>
+			<Response>
+
+			</Response>
+
+			<Condition>(proxy.pathsuffix MatchesPath &quot;/token/sso/{sso_token}&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+		</Flow>		
+			<Flow name="Create SSO Token">
+			<Request>
+				<Step>
+					<Name>ExtractCreateSSOTokenReqVariables</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				<Step>
+					<Name>ValidateCreateSSOTokenReqVariables_JS</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				<Step>
 					<Condition>errorType != null</Condition>
-					<Name>RaiseFault_Unauthorized</Name>
+					<Name>RaiseFault_BadRequest</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				<Step>
+					<Condition>access_token != null</Condition>
+					<Name>AccessTokenValidation</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				<Step>
+					<Condition>access_token != null</Condition>
+					<Name>AssignApplicationNameFromAccessToken</Name>
+					<FaultRules></FaultRules>
+				</Step>
+				
+				<Step>
+					<Name>ModifyCreateSSOTokenRequestToAddParams</Name>
 					<FaultRules></FaultRules>
 				</Step>
 			</Request>
@@ -142,10 +236,9 @@
 
 			</Response>
 
-			<Condition>(proxy.pathsuffix MatchesPath &quot;/token/sso&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+			<Condition>(proxy.pathsuffix MatchesPath &quot;/token/sso/&quot;) and (request.verb = &quot;POST&quot;)</Condition>
 		</Flow>		
-		
-		<Flow name="OPTIONS">
+			<Flow name="OPTIONS">
 			<Condition>(request.verb = &quot;OPTIONS&quot;)</Condition>
 			<Request>
 			</Request>
@@ -160,18 +253,14 @@
 
 <PostFlow>
 <Response>
-	<!-- ConstructErrorResponse proxy is added because of a platform bug, which 
-		sends error json elements, which are set in response from node.js target, as header instead of payload -->
 	<Step>
-		<Condition>(response.header.error != null)</Condition>
+		<Condition>(response.header.error_code != null)</Condition>
 		<FaultRules />
 		<Name>ConstructErrorResponse</Name>
 	</Step>
 </Response>
 
 </PostFlow>
-
-
 
 
 	<HTTPProxyConnection>

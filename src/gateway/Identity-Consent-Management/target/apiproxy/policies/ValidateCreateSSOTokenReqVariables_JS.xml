@@ -1,0 +1,6 @@
+<Javascript timeLimit="0" enabled="true" continueOnError="false" async="false" name="ValidateCreateSSOTokenReqVariables_JS">
+<DisplayName>ValidateCreateSSOTokenReqVariables_JS</DisplayName>
+	<FaultRules/>
+	<Properties/>
+	<ResourceURL>jsc://validateCreateSSOTokenReqVariables.js</ResourceURL>
+</Javascript>

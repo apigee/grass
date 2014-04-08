@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="true" async="false" name="SendCookieInResposne">
+	<DisplayName>SendCookieInResposne</DisplayName>
+	<FaultRules />
+	<Properties />
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignTo createNew="false" transport="http" type="response">response</AssignTo>
+	<Add>
+		<Headers>
+			<Header name="Set-cookie">id={sessionIdForCookie}; Max-Age=18000; Version=1; path=/</Header>
+		</Headers>
+	</Add>
+</AssignMessage>

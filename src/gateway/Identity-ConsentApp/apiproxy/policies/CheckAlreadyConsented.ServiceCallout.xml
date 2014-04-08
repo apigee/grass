@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout enabled="true" continueOnError="true" async="false" name="CheckAlreadyConsented.ServiceCallout" description="CheckAlreadyConsented.ServiceCallout">
+    <DisplayName>CheckAlreadyConsented.ServiceCallout</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Request clearPayload="true">
+        <Set>
+            <Headers>
+                <Header name="Accept">application/json</Header>
+        	    <Header name="Authorization">Basic YWRja2NkdG5qWk5iWHB2WmlIMHI3S1RBYmNBR0dRYnI6Z0VvTXdJRkFVZlQzVG5Ldg==</Header>
+            </Headers>
+            
+      <QueryParams>
+        <QueryParam name="client_id">{client_id}</QueryParam>
+        <QueryParam name="user_id">{userid}</QueryParam>
+     </QueryParams>
+            <Verb>GET</Verb>
+        </Set>
+    </Request>
+    <Response>previousConsentResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>http://op102-ex-test.apigee.net/identity/consents/validate</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

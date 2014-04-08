@@ -1,0 +1,6 @@
+<Javascript timeLimit="0" enabled="true" continueOnError="false" async="false" name="ValidateScopeAgainstPreviousConsentedScope_JS">
+<DisplayName>ValidateScopeAgainstPreviousConsentedScope_JS</DisplayName>
+	<FaultRules/>
+	<Properties/>
+	<ResourceURL>jsc://validateScopeAgainstPreviousConsentedScope.js</ResourceURL>
+</Javascript>

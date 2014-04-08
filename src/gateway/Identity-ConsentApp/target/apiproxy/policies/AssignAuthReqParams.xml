@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="false" async="false" name="AssignAuthReqParams">
+<DisplayName>AssignAuthReqParams</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="http" type="request">authReqParams</AssignTo>
+	
+	<Set>
+
+		<Payload contentType="application/json" variablePrefix="%"
+			variableSuffix="#">
+			{"client_id" : "%client_id#",
+			"response_type" : "%response_type#",
+			"scope" : "%scope#",
+			 "redirect_uri":"%redirect_uri#"
+			 ,"nonce":"%nonce#"
+			 ,"display":"%display#"
+			 ,"state":"%state#"
+			 }
+
+			</Payload>
+	</Set>
+</AssignMessage>
