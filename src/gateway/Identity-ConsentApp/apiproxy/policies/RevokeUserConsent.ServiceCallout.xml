@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout enabled="true" continueOnError="true" async="false" name="RevokeUserConsent.ServiceCallout" >
+    <DisplayName>RevokeUserConsent.ServiceCallout</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Request clearPayload="true">
+        <Set>
+            <Headers>
+                <Header name="Authorization">[TO_BE_REPLACED]</Header>
+                <Header name="Content-type">application/json</Header>
+            </Headers>
+            
+            <Verb>PUT</Verb>
+            <Payload variableSuffix="#" variablePrefix="%">
+                {"status": "revoked"}
+            </Payload>
+        </Set>
+    </Request>
+    <Response>userApps</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>[TO_BE_REPLACED]</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

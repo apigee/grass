@@ -1,7 +1,0 @@
-<AssignMessage enabled="true" continueOnError="false"
-	async="false" name="GetMsisdnFromRequest">
-	<AssignVariable>
-		<Name>msisdn</Name>
-		<Ref>request.formparam.msisdn</Ref>
-	</AssignVariable>
-</AssignMessage>

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ServiceCallout enabled="true" continueOnError="true" async="false" name="GetUserProfileFromUserManagement" >
-    <DisplayName>GetUserProfileFromUserManagement</DisplayName>
-    <FaultRules/>
-    <Properties/>
+<ServiceCallout enabled="true" continueOnError="true" async="false" name="GetUserApps.ServiceCallout" >
     <Request clearPayload="true">
         <Set>
             <Headers>
-                <Header name="Accept">application/json</Header>
+                <Header name="Authorization">[TO_BE_REPLACED]</Header>
             </Headers>
+              <QueryParams>
+                <QueryParam name="user_id">{userid}</QueryParam>
+            </QueryParams>
             
             <Verb>GET</Verb>
         </Set>
     </Request>
-    <Response>userProfile.response</Response>
+    <Response>userApps</Response>
     <HTTPTargetConnection>
         <Properties/>
         <URL>[TO_BE_REPLACED]</URL>

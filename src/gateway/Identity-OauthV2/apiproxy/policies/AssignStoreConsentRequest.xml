@@ -6,7 +6,7 @@
 	<Set>
 		<Headers>
 			<Header name="Accept">application/json</Header>
-			<Header name="Authorization">Basic YWRja2NkdG5qWk5iWHB2WmlIMHI3S1RBYmNBR0dRYnI6Z0VvTXdJRkFVZlQzVG5Ldg==</Header>
+			<Header name="Authorization">[TO_BE_REPLACED]</Header>
 			<Header name="Content-Type">application/json</Header>
 		</Headers>
 		<Payload variablePrefix="%" variableSuffix="#">

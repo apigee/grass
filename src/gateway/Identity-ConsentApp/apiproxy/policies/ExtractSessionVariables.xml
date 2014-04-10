@@ -90,6 +90,21 @@
 		<Variable name="msisdn">  
 			<JSONPath>$.msisdn</JSONPath>
 		</Variable>	
+		<Variable name="isTokenValidationThrough">  
+			<JSONPath>$.isTokenValidationThrough</JSONPath>
+		</Variable>	
+		<Variable name="no_of_pin_tries">  
+			<JSONPath>$.no_of_pin_tries</JSONPath>
+		</Variable>	
+		<Variable name="areMaxTokenTriesExceeded">  
+			<JSONPath>$.areMaxTokenTriesExceeded</JSONPath>
+		</Variable>	
+		<Variable name="username">  
+			<JSONPath>$.username</JSONPath>
+		</Variable>	
+		
+		
+		
      </JSONPayload>
 </ExtractVariables>
 

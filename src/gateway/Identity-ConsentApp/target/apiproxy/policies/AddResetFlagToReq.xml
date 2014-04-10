@@ -1,7 +1,0 @@
-<AssignMessage name="AddResetFlagToReq">
-	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-	<AssignVariable>
-		<Name>process</Name>
-		<Value>reset</Value>
-	</AssignVariable>
-</AssignMessage>

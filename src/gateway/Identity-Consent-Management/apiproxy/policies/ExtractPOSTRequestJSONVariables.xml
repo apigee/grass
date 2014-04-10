@@ -24,10 +24,10 @@
 		<Variable  name="sso_token">
 			<JSONPath>$.sso_token</JSONPath>
 		</Variable>	
-		<Variable  name="scope">
+		<Variable  name="req_scope">
 			<JSONPath>$.scope</JSONPath>
 		</Variable>	
-		<Variable  name="status">
+		<Variable  name="req_status">
 			<JSONPath>$.status</JSONPath>
 		</Variable>
 		<Variable  name="type">

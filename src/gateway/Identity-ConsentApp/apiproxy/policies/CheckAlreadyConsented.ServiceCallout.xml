@@ -7,7 +7,7 @@
         <Set>
             <Headers>
                 <Header name="Accept">application/json</Header>
-        	    <Header name="Authorization">Basic YWRja2NkdG5qWk5iWHB2WmlIMHI3S1RBYmNBR0dRYnI6Z0VvTXdJRkFVZlQzVG5Ldg==</Header>
+        	    <Header name="Authorization">[TO_BE_REPLACED]</Header>
             </Headers>
             
       <QueryParams>
@@ -20,6 +20,6 @@
     <Response>previousConsentResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>http://op102-ex-test.apigee.net/identity/consents/validate</URL>
+        <URL>[TO_BE_REPLACED]</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

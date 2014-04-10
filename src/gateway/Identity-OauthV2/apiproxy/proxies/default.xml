@@ -197,10 +197,6 @@
 			</Step>
 		</Request>
 		<Response>
-<!-- 			<Step> -->
-<!--           		<Condition>appservicesuserprofile.status.code != "200"</Condition> -->
-<!-- 				<Name>RaiseFault.InvalidRequest</Name> -->
-<!-- 			</Step> -->
 			<Step>
           		<Condition>appservicesuserprofile.status.code = "200"</Condition>
 				<Name>AssignIdentityMessageResponse</Name>
@@ -237,9 +233,6 @@
                 <Condition>(request.verb!=&quot;OPTIONS&quot;)</Condition>
                 <Name>CORS</Name>
             </Step>
-<!--             <Step> -->
-<!--                 <Name>SendCookieInResposne</Name> -->
-<!--             </Step> -->
         </Response>    
     </PostFlow>  
 

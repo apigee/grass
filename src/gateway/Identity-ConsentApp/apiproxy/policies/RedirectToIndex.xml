@@ -1,0 +1,14 @@
+<RaiseFault name="RedirectToIndex">
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<FaultResponse>
+		<Set>
+			<StatusCode>302</StatusCode>
+			<Headers>
+				<Header name="Location">[TO_BE_REPLACED]</Header>
+				<Header name="Access-Control-Allow-Origin">{request.header.origin}</Header>
+				<Header name="Set-cookie">id=;Max-Age=-11; path=/</Header>
+			</Headers>
+		</Set>
+	</FaultResponse>
+</RaiseFault>
+

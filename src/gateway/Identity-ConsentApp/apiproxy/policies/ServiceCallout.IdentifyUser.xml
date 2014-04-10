@@ -8,6 +8,6 @@
     <Response>identifyUserResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>http://op102-ex-test.apigee.net/authenticate/identify</URL>
+        <URL>[TO_BE_REPLACED]</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

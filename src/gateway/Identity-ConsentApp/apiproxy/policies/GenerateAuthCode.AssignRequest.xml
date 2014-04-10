@@ -8,21 +8,12 @@
 	<Set>
 		<QueryParams>
 			<QueryParam name="response_type">code</QueryParam>
-		</QueryParams>
-		<QueryParams>
-			<QueryParam name="redirect_uri">{redirect_uri}</QueryParam>
-		</QueryParams>
-		<QueryParams>
-			<QueryParam name="scope">{scope}</QueryParam>
-		</QueryParams>
-		<QueryParams>
-			<QueryParam name="client_id">{client_id}</QueryParam>
-		</QueryParams>
-		<QueryParams>
-			<QueryParam name="userId">{request.queryparam.userId}</QueryParam>
-		</QueryParams>
-		<QueryParams>
-			<QueryParam name="nonce">{nonce}</QueryParam>
+					<QueryParam name="redirect_uri">{redirect_uri}</QueryParam>
+					<QueryParam name="scope">{scope}</QueryParam>
+					<QueryParam name="client_id">{client_id}</QueryParam>
+					<QueryParam name="userId">{userid}</QueryParam>
+					<QueryParam name="nonce">{nonce}</QueryParam>
+		
 		</QueryParams>
 		
 		<Verb>GET</Verb>

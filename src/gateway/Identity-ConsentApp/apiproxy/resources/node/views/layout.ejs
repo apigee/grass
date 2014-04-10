@@ -18,21 +18,38 @@
 
   <script src="/openid/js/jquery-1.10.2.js"></script>
   <script src="/openid/js/bootstrap.min.js"></script>
+  <script src="/openid/js/app.js"></script>
 </head>
 
 <body>
   <div class="container-fluid header">
     <nav class="navbar navbar-default navbar-static-top grass-header-nav" role="navigation">
       <div class="container-fluid">
+ 
+  <% if(authenticated) { %>
         <div class="grass-menu pull-right">
           <div class="dropdown">
             <div class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
               <span class="glyphicon glyphicon-list"></span>
             </div>
-
+            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+              <li role="presentation">
+                <a role="menu-item" href="/openid/profile?sessionid=<%= sessionid %>">My Profile</a>
+              </li>
+              <li role="presentation">
+                <a role="menu-item" href="/openid/edit-profile?sessionid=<%= sessionid %>">Edit Profile</a>
+              </li>
+              <li role="presentation">
+                <a role="menu-item" href="/openid/myapps?sessionid=<%= sessionid %>">My apps</a>
+              </li>
+              <li role="presentation">
+                <a role="menu-item" href="/openid/logout">Logout</a>
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
+        <% } %>
+       </div>
     </nav>
   </div>
   
@@ -57,6 +74,26 @@
     <footer class="footer">
 
     </footer>
+
+
+<!-- Modal -->
+<div class="modal fade" id="grassModal" tabindex="-1" role="dialog" aria-labelledby="grassModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="grassModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default grass-btn" data-dismiss="modal">Cancel</button>
+        <button id="confirm-revoke-consent" type="button" class="btn btn-default grass-btn">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
   </body>
 
 </html>
