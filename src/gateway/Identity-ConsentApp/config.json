@@ -14,16 +14,170 @@
          "name":"test",
 
          "policies":[
-         ],
-         "proxies":[
-          ] ,
-         "targets":[
-         ]
-      },
-	{
-         "name":"demo",
-
-         "policies":[
+          {
+                    "name": "AssignSendSMSAPIRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='apikey']",
+                            "value": "WCczaWGaR4U9vbgs1LzJcJcqdBmdTC7j"
+                        }
+                    ]
+                },
+                 {
+                    "name": "CheckAlreadyConsented.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic YWRja2NkdG5qWk5iWHB2WmlIMHI3S1RBYmNBR0dRYnI6Z0VvTXdJRkFVZlQzVG5Ldg=="
+                        },
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-test.apigee.net/identity/consents/validate"
+                        }
+                    ]
+                },
+       	  {
+                    "name": "CheckMSISDNExists.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/{msisdn}"
+                        }
+                    ]
+                },
+                 {
+                    "name": "CheckUserExists.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/{username}"
+                        }
+                    ]
+                },
+     	    {
+                    "name": "CreateUser.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users"
+                        }
+                    ]
+                }, {
+                    "name": "GenerateAuthCode.Callout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-test.apigee.net/oauth/v2/code"
+                        }
+                    ]
+                },
+                {
+                    "name": "GetUserApps.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-test.apigee.net/identity/consents"
+                        },
+                        {
+                            "xpath": "/ServiceCallout/Request/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic YWRja2NkdG5qWk5iWHB2WmlIMHI3S1RBYmNBR0dRYnI6Z0VvTXdJRkFVZlQzVG5Ldg=="
+                        }
+                    ]
+                },
+                {
+                    "name": "GetUserProfileFromUserManagement.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/{userid}"
+                        }
+                    ]
+                },
+                {
+                    "name": "RedirectToIndex.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/RaiseFault/FaultResponse/Set/Headers/Header[@name='Location']",
+                            "value": "http://op102-ex-test.apigee.net/openid/index"
+                        }
+                    ]
+                },{
+                    "name": "ResetPassword.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/{reset_username}/password"
+                        }
+                    ]
+                },{
+                    "name": "RevokeUserConsent.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-test.apigee.net/identity/consents/{request.queryparam.consentid}"
+                        },
+                        {
+                            "xpath": "/ServiceCallout/Request/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic YWRja2NkdG5qWk5iWHB2WmlIMHI3S1RBYmNBR0dRYnI6Z0VvTXdJRkFVZlQzVG5Ldg=="
+                        }
+                    ]
+                },{
+                    "name": "SendSMS.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "https://blitzkreig-test.apigee.net/v1/token/sms/{msisdn}"
+                        }
+                    ]
+                },{
+                    "name": "ServiceCallout.IdentifyUser.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-test.apigee.net/authenticate/identify"
+                        }
+                    ]
+                },
+                {
+                    "name": "ServiceCallout.ValidateUser.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/authenticate"
+                        }
+                    ]
+                },
+         		{
+                    "name": "SetPassword.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/{username}/password"
+                        }
+                    ]
+                },{
+                    "name": "ValidatePin.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "https://blitzkreig-test.apigee.net/v1/token/sms/{msisdn}/{request.formparam.pin}"
+                        },
+                         {
+                            "xpath": "/ServiceCallout/Request/Set/Headers/Header[@name='apikey']",
+                            "value": "WCczaWGaR4U9vbgs1LzJcJcqdBmdTC7j"
+                        }
+                    ]
+                },
+                {
+                    "name": "UpdateUserProfile.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/{request.formparam.email}"
+                        }
+                    ]
+                }
+         
          ],
          "proxies":[
           ] ,

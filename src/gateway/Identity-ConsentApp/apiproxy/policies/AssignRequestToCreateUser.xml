@@ -10,7 +10,6 @@
 
 		<Payload contentType="application/json" variablePrefix="%"
 			variableSuffix="#">
-	
     {
     "username": "%create_email#",
     "personal-info": {
@@ -29,7 +28,6 @@
         "0": "%create_msisdn#"
     }
 }
-			 
 </Payload>
 	<Verb>POST</Verb>
 </Set>

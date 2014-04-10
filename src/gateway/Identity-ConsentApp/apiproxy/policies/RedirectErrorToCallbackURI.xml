@@ -4,7 +4,7 @@
 	<Set>
 		<StatusCode>302</StatusCode>
 		<Headers> 
-			<Header name="Location">{redirect_uri}&amp;error={flowError}&amp;state={req_state}</Header> 
+			<Header name="Location">{redirect_uri}?error={flowError}&amp;state={req_state}</Header> 
 			<Header name="Access-Control-Allow-Origin">*</Header>
 		</Headers> 
 	</Set>

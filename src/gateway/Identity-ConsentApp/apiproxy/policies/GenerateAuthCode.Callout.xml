@@ -9,6 +9,6 @@
     <Response>authcode.response</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>http://op102-ex-test.apigee.net/oauth/v2/code?response_type=code&amp;client_id={client_id}&amp;scope={scope}&amp;redirect_uri={redirect_uri}&amp;userid={userid}&amp;sessionid={sessionid}</URL>
+        <URL>[TO_BE_REPLACED]</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

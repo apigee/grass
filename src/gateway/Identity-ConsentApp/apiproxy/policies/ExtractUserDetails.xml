@@ -4,6 +4,9 @@
 	<FormParam name="msisdn">
 		<Pattern>{create_msisdn}</Pattern>
 	</FormParam>
+	<FormParam name="msisdn">
+		<Pattern>{msisdn}</Pattern>
+	</FormParam>
 	<FormParam name="name">
 		<Pattern>{create_name}</Pattern>
 	</FormParam>
@@ -11,9 +14,6 @@
 		<Pattern>{create_lastName}</Pattern>
 	</FormParam>
 	<FormParam name="username">
-		<Pattern>{create_username}</Pattern>
-	</FormParam>
-	<FormParam name="userid">
 		<Pattern>{userid}</Pattern>
 	</FormParam>
 	<FormParam name="password">

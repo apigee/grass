@@ -19,9 +19,6 @@
 		<Variable name="username">
 			<JSONPath>$.username</JSONPath>
 		</Variable>
-<!-- 		<Variable name="profile"> -->
-<!-- 			<JSONPath>$.profile</JSONPath> -->
-<!-- 		</Variable> -->
 		<Variable name="picture">
 			<JSONPath>$.personal-info.image</JSONPath>
 		</Variable>

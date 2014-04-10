@@ -1,7 +1,0 @@
-<AssignMessage enabled="true" continueOnError="false"
-	async="false" name="AssignIssuer">
-	<AssignVariable>
-		<Name>issuer</Name>
-		<Value>op102-ex-test.apigee.net</Value>
-	</AssignVariable>
-</AssignMessage>

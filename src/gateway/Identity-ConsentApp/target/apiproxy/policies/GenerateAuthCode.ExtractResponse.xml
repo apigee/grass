@@ -1,8 +1,0 @@
-<ExtractVariables name="GenerateAuthCode.ExtractResponse">
-	<Source>authcode.response</Source>
-	<IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
-	 <Header name="Location">
-        <Pattern>{appCallBackUrl}</Pattern>
-    </Header>
-</ExtractVariables>
- 

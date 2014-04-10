@@ -2,13 +2,32 @@
     "configurations": [
         {
             "name": "prod",
-            "policies": [],
+            "policies": [
+            
+            ],
             "proxies": [],
             "targets": []
         },
         {
             "name": "test",
-            "policies": [],
+            "policies": [
+            {
+                    "name": "DeleteExistingSimilarConsent.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/Request/Set/QueryParams/QueryParam[@name='client_id']",
+                            "value": "b3U6yQvN8aDyEeKC0gLoGsVOBQ"
+                        },
+                        {
+                            "xpath": "/ServiceCallout/Request/Set/QueryParams/QueryParam[@name='client_secret']",
+                            "value": "b3U6aJFD4MFn5BUqgew1rRmcBT_e7U8"
+                        },
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "https://api.usergrid.com/op102-ex/identity/consents"
+                        }
+                    ]
+                }],
             "proxies": [],
             "targets": []
         }

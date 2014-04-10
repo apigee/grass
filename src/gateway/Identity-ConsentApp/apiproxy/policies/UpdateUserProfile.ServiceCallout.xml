@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ServiceCallout enabled="true" continueOnError="true" async="false" name="ServiceCallout.ValidateUser">
-    <FaultRules/>
-    <Properties/>
-    <Request variable="validateUserRequest" clearPayload="false">
+<ServiceCallout enabled="true" continueOnError="true" async="false" name="UpdateUserProfile.ServiceCallout">
+    <Request variable="updateUserRequest" clearPayload="false">
          <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
     </Request>
-    <Response>validateUserResponse</Response>
+    <Response>updateUserResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
         <URL>[TO_BE_REPLACED]</URL>

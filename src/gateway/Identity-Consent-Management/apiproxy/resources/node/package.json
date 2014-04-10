@@ -1,10 +1,14 @@
 {
-    "name": "application-name"
-  , "version": "0.0.1"
-  , "private": true
-  , "dependencies": {
-      "express": "2.5.8"
-    , "stylus": ">= 0.0.1"
-    , "jade": ">= 0.0.1"
-  }
+    "name": "application-name",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "2.5.8",
+        "stylus": ">= 0.0.1",
+        "jade": ">= 0.0.1"
+    },
+    
+    "client_id":"b3U6yQvN8aDyEeKC0gLoGsVOBQ",
+    "client_secret":"b3U6aJFD4MFn5BUqgew1rRmcBT_e7U8"
+    
 }

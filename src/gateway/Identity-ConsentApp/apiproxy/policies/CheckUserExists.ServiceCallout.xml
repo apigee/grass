@@ -15,6 +15,6 @@
     <Response>userManagement.response</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>http://op102-ex-test.apigee.net/identity-users/v1/users/{username}</URL>
+        <URL>[TO_BE_REPLACED]</URL>
     </HTTPTargetConnection>
 </ServiceCallout>
