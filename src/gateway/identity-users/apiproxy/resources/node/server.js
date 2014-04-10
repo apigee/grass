@@ -82,9 +82,9 @@ engine.post(pkginfo.basepath, User.parse, function (req, res) {
  * Update User, via engine.put
  */
 
-engine.put(pkginfo.regex_username, User.parse, function (req, res) {
+engine.put(pkginfo.regex_email, User.parse, function (req, res) {
   'use strict';
-  User.update(req.params.username, req.body, function(err, user) {
+  User.update(req.params.email, req.body, function(err, user) {
     if (err) res.send(S_BDREQST);
     else res.json(S_ALL_OKS, user);
   });
