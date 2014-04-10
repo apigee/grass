@@ -1,6 +1,0 @@
-<Javascript timeLimit="0" enabled="true" continueOnError="false" async="false" name="CheckPinEntryTries_JS">
-<DisplayName>CheckPinEntryTries_JS</DisplayName>
-	<FaultRules/>
-	<Properties/>
-	<ResourceURL>jsc://CheckPinEntryTries.js</ResourceURL>
-</Javascript>

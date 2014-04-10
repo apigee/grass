@@ -1,0 +1,42 @@
+<% layout('layout') -%>  
+<div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <div>
+          <h4>Your Application Consents</h4>
+        </div>
+        <% if(applications != null && applications != "undefined" && applications.length != 0){%>
+        <div class="panel-group" id="accordian">
+          <% for(var i=0; i < applications.length ; i++) { %>
+          <div class="panel panel-default" id="<%=applications[i].consentid%>">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordian" href="#app<%= i %>">
+                    <%= applications[i].name %>
+                  </a>
+              </h4>
+            </div>
+            <div id="app<%= i %>" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>The application
+                  <strong><%= applications[i].name %></strong> can access your</p>
+                <ul class="list-group">
+                  <% for (var j=0 ; j< applications[i].scopes.length ; j++) {%>
+                    <% if(applications[i].scopes[j] == 'openid') continue; %>
+                  <li class="list-group-item"><%= applications[i].scopes[j] %></li>
+                  <% } %>
+                </ul>
+
+                <label class="label label-success revoke-consent" data-consent-id="<%= applications[i].consentid%>">Revoke</label>
+              </div>
+            </div>
+          </div>
+          <% } %>
+        </div>
+        <% } else { %>
+        <div class="alert alert-info">You have not given consents to any applications</div>
+        <% } %>
+
+      </div>
+    </div>
+  </div>

@@ -7,6 +7,6 @@
     <Response>storeConsentResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>http://op102-ex-test.apigee.net/identity/consents</URL>
+        <URL>[TO_BE_REPLACED]</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

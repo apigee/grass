@@ -2,37 +2,7 @@
 <ProxyEndpoint name="default">
 	<Description />
 	<Flows>
-		<Flow name="validate Login">
-	<Request>
-		<Step>
-			<Condition>request.formparam.username == null || request.formparam.password = null || request.formparam.password = "" || request.formparam.username = ""</Condition>
-			<Name>RaiseFault.BadRequest</Name>
-		</Step>
-		<Step>
-			<Name>AssignRequestToValidateUser</Name>
-		</Step>
-		<Step>
-			<Name>ServiceCallout.ValidateUser</Name>
-		</Step>
-		<Step>
-			<Condition>validateUser.response.status.code = 200</Condition>
-			<Name>ExtractValidateUserCalloutResponse</Name>
-		</Step>		
-	</Request>
-	<Response>
-		<Step>
-			<Condition>validateUser.response.status.code = 200</Condition>
-			<Name>AssignValidateLoginResponse</Name>
-		</Step>	
-		<Step>
-			<Condition>validateUser.response.status.code != 200</Condition>
-			<Name>AssignValidateLoginErrorResponse</Name>
-		</Step>		
-	</Response>
-
-			<Condition>(proxy.pathsuffix MatchesPath &quot;/validate/login&quot;) and (request.verb = &quot;POST&quot;)</Condition>
-		</Flow>
-
+		
 		<Flow name="GetIdentifier">
 	<Request>
 		<Step>

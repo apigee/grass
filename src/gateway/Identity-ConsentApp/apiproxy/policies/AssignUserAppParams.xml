@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="false" async="false" name="AssignUserAppParams">
+    <DisplayName>AssignUserAppParams</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request">request</AssignTo>
+	
+    <Set>
+
+        <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+			%userApps.content#
+
+        </Payload>
+        <Verb>POST</Verb>
+    </Set>
+</AssignMessage>

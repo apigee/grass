@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="false" async="false" name="AssignRequestToUpdateUserProfile">
+<DisplayName>AssignRequestToUpdateUserProfile</DisplayName>
+
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="http" type="request">updateUserRequest</AssignTo>
+	
+	<Set>
+		<Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+    {
+    "username": "%request.formparam.email#",
+    "personal-info": {
+        "name": {
+            "surname": "%request.formparam.surname#",
+            "given": "%request.formparam.first_name#",
+            "title": "%request.formparam.title#",
+            "complete": "%request.formparam.full_name#"
+         },
+        "dob": "%request.formparam.dob#"
+       },
+    
+    "email-info": {
+        "0": "%request.formparam.email#"
+    },
+    "phone-info": {
+        "0": "%request.formparam.msisdn#"
+    },
+     "address": {
+        "house": "%request.formparam.house#",
+        "street": "%request.formparam.street#",
+        "locality": "%request.formparam.locality#",
+        "city": "%request.formparam.city#",
+        "state": "%request.formparam.state#",
+        "country": "%request.formparam.country#",
+        "postalcode": "%request.formparam.postalcode#",
+        "landmark": "%request.formparam.landmark#"
+    }
+}
+</Payload>
+	<Verb>PUT</Verb>
+</Set>
+
+</AssignMessage>

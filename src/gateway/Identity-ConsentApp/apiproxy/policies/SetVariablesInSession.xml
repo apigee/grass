@@ -36,9 +36,13 @@
 			 ,"req_state":"%req_state#"
 			 ,"appName":"%appName#"
 			 ,"isUserProfileFlow":"%isUserProfileFlow#"
-			  ,"open_id":"%open_id#",
-			  "msisdn": "%msisdn#"
-			 
+			 ,"open_id":"%open_id#"
+			 ,"msisdn": "%msisdn#"
+			 ,"areMaxTokenTriesExceeded": "%areMaxTokenTriesExceeded#"
+			 ,"no_of_pin_tries": "%no_of_pin_tries#"			 
+			 ,"areMaxTokenTriesExceeded": "%areMaxTokenTriesExceeded#"
+			 ,"username":"%username#"
+			 		
 			 			 }
 			 
 			 
@@ -46,11 +50,5 @@
 	</Set>
 
 </AssignMessage>
-
-
-
-
-
-
 
 

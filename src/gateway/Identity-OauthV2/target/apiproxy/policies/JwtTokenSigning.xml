@@ -1,4 +1,0 @@
-<JavaCallout name="JwtTokenSigning">
-        <ResourceURL>java://JwtTokenSigning.zip</ResourceURL>
-        <ClassName>com.grass.identity.JwtSign.JWT_Creator</ClassName>
-</JavaCallout>

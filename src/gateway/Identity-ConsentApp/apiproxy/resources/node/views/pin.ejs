@@ -9,6 +9,7 @@
                   <p>
                     <strong>Verify your mobile number</strong>
                   </p>
+                  	<div style="display: <%= showErrorMessage%>;"><font color="red">Invalid PIN. Please enter the correct PIN</font></div>
                   <input name="pin" class="form-control" placeholder="One time password" type="password" >
                   <span class="help-block">
                     Please enter the
@@ -17,7 +18,7 @@
                 </div>
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary grass-btn">Verify PIN</button>
-                  <button type="button" class="btn btn-primary btn-error" onclick="window.location='<%= redirectURL%>'">Verify PIN</button>
+                  <button type="button" class="btn btn-primary btn-error" onclick="window.location='<%= redirectURL%>'">Cancel</button>
                 </div>
               </form>
             </div>

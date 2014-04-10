@@ -1,5 +1,0 @@
-<OAuthV2 name="AccesstokenValidation">
-<Operation>VerifyAccessToken</Operation>
-<AccessToken>request.header.Authorization</AccessToken>
-<AccessTokenPrefix>Bearer</AccessTokenPrefix>
-</OAuthV2>

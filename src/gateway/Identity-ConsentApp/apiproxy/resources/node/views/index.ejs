@@ -14,6 +14,7 @@
           <div class="tab-content">
             <div class="tab-pane active" id="normal-login">
               <div class="grass-form-wrapper">
+            	<div style="display: <%= showInvalidLoginMessage%>;"><font color="red">Invalid username or password</font></div>
                 <form role="form" action="/openid/login?sessionid=<%= sessionid%>" method="post">
                   <div class="form-group">
                     <input name="username" class="form-control" placeholder="Your Username" type="text" value="">
@@ -44,6 +45,7 @@
                     <p>
                       <strong>Enter your mobile number in the box below</strong>
                     </p>
+                      <div style="display: <%= showInvalidMsisdnMessage%>;"><font color="red">Invalid phone number</font></div>
                     <input class="form-control" placeholder="+4973517390347" name="msisdn" type="text">
                     <span class="help-block">By clicking on ''Submit'', a text message with a PIN code will be sent to your mobile. Standard message and data rates may apply.</span>
                   </div>
@@ -60,3 +62,16 @@
           </div>
         </div>
       </div>
+      
+      
+      
+      <script>
+         $(document).ready(function(){
+        activaTab('<%= activeTab%>');
+    });
+
+    function activaTab(tab){
+        $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+    };
+      
+     </script>

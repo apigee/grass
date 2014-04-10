@@ -13,10 +13,6 @@
                 <Header name="Accept">application/json</Header>
             </Headers>
             
-<!--              <QueryParams> -->
-<!--         <QueryParam name="client_id">[TO_BE_REPLACED]</QueryParam> -->
-<!--         <QueryParam name="client_secret">[TO_BE_REPLACED]</QueryParam> -->
-<!--         </QueryParams> -->
             <Verb>GET</Verb>
         </Set>
     </Request>

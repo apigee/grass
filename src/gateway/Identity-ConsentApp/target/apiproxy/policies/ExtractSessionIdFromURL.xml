@@ -1,8 +1,0 @@
-<ExtractVariables name="ExtractSessionIdFromURL">
-	<Source>request</Source>
-	<IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
-	<URIPath>
-        <Pattern ignoreCase="true">/redirect/{sessionid}</Pattern>
-    </URIPath>
-</ExtractVariables>
- 

@@ -8,6 +8,6 @@
     <Response>send_sms_response</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>https://blitzkreig-test.apigee.net/v1/token/sms/{msisdn}</URL>
+        <URL>[TO_BE_REPLACED]</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

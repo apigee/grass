@@ -1,4 +1,5 @@
 
+
 /**
  * Module dependencies.
  */
@@ -59,6 +60,17 @@ app.post('/login', routes.login);
 app.get('/register', routes.register);
 
 app.get('/recovery', routes.recovery);
+
+app.post('/myapps', routes.myapps);
+
+app.get('/apps/revoke', routes.revokeConsent);
+
+app.post('/profile/update', routes.Profileupdate);
+
+app.get('/profile', routes.Profile);
+
+app.get('/edit-profile', routes.profileEdit);
+
 
 
 app.listen(3000, function(){

@@ -8,7 +8,7 @@
 	<Set>
 <Headers>
 <Header name="Content-Type">application/json</Header>
-<Header name="apikey">WCczaWGaR4U9vbgs1LzJcJcqdBmdTC7j</Header>
+<Header name="apikey">[TO_BE_REPLACED]</Header>
 </Headers>
 
 		<Payload contentType="application/json" variablePrefix="%"

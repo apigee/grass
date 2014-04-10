@@ -3,8 +3,7 @@
     <DisplayName>ModifyRequestToAddParams</DisplayName>
     <FaultRules/>
     <Properties/>
-    <Add>
-        <Headers/>
+    <Set>
         <FormParams>
                       <FormParam name="company_id">{company_id}</FormParam>
                       <FormParam name="client_id">{client_id}</FormParam>
@@ -13,13 +12,12 @@
                       <FormParam name="authorization_code">{authorization_code}</FormParam>
                       <FormParam name="access_token">{access_token}</FormParam>
 		              <FormParam name="sso_token">{sso_token}</FormParam>
-		              <FormParam name="scope">{scope}</FormParam>
-		              <FormParam name="status">{status}</FormParam>
-		              <FormParam name="type">{"type"}</FormParam>
-		              
+		              <FormParam name="scope">{req_scope}</FormParam>
+		              <FormParam name="status">{req_status}</FormParam>
+		              <FormParam name="type">{type}</FormParam>
+		              <FormParam name="application_name">{application_name}</FormParam>
         </FormParams>
-        <FormParams/>
-    </Add>
+    </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type="request"/>
 </AssignMessage>

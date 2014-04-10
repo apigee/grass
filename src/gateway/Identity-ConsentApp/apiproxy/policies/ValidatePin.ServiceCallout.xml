@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ServiceCallout enabled="true" continueOnError="true" async="false" name="ValidatePin.ServiceCallout">
-    <FaultRules/>
-    <Properties/>
 	<Request clearPayload="false">
 		<IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
 		<Set>
 			<Headers>
-				<Header name="apikey">WCczaWGaR4U9vbgs1LzJcJcqdBmdTC7j</Header>
+				<Header name="apikey">[TO_BE_REPLACED]</Header>
 			</Headers>
 			<Verb>GET</Verb>
 		</Set>
@@ -14,6 +12,6 @@
     <Response>validate_sms_token_response</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>https://blitzkreig-test.apigee.net/v1/token/sms/{msisdn}/{request.formparam.pin}</URL>
+        <URL>[TO_BE_REPLACED]</URL>
     </HTTPTargetConnection>
 </ServiceCallout>
