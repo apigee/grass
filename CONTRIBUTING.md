@@ -124,6 +124,11 @@ included in the project:
    [interactive rebase](https://help.github.com/articles/interactive-rebase)
    feature to tidy up your commits before making them public.
 
+   ```bash
+   git add some-file
+   git commit          # this will open an interactive commit message formatter, via vi
+   ```
+
 5. Locally merge (or rebase) the upstream development branch into your topic branch:
 
    ```bash
