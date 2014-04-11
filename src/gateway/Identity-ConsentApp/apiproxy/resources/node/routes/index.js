@@ -15,13 +15,14 @@ var client = new Usergrid.client({
 });
 
 exports.index = function(req, res) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  // intercept OPTIONS method
-  if ('OPTIONS' == req.method) {
-    res.send(200);
+
+  
+  if(req.query.open_id == "true"){
+    redirect_uri=req.query.redirect_uri;
+  }else {
+    redirect_uri="/openid/index";
   }
+
 
   var userid = req.query.userid;
 
@@ -44,7 +45,7 @@ exports.index = function(req, res) {
         sessionid : req.param("sessionid"),
         appName : req.query.appName,
         scope : req.query.scope,
-        redirectURL : req.query.redirect_uri + '?error=refused'
+        redirectURL : redirect_uri + '?error=refused'
       })
     }
 
@@ -55,7 +56,7 @@ exports.index = function(req, res) {
       title : 'Home',
       authenticated : false,
       sessionid : req.param("sessionid"),
-      redirectURL : req.query.redirect_uri + '?error=refused',
+      redirectURL : redirect_uri + '?error=refused',
       showInvalidLoginMessage : "none" ,
       showInvalidMsisdnMessage : "none" ,
       activeTab : "normal-login"
@@ -93,6 +94,13 @@ exports.errorflow = function(req, res) {
 
 exports.login = function(req, res) {
 
+  
+  if(req.query.open_id == "true"){
+    redirect_uri=req.query.redirect_uri;
+  }else {
+    redirect_uri="/openid/index";
+  }
+  
   if (req.query.renderConsentScreen == "false") {
 
     res.redirect("/openid/redirect/" + req.query.sessionid)
@@ -105,7 +113,7 @@ exports.login = function(req, res) {
       title : 'Home',
       authenticated : false,
       sessionid : req.param("sessionid"),
-      redirectURL : req.query.redirect_uri + '?error=refused',
+      redirectURL : redirect_uri + '?error=refused',
       showInvalidLoginMessage : "true" ,
       showInvalidMsisdnMessage : "none" ,
       activeTab : "normal-login"
@@ -125,7 +133,7 @@ exports.login = function(req, res) {
         sessionid : req.param("sessionid"),
         appName : req.query.appName,
         scope : req.query.scope,
-        redirectURL : req.query.redirect_uri + '?error=refused'
+        redirectURL : redirect_uri + '?error=refused'
       })
     }
   }
@@ -133,8 +141,13 @@ exports.login = function(req, res) {
 
 exports.create = function(req, res) {
 
+  if(req.query.open_id == "true"){
+    redirect_uri=req.query.redirect_uri;
+  }else {
+    redirect_uri="/openid/index";
+  }
+  
   var error = req.query.error;
-
   if (error != null) {
     
     var sessionid = req.param("sessionid");
@@ -161,7 +174,7 @@ exports.create = function(req, res) {
       title : 'Pin',
       authenticated : false,
       sessionid : req.param("sessionid"),
-      redirectURL : req.query.redirect_uri + '?error=refused',
+      redirectURL : redirect_uri + '?error=refused',
       showErrorMessage : "none" 
 
     })
@@ -170,6 +183,12 @@ exports.create = function(req, res) {
 };
 
 exports.reset = function(req, res) {
+  
+  if(req.query.open_id == "true"){
+    redirect_uri=req.query.redirect_uri;
+  }else {
+    redirect_uri="/openid/index";
+  }
 
   var error = req.query.error;
   if (error != null) {
@@ -188,7 +207,7 @@ exports.reset = function(req, res) {
       title : 'Pin',
       sessionid : req.param("sessionid"),
       authenticated : false,
-      redirectURL : req.query.redirect_uri + '?error=refused',
+      redirectURL : redirect_uri + '?error=refused',
       showErrorMessage : "none" 
       
     })
