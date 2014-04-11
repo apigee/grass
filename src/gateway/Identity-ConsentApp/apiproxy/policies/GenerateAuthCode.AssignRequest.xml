@@ -11,7 +11,7 @@
 					<QueryParam name="redirect_uri">{redirect_uri}</QueryParam>
 					<QueryParam name="scope">{scope}</QueryParam>
 					<QueryParam name="client_id">{client_id}</QueryParam>
-					<QueryParam name="userId">{userid}</QueryParam>
+					<QueryParam name="userid">{userid}</QueryParam>
 					<QueryParam name="nonce">{nonce}</QueryParam>
 		
 		</QueryParams>

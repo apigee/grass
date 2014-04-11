@@ -2,7 +2,7 @@
       <!-- Verify SMS Pin Page template -->
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-          <div class="verify-pin-wrapper well">
+          <div class="verify-pin-wrapper">
             <div class="grass-form-wrapper">
               <form role="form" action="/openid/pinSubmit?sessionid=<%= sessionid%>" method="POST">
                 <div class="form-group">
@@ -16,10 +16,16 @@
                     <strong>One Time Password</strong>sent to your registered mobile number.
                   </span>
                 </div>
+                <div class="col-xs-6">
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary grass-btn">Verify PIN</button>
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="form-group">
                   <button type="button" class="btn btn-primary btn-error" onclick="window.location='<%= redirectURL%>'">Cancel</button>
                 </div>
+              </div>
               </form>
             </div>
           </div>

@@ -30,8 +30,16 @@
                   </p>
                   <div class="consent-button">
                     <form action="/openid/redirect/<%= sessionid%>" role="form">
+               <div class="col-xs-6">
+                <div class="form-group">
                       <button type="submit" class="btn btn-primary grass-btn">Allow</button>
+                </div>
+              </div>
+               <div class="col-xs-6">
+                <div class="form-group">
                       <button type="button" class="btn btn-primary btn-error" onclick="window.location='<%= redirectURL%>'">Cancel</button>
+                </div>
+              </div>
                     </form>
                   </div>
                 </div>
