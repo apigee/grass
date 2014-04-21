@@ -1,8 +1,0 @@
-<AssignMessage name="AssignApplicationNameFromVerifyClientId">
-<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
- 
-<AssignVariable>
-    <Name>application_name</Name>
-    <Ref>verifyapikey.VerifyClientId.developer.app.name</Ref>
-</AssignVariable>
-</AssignMessage>

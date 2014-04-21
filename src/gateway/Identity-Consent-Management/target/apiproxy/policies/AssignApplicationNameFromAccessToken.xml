@@ -1,8 +1,0 @@
-<AssignMessage name="AssignApplicationNameFromAccessToken">
-<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
- 
-<AssignVariable>
-    <Name>application_name</Name>
-    <Ref>apigee.developer.app.name</Ref>
-</AssignVariable>
-</AssignMessage>

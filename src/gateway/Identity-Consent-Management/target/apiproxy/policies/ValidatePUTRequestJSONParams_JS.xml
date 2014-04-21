@@ -1,6 +1,0 @@
-<Javascript timeLimit="0" enabled="true" continueOnError="false" async="false" name="ValidatePUTRequestJSONParams_JS">
-<DisplayName>ValidatePUTRequestJSONParams_JS</DisplayName>
-	<FaultRules/>
-	<Properties/>
-	<ResourceURL>jsc://validatePUTRequestJSONParams.js</ResourceURL>
-</Javascript>

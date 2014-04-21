@@ -1,6 +1,0 @@
-<Javascript timeLimit="0" enabled="true" continueOnError="false" async="false" name="CreateResposneContent_JS">
-<DisplayName>CreateResposneContent_JS</DisplayName>
-	<FaultRules/>
-	<Properties/>
-	<ResourceURL>jsc://createResposneContent.js</ResourceURL>
-</Javascript>
