@@ -30,7 +30,13 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<modules>
-		<module>../sample-app</module>
+		<module>../java-callouts/jwt</module>
+		<module>../identity-usermgmt-api</module>
+		<module>../identity-consentmgmt-api</module>
+		<module>../identity-sms-token-api</module>
+		<module>../identity-consent-app</module>
+		<module>../identity-oauthv2-api</module>
+		<module>../identity-authentication-spi</module>
 	</modules>
 	<build>
 		<plugins>
@@ -109,7 +115,7 @@
                                 <apigee.profile>test</apigee.profile>
                                 <apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
                                 <apigee.apiversion>v1</apigee.apiversion> <!-- value of version in  https://api.enterprise.apigee.com/v2 -->
-                                <apigee.org>op102-ex</apigee.org>
+                                <apigee.org>${org}</apigee.org>
 				<apigee.username>${username}</apigee.username>
 				<apigee.password>${password}</apigee.password>
                         </properties>
@@ -120,7 +126,7 @@
                                 <apigee.profile>prod</apigee.profile>
                                 <apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
                                 <apigee.apiversion>v1</apigee.apiversion> <!-- value of version in  https://api.enterprise.apigee.com/v2 -->
-                                <apigee.org>op102-ex</apigee.org>
+                                <apigee.org>${org}</apigee.org>
 				<apigee.username>${username}</apigee.username>
 				<apigee.password>${password}</apigee.password>
 
