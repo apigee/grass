@@ -1,0 +1,161 @@
+.ui-bar-a a.ui-link {	
+	background-image: url("images/orange_arrow_right.png");
+    background-position: 1px center;
+    background-repeat: no-repeat;
+    display: block;
+    margin-left: 0;
+    margin-top: 0.4em;
+    padding-left: 15px;
+    padding-top: 0.2em;
+	}
+	
+	   .box {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    padding: 0.4em;
+	}
+
+	 body.ui-mobile-viewport {
+		/*background-color: #CCCCCC;*/
+		background-image: none;
+		margin:8px;
+		overflow-x: auto;
+		padding: 0;
+	}
+	
+	body .ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page {
+    margin: auto!important;
+    min-height: auto !important;
+    position: relative !important;
+}
+	
+	.ui-page{
+	
+	max-width:500px;/*height:450px;*/height:auto;margin: 0 auto;left: auto;	margin: 0 auto;padding: 0;position: relative;top: auto;
+		
+}
+#logo-image{
+padding-top:4px;margin-left:1px;
+
+}
+
+
+h2{
+margin:10px 0px 10px 0px;
+}
+
+div.ui-input-text{
+background-color:#ffffff;
+}
+
+body .ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page { 
+	position:relative !important;
+	min-height:auto !important;
+}
+
+.phone-lock-block .lock{
+	marging-top:3px;
+}
+.phone-lock-block .lock a {
+    /*background-image: url("images/padlock.png");
+    background-position: center center;
+    background-repeat: no-repeat;*/
+    display: block;
+    float: right;
+    margin-right: 10px;
+    padding: 10px 2px;
+    /*text-indent: -9999em;*/
+    width: 21px;
+
+}
+.phone-lock-block .ui-input-text {
+	float: left;
+	margin-bottom: 0;
+	margin-top: 0;
+	width: 85% !important;
+}
+.clear {
+	clear:both;
+}
+
+div.footer li.wac {
+	float:right;
+}
+div.footer ul {
+	padding:5px 0 10px 10px;
+}
+div.footer ul, div.ui-footer ol {
+    list-style: none outside none !important;
+}
+
+div.footer li.help a {
+    background-image: url("images/orange_arrow_right.png");
+    background-position: 1px center;
+    background-repeat: no-repeat;
+    display: block;
+    margin-left: 0;
+    margin-top: 0.4em;
+    padding-left: 15px;
+    padding-top: 0.2em;
+}
+div.footer li.wac a {
+    /*background-image: url("images/poweredbywac.png");
+    background-position: center center;
+    background-repeat: no-repeat;*/
+    display: block;
+    height: 40px;
+    margin: 0 10px 0 0;
+    /*text-indent: -9999em;*/
+    width: 100px;
+	padding:0;
+}
+/*form .ui-btn-corner-all {
+	background: linear-gradient(#FFFFFF, #F1F1F1) repeat scroll 0 0 #EEEEEE !important;
+	border: 1px solid #CCCCCC;
+    color: #2F3E46;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #FFFFFF;
+}*/
+
+/*form .ui-btn-active {
+	background: linear-gradient(#A4E849, #75A534) repeat scroll 0 0 #8DC73F !important;
+    border: 1px solid #8DC73F;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #444444;
+
+}*/
+div.page_inner {
+    padding: 10px;
+}
+
+/*.header,
+.footer {
+    border: 1px solid #CCCCCC;
+    color: #000000;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #EEEEEE;
+}
+
+div.content {
+    /*background: linear-gradient(#FFFFFF, #E5E5E5) repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #FFFFFF;
+    color: #000000;
+    text-shadow: 0 1px 0 #EEEEEE;
+    overflow-x: hidden;
+    overflow-y: visible;
+    padding: 15px;
+}*/
+div.content fieldset.ui-grid-a {
+	border-width:0;
+}
+form p#question_message {
+	margin-top:-10px;
+	margin-bottom:0;
+	font-size:95%;
+}
+
+.phone-lock-block div.invalid {
+	border: 1px solid #CC0000;
+	box-shadow: 0 0 5px #CC0000;
+}

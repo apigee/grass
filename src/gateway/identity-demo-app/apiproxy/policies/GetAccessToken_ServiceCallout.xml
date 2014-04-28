@@ -1,0 +1,10 @@
+<ServiceCallout enabled="true" continueOnError="true" async="false" name="GetAccessToken_ServiceCallout">
+    <Request variable="generate_access_token_request" clearPayload="false">
+         <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>generate_access_token_response</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>[TO_BE_REPLACED]</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

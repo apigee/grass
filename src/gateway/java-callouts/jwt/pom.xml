@@ -2,9 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>JwtTokenSign</groupId>
-	<artifactId>JwtTokenSign</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>jwt</name>
+	<artifactId>jwtTokenSigning</artifactId>
+	<version>1</version>
+ 	<name>jwt</name>
 	<description>Json Web Token</description>
 	<build>
 		<plugins>
@@ -30,6 +30,32 @@
 							<descriptorRefs>
 								<descriptorRef>jar-with-dependencies</descriptorRef>
 							</descriptorRefs>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					
+					<execution>
+						<id>copy-jar-files</id>
+						<phase>install</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/../../../identity-oauthv2-api/apiproxy/resources/java</outputDirectory>
+							<overwrite>true</overwrite>
+							<resources>
+								<resource>
+									<directory>target</directory>
+									<includes>
+										<include>jwtTokenSigning-1-jar-with-dependencies.jar</include>
+ 									</includes>
+								</resource>
+							</resources>
 						</configuration>
 					</execution>
 				</executions>

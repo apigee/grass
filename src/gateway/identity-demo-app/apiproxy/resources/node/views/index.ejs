@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes" />       
+<meta name="viewport" content="width=device-width">
+
+
+<title>SPOTS</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="stylesheet" href="/identity_app/stylesheets/clientapp.min.css" />
+<link rel="stylesheet" href="/identity_app/stylesheets/custom.css" />
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.3.1/jquery.mobile.structure-1.3.1.min.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script
+	src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+<script>
+			$.ajaxSetup({
+				// Disable caching of AJAX responses
+				cache : false
+			});
+			
+		</script>
+
+<script type="text/javascript" src="js/gca.js"></script>
+</head>
+<body class="ui-mobile-viewport">
+
+	<!-- Home -->
+	<div data-role="page" id="page1" data-theme="a" data-ajax="false">
+		<div class="box">
+<div style="width:95%; height:55% ;margin: 0 auto;"><img id="logo-image"
+	src="/identity_app/images/spot.jpg" style="width:100%; height:80%;float:centre;">		</div>	
+	
+<!--  			<div style="width:80%;height:100%; margin: 0 auto;" data-role="content" data-dom-cache="false" id="indexDiv">  -->
+<!-- 				<button href="javascript:void(0);" id="abc">Login with mobile</a> -->
+			
+<!-- 	</div>  -->
+  			
+  			
+ <div style="width:90%;height:100%; margin: 0 auto;" id="indexDiv"> 
+  <a href="javascript:void(0);">
+<img id="abc" style="border:0;width:90%;float:centre;border: 0px none; margin-left: 13px;"  src="/identity_app/images/login.png" ></a>
+  </div>
+  
+		</div>
+	</div>
+	<script type="text/javascript">
+    $(function() {
+    	var win;
+        var checkConnect;
+        var $connect = $("#abc");
+        var oAuthURL  = "<%= authorization_req_url%>"
+        	+"?redirect_uri=<%= redirect_uri%>&client_id=<%= client_id%>&scope=openid%20profile%20email&response_type=code&state=uyrjiqa23nv8650ndj";
+           	
+        $connect.click(function() {
+            win = window.open(oAuthURL, '_self', 'width=972,height=660,modal=yes,alwaysRaised=yes');
+        });
+
+        checkConnect = setInterval(function() {
+            if (!win || !win.closed) return;
+            clearInterval(checkConnect);
+            window.location.href = "UserDetails";
+        }, 100);
+    });
+</script>
+</body>
+
+</html>

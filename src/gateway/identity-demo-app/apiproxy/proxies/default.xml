@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProxyEndpoint name="default">
+	<FaultRules />
+	<Flows>
+		<Flow name="Index">
+			<Description>This flow is to render the index page</Description>
+			<Request>
+                <Step>
+                    <Name>AddAuthorizationReqVarInReq</Name>
+                </Step>
+			</Request>
+			<Condition>(proxy.pathsuffix MatchesPath &quot;/index&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+		</Flow>
+	   <Flow name="callback">
+			<Request>
+                <Step>
+                	<Condition>(request.queryparam.code = null) or (request.queryparam.code = "")</Condition>
+                    <Name>RedirectToError</Name>
+                </Step>
+                <Step>
+                    <Name>AssignGetAccessTokenRequest</Name>
+                </Step>
+                <Step>
+                    <Name>GetAccessToken_ServiceCallout</Name>
+                </Step>
+                <Step>
+                    <Name>ExtractAccessTokenFromResponse</Name>
+                </Step>
+                <Step>
+                	<Condition>(access_token = null) or (access_token = "")</Condition>
+                    <Name>RedirectToError</Name>
+                </Step>
+             
+                <Step>
+                    <Name>AssignGetUserDetailsRequest</Name>
+                </Step>
+                <Step>
+                    <Name>GetUserDetails_ServiceCallout</Name>
+                </Step>
+                <Step>
+                    <Condition>(get_user_details_response.status.code = "200") </Condition>
+                    <Name>ExtractUserDetailsFromResponse</Name>
+                </Step>
+      			 <Step>
+                    <Condition>(get_user_details_response.status.code != "200") </Condition>
+                    <Name>RedirectToError</Name>
+                </Step>
+   				 <Step>
+                    <Name>AddUserDetailsToRequest</Name>
+                </Step>
+
+
+		   </Request>
+			<Condition>(proxy.pathsuffix MatchesPath &quot;/callback&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+		</Flow>
+		
+		
+		
+		
+		
+	</Flows>
+	<HTTPProxyConnection>
+		<BasePath>/identity_app</BasePath>
+		<VirtualHost>default</VirtualHost>
+	</HTTPProxyConnection>
+	<RouteRule name="default">
+		<TargetEndpoint>default</TargetEndpoint>
+	</RouteRule>
+</ProxyEndpoint>
