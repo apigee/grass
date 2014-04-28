@@ -37,6 +37,7 @@
 		<module>../identity-consent-app</module>
 		<module>../identity-oauthv2-api</module>
 		<module>../identity-authentication-spi</module>
+		<module>../identity-demo-app</module>
 	</modules>
 	<build>
 		<plugins>
