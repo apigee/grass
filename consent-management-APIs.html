@@ -1,0 +1,1405 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>API Documentation</title>
+
+    <link href="stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="javascripts/all.js" type="text/javascript"></script>
+
+    <script>
+      $(function() {
+        var toc = $("#toc").tocify({
+          selectors: "h1,h2",
+          extendPage: false,
+          theme: "none",
+          smoothScroll: false,
+          showEffectSpeed: 0,
+          hideEffectSpeed: 180,
+          ignoreSelector: ".toc-ignore",
+          hashGenerator: 'pretty',
+          highlightOffset: 60,
+          scrollTo: -2,
+          scrollHistory: true,
+          hashGenerator: function(text, element) {
+            return element[0].getAttribute('id');
+          }
+        }).data("toc-tocify");
+        // Hack to make already open sections to start opened,
+        // instead of displaying an ugly animation
+        setTimeout(function() {
+          toc.setOption("showEffectSpeed", 180);
+        },50);
+        setupLanguages([
+          
+        ]);
+      });
+    </script>
+  </head>
+
+  <body class="consent-management-APIs">
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+      <div id="toc">
+      </div>
+      
+    </div>
+    <div class="page-wrapper">
+      <div class="content">
+        <h1 id="consent-management-apis-for-apigee-identity-solution">Consent Management APIs for Apigee Identity Solution</h1>
+
+<p>\</p>
+
+<h2 id="consent-management-apis-expose-a-uniform-rest-based-interface-for ">Consent Management APIs expose a uniform REST based interface for </h2>
+
+<p>\</p>
+
+<ul>
+<li>  Creating and storing user consents</li>
+<li>  Query consent details by user, by application and by developers</li>
+<li>  Updating consent </li>
+<li>  Revoke / Invalidate a consent</li>
+</ul>
+
+<p>\</p>
+
+<p>Primary consumer of these APIs are </p>
+
+<ul>
+<li>  “Resource Server” Admins (API Team)</li>
+<li>  Consent Management UI for End-user Self-Service</li>
+<li>  Consent  capture protocol implementation like OAUTH </li>
+<li>  Third-party developers (in future)</li>
+</ul>
+
+<p>\</p>
+
+<p><strong>Design principles</strong></p>
+
+<p>\</p>
+
+<ul>
+<li>  Consent Management API abstracts the Apigee&rsquo;s standard access token
+functionality and Apigee App Services APIs. It provides protocol
+independent way to manage the consent.</li>
+<li>  Wherever possible these APIs follows standards such as OAUTH 2.0 or
+User Management Access (UMA) Protocol.</li>
+</ul>
+
+<h2 id="api-version">API Version</h2>
+
+<p>Version of this API specifications is 1.0</p>
+
+<p>This documentation is published on March 18, 2014. </p>
+
+<p>Authentication and Authorization</p>
+
+<p>Following are the consumers of this API</p>
+
+<ul>
+<li>  <strong>First</strong>**-****Party/End User Self Service UI**: UI component
+access the Consent Management API using HTTP Basic Authentication
+model. First-party Applications are considered to be within the same
+system domain hence more secure protocols like Oauth are not
+required. First-party Application are configured to access all
+consent  queries unrestricted, i.e., for all Application, all Users
+and all Devices. </li>
+<li>  <strong>Third</strong>**-****Party Application**: In future the Consent
+Management APIs would also be exposed to external Developers to
+query consent details at their own Application level or Developer
+level.  Developers will use Oauth v2 client credentials mechanism to
+authenticate with this service. But any given Application typically
+will have access to Consent queries only by the specific
+Application.</li>
+</ul>
+
+<p>\</p>
+
+<h2 id="standard-error-responses ">Standard Error Responses </h2>
+
+<p>Broadly following the REST principles and HTTP conventions the following
+error codes are used by the Consent API:</p>
+
+<p>\</p>
+
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| <strong>HTTP Error Code</strong>      | <strong>Error Response         | **Explanation</strong>          |
+|                          | Payload**                |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| <strong>400</strong>                  | {                        | Bad Request – The        |
+|                          |                          | request contains         |
+|                          |     &ldquo;error_code&rdquo; :      | incorrect structure or   |
+|                          | &ldquo;BAD_REQUEST&rdquo;,          | parameters               |
+|                          |                          |                          |
+|                          |     &ldquo;error_description&rdquo; |                          |
+|                          | : &ldquo;Content-Type Header   |                          |
+|                          | required&rdquo;                |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| <strong>401</strong>                  | {                        | Unauthorized –           |
+|                          |                          | Authorization header is  |
+|                          |     &ldquo;error_code&rdquo; :      | missing or incorrect.    |
+|                          | &ldquo;AUTHENTICATION_FAILED&rdquo; |                          |
+|                          | ,                        |                          |
+|                          |                          |                          |
+|                          |     &ldquo;error_description&rdquo; |                          |
+|                          | : &ldquo;Authorization header  |                          |
+|                          | missing&rdquo;                 |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| <strong>403</strong>                  | {                        | Forbidden – Access to    |
+|                          |                          | the requested resource   |
+|                          |     &ldquo;error_code&rdquo; :      | is not allowed           |
+|                          | &ldquo;ACCESS_DENIED&rdquo;,        |                          |
+|                          |                          |                          |
+|                          |     &ldquo;error_description&rdquo; |                          |
+|                          | : &ldquo;Your credentials do   |                          |
+|                          | not have access to the   |                          |
+|                          | requested Developer      |                          |
+|                          | resource &rdquo;               |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| <strong>404</strong>                  | {                        | Not Found – The          |
+|                          |                          | specified resource could |
+|                          |     &ldquo;error_code&rdquo; :      | not be found             |
+|                          | &ldquo;UNKNOWN_DEVELOPER&rdquo;,    |                          |
+|                          |                          |                          |
+|                          |     &ldquo;error_description&rdquo; |                          |
+|                          | : &ldquo;Requested Consent ID  |                          |
+|                          | is not found&rdquo;            |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| <strong>405</strong>                  | {                        | Method Not Allowed –     |
+|                          |                          | Specified HTTP method is |
+|                          |     &ldquo;error_code&rdquo; :      | not allowed on the       |
+|                          | &ldquo;METHOD_NOT_ALLOWED&rdquo;,  | requested resource       |
+|                          |                          |                          |
+|                          |     &ldquo;error_description&rdquo; |                          |
+|                          | : &ldquo;Use only GET and      |                          |
+|                          | POST&rdquo;                    |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| <strong>409</strong>                  | {                        | Conflict – The resource  |
+|                          |                          | already exists (while    |
+|                          |     &ldquo;error_code&rdquo; :      | creating)                |
+|                          | &ldquo;CAN_NOT_CREATE_COOKI |                          |
+|                          | E&rdquo;,                      |                          |
+|                          |                          |                          |
+|                          |     &ldquo;error_description&rdquo; |                          |
+|                          | : &ldquo;Resource already      |                          |
+|                          | exists&rdquo;                  |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| <strong>500</strong>                  | {                        | Internal Server Error –  |
+|                          |                          | Server side error.       |
+|                          |     &ldquo;error_code&rdquo; :      | Please try again later.  |
+|                          | &ldquo;UNKNOWN_ERROR&rdquo;,        |                          |
+|                          |                          |                          |
+|                          |     &ldquo;error_description&rdquo; |                          |
+|                          | : &ldquo;Please contact        |                          |
+|                          | service administrator if |                          |
+|                          | this error persists.&rdquo;    |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| <strong>503</strong>                  | {                        | Service Unavailable –    |
+|                          |                          | One or more required     |
+|                          |     &ldquo;error_code&rdquo; :      | server side services are |
+|                          | &ldquo;SERVICE TEMPORARILY     | not available. Please    |
+|                          | UNAVAILABLE&rdquo;,            | try again later.         |
+|                          |                          |                          |
+|                          |     &ldquo;error_description&rdquo; |                          |
+|                          | : &ldquo;Please try later&rdquo;     |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+
+<p>\</p>
+
+<p>\</p>
+
+<p>\</p>
+
+<p>\</p>
+
+<p>\
+ ##Conceptual Entity Model</p>
+
+<p>\</p>
+
+<p>\</p>
+
+<p>The diagram above depicts the high-level entity model that is underlying
+the Consent Management APIs.  The resource structure of a REST API
+follows the entity model as closely as possible. Hence it is important
+to declare the Entity Model reference for a consistent API design.</p>
+
+<p>\</p>
+
+<p><strong>Note</strong>:</p>
+
+<ul>
+<li>  Developer, Apps &amp; OAuth entities and corresponding APIs are exposed
+by Apigee Edge API Services component. This is existing platform
+feature. </li>
+<li>  Entities to persist User Consent and SSO Token will be created in
+Apigee App Services Platform. </li>
+<li>  User &amp; Device will be reference tables only. For the simple reason
+that the user profile information will be coming from a different
+system of records. </li>
+<li>  Consent Management API will aggregate and transform Apigee Platform
+APIs and Apigee App Services APIs to expose a Consent API that is
+consistent with the Entity Model.</li>
+</ul>
+
+<p>\</p>
+
+<p>\</p>
+
+<p>\</p>
+
+<p>\</p>
+
+<p>Creating and storing user consent for each third-party application</p>
+
+<p>This will be an internal API that will be used by the OpenID flow to
+internally generate Consent records based on User Authorization events
+(i.e., Code Generation step)</p>
+
+<p>\</p>
+
+<p>\</p>
+
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Verb                     | POST                     | Remarks                  |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Path                     | /consents                | \                        |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Query Params             | NA                       | \                        |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Headers                  | Authorization: Basic     | \                        |
+|                          | {creds}                  |                          |
+|                          |                          |                          |
+|                          | Content-Type:            |                          |
+|                          | application/json         |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Body                     | {                        | One of the fields        |
+|                          |                          | between                  |
+|                          |   &ldquo;authorization_code&rdquo;: | authorization_code and  |
+|                          | &ldquo;bf84011e3&rdquo;,             | access_token must be    |
+|                          |                          | present while creating.  |
+|                          |   &ldquo;company_id&rdquo;:         |                          |
+|                          | &ldquo;dev1@devorg.com&rdquo;,       |                          |
+|                          |                          | \                        |
+|                          |   &ldquo;client_id&rdquo;:          |                          |
+|                          | &ldquo;x11e3097caa5ea5e2&rdquo;,     | Always only the latest   |
+|                          |                          | and active access token  |
+|                          |   &ldquo;end_user_id&rdquo;:       | is referenced from the   |
+|                          | &ldquo;123456-ahdci-CRM&rdquo;,      | consent. Old and         |
+|                          |                          | inactive tokens are      |
+|                          |   &ldquo;device_type&rdquo;:        | not.  Refresh token is   |
+|                          | &ldquo;User-Agent xyz-model&rdquo;,  | also not stored against  |
+|                          |                          | the consent.             |
+|                          |   &ldquo;access_token&rdquo;:       |                          |
+|                          | &ldquo;eab07f10f0a01e800118bba | \                        |
+|                          | 0&rdquo;,                      |                          |
+|                          |                          | Reference to active      |
+|                          |   &ldquo;scope&rdquo;: [&ldquo;openid&rdquo;,    | access token is required |
+|                          | &ldquo;profile&rdquo; ],             | because when a consent   |
+|                          |                          | is revoked,              |
+|                          |   &ldquo;status&rdquo; : &ldquo;active&rdquo;,   | corresponding active     |
+|                          |                          | access tokens and        |
+|                          |   &ldquo;consent_type&rdquo; :      | refresh tokens should be |
+|                          | &ldquo;in-band&rdquo;                | removed or deactivated.  |
+|                          |                          |                          |
+|                          |   }                      | \                        |
+|                          |                          |                          |
+|                          | \                        | \                        |
+|                          |                          |                          |
+|                          |                          | If consent_type doesn’t |
+|                          |                          | come in request then by  |
+|                          |                          | default it will be       |
+|                          |                          | “in-band”                |
+|                          |                          |                          |
+|                          |                          | \                        |
+|                          |                          |                          |
+|                          |                          | \                        |
+|                          |                          |                          |
+|                          |                          | \                        |
+|                          |                          |                          |
+|                          |                          | mandatory params:        |
+|                          |                          |                          |
+|                          |                          | company_id              |
+|                          |                          |                          |
+|                          |                          | client_id               |
+|                          |                          |                          |
+|                          |                          | end_user_id            |
+|                          |                          |                          |
+|                          |                          | status                   |
+|                          |                          |                          |
+|                          |                          | \                        |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Response                 | {                        | The consent id should be |
+|                          |                          | stored as a custom       |
+|                          |   &ldquo;consent_id&rdquo;:         | attribute against the    |
+|                          | &ldquo;sah7tvv46mkosydht&rdquo;,     | access token in 4G too.  |
+|                          |                          |                          |
+|                          |   &ldquo;authorization_code&rdquo;: |                          |
+|                          | &ldquo;bf84011e3&rdquo;,             | \                        |
+|                          |                          |                          |
+|                          |   &ldquo;company_id&rdquo;:         | Please note additional   |
+|                          | &ldquo;dev1@devorg.com&rdquo;,       | information is returned  |
+|                          |                          | in the response.         |
+|                          |   &ldquo;client_id&rdquo;:          |                          |
+|                          | &ldquo;x11e3097caa5ea5e2&rdquo;,     | ​1. consent_id -&gt; This |
+|                          |                          | is the primary key of    |
+|                          |    &ldquo;application_name&rdquo; : | the consent record.      |
+|                          | &ldquo;Special Birds&rdquo;,         |                          |
+|                          |                          | ​2. application_name    |
+|                          |   &ldquo;end_user_id&rdquo;:       | -&gt; In order to display  |
+|                          | &ldquo;123456-ahdci-CRM&rdquo;,      | a meaningful name for    |
+|                          |                          | the application on an UI |
+|                          |   &ldquo;device_type&rdquo;:        | application name is more |
+|                          | &ldquo;User-Agent xyz-model&rdquo;,  | appropriate than         |
+|                          |                          | client_id. So to avoid  |
+|                          |   &ldquo;access_token&rdquo;:       | additional API calls,    |
+|                          | &ldquo;eab07f10f0a01e800118bba | the application name     |
+|                          | 0&rdquo;,                      | attribute is returned.   |
+|                          |                          |                          |
+|                          |   &ldquo;scope&rdquo;: [&ldquo;openid&rdquo;,    | ​3. SSO token - &gt; at    |
+|                          | &ldquo;email&rdquo; ] ,              | the time of first time   |
+|                          |                          | creating a consent any   |
+|                          |   &ldquo;status&rdquo; : &ldquo;active&rdquo;,   | SSO tokens may not be    |
+|                          |                          | present. But A consent   |
+|                          |   &ldquo;consent_type&rdquo; :      | would often be           |
+|                          | &ldquo;in-band&rdquo;,               | associated with a number |
+|                          |                          | of tokens. Though it is  |
+|                          |   &ldquo;sso_token&rdquo;:[],       | not allowed in the       |
+|                          |                          | create or update calls,  |
+|                          |   &ldquo;last_updated&rdquo;:       | the returned info has    |
+|                          | &ldquo;1394681135&rdquo;             | all the valid SSO tokens |
+|                          |                          | against the consent.     |
+|                          | }                        | Note: SSO Token Feature  |
+|                          |                          | is completely optional   |
+|                          |                          | for Consent Management.  |
+|                          |                          |                          |
+|                          |                          | \                        |
+|                          |                          |                          |
+|                          |                          | The idea is to update    |
+|                          |                          | the consent details      |
+|                          |                          | whenever there is a      |
+|                          |                          | change in scope, access  |
+|                          |                          | token or sso tokens.     |
+|                          |                          |                          |
+|                          |                          | \                        |
+|                          |                          |                          |
+|                          |                          | For changes in the SSO   |
+|                          |                          | token - SSO token APIs   |
+|                          |                          | would need to be used.   |
+|                          |                          |                          |
+|                          |                          | \                        |
+|                          |                          |                          |
+|                          |                          | Once created most of the |
+|                          |                          | fields can not be        |
+|                          |                          | updated except status,   |
+|                          |                          | access_token,           |
+|                          |                          | refresh_token and scope |
+|                          |                          | can be updated.          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+
+<p>\</p>
+
+<p>\</p>
+
+<p>Get Consent Details by Consent ID</p>
+
+<p>This is likely to be used by Administrators or Operations for debugging
+purpose. </p>
+
+<p>\</p>
+
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Verb                     | GET                      | Remarks                  |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Path                     | /consents/{consent_id}  | \                        |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Query Params             | NA                       | \                        |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Headers                  | Authorization: Basic     | \                        |
+|                          | {creds}                  |                          |
+|                          |                          |                          |
+|                          | Accept: application/json |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Body                     | NA                       | \                        |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Response                 | {                        | \                        |
+|                          |                          |                          |
+|                          |   &ldquo;consent_id&rdquo;:         |                          |
+|                          | &ldquo;sah7tvv46mkosydht&rdquo;,     |                          |
+|                          |                          |                          |
+|                          |   &ldquo;authorization_code&rdquo;: |                          |
+|                          | &ldquo;bf84011e3&rdquo;,             |                          |
+|                          |                          |                          |
+|                          |   &ldquo;company_id&rdquo;:         |                          |
+|                          | &ldquo;dev1@devorg.com&rdquo;,       |                          |
+|                          |                          |                          |
+|                          |   &ldquo;client_id&rdquo;:          |                          |
+|                          | &ldquo;x11e3097caa5ea5e2&rdquo;,     |                          |
+|                          |                          |                          |
+|                          |    &ldquo;application_name&rdquo; : |                          |
+|                          | &ldquo;Special Birds&rdquo;,         |                          |
+|                          |                          |                          |
+|                          |   &ldquo;end_user_id&rdquo;:       |                          |
+|                          | &ldquo;123456-ahdci-CRM&rdquo;,      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;device_type&rdquo;:        |                          |
+|                          | &ldquo;User-Agent xyz-model&rdquo;,  |                          |
+|                          |                          |                          |
+|                          |   &ldquo;access_token&rdquo;:       |                          |
+|                          | &ldquo;eab07f10f0a01e800118bba |                          |
+|                          | 0&rdquo;,                      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;scope&rdquo;: [&ldquo;openid&rdquo;,    |                          |
+|                          | &ldquo;email&rdquo; ] ,              |                          |
+|                          |                          |                          |
+|                          |   &ldquo;status&rdquo; : &ldquo;active&rdquo;,   |                          |
+|                          |                          |                          |
+|                          |   &ldquo;consent_type&rdquo; :      |                          |
+|                          | &ldquo;in-band&rdquo;,               |                          |
+|                          |                          |                          |
+|                          |   &ldquo;sso_token&rdquo;:[         |                          |
+|                          |                          |                          |
+|                          |   {                      |                          |
+|                          |                          |                          |
+|                          |       &ldquo;site_id&rdquo;:        |                          |
+|                          | &ldquo;abc&rdquo;,                   |                          |
+|                          |                          |                          |
+|                          |       &ldquo;token&rdquo;:           |                          |
+|                          | &ldquo;0800200c9a660fee3010&rdquo;   |                          |
+|                          |                          |                          |
+|                          |   },                     |                          |
+|                          |                          |                          |
+|                          |   {                      |                          |
+|                          |                          |                          |
+|                          |       &ldquo;site_id&rdquo;:        |                          |
+|                          | &ldquo;xyz&rdquo;,                   |                          |
+|                          |                          |                          |
+|                          |       &ldquo;token&rdquo;:           |                          |
+|                          | &ldquo;8563823b8ih73941ash1&rdquo;   |                          |
+|                          |                          |                          |
+|                          |   }                      |                          |
+|                          |                          |                          |
+|                          |   ]                      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;last_updated&rdquo;:       |                          |
+|                          | &ldquo;1394681135&rdquo;             |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+
+<p>\</p>
+
+<p>Get Consent Details by User </p>
+
+<p>This is likely to be used by Consent Management UI or by Administrators.
+ </p>
+
+<p>\</p>
+
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Verb                     | GET                      | Remarks                  |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Path                     | /consents?user_id={user | \                        |
+|                          | _id}&amp;sort_by={created\ |                          |
+|                          | <em>at}&amp;start_at={off_set |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Query Params             | user_id  or             | \                        |
+|                          | access_token or         |                          |
+|                          | authorization_code      |                          |
+|                          | should  to be passedpass |                          |
+|                          | on the user context. One |                          |
+|                          | of the three fields is   |                          |
+|                          | mandatory.               |                          |
+|                          |                          |                          |
+|                          | \                        |                          |
+|                          |                          |                          |
+|                          | sort_by optional field  |                          |
+|                          | would sort the consents  |                          |
+|                          | based on one of the      |                          |
+|                          | following orders, by     |                          |
+|                          | created time stamp, by   |                          |
+|                          | developer_id            |                          |
+|                          | alphabetically.  Default |                          |
+|                          | is created time stamp    |                          |
+|                          | descending.              |                          |
+|                          |                          |                          |
+|                          | \                        |                          |
+|                          |                          |                          |
+|                          | start_at is optional.   |                          |
+|                          | It is provided to        |                          |
+|                          | support pagination. Each |                          |
+|                          | payload of consent would |                          |
+|                          | contain at most 10       |                          |
+|                          | records. More than 10    |                          |
+|                          | records can be displayed |                          |
+|                          | with pagination.         |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Headers                  | Authorization: Basic     | \                        |
+|                          | {creds}                  |                          |
+|                          |                          |                          |
+|                          | Accept: application/json |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Body                     | NA                       | \                        |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Response                 | {                        | In Phase-1 following     |
+|                          |                          | attributes will not be   |
+|                          | &ldquo;totalCount&rdquo; : &ldquo;20&rdquo;,     | sent in response. But a  |
+|                          |                          | different field “cursor” |
+|                          | &ldquo;start_at&rdquo; : &ldquo;0&rdquo;,       | will be  sent which      |
+|                          |                          | points to next page      |
+|                          | &ldquo;count&rdquo; : &ldquo;10&rdquo;           |                          |
+|                          |                          | \                        |
+|                          | &ldquo;consents&rdquo;: [            |                          |
+|                          |                          | totalCount               |
+|                          | \                        |                          |
+|                          |                          | start_at                |
+|                          | {                        |                          |
+|                          |                          | count                    |
+|                          |   &ldquo;consent_id&rdquo;:         |                          |
+|                          | &ldquo;sah7tvv46mkosydht&rdquo;,     | \                        |
+|                          |                          |                          |
+|                          |   &ldquo;authorization_code&rdquo;: |                          |
+|                          | &ldquo;bf84011e3&rdquo;,             |                          |
+|                          |                          |                          |
+|                          |   &ldquo;company_id&rdquo;:         |                          |
+|                          | &ldquo;dev1@devorg.com&rdquo;,       |                          |
+|                          |                          |                          |
+|                          |   &ldquo;client_id&rdquo;:          |                          |
+|                          | &ldquo;x11e3097caa5ea5e2&rdquo;,     |                          |
+|                          |                          |                          |
+|                          |    &ldquo;application_name&rdquo; : |                          |
+|                          | &ldquo;Special Birds&rdquo;,         |                          |
+|                          |                          |                          |
+|                          |   &ldquo;end_user_id&rdquo;:       |                          |
+|                          | &ldquo;123456-ahdci-CRM&rdquo;,      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;device_type&rdquo;:        |                          |
+|                          | &ldquo;User-Agent xyz-model&rdquo;,  |                          |
+|                          |                          |                          |
+|                          |   &ldquo;access_token&rdquo;:       |                          |
+|                          | &ldquo;eab07f10f0a01e800118bba |                          |
+|                          | 0&rdquo;,                      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;scope&rdquo;: [&ldquo;openid&rdquo;,    |                          |
+|                          | &ldquo;email&rdquo; ] ,              |                          |
+|                          |                          |                          |
+|                          |   &ldquo;status&rdquo; : &ldquo;active&rdquo;,   |                          |
+|                          |                          |                          |
+|                          |   &ldquo;consent_type&rdquo; :      |                          |
+|                          | &ldquo;in-band&rdquo;,               |                          |
+|                          |                          |                          |
+|                          |   &ldquo;sso_token&rdquo;:[         |                          |
+|                          |                          |                          |
+|                          |   {                      |                          |
+|                          |                          |                          |
+|                          |       &ldquo;site_id&rdquo;:        |                          |
+|                          | &ldquo;abc&rdquo;,                   |                          |
+|                          |                          |                          |
+|                          |       &ldquo;token&rdquo;:           |                          |
+|                          | &ldquo;0800200c9a660fee3010&rdquo;   |                          |
+|                          |                          |                          |
+|                          |   },                     |                          |
+|                          |                          |                          |
+|                          |   {                      |                          |
+|                          |                          |                          |
+|                          |       &ldquo;site\</em>id&rdquo;:        |                          |
+|                          | &ldquo;xyz&rdquo;,                   |                          |
+|                          |                          |                          |
+|                          |       &ldquo;token&rdquo;:           |                          |
+|                          | &ldquo;8563823b8ih73941ash1&rdquo;   |                          |
+|                          |                          |                          |
+|                          |   }                      |                          |
+|                          |                          |                          |
+|                          |   ]                      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;last_updated&rdquo;:       |                          |
+|                          | &ldquo;1394681135&rdquo;             |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
+|                          |                          |                          |
+|                          | \                        |                          |
+|                          |                          |                          |
+|                          | {                        |                          |
+|                          |                          |                          |
+|                          |   &ldquo;consent_id&rdquo;:         |                          |
+|                          | &ldquo;sd2123vv46mkos12s&rdquo;,     |                          |
+|                          |                          |                          |
+|                          |   &ldquo;authorization_code&rdquo;: |                          |
+|                          | &ldquo;8dty3dty0&rdquo;,             |                          |
+|                          |                          |                          |
+|                          |   &ldquo;company_id&rdquo;:         |                          |
+|                          | &ldquo;dev1@devorg.com&rdquo;,       |                          |
+|                          |                          |                          |
+|                          |   &ldquo;client_id&rdquo;:          |                          |
+|                          | &ldquo;4rfg09ft874r9jc1&rdquo;,      |                          |
+|                          |                          |                          |
+|                          |    &ldquo;application_name&rdquo; : |                          |
+|                          | &ldquo;Another Bird&rdquo;,          |                          |
+|                          |                          |                          |
+|                          |   &ldquo;end_user_id&rdquo;:       |                          |
+|                          | &ldquo;123456-ahdci-CRM&rdquo;,      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;device_type&rdquo;:        |                          |
+|                          | &ldquo;User-Agent xyz-model&rdquo;,  |                          |
+|                          |                          |                          |
+|                          |   &ldquo;access_token&rdquo;:       |                          |
+|                          | &ldquo;12sdcmbgy9ijngh41096dnj |                          |
+|                          | j0&rdquo;,                     |                          |
+|                          |                          |                          |
+|                          |   &ldquo;scope&rdquo;: [&ldquo;openid&rdquo;,    |                          |
+|                          | &ldquo;email&rdquo; ] ,              |                          |
+|                          |                          |                          |
+|                          |   &ldquo;status&rdquo; : &ldquo;active&rdquo;,   |                          |
+|                          |                          |                          |
+|                          |   &ldquo;consent_type&rdquo; :      |                          |
+|                          | &ldquo;in-band&rdquo;,               |                          |
+|                          |                          |                          |
+|                          |   &ldquo;sso_token&rdquo;:[         |                          |
+|                          |                          |                          |
+|                          |   {                      |                          |
+|                          |                          |                          |
+|                          |       &ldquo;site_id&rdquo;:        |                          |
+|                          | &ldquo;abc&rdquo;,                   |                          |
+|                          |                          |                          |
+|                          |       &ldquo;token&rdquo;:           |                          |
+|                          | &ldquo;098gt60c9a660fee7yhu&rdquo;   |                          |
+|                          |                          |                          |
+|                          |   },                     |                          |
+|                          |                          |                          |
+|                          |   {                      |                          |
+|                          |                          |                          |
+|                          |       &ldquo;site_id&rdquo;:        |                          |
+|                          | &ldquo;xyz&rdquo;,                   |                          |
+|                          |                          |                          |
+|                          |       &ldquo;token&rdquo;:           |                          |
+|                          | &ldquo;fgh73823b8ih7394189ij&rdquo;  |                          |
+|                          |                          |                          |
+|                          |   }                      |                          |
+|                          |                          |                          |
+|                          |   ]                      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;last_updated&rdquo;:       |                          |
+|                          | &ldquo;1394681138&rdquo;             |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
+|                          |                          |                          |
+|                          | \                        |                          |
+|                          |                          |                          |
+|                          | …… more records          |                          |
+|                          |                          |                          |
+|                          | \                        |                          |
+|                          |                          |                          |
+|                          | ]                        |                          |
+|                          |                          |                          |
+|                          | \                        |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| \                        | \                        | \                        |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+
+<p>\</p>
+
+<p><strong>Note: In phase-I Pagination is not supported. </strong></p>
+
+<p>Get Consent Details by Company (Developer Company ID) </p>
+
+<p>This is likely to be used by Consent UI application </p>
+
+<p>\</p>
+
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Verb                     | GET                      | Remarks                  |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Path                     | /consents?comany_id={co | \                        |
+|                          | mpany_id}&amp;sort_by={cre |                          |
+|                          | ated_at}&amp;start_at={off |                          |
+|                          | _set}                   |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Query Params             | company_id is           | In Phase-1 following     |
+|                          | mandatory                | attributes will not be   |
+|                          |                          | sent in response. But a  |
+|                          | \                        | different field “cursor” |
+|                          |                          | will be  sent which      |
+|                          | sort_by optional field  | points to next page      |
+|                          | would sort the consents  |                          |
+|                          | based on one of the      | \                        |
+|                          | following orders, by     |                          |
+|                          | created time stamp, by   | totalCount               |
+|                          | developer_id            |                          |
+|                          | alphabetically.  Default | start_at                |
+|                          | is created time stamp    |                          |
+|                          | descending.              | count                    |
+|                          |                          |                          |
+|                          | \                        | \                        |
+|                          |                          |                          |
+|                          | start_at is optional.   |                          |
+|                          | It is provided to        |                          |
+|                          | support pagination. Each |                          |
+|                          | payload of consent would |                          |
+|                          | contain at most 10       |                          |
+|                          | records. More than 10    |                          |
+|                          | records can be displayed |                          |
+|                          | with pagination.         |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Headers                  | Authorization: Basic     | \                        |
+|                          | {creds}                  |                          |
+|                          |                          |                          |
+|                          | Accept: application/json |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Body                     | NA                       | \                        |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Response                 | {                        | \                        |
+|                          |                          |                          |
+|                          | &ldquo;totalCount&rdquo; : &ldquo;20&rdquo;,     |                          |
+|                          |                          |                          |
+|                          | &ldquo;start_at&rdquo; : &ldquo;0&rdquo;,       |                          |
+|                          |                          |                          |
+|                          | &ldquo;count&rdquo; : &ldquo;10&rdquo;           |                          |
+|                          |                          |                          |
+|                          | &ldquo;consents&rdquo;: [            |                          |
+|                          |                          |                          |
+|                          | {                        |                          |
+|                          |                          |                          |
+|                          |   “consent_id”:         |                          |
+|                          | “sah7tvv46mkosydht”,     |                          |
+|                          |                          |                          |
+|                          |   &ldquo;authorization_code&rdquo;: |                          |
+|                          | &ldquo;bf84011e3&rdquo;,             |                          |
+|                          |                          |                          |
+|                          |   &ldquo;company_id&rdquo;:         |                          |
+|                          | &ldquo;dev1@devorg.com&rdquo;,       |                          |
+|                          |                          |                          |
+|                          |   &ldquo;client_id&rdquo;:          |                          |
+|                          | &ldquo;x11e3097caa5ea5e2&rdquo;,     |                          |
+|                          |                          |                          |
+|                          |    &ldquo;application_name&rdquo; : |                          |
+|                          | &ldquo;Special Birds&rdquo;,         |                          |
+|                          |                          |                          |
+|                          |   &ldquo;end_user_id&rdquo;:       |                          |
+|                          | &ldquo;123456-ahdci-CRM&rdquo;,      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;device_type&rdquo;:        |                          |
+|                          | &ldquo;User-Agent xyz-model&rdquo;,  |                          |
+|                          |                          |                          |
+|                          |   &ldquo;access_token&rdquo;:       |                          |
+|                          | &ldquo;eab07f10f0a01e800118bba |                          |
+|                          | 0&rdquo;,                      |                          |
+|                          |                          |                          |
+|                          |   “scope”: [&ldquo;openid&rdquo;,    |                          |
+|                          | &ldquo;email&rdquo; ] ,              |                          |
+|                          |                          |                          |
+|                          |   “status” : “active”,   |                          |
+|                          |                          |                          |
+|                          |   &ldquo;consent_type&rdquo; :      |                          |
+|                          | &ldquo;in-band&rdquo;,               |                          |
+|                          |                          |                          |
+|                          |   &ldquo;sso_token&rdquo;:[         |                          |
+|                          |                          |                          |
+|                          |   {                      |                          |
+|                          |                          |                          |
+|                          |       “site_id”:        |                          |
+|                          | “abc”,                   |                          |
+|                          |                          |                          |
+|                          |       &ldquo;token&rdquo;:           |                          |
+|                          | &ldquo;0800200c9a660fee3010&rdquo;   |                          |
+|                          |                          |                          |
+|                          |   },                     |                          |
+|                          |                          |                          |
+|                          |   {                      |                          |
+|                          |                          |                          |
+|                          |       “site_id”:        |                          |
+|                          | “xyz”,                   |                          |
+|                          |                          |                          |
+|                          |       &ldquo;token&rdquo;:           |                          |
+|                          | &ldquo;8563823b8ih73941ash1&rdquo;   |                          |
+|                          |                          |                          |
+|                          |   }                      |                          |
+|                          |                          |                          |
+|                          |   ]                      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;last_updated&rdquo;:       |                          |
+|                          | &ldquo;1394681135&rdquo;             |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
+|                          |                          |                          |
+|                          | \                        |                          |
+|                          |                          |                          |
+|                          | {                        |                          |
+|                          |                          |                          |
+|                          |   “consent_id”:         |                          |
+|                          | “sd2123vv46mkos12s”,     |                          |
+|                          |                          |                          |
+|                          |   &ldquo;authorization_code&rdquo;: |                          |
+|                          | &ldquo;8dty3dty0&rdquo;,             |                          |
+|                          |                          |                          |
+|                          |   &ldquo;company_id&rdquo;:         |                          |
+|                          | &ldquo;dev1@devorg.com&rdquo;,       |                          |
+|                          |                          |                          |
+|                          |   &ldquo;client_id&rdquo;:          |                          |
+|                          | &ldquo;4rfg09ft874r9jc1&rdquo;,      |                          |
+|                          |                          |                          |
+|                          |    &ldquo;application_name&rdquo; : |                          |
+|                          | &ldquo;Another Bird&rdquo;,          |                          |
+|                          |                          |                          |
+|                          |   &ldquo;end_user_id&rdquo;:       |                          |
+|                          | &ldquo;123456-ahdci-CRM&rdquo;,      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;device_type&rdquo;:        |                          |
+|                          | &ldquo;User-Agent xyz-model&rdquo;,  |                          |
+|                          |                          |                          |
+|                          |   &ldquo;access_token&rdquo;:       |                          |
+|                          | &ldquo;12sdcmbgy9ijngh41096dnj |                          |
+|                          | j0&rdquo;,                     |                          |
+|                          |                          |                          |
+|                          |   “scope”: [&ldquo;openid&rdquo;,    |                          |
+|                          | &ldquo;email&rdquo; ] ,              |                          |
+|                          |                          |                          |
+|                          |   “status” : “active”,   |                          |
+|                          |                          |                          |
+|                          |   &ldquo;consent_type&rdquo; :      |                          |
+|                          | &ldquo;in-band&rdquo;,               |                          |
+|                          |                          |                          |
+|                          |   &ldquo;sso_token&rdquo;:[         |                          |
+|                          |                          |                          |
+|                          |   {                      |                          |
+|                          |                          |                          |
+|                          |       “site_id”:        |                          |
+|                          | “abc”,                   |                          |
+|                          |                          |                          |
+|                          |       &ldquo;token&rdquo;:           |                          |
+|                          | &ldquo;098gt60c9a660fee7yhu&rdquo;   |                          |
+|                          |                          |                          |
+|                          |   },                     |                          |
+|                          |                          |                          |
+|                          |   {                      |                          |
+|                          |                          |                          |
+|                          |       “site_id”:        |                          |
+|                          | “xyz”,                   |                          |
+|                          |                          |                          |
+|                          |       &ldquo;token&rdquo;:           |                          |
+|                          | &ldquo;fgh73823b8ih7394189ij&rdquo;  |                          |
+|                          |                          |                          |
+|                          |   }                      |                          |
+|                          |                          |                          |
+|                          | …… more records          |                          |
+|                          |                          |                          |
+|                          | ]                        |                          |
+|                          |                          |                          |
+|                          | \                        |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+
+<p>\</p>
+
+<p>\</p>
+
+<p>Note: In phase-I Pagination is not supported.</p>
+
+<p>Get Consent Details by Developer Application (Client)</p>
+
+<p>This is likely to be used by Consent UI application </p>
+
+<p>\</p>
+
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Verb                     | GET                      | Remarks                  |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Path                     | /consents?client_id={cl | \                        |
+|                          | ient_id}&amp;sort_by={crea |                          |
+|                          | ted_at}&amp;start_at={off\ |                          |
+|                          | <em>set}                    |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Query Params             | client_id is mandatory  | In Phase-1 following     |
+|                          |                          | attributes will not be   |
+|                          | \                        | sent in response. But a  |
+|                          |                          | different field “cursor” |
+|                          | Note: An application by  | will be  sent which      |
+|                          | default may have more    | points to next page      |
+|                          | than one client id.      |                          |
+|                          | However this API returns | \                        |
+|                          | all consents for a       |                          |
+|                          | client_id, irrespective | totalCount               |
+|                          | of the users.            |                          |
+|                          |                          | start_at                |
+|                          | \                        |                          |
+|                          |                          | count                    |
+|                          | sort_by field would     |                          |
+|                          | sort the consents based  | \                        |
+|                          | on one of the following  |                          |
+|                          | orders, by created time  |                          |
+|                          | stamp, by developer_id  |                          |
+|                          | alphabetically.  Default |                          |
+|                          | is created time stamp    |                          |
+|                          | descending.              |                          |
+|                          |                          |                          |
+|                          | \                        |                          |
+|                          |                          |                          |
+|                          | start_at is provided to |                          |
+|                          | support pagination. Each |                          |
+|                          | payload of consent would |                          |
+|                          | contain at most 10       |                          |
+|                          | records. More than 10    |                          |
+|                          | records can be displayed |                          |
+|                          | with pagination. E.g.    |                          |
+|                          | when                     |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Headers                  | Authorization: Basic     | \                        |
+|                          | {creds}                  |                          |
+|                          |                          |                          |
+|                          | Accept: application/json |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Body                     | NA                       | \                        |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Response                 | {                        | \                        |
+|                          |                          |                          |
+|                          | &ldquo;totalCount&rdquo; : &ldquo;20&rdquo;,     |                          |
+|                          |                          |                          |
+|                          | &ldquo;start_at&rdquo; : &ldquo;0&rdquo;,       |                          |
+|                          |                          |                          |
+|                          | &ldquo;count&rdquo; : &ldquo;10&rdquo;           |                          |
+|                          |                          |                          |
+|                          | &ldquo;consents&rdquo;: [            |                          |
+|                          |                          |                          |
+|                          | {                        |                          |
+|                          |                          |                          |
+|                          |   “consent_id”:         |                          |
+|                          | “sah7tvv46mkosydht”,     |                          |
+|                          |                          |                          |
+|                          |   &ldquo;authorization_code&rdquo;: |                          |
+|                          | &ldquo;bf84011e3&rdquo;,             |                          |
+|                          |                          |                          |
+|                          |   &ldquo;company_id&rdquo;:         |                          |
+|                          | &ldquo;dev1@devorg.com&rdquo;,       |                          |
+|                          |                          |                          |
+|                          |   &ldquo;client_id&rdquo;:          |                          |
+|                          | &ldquo;4rfg09ft874r9jc1&rdquo;,      |                          |
+|                          |                          |                          |
+|                          |    &ldquo;application_name&rdquo; : |                          |
+|                          | &ldquo;Special Birds&rdquo;,         |                          |
+|                          |                          |                          |
+|                          |   &ldquo;end_user_id&rdquo;:       |                          |
+|                          | &ldquo;123456-ahdci-CRM&rdquo;,      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;device_type&rdquo;:        |                          |
+|                          | &ldquo;User-Agent xyz-model&rdquo;,  |                          |
+|                          |                          |                          |
+|                          |   &ldquo;access_token&rdquo;:       |                          |
+|                          | &ldquo;eab07f10f0a01e800118bba |                          |
+|                          | 0&rdquo;,                      |                          |
+|                          |                          |                          |
+|                          |   “scope”: [&ldquo;openid&rdquo;,    |                          |
+|                          | &ldquo;email&rdquo; ] ,              |                          |
+|                          |                          |                          |
+|                          |   “status” : “active”,   |                          |
+|                          |                          |                          |
+|                          |   &ldquo;consent_type&rdquo; :      |                          |
+|                          | &ldquo;in-band&rdquo;,               |                          |
+|                          |                          |                          |
+|                          |   &ldquo;sso_token&rdquo;:[         |                          |
+|                          |                          |                          |
+|                          |   {                      |                          |
+|                          |                          |                          |
+|                          |       “site\</em>id”:        |                          |
+|                          | “abc”,                   |                          |
+|                          |                          |                          |
+|                          |       &ldquo;token&rdquo;:           |                          |
+|                          | &ldquo;0800200c9a660fee3010&rdquo;   |                          |
+|                          |                          |                          |
+|                          |   },                     |                          |
+|                          |                          |                          |
+|                          |   {                      |                          |
+|                          |                          |                          |
+|                          |       “site_id”:        |                          |
+|                          | “xyz”,                   |                          |
+|                          |                          |                          |
+|                          |       &ldquo;token&rdquo;:           |                          |
+|                          | &ldquo;8563823b8ih73941ash1&rdquo;   |                          |
+|                          |                          |                          |
+|                          |   }                      |                          |
+|                          |                          |                          |
+|                          |   ]                      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;last_updated&rdquo;:       |                          |
+|                          | &ldquo;1394681135&rdquo;             |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
+|                          |                          |                          |
+|                          | \                        |                          |
+|                          |                          |                          |
+|                          | {                        |                          |
+|                          |                          |                          |
+|                          |   “consent_id”:         |                          |
+|                          | “sd2123vv46mkos12s”,     |                          |
+|                          |                          |                          |
+|                          |   &ldquo;authorization_code&rdquo;: |                          |
+|                          | &ldquo;8dty3dty0&rdquo;,             |                          |
+|                          |                          |                          |
+|                          |   &ldquo;company_id&rdquo;:         |                          |
+|                          | &ldquo;dev1@devorg.com&rdquo;,       |                          |
+|                          |                          |                          |
+|                          |   &ldquo;client_id&rdquo;:          |                          |
+|                          | &ldquo;4rfg09ft874r9jc1&rdquo;,      |                          |
+|                          |                          |                          |
+|                          |    &ldquo;application_name&rdquo; : |                          |
+|                          | &ldquo;Another Bird&rdquo;,          |                          |
+|                          |                          |                          |
+|                          |   &ldquo;end_user_id&rdquo;:       |                          |
+|                          | &ldquo;123456-ahdci-CRM&rdquo;,      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;device_type&rdquo;:        |                          |
+|                          | &ldquo;User-Agent xyz-model&rdquo;,  |                          |
+|                          |                          |                          |
+|                          |   &ldquo;access_token&rdquo;:       |                          |
+|                          | &ldquo;12sdcmbgy9ijngh41096dnj |                          |
+|                          | j0&rdquo;,                     |                          |
+|                          |                          |                          |
+|                          |   “scope”: [&ldquo;openid&rdquo;,    |                          |
+|                          | &ldquo;email&rdquo; ] ,              |                          |
+|                          |                          |                          |
+|                          |   “status” : “active”,   |                          |
+|                          |                          |                          |
+|                          |   &ldquo;consent_type&rdquo; :      |                          |
+|                          | &ldquo;in-band&rdquo;,               |                          |
+|                          |                          |                          |
+|                          |   &ldquo;sso_token&rdquo;:[         |                          |
+|                          |                          |                          |
+|                          |   {                      |                          |
+|                          |                          |                          |
+|                          |       “site_id”:        |                          |
+|                          | “abc”,                   |                          |
+|                          |                          |                          |
+|                          |       &ldquo;token&rdquo;:           |                          |
+|                          | &ldquo;098gt60c9a660fee7yhu&rdquo;   |                          |
+|                          |                          |                          |
+|                          |   },                     |                          |
+|                          |                          |                          |
+|                          |   {                      |                          |
+|                          |                          |                          |
+|                          |       “site_id”:        |                          |
+|                          | “xyz”,                   |                          |
+|                          |                          |                          |
+|                          |       &ldquo;token&rdquo;:           |                          |
+|                          | &ldquo;fgh73823b8ih7394189ij&rdquo;  |                          |
+|                          |                          |                          |
+|                          |   }                      |                          |
+|                          |                          |                          |
+|                          | …… more records          |                          |
+|                          |                          |                          |
+|                          | ]                        |                          |
+|                          |                          |                          |
+|                          | \                        |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+
+<p>\</p>
+
+<p><strong>Note: In phase-I Pagination is not supported.</strong></p>
+
+<p>Update Consent </p>
+
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Verb                     | PUT                      | Remarks                  |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Path                     | /consents/{consent_id}  | \                        |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Query Params             | NA                       | \                        |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Headers                  | Authorization: Basic     | \                        |
+|                          | {creds}                  |                          |
+|                          |                          |                          |
+|                          | Content-Type:            |                          |
+|                          | application/json         |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Body                     | {                        | \                        |
+|                          |                          |                          |
+|                          | &ldquo;access_token&rdquo;:         | Only access token, scope |
+|                          | &ldquo;eab07f10f0a01e800118bba | and status of a consent  |
+|                          | 0&rdquo;,                      | can be updated.   Status |
+|                          |                          | field can be changed     |
+|                          | “scope”: [“profile”],    | from active to revoked   |
+|                          |                          | or expired.  But it can  |
+|                          | “status” : “active”      | not be changed to active |
+|                          |                          | state once ‘revoked’ or  |
+|                          | }                        | ‘expired’.               |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Response                 | {                        | \                        |
+|                          |                          |                          |
+|                          |   &ldquo;consent_id&rdquo;:         |                          |
+|                          | &ldquo;sah7tvv46mkosydht&rdquo;,     |                          |
+|                          |                          |                          |
+|                          |   &ldquo;authorization_code&rdquo;: |                          |
+|                          | &ldquo;bf84011e3&rdquo;,             |                          |
+|                          |                          |                          |
+|                          |   &ldquo;company_id&rdquo;:         |                          |
+|                          | &ldquo;dev1@devorg.com&rdquo;,       |                          |
+|                          |                          |                          |
+|                          |   &ldquo;client_id&rdquo;:          |                          |
+|                          | &ldquo;x11e3097caa5ea5e2&rdquo;,     |                          |
+|                          |                          |                          |
+|                          |    &ldquo;application_name&rdquo; : |                          |
+|                          | &ldquo;Special Birds&rdquo;,         |                          |
+|                          |                          |                          |
+|                          |   &ldquo;end_user_id&rdquo;:       |                          |
+|                          | &ldquo;123456-ahdci-CRM&rdquo;,      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;device_type&rdquo;:        |                          |
+|                          | &ldquo;User-Agent xyz-model&rdquo;,  |                          |
+|                          |                          |                          |
+|                          |   &ldquo;access_token&rdquo;:       |                          |
+|                          | &ldquo;eab07f10f0a01e800118bba |                          |
+|                          | 0&rdquo;,                      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;scope&rdquo;: [&ldquo;openid&rdquo;,    |                          |
+|                          | &ldquo;email&rdquo; ] ,              |                          |
+|                          |                          |                          |
+|                          |   &ldquo;status&rdquo; : &ldquo;active&rdquo;,   |                          |
+|                          |                          |                          |
+|                          |   &ldquo;consent_type&rdquo; :      |                          |
+|                          | &ldquo;in-band&rdquo;,               |                          |
+|                          |                          |                          |
+|                          |   &ldquo;sso_token&rdquo;:[         |                          |
+|                          |                          |                          |
+|                          |   {                      |                          |
+|                          |                          |                          |
+|                          |       &ldquo;site_id&rdquo;:        |                          |
+|                          | &ldquo;abc&rdquo;,                   |                          |
+|                          |                          |                          |
+|                          |       &ldquo;token&rdquo;:           |                          |
+|                          | &ldquo;0800200c9a660fee3010&rdquo;   |                          |
+|                          |                          |                          |
+|                          |   },                     |                          |
+|                          |                          |                          |
+|                          |   {                      |                          |
+|                          |                          |                          |
+|                          |       &ldquo;site_id&rdquo;:        |                          |
+|                          | &ldquo;xyz&rdquo;,                   |                          |
+|                          |                          |                          |
+|                          |       &ldquo;token&rdquo;:           |                          |
+|                          | &ldquo;8563823b8ih73941ash1&rdquo;   |                          |
+|                          |                          |                          |
+|                          |   }                      |                          |
+|                          |                          |                          |
+|                          |   ]                      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;last_updated&rdquo;:       |                          |
+|                          | &ldquo;1394681135&rdquo;             |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+
+<p>\</p>
+
+<p>Create SSO Token</p>
+
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Verb                     | POST                     | Remarks                  |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Path                     | /token/sso/              | This method provides a   |
+|                          |                          | way to create a user and |
+|                          |                          | site specific SSO token  |
+|                          |                          | for each consent         |
+|                          |                          | (represented by Access   |
+|                          |                          | Token) so that this      |
+|                          |                          | token can be handed-over |
+|                          |                          | to the end-user.         |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Query Params             | NA                       | \                        |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Headers                  | Authorization: Basic     | \                        |
+|                          | {creds}                  |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Body                     | {                        | \                        |
+|                          |                          |                          |
+|                          | &ldquo;site_id&rdquo;:  &ldquo;abc&rdquo;,      |                          |
+|                          |                          |                          |
+|                          | &ldquo;access_token&rdquo;:         |                          |
+|                          | &ldquo;eab07f10f0a01e800118bba |                          |
+|                          | 0&rdquo;                       |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| \                        | {                        | \                        |
+|                          |                          |                          |
+| \                        |   &ldquo;sso_token&rdquo;:          |                          |
+|                          | &ldquo;0800200c9a660fee3010&rdquo;,  |                          |
+| \                        |                          |                          |
+|                          |   &ldquo;site_id&rdquo;:  &ldquo;abc&rdquo;,    |                          |
+| \                        |                          |                          |
+|                          |   &ldquo;consent_id&rdquo;:         |                          |
+| Response                 | &ldquo;sah7tvv46mkosydht&rdquo;,     |                          |
+|                          |                          |                          |
+|                          |   &ldquo;authorization_code&rdquo;: |                          |
+|                          | &ldquo;bf84011e3&rdquo;,             |                          |
+|                          |                          |                          |
+|                          |   &ldquo;company_id&rdquo;:         |                          |
+|                          | &ldquo;dev1@devorg.com&rdquo;,       |                          |
+|                          |                          |                          |
+|                          |   &ldquo;client_id&rdquo;:          |                          |
+|                          | &ldquo;x11e3097caa5ea5e2&rdquo;,     |                          |
+|                          |                          |                          |
+|                          |    &ldquo;application_name&rdquo; : |                          |
+|                          | &ldquo;Special Birds&rdquo;,         |                          |
+|                          |                          |                          |
+|                          |   &ldquo;end_user_id&rdquo;:       |                          |
+|                          | &ldquo;123456-ahdci-CRM&rdquo;,      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;device_type&rdquo;:        |                          |
+|                          | &ldquo;User-Agent xyz-model&rdquo;,  |                          |
+|                          |                          |                          |
+|                          |   &ldquo;access_token&rdquo;:       |                          |
+|                          | &ldquo;eab07f10f0a01e800118bba |                          |
+|                          | 0&rdquo;,                      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;scope&rdquo;: [&ldquo;openid&rdquo;,    |                          |
+|                          | &ldquo;email&rdquo; ] ,              |                          |
+|                          |                          |                          |
+|                          |   &ldquo;status&rdquo; : &ldquo;active&rdquo;,   |                          |
+|                          |                          |                          |
+|                          |   &ldquo;consent_type&rdquo; :      |                          |
+|                          | &ldquo;in-band&rdquo;,               |                          |
+|                          |                          |                          |
+|                          |   &ldquo;last_updated&rdquo;:       |                          |
+|                          | &ldquo;1394681135&rdquo;             |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+
+<p>\</p>
+
+<p>\</p>
+
+<p>Validate/Refresh/Revoke SSO Token</p>
+
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Verb                     | GET                      | Remarks                  |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Path                     | /token/sso/{sso_token}? | \                        |
+|                          | action=validate          |                          |
+|                          |                          | \                        |
+|                          |                          |                          |
+|                          |                          | \                        |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Query Params             | action                   | action can be validate,  |
+|                          |                          | refresh or revoke.       |
+|                          |                          |                          |
+|                          |                          | \                        |
+|                          |                          |                          |
+|                          |                          |  validate action - only  |
+|                          |                          | the present state of the |
+|                          |                          | sso token is returned.   |
+|                          |                          |                          |
+|                          |                          | \                        |
+|                          |                          |                          |
+|                          |                          | For refresh action - a   |
+|                          |                          | new sso token replaces   |
+|                          |                          | the existing sso token.  |
+|                          |                          | Old sso token is         |
+|                          |                          | completely removed.      |
+|                          |                          |                          |
+|                          |                          | \                        |
+|                          |                          |                          |
+|                          |                          | For revoke action - the  |
+|                          |                          | token status is changed  |
+|                          |                          | to revoked.              |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Headers                  | Authorization: Basic     | \                        |
+|                          | {creds}                  |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| Body                     | \                        | \                        |
+|                          |                          |                          |
+|                          |                          |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+| \                        | {                        | value of status can be   |
+|                          |                          | active, revoked or       |
+| \                        |   &ldquo;sso_token&rdquo;:          | expired.                 |
+|                          | &ldquo;0800200c9a660fee3010&rdquo;,  |                          |
+| \                        |                          | \                        |
+|                          |   &ldquo;site_id&rdquo;:  &ldquo;abc&rdquo;,    |                          |
+| \                        |                          | \                        |
+|                          |   &ldquo;consent_id&rdquo;:         |                          |
+| Response                 | &ldquo;sah7tvv46mkosydht&rdquo;,     |                          |
+|                          |                          |                          |
+|                          |   &ldquo;authorization_code&rdquo;: |                          |
+|                          | &ldquo;bf84011e3&rdquo;,             |                          |
+|                          |                          |                          |
+|                          |   &ldquo;company_id&rdquo;:         |                          |
+|                          | &ldquo;dev1@devorg.com&rdquo;,       |                          |
+|                          |                          |                          |
+|                          |   &ldquo;client_id&rdquo;:          |                          |
+|                          | &ldquo;x11e3097caa5ea5e2&rdquo;,     |                          |
+|                          |                          |                          |
+|                          |    &ldquo;application_name&rdquo; : |                          |
+|                          | &ldquo;Special Birds&rdquo;,         |                          |
+|                          |                          |                          |
+|                          |   &ldquo;end_user_id&rdquo;:       |                          |
+|                          | &ldquo;123456-ahdci-CRM&rdquo;,      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;device_type&rdquo;:        |                          |
+|                          | &ldquo;User-Agent xyz-model&rdquo;,  |                          |
+|                          |                          |                          |
+|                          |   &ldquo;access_token&rdquo;:       |                          |
+|                          | &ldquo;eab07f10f0a01e800118bba |                          |
+|                          | 0&rdquo;,                      |                          |
+|                          |                          |                          |
+|                          |   &ldquo;scope&rdquo;: [&ldquo;openid&rdquo;,    |                          |
+|                          | &ldquo;email&rdquo; ] ,              |                          |
+|                          |                          |                          |
+|                          |   &ldquo;status&rdquo; : &ldquo;active&rdquo;,   |                          |
+|                          |                          |                          |
+|                          |   &ldquo;consent_type&rdquo; :      |                          |
+|                          | &ldquo;in-band&rdquo;,               |                          |
+|                          |                          |                          |
+|                          |   &ldquo;last_updated&rdquo;:       |                          |
+|                          | &ldquo;1394681135&rdquo;             |                          |
+|                          |                          |                          |
+|                          | }                        |                          |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+
+<p>\</p>
+
+<p>\</p>
+
+<p>Token Expiry</p>
+
+<p>If the last updated_field of the token response is older than the
+present time by a preconfigured time period, it is changed to as
+‘expired’ and returned. This applies only to active tokens. Already
+expried tokens or revoked tokens do not need this calculation. </p>
+
+      </div>
+      <div class="dark-box">
+        <div id="lang-selector">
+          
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
