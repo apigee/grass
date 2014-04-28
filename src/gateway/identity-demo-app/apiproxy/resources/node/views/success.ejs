@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" 
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-touch-fullscreen" content="yes" />       
+
+<title>SPOTS</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="stylesheet" href="/identity_app/stylesheets/clientapp.min.css" />
+<link rel="stylesheet" href="/identity_app/stylesheets/custom.css" />
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.3.1/jquery.mobile.structure-1.3.1.min.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script
+	src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+<script>
+			$.ajaxSetup({
+				// Disable caching of AJAX responses
+				cache : false
+			});
+			
+		</script>
+
+<script type="text/javascript" src="js/gca.js"></script>
+</head>
+<body class="ui-mobile-viewport">
+
+	<!-- Home -->
+	<div data-role="page" id="page1" data-theme="a" data-ajax="false">
+
+		<div class="box">
+<div ><img id="logo-image"
+	src="/identity_app/images/logo.jpg" style="width:40%; height:15%;float:right;" > </div>	
+			<h5>Welcome <%= name%> <%= surname%></h5>
+	<div style="padding-left: 0px; margin: 0 auto; margin-top: 70px;">		
+ Longitude : 15.4989° N<br>
+ Latitude : 73.8278° E
+ <div ><img id="option-image"
+	src="/identity_app/images/options.png" style="width:90%; height:05%;" >		</div>	
+ <textarea cols="70" rows="111" class="ui-input-text ui-body-a ui-corner-all ui-shadow-inset" style="height: 320px; width: 250px;margin-top: 0px;">Write your experience of spot here . </textarea>		</div>
+	</div>
+	</div>
+
+</body>
+
+</html>

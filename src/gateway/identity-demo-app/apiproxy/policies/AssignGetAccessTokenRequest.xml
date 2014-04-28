@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="true"
+	async="false" name="AssignGetAccessTokenRequest">
+	<FaultRules />
+	<Properties />
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignTo createNew="true" transport="http" type="request">generate_access_token_request</AssignTo>
+	<Set>
+		<FormParams>
+			<FormParam name="grant_type">authorization_code</FormParam>
+			<FormParam name="code">{request.queryparam.code}</FormParam>
+			<FormParam name="client_id">[TO_BE_REPLACED]</FormParam>
+			<FormParam name="client_secret">[TO_BE_REPLACED]</FormParam>
+			<FormParam name="redirect_uri">[TO_BE_REPLACED]</FormParam>
+		</FormParams>
+		<Headers>
+			<Header name="Accept">application/json</Header>
+		</Headers>
+		<Verb>POST</Verb>
+	</Set>
+</AssignMessage>

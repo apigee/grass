@@ -1,0 +1,10 @@
+<ServiceCallout enabled="true" continueOnError="true" async="false" name="GetUserDetails_ServiceCallout">
+    <Request variable="get_user_details_request" clearPayload="false">
+         <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>get_user_details_response</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>[TO_BE_REPLACED]</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

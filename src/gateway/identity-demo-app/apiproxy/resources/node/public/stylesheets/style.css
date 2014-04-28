@@ -1,0 +1,73 @@
+
+.header, .grass-header-nav{
+	padding: 0px;
+	background-color: #6d9600;
+	border: none;
+}
+.header .navbar{
+	margin-bottom: 0; 
+}
+.grass-btn{
+	background-color: #6d9600;
+}
+/*.grass-btn:hover{
+	background-color: #6d9600;
+}*/
+.grass-btn:active, .grass-btn:hover{
+	background-color: #94bf1e;
+}
+.grass-form-wrapper{
+	margin: 20px auto;
+	width: 80%;
+}
+.footer{
+
+}
+.login-page-wrapper{
+	/*margin: 20px auto;*/
+	/*width: 300px;*/
+}
+.logo-wrapper{
+	margin: 20px auto;
+}
+.logo-wrapper img{
+	margin: 0 auto;
+}
+.login-button-wrapper{
+	margin: 20px 0;
+}
+.register-form-title{
+	margin: 10px 0;
+}
+.line-breakwrapper{
+	float: left;
+	width: 100%;
+}
+.line{
+	float: left;
+	width: 43%;
+	position: relative;
+	border-bottom: 2px solid #f4f2f2;
+	padding: 10px 0;
+}
+.linebreak-key{
+	background-color: #f4f2f2;
+	padding: 10px;
+	border-radius: 20px;
+	float: left;
+}
+.grass-menu{
+	/*float: right;*/
+	margin: 10px 10px 10px 0;
+}
+.grass-menu .glyphicon-list {
+	font-size: 30px;
+
+}
+#accordian .panel-title a{
+	display: block;
+	text-decoration: none;
+}
+#accordian .panel-heading:hover{
+	background-color: #00ff00;
+}

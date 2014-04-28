@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="true"
+	async="false" name="AddAuthorizationReqVarInReq">
+		<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignTo createNew="false" transport="http" type="request">request</AssignTo>
+	<Set>
+		<QueryParams>
+			<QueryParam name="client_id">[TO_BE_REPLACED]</QueryParam>
+			<QueryParam name="redirect_uri">[TO_BE_REPLACED]</QueryParam>
+			<QueryParam name="authorization_req_url">[TO_BE_REPLACED]</QueryParam>
+		</QueryParams>
+	</Set>
+</AssignMessage>
