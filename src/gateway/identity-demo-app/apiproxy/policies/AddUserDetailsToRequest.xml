@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="true"
+	async="false" name="AddUserDetailsToRequest">
+	<FaultRules />
+	<Properties />
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignTo createNew="false" transport="http" type="request">request</AssignTo>
+	<Set>
+		<QueryParams>
+			<QueryParam name="name">{name}</QueryParam>
+			<QueryParam name="surname">{surname}</QueryParam>
+		</QueryParams>
+	</Set>
+</AssignMessage>

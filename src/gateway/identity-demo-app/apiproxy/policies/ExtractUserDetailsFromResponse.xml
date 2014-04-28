@@ -1,0 +1,15 @@
+<ExtractVariables name="ExtractUserDetailsFromResponse">
+	<Source>get_user_details_response</Source>
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<JSONPayload>
+		<Variable name="name">
+			<JSONPath>$.name</JSONPath>
+		</Variable>
+		<Variable name="surname">
+			<JSONPath>$.surname</JSONPath>
+		</Variable>
+		<Variable name="email">
+			<JSONPath>$.email</JSONPath>
+		</Variable>
+	</JSONPayload>
+</ExtractVariables>

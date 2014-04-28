@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage enabled="true" continueOnError="true"
+	async="false" name="AssignGetUserDetailsRequest">
+	<FaultRules />
+	<Properties />
+	<IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+	<AssignTo createNew="true" transport="http" type="request">get_user_details_request</AssignTo>
+	<Set>
+		<Headers>
+			<Header name="Accept">application/json</Header>
+			<Header name="Authorization">Bearer {access_token}</Header>
+		</Headers>
+		<Verb>GET</Verb>
+	</Set>
+</AssignMessage>
