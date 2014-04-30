@@ -3,14 +3,17 @@
  */
 
 var Usergrid = require("usergrid");
+var pkginfo = require('../package')
+
 
 var client = new Usergrid.client({
   orgName : 'op102-ex',
   appName : 'identity',
   authType : Usergrid.AUTH_CLIENT_ID,
-  clientId : 'b3U6yQvN8aDyEeKC0gLoGsVOBQ',
-  clientSecret : 'b3U6aJFD4MFn5BUqgew1rRmcBT_e7U8',
+  clientId : pkginfo.client_id,
+  clientSecret : pkginfo.client_secret,
 });
+
 
 function getCurrenTime() {
 

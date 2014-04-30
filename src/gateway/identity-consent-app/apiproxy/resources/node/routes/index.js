@@ -2,18 +2,6 @@
  * GET home page.
  */
 
-var Usergrid = require("usergrid");
-var pkginfo = require('../package')
-
-
-var client = new Usergrid.client({
-  orgName : 'op102-ex',
-  appName : 'identity',
-  authType : Usergrid.AUTH_CLIENT_ID,
-  clientId : pkginfo.client_id,
-  clientSecret : pkginfo.client_secret,
-});
-
 exports.index = function(req, res) {
 
   
