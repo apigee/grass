@@ -1,0 +1,35 @@
+{
+    "configurations": [
+        {
+            "name": "prod",
+            "policies": [
+            
+            ],
+            "proxies": [],
+            "targets": []
+        },
+        {
+            "name": "test",
+            "policies": [
+            {
+                    "name": "DeleteExistingSimilarConsent.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/Request/Set/QueryParams/QueryParam[@name='client_id']",
+                            "value": "[INSERT API KEY]"
+                        },
+                        {
+                            "xpath": "/ServiceCallout/Request/Set/QueryParams/QueryParam[@name='client_secret']",
+                            "value": "[INSERT API SECRET]"
+                        },
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "https://api.usergrid.com/op102-ex/identity/consents"
+                        }
+                    ]
+                }],
+            "proxies": [],
+            "targets": []
+        }
+    ]
+}

@@ -66,7 +66,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 			<plugin>
 				<groupId>com.apigee.build-tools.enterprise4g</groupId>
 				<artifactId>4G-gateway-maven-build-pack</artifactId>
@@ -81,7 +80,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -91,8 +89,6 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -101,42 +97,35 @@
 					<testFailureIgnore>false</testFailureIgnore>
 				</configuration>
 			</plugin>
-
-
-
 		</plugins>
 	</build>
-
-
-	<!-- This is where you add the environment specific properties under various profile names -->		
-<profiles>
+	<!-- This is where you add the environment specific properties under various profile names -->
+	<profiles>
 		<profile>
-                        <id>test</id>
-                        <properties>
-                                <apigee.profile>test</apigee.profile>
-                                <apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
-                                <apigee.apiversion>v1</apigee.apiversion> <!-- value of version in  https://api.enterprise.apigee.com/v2 -->
-                                <apigee.org>${org}</apigee.org>
+			<id>test</id>
+			<properties>
+				<apigee.profile>test</apigee.profile>
+				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<!-- value of version in  https://api.enterprise.apigee.com/v2 -->
+				<apigee.org>${org}</apigee.org>
 				<apigee.username>${username}</apigee.username>
 				<apigee.password>${password}</apigee.password>
-                        </properties>
-                </profile>
+			</properties>
+		</profile>
 		<profile>
-                        <id>prod</id>
-                        <properties>
-                                <apigee.profile>prod</apigee.profile>
-                                <apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
-                                <apigee.apiversion>v1</apigee.apiversion> <!-- value of version in  https://api.enterprise.apigee.com/v2 -->
-                                <apigee.org>${org}</apigee.org>
+			<id>prod</id>
+			<properties>
+				<apigee.profile>prod</apigee.profile>
+				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<!-- value of version in  https://api.enterprise.apigee.com/v2 -->
+				<apigee.org>${org}</apigee.org>
 				<apigee.username>${username}</apigee.username>
 				<apigee.password>${password}</apigee.password>
-
-                        </properties>
-                </profile>
-                
-		               
+			</properties>
+		</profile>
 	</profiles>
-
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -145,19 +134,10 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<repositories>
 		<repository>
 			<id>apigee-cs-repo</id>
 			<url>http://repo.apigee.com:8081/artifactory/repo</url>
 		</repository>
 	</repositories>
-
-
 </project>
-
-
-
-
-
-

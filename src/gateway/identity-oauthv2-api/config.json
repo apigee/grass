@@ -1,0 +1,106 @@
+{
+   "configurations":[
+     {
+         "name":"prod",
+
+         "policies":[
+         {
+                    "name": "redirectToConsent.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
+                            "value": "http://op102-ex-prod.apigee.net/openid/index?sessionid={sessionid}"
+                        }
+                    ]
+                },
+				{
+                    "name": "GetUserProfileFromAppServices.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-prod.apigee.net/identity-users/v1/users/{accesstoken.userid}"
+                        }
+                    ]
+                },
+				{
+                    "name": "AssignStoreConsentRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic <<INSERT BASE64_ENCODED_APP_SERVICES_KEY_SECRET>>"
+                        }
+                    ]
+                },
+				{
+                    "name": "StoreConsent.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-test.apigee.net/identity/consents"
+                        }
+                    ]
+                }
+         ],
+         "proxies":[
+          ] ,
+         "targets":[
+         ]
+      },
+     {
+         "name":"test",
+
+         "policies":[
+           {
+                    "name": "redirectToConsent.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
+                            "value": "http://op102-ex-test.apigee.net/openid/index?sessionid={sessionid}"
+                        }
+                    ]
+                },
+				{
+                    "name": "GetUserProfileFromAppServices.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/{accesstoken.userid}"
+                        }
+                    ]
+                },
+				{
+                    "name": "AssignStoreConsentRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic <<INSERT BASE64_ENCODED_APP_SERVICES_KEY_SECRET>>"
+                        }
+                    ]
+                },
+				{
+                    "name": "StoreConsent.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://op102-ex-test.apigee.net/identity/consents"
+                        }
+                    ]
+                }
+         ],
+         "proxies":[
+          ] ,
+         "targets":[
+         ]
+      },
+	{
+         "name":"demo",
+
+         "policies":[
+         ],
+         "proxies":[
+          ] ,
+         "targets":[
+         ]
+      }
+   ]
+}
