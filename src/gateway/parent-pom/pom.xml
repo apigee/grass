@@ -31,9 +31,12 @@
 	</pluginRepositories>
 	<modules>
 		<module>../java-callouts/jwt</module>
+		<module>../identity-usermgmt-node-module</module>
 		<module>../identity-usermgmt-api</module>
+		<module>../identity-consentmgmt-api-node-module</module>
 		<module>../identity-consentmgmt-api</module>
 		<module>../identity-sms-token-api</module>
+		<module>../identity-consent-app-node-module</module>
 		<module>../identity-consent-app</module>
 		<module>../identity-oauthv2-api</module>
 		<module>../identity-authentication-spi</module>
@@ -69,7 +72,7 @@
 			<plugin>
 				<groupId>com.apigee.build-tools.enterprise4g</groupId>
 				<artifactId>4G-gateway-maven-build-pack</artifactId>
-				<version>0.0.15</version>
+				<version>0.0.16</version>
 				<executions>
 					<execution>
 						<id>configure-bundle-step</id>
@@ -79,6 +82,9 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

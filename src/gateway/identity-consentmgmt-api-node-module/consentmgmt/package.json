@@ -1,0 +1,13 @@
+{
+   "name": "identity-consent-mgmt",
+   "version": "0.0.1",
+   "private": true,
+   "client_id": "b3U6X2RWTYSZEeKk0gLoGtzz0A",
+   "client_secret": "b3U6ivvwT-bFIhqFI0CL84tRdpK4XJY",
+   "dependencies": {
+     "express": "2.5.8",
+     "stylus": ">= 0.0.1",
+     "jade": ">= 0.0.1"
+  }
+  }
+
