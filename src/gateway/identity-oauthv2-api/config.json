@@ -13,6 +13,15 @@
                         }
                     ]
                 },
+          {
+                    "name": "AssignIssuer.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignVariable/Value",
+                            "value": "http://op102-ex-prod.apigee.net"
+                        }
+                    ]
+                },
 				{
                     "name": "GetUserProfileFromAppServices.xml",
                     "tokens": [
@@ -59,7 +68,16 @@
                         }
                     ]
                 },
-				{
+			
+	 {
+                    "name": "AssignIssuer.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignVariable/Value",
+                            "value": "http://op102-ex-test.apigee.net"
+                        }
+                    ]
+                },	{
                     "name": "GetUserProfileFromAppServices.xml",
                     "tokens": [
                         {
