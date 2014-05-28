@@ -5,7 +5,7 @@
 
 var express = require('express')
   , routes = require('./routes')
-,engine = require('ejs'), http = require('http')
+ , http = require('http')
 	, store = new express.session.MemoryStore
   , path = require('path');;
 
