@@ -4,9 +4,6 @@
     <Variable name="issued_at"> 
       <JSONPath>$.issued_at</JSONPath> 
     </Variable> 
-    <Variable name="scope"> 
-      <JSONPath>$.scope</JSONPath> 
-    </Variable> 
      <Variable name="application_name"> 
       <JSONPath>$.application_name</JSONPath> 
     </Variable> 
