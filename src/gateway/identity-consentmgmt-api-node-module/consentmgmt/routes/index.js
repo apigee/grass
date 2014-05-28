@@ -7,11 +7,11 @@ var pkginfo = require('../package')
 
 
 var client = new Usergrid.client({
-  orgName : 'op102-ex',
-  appName : 'identity',
+  orgName :  pkginfo.orgName,
+  appName :  pkginfo.appName,
   authType : Usergrid.AUTH_CLIENT_ID,
   clientId : pkginfo.client_id,
-  clientSecret : pkginfo.client_secret,
+  clientSecret : pkginfo.client_secret
 });
 
 

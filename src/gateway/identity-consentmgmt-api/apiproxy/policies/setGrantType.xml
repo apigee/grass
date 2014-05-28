@@ -2,7 +2,6 @@
 <AssignMessage name="setGrantType" createNew="true">
 <AssignVariable>
 <Name>var.grantType</Name>
-<!-- <Ref>request.queryparam.abc</Ref> -->
 <Value>client_credentials</Value>
 </AssignVariable>
 </AssignMessage>

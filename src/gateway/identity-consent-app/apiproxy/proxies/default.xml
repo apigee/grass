@@ -67,7 +67,6 @@
                     <Condition>(flowError = null)</Condition>
                     <Name>GetMsisdnFromRequest</Name>
                 </Step>
-				<!--  TODO:      Validate Fields -->
                   <Step>
                     <Condition>(flowError = null)</Condition>
                     <Name>CheckMSISDNExists.ServiceCallout</Name>
@@ -235,12 +234,10 @@
                     <Condition>(flowError = null)</Condition>
                     <Name>ExtractUserDetails</Name>
                 </Step>
-				<!--  TODO:      Validate Fields -->
                  <Step>
                     <Condition>(flowError = null)</Condition>
                     <Name>AssignRegistrationFlag</Name>
                 </Step>
-				<!--  TODO check whether user exists or not   -->
                   <Step>
                     <Condition>(flowError = null)</Condition>
                     <Name>CheckUserExists.ServiceCallout</Name>
@@ -280,7 +277,6 @@
                     <Condition>(flowError = null)</Condition>
                     <Name>ExtractResetPasswordUserDetails</Name>
                 </Step>
-<!-- 	               TODO Validation for request params -->
                   <Step>
                     <Condition>(flowError = null)</Condition>
                     <Name>AssignResetFlag</Name>

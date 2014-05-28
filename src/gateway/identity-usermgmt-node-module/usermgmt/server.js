@@ -12,7 +12,7 @@
 
 var pkginfo = require('./package')
   , entity  = require('./user')
-  , routes  = require('./routes');
+  , Router  = require('./Router');
 
 
 /**
