@@ -2,7 +2,7 @@
 <OAuthV2 name="generateRefreshToken">
 	<GenerateResponse/>
 	<Operation>RefreshAccessToken</Operation>
-    <ExpiresIn>-1</ExpiresIn> <!-- try -1 for non-expiring token -->
+	<ExpiresIn>-1</ExpiresIn> 
 	<GrantType>request.formparam.grant_type</GrantType>
 	<RefreshToken>request.formparam.refresh_token</RefreshToken>
 	<ClientId>request.formparam.client_id</ClientId>

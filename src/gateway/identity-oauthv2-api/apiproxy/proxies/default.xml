@@ -11,27 +11,24 @@
 		</Step>
 		</FaultRule>
 		<FaultRule name="InvalidRequest">
-<!-- 		<Step> -->
-<!-- 			<Name>RaiseFault.InvalidRequest</Name> -->
-<!-- 		</Step> -->
 	</FaultRule>
 	</FaultRules>
 	<Flows>
 
 		<Flow name="Authorization">
 			<Description>This flow is for Authorize call. This flow redirects the user to a consent application. after developer's api key validation. Stores state information.</Description>
-			<!-- Here ADD polocy to validate request parameter -->
             <Request>
                 <Step>
                     <Name>ValidateRequest</Name>
                 </Step>
-             <Step>
-					<FaultRules />
-					<Name>validateApiKey</Name>
-				</Step>
+
 				<Step>
 					<Condition>(error_variable != null)</Condition>
 					<Name>RaiseFault.InvalidAuthorizationRequest</Name>
+				</Step>
+          			<Step>
+					<FaultRules />
+					<Name>validateApiKey</Name>
 				</Step>
 				<Step>
 					<FaultRules />

@@ -11,7 +11,7 @@ engine= require('ejs')
 	, store = new express.session.MemoryStore
 	, store = new express.session.MemoryStore
   , path = require('path')
-, hbs = require('express-hbs');
+
 
 var app = module.exports = express.createServer();
 

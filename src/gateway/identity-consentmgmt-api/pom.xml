@@ -94,9 +94,6 @@
 								<skipTests>true</skipTests>
 	                        	<ignoreResultFailures>true</ignoreResultFailures>
 	                        	<suppressJMeterOutput>false</suppressJMeterOutput>
-	<!-- 							<jmeterUserProperties>
-									for user properites 
-								</jmeterUserProperties> -->
 							</configuration>
 						</execution>
 					</executions>
