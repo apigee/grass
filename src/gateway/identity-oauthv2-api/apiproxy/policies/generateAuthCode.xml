@@ -10,6 +10,7 @@
   		<Attribute name="userid" ref="request.queryparam.userid" display="true" />
   		<Attribute name="sessionid" ref="request.queryparam.sessionid" display="true" />
   		<Attribute name="nonce" ref="request.queryparam.nonce" display="true" />
+  		<Attribute name="scope" ref="request.queryparam.scope" display="true" />
  	</Attributes>
 </OAuthV2>
 

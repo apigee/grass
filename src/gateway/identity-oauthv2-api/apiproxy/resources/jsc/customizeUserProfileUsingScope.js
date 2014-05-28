@@ -1,4 +1,4 @@
-var scope= context.getVariable("scope");
+var scope= context.getVariable("accesstoken.scope");
 var scopes = "";
 userProfileJson={};
 
