@@ -17,7 +17,7 @@
                     "name": "AssignIssuer.xml",
                     "tokens": [
                         {
-                            "xpath": "/AssignVariable/Value",
+                            "xpath": "/AssignMessage/AssignVariable/Value",
                             "value": "http://op102-ex-prod.apigee.net"
                         }
                     ]
@@ -73,7 +73,7 @@
                     "name": "AssignIssuer.xml",
                     "tokens": [
                         {
-                            "xpath": "/AssignVariable/Value",
+                            "xpath": "/AssignMessage/AssignVariable/Value",
                             "value": "http://op102-ex-test.apigee.net"
                         }
                     ]
