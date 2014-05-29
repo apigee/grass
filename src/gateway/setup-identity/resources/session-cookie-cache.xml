@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Cache name="session-cookie-cache">
+    <ExpirySettings>
+        <TimeoutInSec>30000</TimeoutInSec>
+    </ExpirySettings>
+    <Description></Description>
+    <DiskSizeInMB>0</DiskSizeInMB>
+    <InMemorySizeInKB>0</InMemorySizeInKB>
+    <MaxElementsInMemory>100000</MaxElementsInMemory>
+    <MaxElementsOnDisk>1000</MaxElementsOnDisk>
+    <SkipCacheIfElementSizeInKBExceeds>512</SkipCacheIfElementSizeInKBExceeds>
+    <OverflowToDisk>true</OverflowToDisk>
+    <Persistent>false</Persistent>
+</Cache>
