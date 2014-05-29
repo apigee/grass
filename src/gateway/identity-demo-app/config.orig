@@ -1,0 +1,76 @@
+{
+   "configurations":[
+      {
+         "name":"prod",
+
+         "policies":[
+         ],
+         "proxies":[
+          ] ,
+         "targets":[
+         ]
+      },
+     {
+         "name":"test",
+
+         "policies":[
+         {
+                    "name": "AddAuthorizationReqVarInReq.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/QueryParams/QueryParam[@name='client_id']",
+                            "value": "__APIKEY__"
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/QueryParams/QueryParam[@name='redirect_uri']",
+                            "value": "__REDIRECTURI__"
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/QueryParams/QueryParam[@name='authorization_req_url']",
+                            "value": "http://__HOST__/oauth/v2/authorize"
+                        }
+                    ]
+                },
+           {
+                    "name": "GetAccessToken_ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/oauth/v2/accesstoken"
+                        }
+                    ]
+                },
+           {
+                    "name": "GetUserDetails_ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/oauth/v2/getdetails"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignGetAccessTokenRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/FormParams/FormParam[@name='client_id']",
+                            "value": "__APIKEY__"
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/FormParams/FormParam[@name='redirect_uri']",
+                            "value": "__REDIRECTURI__"
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/FormParams/FormParam[@name='client_secret']",
+                            "value": "__APISECRET__"
+                        }
+                    ]
+                }    
+         ],
+         "proxies":[
+          ] ,
+         "targets":[
+         ]
+      }
+   ]
+}

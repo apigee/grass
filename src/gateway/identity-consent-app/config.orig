@@ -1,0 +1,188 @@
+{
+   "configurations":[
+      {
+         "name":"prod",
+
+         "policies":[
+         ],
+         "proxies":[
+          ] ,
+         "targets":[
+         ]
+      },
+     {
+         "name":"test",
+
+         "policies":[
+          {
+                    "name": "AssignSendSMSAPIRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='apikey']",
+                            "value": "__APIKEY__"
+                        }
+                    ]
+                },
+                 {
+                    "name": "CheckAlreadyConsented.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic __AUTH__"
+                        },
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/identity/consents/validate"
+                        }
+                    ]
+                },
+       	  {
+                    "name": "CheckMSISDNExists.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/identity-users/v1/users/{msisdn}"
+                        }
+                    ]
+                },
+                 {
+                    "name": "CheckUserExists.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/identity-users/v1/users/{username}"
+                        }
+                    ]
+                },
+     	    {
+                    "name": "CreateUser.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/identity-users/v1/users"
+                        }
+                    ]
+                }, {
+                    "name": "GenerateAuthCode.Callout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/oauth/v2/code"
+                        }
+                    ]
+                },
+                {
+                    "name": "GetUserApps.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/identity/consents"
+                        },
+                        {
+                            "xpath": "/ServiceCallout/Request/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic __AUTH__"
+                        }
+                    ]
+                },
+                {
+                    "name": "GetUserProfileFromUserManagement.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/identity-users/v1/users/{userid}"
+                        }
+                    ]
+                },
+                {
+                    "name": "RedirectToIndex.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/RaiseFault/FaultResponse/Set/Headers/Header[@name='Location']",
+                            "value": "http://__HOST__/openid/index"
+                        }
+                    ]
+                },{
+                    "name": "ResetPassword.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/v1/users/{reset_username}/password"
+                        }
+                    ]
+                },{
+                    "name": "RevokeUserConsent.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/identity/consents/{request.queryparam.consentid}"
+                        },
+                        {
+                            "xpath": "/ServiceCallout/Request/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic __AUTH__"
+                        }
+                    ]
+                },{
+                    "name": "SendSMS.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "https://__HOST__/v1/token/sms/{msisdn}"
+                        }
+                    ]
+                },{
+                    "name": "ServiceCallout.IdentifyUser.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/authenticate/identify"
+                        }
+                    ]
+                },
+                {
+                    "name": "ServiceCallout.ValidateUser.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/identity-users/v1/users/authenticate"
+                        }
+                    ]
+                },
+         		{
+                    "name": "SetPassword.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/identity-users/v1/users/{username}/password"
+                        }
+                    ]
+                },{
+                    "name": "ValidatePin.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "https://__HOST__/v1/token/sms/{msisdn}/{request.formparam.pin}"
+                        },
+                         {
+                            "xpath": "/ServiceCallout/Request/Set/Headers/Header[@name='apikey']",
+                            "value": "__APIKEY__"
+                        }
+                    ]
+                },
+                {
+                    "name": "UpdateUserProfile.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/identity-users/v1/users/{request.formparam.email}"
+                        }
+                    ]
+                }
+         
+         ],
+         "proxies":[
+          ] ,
+         "targets":[
+         ]
+      }
+   ]
+}

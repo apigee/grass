@@ -1,0 +1,30 @@
+{
+  "name": "identity-user",
+  "version": "0.0.1",
+  "description": "mobile identity user management",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/apigeecs/grass.git"
+  },
+  "keywords": [
+    "mobile",
+    "identity",
+    "user",
+    "management"
+  ],
+  "author": "Rajiv Kilaparti <rkilaparti@apigee.com",
+  "dependencies": {
+    "request": "2.34.0"
+  },
+  "license": "mit",
+  "basepath": "/users",
+  "authuri": "/users/authenticate",
+  "regex_password": "/users/:username([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+)/password",
+  "regex_username": "/users/:username([a-z0-9_]+)?",
+  "regex_email": "/users/:email([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+)?",
+  "regex_msisdn": "/users/:msisdn([+][0-9]+)?",
+  "org": "__APPORG__",
+  "app": "__APPAPP__",
+  "client_id": "__APPKEY__",
+  "client_secret": "__APPSECRET__"
+}

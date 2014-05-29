@@ -1,0 +1,106 @@
+{
+   "configurations":[
+     {
+         "name":"prod",
+
+         "policies":[
+         {
+                    "name": "redirectToConsent.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
+                            "value": "http://__HOST__/openid/index?sessionid={sessionid}"
+                        }
+                    ]
+                },
+				{
+                    "name": "GetUserProfileFromAppServices.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/identity-users/v1/users/{accesstoken.userid}"
+                        }
+                    ]
+                },
+				{
+                    "name": "AssignStoreConsentRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic __AUTH__"
+                        }
+                    ]
+                },
+				{
+                    "name": "StoreConsent.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/identity/consents"
+                        }
+                    ]
+                }
+         ],
+         "proxies":[
+          ] ,
+         "targets":[
+         ]
+      },
+     {
+         "name":"test",
+
+         "policies":[
+           {
+                    "name": "redirectToConsent.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
+                            "value": "http://__HOST__/openid/index?sessionid={sessionid}"
+                        }
+                    ]
+                },
+				{
+                    "name": "GetUserProfileFromAppServices.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/identity-users/v1/users/{accesstoken.userid}"
+                        }
+                    ]
+                },
+				{
+                    "name": "AssignStoreConsentRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic __AUTH__"
+                        }
+                    ]
+                },
+				{
+                    "name": "StoreConsent.ServiceCallout.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://__HOST__/identity/consents"
+                        }
+                    ]
+                }
+         ],
+         "proxies":[
+          ] ,
+         "targets":[
+         ]
+      },
+	{
+         "name":"demo",
+
+         "policies":[
+         ],
+         "proxies":[
+          ] ,
+         "targets":[
+         ]
+      }
+   ]
+}
