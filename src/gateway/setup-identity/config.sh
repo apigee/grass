@@ -1,13 +1,13 @@
-apikey="2R3jhZdrhwrEiRhAhV1NWfp2mtAwKvBT"
-apisecret="GKbfhxg9uAtLkpI1"
+apikey=__KEY__
+apisecret=__SECRET__
 auth=`echo ${apikey}:${apisecret} | base64`
-org=darshan1234
-env=test
+org=__ORG__
+env=__ENV__
 host=$org-$env.apigee.net
-appkey="YXA6SDcLsODgEeObw2dLEcns_w"
-appsecret="YXA6qF1ZSmv_yPV2DuCyOJx8p-aC6HU"
-apporg=darshan1234
-appapp=identityapp
+appkey=__UGKEY__
+appsecret=__UGSECRET__
+apporg=__UGORG__
+appapp=__UGAPP__
 redirect_uri=www.apigee.com
 
 #identity-consent-app config.json 
