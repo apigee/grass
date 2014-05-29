@@ -1,8 +1,8 @@
 ### usergrid.sh
 
 URI="https://api.usergrid.com"
-ADMIN_EMAIL=darshan+1@apigee.com
-APW=Apigee123
+ADMIN_EMAIL=__ADMINEMAIL__
+APW=__APW__
 
 ### These are the Custom variables ###
 echo "Enter Apigee App services org, followed by [ENTER]:"
