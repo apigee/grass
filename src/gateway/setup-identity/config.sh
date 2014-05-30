@@ -8,7 +8,7 @@ appkey=__UGKEY__
 appsecret=__UGSECRET__
 apporg=__UGORG__
 appapp=__UGAPP__
-redirect_uri=www.apigee.com
+redirect_uri=http://$host/identity_app/callback
 
 #identity-consent-app config.json 
 
