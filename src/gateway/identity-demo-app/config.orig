@@ -23,7 +23,7 @@
                         },
                         {
                             "xpath": "/AssignMessage/Set/QueryParams/QueryParam[@name='redirect_uri']",
-                            "value": "__REDIRECTURI__"
+                            "value": "http://__HOST__/identity_app/callback"
                         },
                         {
                             "xpath": "/AssignMessage/Set/QueryParams/QueryParam[@name='authorization_req_url']",
@@ -58,7 +58,7 @@
                         },
                         {
                             "xpath": "/AssignMessage/Set/FormParams/FormParam[@name='redirect_uri']",
-                            "value": "__REDIRECTURI__"
+                            "value": "http://__HOST__/identity_app/callback"
                         },
                         {
                             "xpath": "/AssignMessage/Set/FormParams/FormParam[@name='client_secret']",

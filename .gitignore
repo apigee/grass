@@ -7,8 +7,10 @@ lib-cov
 *.pid
 *.gz
 *.DS_Store
-src/gateway/java-callouts/jwt/target/jsontoken.zip
 *.zip
+*.jar
+*.class
+
 pids
 logs
 results

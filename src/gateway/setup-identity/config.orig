@@ -8,7 +8,6 @@ appkey=__UGKEY__
 appsecret=__UGSECRET__
 apporg=__UGORG__
 appapp=__UGAPP__
-redirect_uri=http://$host/identity_app/callback
 
 #identity-consent-app config.json 
 
@@ -40,7 +39,6 @@ sed -i "" "s/__APPSECRET__/$appsecret/g" ../identity-usermgmt-node-module/usermg
 
 #identity-demo-api config.json
 sed -i "" "s/__HOST__/$host/g" ../identity-demo-app/config.json
-sed -i "" "s/__REDIRECTURI__/$redirect_uri/g" ../identity-demo-app/config.json
 sed -i "" "s/__APIKEY__/$apikey/g" ../identity-demo-app/config.json
 sed -i "" "s/__APISECRET__/$apisecret/g" ../identity-demo-app/config.json
 

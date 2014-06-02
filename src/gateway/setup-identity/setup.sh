@@ -7,7 +7,7 @@ cp ../identity-usermgmt-api/config.orig ../identity-usermgmt-api/config.json
 cp ../identity-usermgmt-node-module/usermgmt/package.orig ../identity-usermgmt-node-module/usermgmt/package.json
 cp ../identity-demo-app/config.orig ../identity-demo-app/config.json
 cp ./config.orig ./config.sh
-
+cp ./usergrid.orig ./usergrid.sh
 
 ### setup.sh
 
@@ -93,6 +93,9 @@ if [ -z "${APW}" ]; then
     read APW
 fi
 
+HOST=$ORG-$ENV.apigee.net
+echo $HOST
+
 ### Delete Resources First ###
 echo `date`": Deleting Cache Resources, Please hang On !!"
 echo ""
@@ -163,7 +166,9 @@ SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/apipro
 echo "${SETUP_RESULT}"
 echo ""
 
-SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/developers/user@identity.com/apps" -H "Content-Type: application/json" -d '{"name":"IdentityApp", "callbackUrl":"www.apigee.com"}' `
+callback_url=http://$HOST/identity_app/callback
+app_data="{\"name\":\"IdentityApp\", \"callbackUrl\":\"${callback_url}\"}"
+SETUP_RESULT=`curl -u "${ADMIN_EMAIL}:${APW}" -X POST "${URI}/v1/o/${ORG}/developers/user@identity.com/apps" -H "Content-Type: application/json" -d "$app_data" `
 echo "${SETUP_RESULT}"
 
 apikey=${SETUP_RESULT#*consumerKey*:}
