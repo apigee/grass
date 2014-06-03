@@ -10,7 +10,7 @@ toc_footers:
 
 # Introduction
 
-This document covers the Token Validation
+This document covers the User Management API
 
 This example API documentation page was created with [Slate](http://github.com/tripit/slate).
 
