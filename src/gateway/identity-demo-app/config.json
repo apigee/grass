@@ -19,15 +19,15 @@
                     "tokens": [
                         {
                             "xpath": "/AssignMessage/Set/QueryParams/QueryParam[@name='client_id']",
-                            "value": "[REPLACE_WITH_YOUR_APP_KEY]"
+                            "value": "__APIKEY__"
                         },
                         {
                             "xpath": "/AssignMessage/Set/QueryParams/QueryParam[@name='redirect_uri']",
-                            "value": "[REPLACE_WITH_YOUR_REDIRECT_URI e.g. http%3A%2F%2Fop102-ex-test.apigee.net/identity_app/callback]"
+                            "value": "http://__HOST__/identity_app/callback"
                         },
                         {
                             "xpath": "/AssignMessage/Set/QueryParams/QueryParam[@name='authorization_req_url']",
-                            "value": "[REPLACE_WITH_YOUR_AUTHORIZE_URL e.g. http://op102-ex-test.apigee.net/oauth/v2/authorize"
+                            "value": "http://__HOST__/oauth/v2/authorize"
                         }
                     ]
                 },
@@ -36,7 +36,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/oauth/v2/accesstoken"
+                            "value": "http://__HOST__/oauth/v2/accesstoken"
                         }
                     ]
                 },
@@ -45,7 +45,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/oauth/v2/getdetails"
+                            "value": "http://__HOST__/oauth/v2/getdetails"
                         }
                     ]
                 },
@@ -54,15 +54,15 @@
                     "tokens": [
                         {
                             "xpath": "/AssignMessage/Set/FormParams/FormParam[@name='client_id']",
-                            "value": "[REPLACE_WITH_YOUR_APP_KEY]"
+                            "value": "__APIKEY__"
                         },
                         {
                             "xpath": "/AssignMessage/Set/FormParams/FormParam[@name='redirect_uri']",
-                            "value": "[REPLACE_WITH_YOUR_REDIRECT_URI e.g. http://op102-ex-test.apigee.net/identity_app/callback]"
+                            "value": "http://__HOST__/identity_app/callback"
                         },
                         {
                             "xpath": "/AssignMessage/Set/FormParams/FormParam[@name='client_secret']",
-                            "value": "[REPLACE_WITH_YOUR_APP_SECRET]"
+                            "value": "__APISECRET__"
                         }
                     ]
                 }    

@@ -9,16 +9,7 @@
                     "tokens": [
                         {
                             "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
-                            "value": "http://op102-ex-prod.apigee.net/openid/index?sessionid={sessionid}"
-                        }
-                    ]
-                },
-          {
-                    "name": "AssignIssuer.xml",
-                    "tokens": [
-                        {
-                            "xpath": "/AssignMessage/AssignVariable/Value",
-                            "value": "http://op102-ex-prod.apigee.net"
+                            "value": "http://__HOST__/openid/index?sessionid={sessionid}"
                         }
                     ]
                 },
@@ -27,7 +18,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-prod.apigee.net/identity-users/v1/users/{accesstoken.userid}"
+                            "value": "http://__HOST__/identity-users/v1/users/{accesstoken.userid}"
                         }
                     ]
                 },
@@ -36,7 +27,7 @@
                     "tokens": [
                         {
                             "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
-                            "value": "Basic <<INSERT BASE64_ENCODED_APP_SERVICES_KEY_SECRET>>"
+                            "value": "Basic __AUTH__"
                         }
                     ]
                 },
@@ -45,7 +36,16 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/identity/consents"
+                            "value": "http://__HOST__/identity/consents"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignIssuer.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable/Value",
+                            "value": "http://__HOST__/"
                         }
                     ]
                 }
@@ -64,25 +64,16 @@
                     "tokens": [
                         {
                             "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
-                            "value": "http://op102-ex-test.apigee.net/openid/index?sessionid={sessionid}"
+                            "value": "http://__HOST__/openid/index?sessionid={sessionid}"
                         }
                     ]
                 },
-			
-	 {
-                    "name": "AssignIssuer.xml",
-                    "tokens": [
-                        {
-                            "xpath": "/AssignMessage/AssignVariable/Value",
-                            "value": "http://op102-ex-test.apigee.net"
-                        }
-                    ]
-                },	{
+				{
                     "name": "GetUserProfileFromAppServices.xml",
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/{accesstoken.userid}"
+                            "value": "http://__HOST__/identity-users/v1/users/{accesstoken.userid}"
                         }
                     ]
                 },
@@ -91,7 +82,7 @@
                     "tokens": [
                         {
                             "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
-                            "value": "Basic <<INSERT BASE64_ENCODED_APP_SERVICES_KEY_SECRET>>"
+                            "value": "Basic __AUTH__"
                         }
                     ]
                 },
@@ -100,7 +91,16 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/identity/consents"
+                            "value": "http://__HOST__/identity/consents"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignIssuer.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable/Value",
+                            "value": "http://__HOST__/"
                         }
                     ]
                 }

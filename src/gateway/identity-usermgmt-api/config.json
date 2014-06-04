@@ -11,8 +11,7 @@
         {
             "name": "test",
             "policies": [
-                
-                ],
+            ],
             "proxies": [],
             "targets": []
         }

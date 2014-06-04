@@ -12,6 +12,7 @@ engine= require('ejs')
 	, store = new express.session.MemoryStore
   , path = require('path')
 
+
 var app = module.exports = express.createServer();
 
 // Configuration

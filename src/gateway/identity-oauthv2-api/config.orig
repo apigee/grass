@@ -39,6 +39,15 @@
                             "value": "http://__HOST__/identity/consents"
                         }
                     ]
+                },
+                {
+                    "name": "AssignIssuer.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable/Value",
+                            "value": "http://__HOST__/"
+                        }
+                    ]
                 }
          ],
          "proxies":[
@@ -83,6 +92,15 @@
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
                             "value": "http://__HOST__/identity/consents"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignIssuer.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable/Value",
+                            "value": "http://__HOST__/"
                         }
                     ]
                 }

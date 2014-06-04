@@ -19,7 +19,7 @@
                     "tokens": [
                         {
                             "xpath": "/AssignMessage/Set/Headers/Header[@name='apikey']",
-                            "value": "[INSERT API KEY]"
+                            "value": "__APIKEY__"
                         }
                     ]
                 },
@@ -28,11 +28,11 @@
                     "tokens": [
                         {
                             "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
-                            "value": "Basic <<INSERT BASE64_ENCODED_APP_SERVICES_KEY_SECRET>>"
+                            "value": "Basic __AUTH__"
                         },
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/identity/consents/validate"
+                            "value": "http://__HOST__/identity/consents/validate"
                         }
                     ]
                 },
@@ -41,7 +41,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/{msisdn}"
+                            "value": "http://__HOST__/identity-users/v1/users/{msisdn}"
                         }
                     ]
                 },
@@ -50,7 +50,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/{username}"
+                            "value": "http://__HOST__/identity-users/v1/users/{username}"
                         }
                     ]
                 },
@@ -59,7 +59,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users"
+                            "value": "http://__HOST__/identity-users/v1/users"
                         }
                     ]
                 }, {
@@ -67,7 +67,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/oauth/v2/code"
+                            "value": "http://__HOST__/oauth/v2/code"
                         }
                     ]
                 },
@@ -76,11 +76,11 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/identity/consents"
+                            "value": "http://__HOST__/identity/consents"
                         },
                         {
                             "xpath": "/ServiceCallout/Request/Set/Headers/Header[@name='Authorization']",
-                            "value": "Basic <<INSERT BASE64_ENCODED_APP_SERVICES_KEY_SECRET>>"
+                            "value": "Basic __AUTH__"
                         }
                     ]
                 },
@@ -89,7 +89,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/{userid}"
+                            "value": "http://__HOST__/identity-users/v1/users/{userid}"
                         }
                     ]
                 },
@@ -98,7 +98,7 @@
                     "tokens": [
                         {
                             "xpath": "/RaiseFault/FaultResponse/Set/Headers/Header[@name='Location']",
-                            "value": "http://op102-ex-test.apigee.net/openid/index"
+                            "value": "http://__HOST__/openid/index"
                         }
                     ]
                 },{
@@ -106,7 +106,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/{reset_username}/password"
+                            "value": "http://__HOST__/v1/users/{reset_username}/password"
                         }
                     ]
                 },{
@@ -114,11 +114,11 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/identity/consents/{request.queryparam.consentid}"
+                            "value": "http://__HOST__/identity/consents/{request.queryparam.consentid}"
                         },
                         {
                             "xpath": "/ServiceCallout/Request/Set/Headers/Header[@name='Authorization']",
-                            "value": "Basic <<BASE64_ENCODED_APP_SERVICES_KEY_SECRET>>"
+                            "value": "Basic __AUTH__"
                         }
                     ]
                 },{
@@ -126,7 +126,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "https://blitzkreig-test.apigee.net/v1/token/sms/{msisdn}"
+                            "value": "https://__HOST__/v1/token/sms/{msisdn}"
                         }
                     ]
                 },{
@@ -134,7 +134,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/authenticate/identify"
+                            "value": "http://__HOST__/authenticate/identify"
                         }
                     ]
                 },
@@ -143,7 +143,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/authenticate"
+                            "value": "http://__HOST__/identity-users/v1/users/authenticate"
                         }
                     ]
                 },
@@ -152,7 +152,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/{username}/password"
+                            "value": "http://__HOST__/identity-users/v1/users/{username}/password"
                         }
                     ]
                 },{
@@ -160,11 +160,11 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "https://blitzkreig-test.apigee.net/v1/token/sms/{msisdn}/{request.formparam.pin}"
+                            "value": "https://__HOST__/v1/token/sms/{msisdn}/{request.formparam.pin}"
                         },
                          {
                             "xpath": "/ServiceCallout/Request/Set/Headers/Header[@name='apikey']",
-                            "value": "[INSET API KEY]"
+                            "value": "__APIKEY__"
                         }
                     ]
                 },
@@ -173,7 +173,7 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "http://op102-ex-test.apigee.net/identity-users/v1/users/{request.formparam.email}"
+                            "value": "http://__HOST__/identity-users/v1/users/{request.formparam.email}"
                         }
                     ]
                 }

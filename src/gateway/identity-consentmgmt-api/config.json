@@ -16,15 +16,15 @@
                     "tokens": [
                         {
                             "xpath": "/ServiceCallout/Request/Set/QueryParams/QueryParam[@name='client_id']",
-                            "value": "[INSERT API KEY]"
+                            "value": "__APPKEY__"
                         },
                         {
                             "xpath": "/ServiceCallout/Request/Set/QueryParams/QueryParam[@name='client_secret']",
-                            "value": "[INSERT API SECRET]"
+                            "value": "__APPSECRET__"
                         },
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "https://api.usergrid.com/op102-ex/identity/consents"
+                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/consents"
                         }
                     ]
                 }],

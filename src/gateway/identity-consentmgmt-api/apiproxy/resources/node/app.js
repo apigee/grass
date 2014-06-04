@@ -5,7 +5,7 @@
 
 var express = require('express')
   , routes = require('./routes')
-,engine = require('ejs'), http = require('http')
+ , http = require('http')
 	, store = new express.session.MemoryStore
   , path = require('path');;
 
@@ -15,7 +15,6 @@ var app = module.exports = express.createServer();
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'ejs');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
