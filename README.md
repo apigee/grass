@@ -2,12 +2,12 @@
 
 Overview
 --------
-[Grass](grass-definition) is an identity solution based on Apigee Edge platform. Identity is building block any digital ecosystem needs, be it either it is application, data analysis and contextual content delivery through APIs.
+[Grass](https://github.com/apigee/grass#grass-definition) is an identity solution based on Apigee Edge platform. Identity is building block any digital ecosystem needs, be it either it is application, data analysis and contextual content delivery through APIs.
 
 Key difference between Grass and traditional identity system are:
 
-    •   It can handle millions of users 
-    •   It is exposed as REST API and Standards (Open ID Connect)
+    •	It can handle millions of users 
+    •	It is exposed as REST API and Standards (Open ID Connect)
     •	It has in-built consent mgmt., expandable for all non-identity resource type as well
     •	It can authenticate using different mechanism including SMS Login, Social login etc.
     
