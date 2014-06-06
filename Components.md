@@ -2,7 +2,7 @@
 
 #Component Level Details
 
-## 1. User Profile Management Pages
+### 1. User Profile Management Pages
 
 Type | Notes
 --------- | --------
@@ -11,7 +11,7 @@ Stack | Existing Usergrid Admin Pages
 Notes | <ul><li>This is for admins to manage users, and their profiles and comes with the Usergrid UI, at the moment.</li><li>Talks to Usergrid, to fetch the relevant information and display.</li></ul>
 Configurable | No
 
-## 2. User Login Pages
+### 2. User Login Pages
 
 Type | Notes
 --------- | --------
@@ -21,7 +21,7 @@ Dependencies | Identity API, User Profile API, SMS Token Validation
 Notes | <ul><li>Supports registration via MSISDN, On-Net, OpenID</li><li>Supports login via On-Net, Off-Net (userid, password in Apigee, SMS Token via MSISDN, OpenID)</li></ul>
 Configurable | Branding, SMS Backend, SMS Token, Injection Header for On-Net, front-end SSL, session validity
 
-## 3. User Consent Pages
+### 3. User Consent Pages
 
 Type | Notes
 --------- | --------
@@ -31,7 +31,7 @@ Dependencies | Consent Mgmt API
 Notes | <ul><li>Display details about the transaction / scope of application – for the user to grant / deny consent</li></ul>
 Configurable | Branding, T&C, Responsive Theme
 
-## 4. User Consent Mgmt Pages
+### 4. User Consent Mgmt Pages
 
 Type | Notes
 --------- | --------
@@ -41,7 +41,7 @@ Dependencies | Consent Mgmt API
 Notes | <ul><li>Display details about the consents approved by the specific user</li><li>Query by App, device, date / time, scope</li></ul>
 Configurable | Branding, T&C, Responsive Theme
 
-## 5. Usergrid API Adapter
+### 5. Usergrid API Adapter
 
 Type | Notes
 --------- | --------
@@ -51,7 +51,7 @@ Dependencies | N/A
 Notes | <ul><li>Proxy Usergrid API for common CRUD operations against User entity to SPI Interface</li></ul>
 Configurable | N/A
 
-## 6. CRM API Adapter
+### 6. CRM API Adapter
 
 Type | Notes
 --------- | --------
@@ -61,7 +61,7 @@ Dependencies | Operator CRM Backend
 Notes | <ul><li>Proxy Operator CRM Backend to SPI Interface</li></ul>
 Configurable | N/A
 
-## 7. Gigya API Adapter
+### 7. Gigya API Adapter
 
 Type | Notes
 --------- | --------
@@ -71,7 +71,7 @@ Dependencies | Gigya
 Notes | <ul><li>Proxy Gigya Backend to SPI Interface</li></ul>
 Configurable | N/A
 
-## 8. Identity API
+### 8. Identity API
 
 Type | Notes
 --------- | --------
@@ -81,7 +81,7 @@ Dependencies | User Profile API, Consent Mgmt API
 Notes | <li>Provides On-Net authentication</li><li>Provides Off-Net authentication via Onetime PIN, userid password in Usergrid & OpenID provider.</li><li>Expose SSO API using the above.</li>
 Configurable | N/A
 
-## 9. Consent Mgmt API
+### 9. Consent Mgmt API
 
 Type | Notes
 --------- | --------
@@ -91,7 +91,7 @@ Dependencies | N/A
 Notes | <li>Provides Consent Management capabilities.</li><li>Create, Read, Update / Delete Consent.</li>
 Configurable | N/A
 
-## 10. SMS Token Validation API
+### 10. SMS Token Validation API
 
 Type | Notes
 --------- | --------
