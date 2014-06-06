@@ -1,4 +1,4 @@
-<p align="left"><a href="http://apigee.com/" style="font-size:25px;font-family:Lucida Sans Unicode"><img src="http://apigee.com/about/sites/all/themes/apigee_themes/apigee_mktg/images/logo.png"/> Grass</a></p>
+<p align="left"><a href="http://apigee.com/"><img src="http://apigee.com/about/sites/all/themes/apigee_themes/apigee_mktg/images/logo.png"/></a></p>
 
 Overview
 --------
