@@ -21,6 +21,12 @@ sed -i "" "s/__APPSECRET__/$appsecret/g" ../identity-consentmgmt-api/config.json
 sed -i "" "s/__APPORG__/$apporg/g" ../identity-consentmgmt-api/config.json
 sed -i "" "s/__APPAPP__/$appapp/g" ../identity-consentmgmt-api/config.json
 
+#identity-consentmgmt-api package.json
+sed -i "" "s/__APPORG__/$apporg/g" ../identity-consentmgmt-api-node-module/consentmgmt/package.json
+sed -i "" "s/__APPAPP__/$appapp/g" ../identity-consentmgmt-api-node-module/consentmgmt/package.json
+sed -i "" "s/__APPKEY__/$appkey/g" ../identity-consentmgmt-api-node-module/consentmgmt/package.json
+sed -i "" "s/__APPSECRET__/$appsecret/g" ../identity-consentmgmt-api-node-module/consentmgmt/package.json
+
 #identity-oauthv2-api config.json
 sed -i "" "s/__HOST__/$host/g" ../identity-oauthv2-api/config.json
 sed -i "" "s/__AUTH__/$auth/g" ../identity-oauthv2-api/config.json

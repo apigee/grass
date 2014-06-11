@@ -2,6 +2,7 @@
 # Revert to original, if we have ever changed these files ...
 cp ../identity-consent-app/config.orig ../identity-consent-app/config.json 
 cp ../identity-consentmgmt-api/config.orig ../identity-consentmgmt-api/config.json
+cp ../identity-consentmgmt-api-node-module/consentmgmt/package.orig ../identity-consentmgmt-api-node-module/consentmgmt/package.json
 cp ../identity-oauthv2-api/config.orig ../identity-oauthv2-api/config.json
 cp ../identity-usermgmt-api/config.orig ../identity-usermgmt-api/config.json
 cp ../identity-usermgmt-node-module/usermgmt/package.orig ../identity-usermgmt-node-module/usermgmt/package.json
@@ -90,7 +91,7 @@ fi
 
 if [ -z "${APW}" ]; then
     echo "Enter Apigee Enterprise PASSWORD, followed by [ENTER]:"
-    read APW
+    read -s -r APW
 fi
 
 HOST=$ORG-$ENV.apigee.net
@@ -203,5 +204,16 @@ cd ../parent-pom/
 mvn clean install -Dusername=${ADMIN_EMAIL} -Dpassword=${APW} -Dorg=${ORG} -P${ENV}
 
 echo "Finally, this setup is complete. Have fun by visiting: http://${ORG}-${ENV}.apigee.net/identity_app/index"
+
+# Revert to original, if we have ever changed these files ...
+cp ../identity-consent-app/config.orig ../identity-consent-app/config.json 
+cp ../identity-consentmgmt-api/config.orig ../identity-consentmgmt-api/config.json
+cp ../identity-consentmgmt-api-node-module/consentmgmt/package.orig ../identity-consentmgmt-api-node-module/consentmgmt/package.json
+cp ../identity-oauthv2-api/config.orig ../identity-oauthv2-api/config.json
+cp ../identity-usermgmt-api/config.orig ../identity-usermgmt-api/config.json
+cp ../identity-usermgmt-node-module/usermgmt/package.orig ../identity-usermgmt-node-module/usermgmt/package.json
+cp ../identity-demo-app/config.orig ../identity-demo-app/config.json
+cp ./config.orig ./config.sh
+cp ./usergrid.orig ./usergrid.sh
 
 
