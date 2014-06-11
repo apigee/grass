@@ -110,18 +110,7 @@
               <FaultRules/>
                    <Condition>response.status.code = "200"</Condition>
                    <Name>AssignIssuer</Name>
-               </Step>
-              <Step>
-              <FaultRules/>
-                   <Condition>response.status.code = "200"</Condition>
-                   <Name>GetAuthReqParamsFromCache</Name>
-               </Step>
-              <Step>
-                    <FaultRules/>
-                   <Condition>authReqVariableJSON != null</Condition>
-                   <Name>ExtractAuthReqParams</Name>
-               </Step>
-            
+               </Step>     
                <Step>
                     <FaultRules/>
                    <Condition>response.status.code = "200"</Condition>
@@ -148,7 +137,7 @@
                     <Name>GenerateAccessToken.Response</Name>
                 </Step>
               <Step>
-                   <Condition>response.status.code != "200" or authReqVariableJSON = null </Condition>
+                   <Condition>response.status.code != "200"</Condition>
                     <Name>RaiseFault.InvalidRequest</Name>
                 </Step>
              </Response>

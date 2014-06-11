@@ -198,16 +198,6 @@
                     <Condition>(flowError = null) and authcode.response.status.code = 302</Condition>
                     <Name>RetrieveCodeFromURL_JS</Name>
                 </Step>
-                 <Step>
-                    <Condition>code != null and code != ""</Condition>
-                    <FaultRules/>
-                    <Name>AssignAuthReqParams</Name>
-                </Step>
-                 <Step>
-                    <Condition>code != null and code != ""</Condition>
-                    <FaultRules/>
-                    <Name>SetAuthReqVariablesIncache</Name>
-                </Step>     
                 <Step>
                     <Condition>(code = null or code = "" ) and (flowError = null)</Condition>
                     <FaultRules/>
