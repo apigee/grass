@@ -2,7 +2,7 @@
 
 Overview
 --------
-[Grass](https://github.com/apigee/grass#grass-definition) is an identity solution based on Apigee Edge platform. Identity is building block any digital ecosystem needs, be it either it is application, data analysis and contextual content delivery through APIs.
+[Grass](https://github.com/apigee/grass#grass-definition) is an **identity solution** based on Apigee Edge platform. Identity is building block any digital ecosystem needs, be it either it is application, data analysis and contextual content delivery through APIs.
 
 Key difference between Grass and traditional identity system are:
 
