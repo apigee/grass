@@ -65,19 +65,19 @@ Prerequisites:
 You need to have access to deployed Apigee Edge Services with organization details. If you don’t have this – please sign-up at [Apigee Edge](http://enterprise.apigee.com) now.
 [Maven](http://maven.apache.org) is used for managing the dependencies and build automation. Get it installed beforehand.
 
-    Git clone “grass” repo
+    Git clone “grass” repo.
     Goto /grass/src/gateway/setup-identity. 
     Run setup.sh
     
-	The setup script prompts for your organization on Apigee Edge, the environment to setup the Identity solution and Edge credentials 
+	When you run the setup.sh script it will ask for your organization name on Apigee Edge, the environment to setup the Identity solution and the Apigee Edge credentials.
 	
-	It then creates API service resources ( cache resources) ,  a developer (Identity User),  product ( Identity App product) and a app ( Identity App) for the created developer. 
+	It then creates API service resources (cache resources) ,  a developer (Identity User),  product (Identity App product) and an app (Identity App) for the created developer. 
 
-	It prompts again for App services organization (by default an app services org exists for your org on Edge, so this can be used) and name for the App to be created on App services. 
+	Then it will ask for the name of the App Services organization (An app services organization will be created by default when you create an organization on Apigee Edge. So the same can be used.) and the name for the App to be created on App services. 
 
-	Post this, the App services is setup along with 2 custom collections (Consent & SSO). 
+	Post this, the App services will be setup along with 2 custom collections, Consent & SSO (Single Sign-On). 
 
-	In the end it deploys the Identity API Proxies to your specified org and deploys to your specified env.
+	In the end it deploys the Identity API Proxies to your specified organization and deploys to the environment you specified.
 
 ###### Please Note: 
 The setup.sh needs to be executed from setup-identity folder. It would fail otherwise since relative paths are used from the setup-identity folder. Please feel free to contribute to the setup script itself and make it robust.
