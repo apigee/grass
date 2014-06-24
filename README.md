@@ -2,7 +2,7 @@
 
 Overview
 --------
-[Grass](https://github.com/apigee/grass#grass-definition) is an **identity solution** based on Apigee Edge platform. Identity is the building block of any digital ecosystem needs, let it be application, data analysis and contextual content delivery through APIs.
+[Grass](https://github.com/apigee/grass#grass-definition) is an **identity solution** based on Apigee Edge platform. Identity is the essential block of any digital ecosystem needs, let it be application, data analysis and contextual content delivery through APIs. 
 
 The key differences between Grass and any traditional identity system are:
 
@@ -69,9 +69,9 @@ You need to have access to deployed Apigee Edge Services with organization detai
     Goto /grass/src/gateway/setup-identity. 
     Run setup.sh
     
-	> When you run the setup.sh script it will ask for your **organization name** on Apigee Edge, the **environment** to setup the Identity solution and the Apigee Edge credentials.	
+	> When you run the setup.sh script it will ask for your 'organization name' on Apigee Edge, the 'environment' to setup the Identity solution and the Apigee Edge credentials.	
 	> It then creates API service resources (cache resources) ,  a developer (Identity User),  product (Identity App product) and an app (Identity App) for the created developer. 
-	> Then it will ask for the **name of the App Services organization** (An app services organization will be created by default when you create an organization on Apigee Edge. So the same can be used.) and the **name for the App** to be created on App services. 
+	> Then it will ask for the 'name of the App Services organization' (An app services organization will be created by default when you create an organization on Apigee Edge. So the same can be used.) and the 'name for the App' to be created on App services. 
 	> Post this, the App services will be setup along with 2 custom collections, Consent & SSO (Single Sign-On). 
 	> In the end it deploys the Identity API Proxies to your specified organization and deploys to the environment you specified.
 
@@ -80,3 +80,7 @@ The setup.sh needs to be executed from setup-identity folder. It would fail othe
 
 ###### Grass Definition
 Grasses are critical building block for food chain.. It used in many forms as lawns, food(rice, wheat etc), beverages(beer, whisky etc) and feeding animal;so is identity
+
+Make your contributions to Grass
+--------------------------------
+You can make your valuable contributions to the open source project Grass. You can see the contribution guidlines and documenation at [Contribute to Grass](https://github.com/apigee/grass/blob/master/CONTRIBUTING.md).
