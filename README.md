@@ -12,9 +12,16 @@ The key differences between Grass and any traditional identity system are:
     •	It can authenticate in different ways including SMS Login, Social login etc.
     
 The identity solution is built based upon the OpenID Connect 1.0 Specification, which is a simple identity layer on top of the OAuth 2.0 protocol. Check the details at [OpenID connect](http://openid.net/connect/) and [FAQ](http://openid.net/connect/faq/). The FAQ has a nice 5 minute video, don't miss to check it out.
-The Grass identity solution at present supports the [Authorization Code flow](http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth). It does not support [Implicit Flow](http://openid.net/specs/openid-connect-core-1_0.html#ImplicitFlowAuth) and [Hybrid Flow](http://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth). 
+The Grass identity solution at present supports the [Authorization Code flow](http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth). It does not support [Implicit Flow](http://openid.net/specs/openid-connect-core-1_0.html#ImplicitFlowAuth) and [Hybrid Flow](http://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth).
 
+###### Grass Definition
+Add an abstract definition about Grass here. 
 
+SDLC Diagram for Grass
+----------------------
+Add the SDLC diagram for Grass here.
+###### Brief on SDLC
+Followed by a short description.
 
 Architecture and API Specification
 ----------------------------------
@@ -68,19 +75,16 @@ You need to have access to deployed Apigee Edge Services with organization detai
     Git clone “grass” repo.
     Goto /grass/src/gateway/setup-identity. 
     Run setup.sh
-    
-	• When you run the setup.sh script it will ask for your organization name on Apigee Edge, the environment to setup the Identity solution and the Apigee Edge credentials.	
-	• It then creates API service resources (cache resources) ,  a developer (Identity User),  product (Identity App product) and an app (Identity App) for the created developer. 
-	• Then it will ask for the name of the App Services organization (An app services organization will be created by default when you create an organization on Apigee Edge. So the same can be used.) and the name for the App to be created on App services. 
-	• Post this, the App services will be setup along with 2 custom collections, Consent & SSO (Single Sign-On). 
-	• In the end it deploys the Identity API Proxies to your specified organization and deploys to the environment you specified.
+
+• When you run the setup.sh script it will ask for your organization name on Apigee Edge, the environment to setup the Identity solution and the Apigee Edge credentials.	
+• It then creates API service resources (cache resources) ,  a developer (Identity User),  product (Identity App product) and an app (Identity App) for the created developer. 
+• Then it will ask for the name of the App Services organization (An app services organization will be created by default when you create an organization on Apigee Edge. So the same can be used.) and the name for the App to be created on App services. 
+• Post this, the App services will be setup along with 2 custom collections, Consent & SSO (Single Sign-On). 
+• In the end it deploys the Identity API Proxies to your specified organization and deploys to the environment you specified.
 
 
 ###### Please Note: 
 The setup.sh needs to be executed from setup-identity folder. It would fail otherwise since relative paths are used from the setup-identity folder. Please feel free to contribute to the setup script itself and make it robust.
-
-###### Grass Definition
-Grasses are critical building block for food chain.. It used in many forms as lawns, food(rice, wheat etc), beverages(beer, whisky etc) and feeding animal;so is identity
 
 Make your contributions to Grass
 --------------------------------
