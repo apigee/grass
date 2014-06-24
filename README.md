@@ -2,17 +2,17 @@
 
 Overview
 --------
-[Grass](https://github.com/apigee/grass#grass-definition) is an **identity solution** based on Apigee Edge platform. Identity is building block any digital ecosystem needs, be it either it is application, data analysis and contextual content delivery through APIs.
+[Grass](https://github.com/apigee/grass#grass-definition) is an **identity solution** based on Apigee Edge platform. Identity is the building block of any digital ecosystem needs, let it be application, data analysis and contextual content delivery through APIs.
 
-Key difference between Grass and traditional identity system are:
+The key differences between Grass and any traditional identity system are:
 
-    •	It can handle millions of users 
-    •	It is exposed as REST API and Standards (Open ID Connect)
-    •	It has in-built consent mgmt., expandable for all non-identity resource type as well
-    •	It can authenticate using different mechanism including SMS Login, Social login etc.
+    •	It can handle millions of users. 
+    •	It is exposed as REST API and Standards (Open ID Connect).
+    •	It has in-built consent management, which is expandable for all non-identity resource type as well.
+    •	It can authenticate in different ways including SMS Login, Social login etc.
     
-The identity solution is built based upon the OpenID Connect 1.0 specification. The spec is is a simple identity layer on top of the OAuth 2.0 protocol. Check the details at [OpenID connect](http://openid.net/connect/) and [FAQ](http://openid.net/connect/faq/). The FAQ has a nice 5 minute video, don't miss to check it out.
-The solution at present supports the [Authorization Code flow](http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth). It does not support [Implicit](http://openid.net/specs/openid-connect-core-1_0.html#ImplicitFlowAuth) and [hybrid](http://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth) flows. 
+The identity solution is built based upon the OpenID Connect 1.0 Specification, which is a simple identity layer on top of the OAuth 2.0 protocol. Check the details at [OpenID connect](http://openid.net/connect/) and [FAQ](http://openid.net/connect/faq/). The FAQ has a nice 5 minute video, don't miss to check it out.
+The Grass identity solution at present supports the [Authorization Code flow](http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth). It does not support [Implicit Flow](http://openid.net/specs/openid-connect-core-1_0.html#ImplicitFlowAuth) and [Hybrid Flow](http://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth). 
 
 
 
@@ -59,10 +59,11 @@ Broadly the present Architecture can be modularised as follows:
             
 
 
-Deploying and Using Identity Solution
--------------------------------------
-Pre-Requisite:
-You need to have access to deployed Apigee Edge Services with organization details. If you don’t have this – please sign-up at [Edge](http://enterprise.apigee.com)
+Deploying and using Grass Identity Solution
+-------------------------------------------
+Prerequisites:
+You need to have access to deployed Apigee Edge Services with organization details. If you don’t have this – please sign-up at [Apigee Edge](http://enterprise.apigee.com) now.
+[Maven](http://maven.apache.org) is used for managing the dependencies and build automation. Get it installed beforehand.
 
     Git clone “grass” repo
     Goto /grass/src/gateway/setup-identity. 
