@@ -70,7 +70,7 @@ Deploying and using Grass Identity Solution
 -------------------------------------------
 Prerequisites:
 You need to have access to deployed Apigee Edge Services with organization details. If you don’t have this – please sign-up at [Apigee Edge](http://enterprise.apigee.com) now.
-[Maven](http://maven.apache.org) is used for managing the dependencies and build automation. Get it installed beforehand.
+[Maven](http://maven.apache.org) is used for managing the dependencies and for build automation. Get it installed beforehand.
 
     Git clone “grass” repo.
     Goto /grass/src/gateway/setup-identity. 
