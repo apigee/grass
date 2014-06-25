@@ -19,7 +19,8 @@ Add an abstract definition about Grass here.
 
 SDLC Diagram for Grass
 ----------------------
-Add the SDLC diagram for Grass here.
+<p align="left"><a><img src="https://i.cloudup.com/5ZhHDHuue5.png"/></a></p>
+
 ###### Brief on SDLC
 Followed by a short description.
 
@@ -27,6 +28,7 @@ Architecture and API Specification
 ----------------------------------
 
 <p align="left"><a><img src="https://i.cloudup.com/55Lv-NK4H2.png"/></a></p>
+
 
 Broadly the present Architecture can be modularised as follows:
 
