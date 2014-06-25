@@ -89,3 +89,14 @@ The setup.sh needs to be executed from setup-identity folder. It would fail othe
 Make your contributions to Grass
 --------------------------------
 You can make your valuable contributions to the open source project Grass. You can see the contribution guidlines and documenation at [Contribute to Grass](https://github.com/apigee/grass/blob/master/CONTRIBUTING.md).
+
+Continuous Integration
+----------------------
+###### Setting Up Mocha: 
+Guidlines in seting up Mocha for Continuous Integration
+
+###### Create Jobs on Mocha: 
+How to create a job on Mocha.
+
+###### Jenkins: 
+Add details here.
