@@ -19,7 +19,7 @@ Add an abstract definition about Grass here.
 
 SDLC Diagram for Grass
 ----------------------
-<p align="left"><a><img src="https://i.cloudup.com/5ZhHDHuue5.png" height="70%"/></a></p>
+<p align="left"><a><img src="https://i.cloudup.com/5ZhHDHuue5.png" height="1000px"/></a></p>
 
 ###### Brief on SDLC
 Followed by a short description.
