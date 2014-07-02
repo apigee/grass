@@ -1,0 +1,6 @@
+{
+	"createAccessToken":"grant_type=authorization_code&code=3tGK6HTv&client_id=1M996hWk1xQAlzrXzSBMs7pKA3CG2AbD&client_secret=0weRiSjzZ895dA44&redirect_uri=http%3A%2F%2Fdarshan1234-test.apigee.net%2Fidentity_app%2Fcallback",
+	"host":"http://darshan1234-test.apigee.net",
+	"genAuthCode":"response_type=code&redirect_uri=http%3A%2F%2Fdarshan1234-test.apigee.net%2Fidentity_app%2Fcallback&scope=openid%20profile%20email&client_id=1M996hWk1xQAlzrXzSBMs7pKA3CG2AbD&userid=darshan%2B1%40apigee.com&nonce=",
+	"authorizeQueryString":"var qs = 'redirect_uri=http://darshan1234-test.apigee.net/identity_app/callback&client_id=1M996hWk1xQAlzrXzSBMs7pKA3CG2AbD&scope=openid%20profile%20email&response_type=code&state=uyrjiqa23nv8650ndj"
+}

@@ -1,0 +1,15 @@
+{
+	"createConsent":
+	{
+		"company_id":"IdentityApp",
+		"scope":["openid","profile","email"],
+		"consent_type":"in-band",
+		"status":"active",
+		"end_user_id":"darshan+1@apigee.com",
+		"client_id":"1M996hWk1xQAlzrXzSBMs7pKA3CG2AbD",
+		"access_token":"uAnrvwdkmWmVJeCANLzFCK5E6qiW"
+	},
+		"host":"http://darshan1234-test.apigee.net",
+		"auth":"Basic MU05OTZoV2sxeFFBbHpyWHpTQk1zN3BLQTNDRzJBYkQ6MHdlUmlTanpaODk1ZEE0NA==",
+		"validateConsent":"client_id=1M996hWk1xQAlzrXzSBMs7pKA3CG2AbD&user_id=darshan%2B1@apigee.com"
+}
