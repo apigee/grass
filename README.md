@@ -14,15 +14,6 @@ The key differences between Grass and any traditional identity system are:
 The identity solution is built based upon the OpenID Connect 1.0 Specification, which is a simple identity layer on top of the OAuth 2.0 protocol. Check the details at [OpenID connect](http://openid.net/connect/) and [FAQ](http://openid.net/connect/faq/). The FAQ has a nice 5 minute video, don't miss to check it out.
 The Grass identity solution at present supports the [Authorization Code flow](http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth). It does not support [Implicit Flow](http://openid.net/specs/openid-connect-core-1_0.html#ImplicitFlowAuth) and [Hybrid Flow](http://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth).
 
-###### Grass Definition
-Add an abstract definition about Grass here. 
-
-SDLC Diagram for Grass
-----------------------
-<p align="left"><a><img src="https://i.cloudup.com/5ZhHDHuue5.png" height="450px"/></a></p>
-
-###### Brief on SDLC
-Followed by a short description.
 
 Architecture and API Specification
 ----------------------------------
