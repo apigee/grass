@@ -18,16 +18,7 @@
 				<updatePolicy>never</updatePolicy>
 			</releases>
 		</pluginRepository>
-		<pluginRepository>
-			<id>apigee-cs-repo</id>
-			<url>http://repo.apigee.com:8081/artifactory/repo</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<releases>
-				<updatePolicy>never</updatePolicy>
-			</releases>
-		</pluginRepository>
+		
 	</pluginRepositories>
 	<modules>
 		<module>../java-callouts/jwt</module>
@@ -70,9 +61,9 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>com.apigee.build-tools.enterprise4g</groupId>
-				<artifactId>4G-gateway-maven-build-pack</artifactId>
-				<version>0.0.16</version>
+				  <groupId>io.apigee.build-tools.enterprise4g</groupId>
+        <artifactId>apigee-edge-maven-plugin</artifactId>
+                <version>1.0.0</version>
 				<executions>
 					<execution>
 						<id>configure-bundle-step</id>
@@ -140,10 +131,4 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>apigee-cs-repo</id>
-			<url>http://repo.apigee.com:8081/artifactory/repo</url>
-		</repository>
-	</repositories>
 </project>
