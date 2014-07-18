@@ -76,18 +76,6 @@
             <version>2.2.2</version>
         </dependency>
         <dependency>
-            <groupId>com.apigee.flow</groupId>
-            <artifactId>message-flow</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.apigee.flow</groupId>
-            <artifactId>expressions</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.8</version>
@@ -97,5 +85,24 @@
             <artifactId>jsontoken</artifactId>
             <version>1.0</version>
         </dependency>
+<dependency>
+            <groupId>com.apigee.flow</groupId>
+            <artifactId>expressions</artifactId>
+            <version>1.0.0</version>
+<scope>system</scope>
+<systemPath>${project.basedir}/../../lib/expressions-1.0.0.jar</systemPath>
+
+        
+</dependency>
+<dependency>
+            <groupId>com.apigee.flow</groupId>
+            <artifactId>messageflow</artifactId>
+            <version>1.0.0</version>
+<scope>system</scope>
+<systemPath>${project.basedir}/../../lib/message-flow-1.0.0.jar</systemPath>
+
+        
+</dependency>
+
     </dependencies>
 </project>
