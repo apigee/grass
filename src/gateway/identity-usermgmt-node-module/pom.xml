@@ -128,8 +128,8 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>com.apigee.build-tools.enterprise4g</groupId>
-				<artifactId>4G-gateway-maven-build-pack</artifactId>
+				 <groupId>io.apigee.build-tools.enterprise4g</groupId>
+        <artifactId>apigee-edge-maven-plugin</artifactId>
 				<configuration>
 					<skip>true</skip>
 				</configuration>
