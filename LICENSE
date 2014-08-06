@@ -19,3 +19,54 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+========-------==========------------============----------------
+========-------==========------------============----------------
+
+Below list details third Party libraries used in this project and their corresponding  licenses
+
+========-------==========------------============----------------
+Node: "express": "2.5.8"
+
+https://github.com/strongloop/express
+
+License Type: MIT (https://github.com/strongloop/express/blob/master/LICENSE)
+
+========-------==========------------============----------------
+Node: "stylus": ">= 0.0.1"
+
+https://github.com/LearnBoost/stylus
+License Type: MIT (https://github.com/LearnBoost/stylus/blob/master/LICENSE)
+
+========-------==========------------============----------------
+Node: "jade": ">= 0.0.1"
+
+https://github.com/visionmedia/jade
+
+License Type: MIT ( https://github.com/visionmedia/jade/blob/master/LICENSE)
+
+========-------==========------------============----------------
+Node: "ejs": ">= 0.8.4"
+
+https://github.com/visionmedia/ejs
+
+License Type: MIT ( https://github.com/visionmedia/ejs#license)
+========-------==========------------============----------------
+JSON Token Library
+https://code.google.com/p/jsontoken/
+
+/**
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
