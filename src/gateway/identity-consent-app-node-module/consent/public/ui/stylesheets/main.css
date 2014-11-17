@@ -1,0 +1,956 @@
+/*@mixin circle($radius, $color) { 
+    width: $radius; 
+    height: $radius; 
+    background: $color;
+    border-radius: $radius / 2; 
+}*/
+/* line 17, ../sass/common.scss */
+
+@font-face {
+font-family: CronosPro-Bold;
+src: url('/openid/ui/fonts/CRONOSMM.TTF');
+}
+
+html, body * {
+font-family: "CronosPro-Bold";
+}
+
+/* centered columns styles */
+/* line 21, ../sass/common.scss */
+.row-centered {
+  text-align: center;
+}
+
+/* line 24, ../sass/common.scss */
+input {
+  text-align: left;
+}
+
+/* line 27, ../sass/common.scss */
+ul, li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 32, ../sass/common.scss */
+.outer-container {
+  width: 320px;
+  margin: 0 auto;
+  background: transparent;
+  z-index: 999;
+  height: auto;
+  position: relative;
+}
+
+/* line 41, ../sass/common.scss */
+.container {
+  width: 100%;
+}
+
+/* line 44, ../sass/common.scss */
+.main.container {
+  padding: 6%;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 0 0 6px 6px;
+  background-color: white;
+}
+/* line 50, ../sass/common.scss */
+.main.container h1 {
+  font-size: 190%;
+}
+/* line 53, ../sass/common.scss */
+.main.container.register h1 {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+/* line 59, ../sass/common.scss */
+.user-info {
+  background-color: #efefef;
+  width: 100%;
+  text-align: center;
+  padding: 3%;
+}
+/* line 64, ../sass/common.scss */
+.user-info h3 {
+  font-size: 150%;
+  padding: 0;
+  margin: 0;
+}
+/* line 69, ../sass/common.scss */
+.user-info .logged-in-container {
+  text-align: left;
+}
+/* line 71, ../sass/common.scss */
+.user-info .logged-in-container p {
+  margin: 0;
+}
+/* line 75, ../sass/common.scss */
+.user-info .details, .user-info a.re-login, .user-info img {
+  float: left;
+}
+/* line 79, ../sass/common.scss */
+.user-info img {
+  width: 15%;
+}
+/* line 82, ../sass/common.scss */
+.user-info .details {
+  width: 60%;
+  border-right: 1px solid #ccc;
+  padding: 1% 0 0 3%;
+}
+/* line 86, ../sass/common.scss */
+.user-info .details p[data-role="email"] {
+  color: #8f8f8f;
+}
+/* line 90, ../sass/common.scss */
+.user-info a.re-login {
+  font-size: 95%;
+  padding: 4% 0 0 2%;
+  width: 25%;
+}
+
+/* line 97, ../sass/common.scss */
+p.help-text, p.help-text-medium {
+  color: #999;
+  font-size: 100%;
+  margin: 0;
+}
+/* line 101, ../sass/common.scss */
+p.help-text.bottom, p.help-text-medium.bottom {
+  padding: 5% 0 0 0;
+}
+/* line 104, ../sass/common.scss */
+p.help-text.register-bottom, p.help-text-medium.register-bottom {
+  padding: 2% 0 5% 0;
+}
+
+/* line 108, ../sass/common.scss */
+p.help-text-medium {
+  font-size: 125%;
+  padding-top: 3%;
+}
+/* line 111, ../sass/common.scss */
+p.help-text-medium a {
+  color: #adc742;
+}
+
+/* line 115, ../sass/common.scss */
+a.mobile-no {
+  color: #67963D;
+  font-size: 150%;
+  margin: 3% 0;
+  display: inline-block;
+}
+
+/* line 124, ../sass/common.scss */
+#overlay_shield {
+  background-color: #000000;
+  color: #FF0000;
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+/* line 139, ../sass/common.scss */
+.btn-success {
+  background-color: #adc742;
+}
+
+/* line 142, ../sass/common.scss */
+.btn-block {
+  margin: 10px 0;
+  border: none;
+}
+
+/* line 146, ../sass/common.scss */
+.authorization {
+  text-align: left;
+}
+
+/* line 149, ../sass/common.scss */
+.authorization ul {
+  margin-left: 20px;
+}
+
+/* line 152, ../sass/common.scss */
+.authorization ul, .authorization ul li {
+  text-align: left;
+  list-style: disc;
+}
+
+/* line 156, ../sass/common.scss */
+.authorization h3 {
+  text-align: left;
+}
+
+/* line 159, ../sass/common.scss */
+.authorization ul li.disabled {
+  color: #ccc;
+}
+
+/* line 162, ../sass/common.scss */
+.rular {
+  height: 7px;
+  width: 100%;
+  background-color: #ccc;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#cccccc));
+  background: -moz-linear-gradient(100% 0% 270deg, white, #cccccc);
+  background-image: linear-gradient(top, #ffffff, #cccccc);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$start', endColorstr='$end', GradientType=0);
+  margin: 15px 0;
+}
+
+/* line 169, ../sass/common.scss */
+.authorization .btn.agree, .editor .btn.agree {
+  background-color: #adc742;
+  border: none;
+  width: 48%;
+}
+
+/* line 174, ../sass/common.scss */
+.authorization .btn.disagree, .editor .btn.disagree {
+  background-color: #f2f2f2;
+  border: none;
+  width: 48%;
+}
+
+/* line 180, ../sass/common.scss */
+.caret-container {
+  cursor: pointer;
+}
+
+/* line 183, ../sass/common.scss */
+#error-container {
+  background-color: #feba4f;
+  color: white;
+  border-radius: 3px;
+  padding: 3%;
+}
+/* line 188, ../sass/common.scss */
+#error-container img, #error-container p {
+  float: left;
+}
+/* line 191, ../sass/common.scss */
+#error-container img {
+  width: 10%;
+  margin-top: 1%;
+}
+/* line 195, ../sass/common.scss */
+#error-container p {
+  width: 80%;
+  margin: 0 5%;
+  font-size: 90%;
+  text-align: left;
+}
+
+/* line 202, ../sass/common.scss */
+.inline-error {
+  color: #d01b1b;
+  padding-left: 20%;
+  display: none;
+}
+/* line 206, ../sass/common.scss */
+.inline-error p {
+  padding-bottom: 0;
+}
+
+/* line 210, ../sass/common.scss */
+.input-group-lg {
+  padding-top: 10px;
+}
+
+/*.circle {
+    @include circle(100px, blue);
+}*/
+@media (min-width: 220px) {
+  /* line 2, ../sass/media-queries.scss */
+  .header-close {
+    display: none;
+  }
+}
+/* line 6, ../sass/media-queries.scss */
+.outer-container.feature-phone {
+width: auto;
+min-width: 220px;
+max-width: 320px;
+}
+/* line 8, ../sass/media-queries.scss */
+.outer-container.feature-phone * {
+  font-family: Arial;
+  border-radius: 0;
+}
+/* line 12, ../sass/media-queries.scss */
+.outer-container.feature-phone .main.container {
+  border-radius: 0;
+}
+/* line 15, ../sass/media-queries.scss */
+.outer-container.feature-phone .header-close {
+  display: none;
+}
+/* line 18, ../sass/media-queries.scss */
+.outer-container.feature-phone header .header-country select {
+  background-color: #fff;
+  color: #000;
+  width: 77%;
+  padding: 3px;
+  height: 24px;
+  margin-right: 0;
+}
+
+/* line 30, ../sass/media-queries.scss */
+.outer-container.feature-phone .user-info.bottom a {
+  display: inline-block;
+  margin: 2% 0;
+  text-decoration: underline;
+}
+/* line 35, ../sass/media-queries.scss */
+.outer-container.feature-phone .user-info img {
+}
+/* line 38, ../sass/media-queries.scss */
+.outer-container.feature-phone .user-info .details {
+  width: 85%;
+  border-right: 0;
+}
+/* line 42, ../sass/media-queries.scss */
+.outer-container.feature-phone .user-info a.re-login {
+  padding: 0;
+  width: 100%;
+}
+/* line 47, ../sass/media-queries.scss */
+.outer-container.feature-phone .main.container h1 {
+  font-size: 125%;
+}
+/* line 50, ../sass/media-queries.scss */
+.outer-container.feature-phone label {
+  color: #999;
+  font-size: 85%;
+  font-weight: normal;
+  text-align: left;
+  width: 100%;
+}
+/* line 57, ../sass/media-queries.scss */
+.outer-container.feature-phone footer {
+  border-radius: 0;
+}
+/* line 59, ../sass/media-queries.scss */
+.outer-container.feature-phone footer .footer-text {
+  color: white;
+  float: right;
+  font-size: 70%;
+  padding-right: 3%;
+  text-align: right;
+  width: 68%;
+}
+/* line 68, ../sass/media-queries.scss */
+.outer-container.feature-phone span.mobile-number {
+  font-size: 150%;
+  color: #000;
+}
+/* line 71, ../sass/media-queries.scss */
+.outer-container.feature-phone span.mobile-number.normal {
+  font-size: 100%;
+}
+/* line 75, ../sass/media-queries.scss */
+.outer-container.feature-phone .help-text-medium {
+  font-size: 90%;
+}
+/* line 77, ../sass/media-queries.scss */
+.outer-container.feature-phone .help-text-medium a {
+  color: #426ab2;
+}
+/* line 81, ../sass/media-queries.scss */
+.outer-container.feature-phone .authorization .help-text-medium {
+  text-align: left;
+  margin-bottom: 5%;
+}
+/* line 85, ../sass/media-queries.scss */
+.outer-container.feature-phone .outer-container.feature-phone {
+  font-size: 95%;
+}
+/* line 88, ../sass/media-queries.scss */
+.outer-container.feature-phone .rular {
+  height: 1px;
+}
+/* line 91, ../sass/media-queries.scss */
+.outer-container.feature-phone .authorization .btn {
+  font-size: 100%;
+}
+/* line 94, ../sass/media-queries.scss */
+.outer-container.feature-phone #carousel-example-generic {
+  margin-bottom: 5%;
+}
+/* line 96, ../sass/media-queries.scss */
+.outer-container.feature-phone #carousel-example-generic .regiter-icons-link {
+  display: inline-block;
+  padding: 3% 0 0 0;
+}
+/* line 101, ../sass/media-queries.scss */
+.outer-container.feature-phone .register .checkbox label a {
+  color: #426ab2;
+  font-size: 90%;
+}
+/* line 106, ../sass/media-queries.scss */
+.outer-container.feature-phone .tabs .img-circle {
+  border-radius: 50%;
+}
+/* line 109, ../sass/media-queries.scss */
+.outer-container.feature-phone .tabs a {
+  text-decoration: underline;
+}
+/* line 112, ../sass/media-queries.scss */
+.outer-container.feature-phone .tabs .apps {
+  font-weight: bold;
+  text-align: left;
+}
+/* line 118, ../sass/media-queries.scss */
+.outer-container.feature-phone .tabs .profile img {
+  float: none;
+  width: 50%;
+}
+/* line 122, ../sass/media-queries.scss */
+.outer-container.feature-phone .tabs .profile .details {
+  float: none;
+  width: 100%;
+}
+/* line 125, ../sass/media-queries.scss */
+.outer-container.feature-phone .tabs .profile .details p.name {
+  font-size: 108%;
+  margin-top: 4%;
+}
+/* line 129, ../sass/media-queries.scss */
+.outer-container.feature-phone .tabs .profile .details div {
+  font-size: 90%;
+}
+/* line 132, ../sass/media-queries.scss */
+.outer-container.feature-phone .tabs .profile .details button {
+  border: none;
+}
+/* line 137, ../sass/media-queries.scss */
+.outer-container.feature-phone .tabs .nav-tabs li.active a {
+  border-top: 1px solid #ccc;
+}
+/* line 141, ../sass/media-queries.scss */
+.outer-container.feature-phone .tabs .applications > .application .details {
+  width: 59%;
+}
+/* line 144, ../sass/media-queries.scss */
+.outer-container.feature-phone .tabs .applications > .application a {
+  float: right;
+}
+/* line 148, ../sass/media-queries.scss */
+.outer-container.feature-phone .tabs .applications > .application img {
+  margin-top: 0%;
+}
+/* line 152, ../sass/media-queries.scss */
+.outer-container.feature-phone .tabs .tabs_security {
+  width: 100%;
+}
+/* line 154, ../sass/media-queries.scss */
+.outer-container.feature-phone .tabs .tabs_security input {
+  width: 63%;
+  float: left;
+}
+/* line 158, ../sass/media-queries.scss */
+.outer-container.feature-phone .tabs .tabs_security a {
+  float: right;
+  font-size: 90%;
+  padding-top: 3%;
+}
+/* line 164, ../sass/media-queries.scss */
+.outer-container.feature-phone .carousel-inner .item.two, .outer-container.feature-phone .carousel-inner .item.three {
+  display: none;
+}
+
+/*@media (min-width: 767px) {
+  .home-img {
+    margin-top: 25px;
+  }
+  .close-img {
+    margin-top: 25px;
+  }
+  .lang-select {
+    margin-top: 35px;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-nav > li > a {
+    line-height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}*/
+/* line 3, ../sass/header.scss */
+header, footer {
+  background-color: #67963D;
+  border: 1px solid #75AA45;
+  border-radius: 6px 6px 0 0;
+  padding: 3% 0;
+}
+/* line 9, ../sass/header.scss */
+header a.navbar-brand, footer a.navbar-brand {
+  width: 25%;
+  padding: 0;
+  margin: 10 0px;
+  height: auto;
+  margin-left: 5%;
+}
+/* line 16, ../sass/header.scss */
+header .header-country, footer .header-country {
+  width: 45%;
+  margin: 1% 5% 1% 0;
+  float: right;
+}
+/* line 20, ../sass/header.scss */
+header .header-country a, footer .header-country a {
+  width: 13%;
+  margin: 4% 0;
+  display: inline-block;
+  float: right;
+}
+/* line 25, ../sass/header.scss */
+header .header-country a.link-globe, footer .header-country a.link-globe {
+  width: 15%;
+  margin-right: 3%;
+  float: left;
+}
+/* line 31, ../sass/header.scss */
+header .header-country select, footer .header-country select {
+  width: 57%;
+  float: left;
+  margin-right: 13px;
+  color: white;
+  background-image: none;
+  background-color: #75AA45;
+  border: #75AA45;
+  height: 25px;
+  margin-top: 3%;
+}
+
+/* line 5, ../sass/main.scss */
+.dropdown-container {
+  position: relative;
+  margin-bottom: 3%;
+}
+
+/* line 10, ../sass/main.scss */
+.dropdown-title {
+  border: 1px solid #ccc;
+  border-radius: 0 6px 6px 0;
+  float: left;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 0;
+  padding: 10px 16px;
+  position: relative;
+  width: 100%;
+}
+/* line 20, ../sass/main.scss */
+.dropdown-title .default-text {
+  width: 80%;
+  float: left;
+  color: #ccc;
+  text-align: left;
+  padding-left: 0;
+}
+
+/* line 28, ../sass/main.scss */
+.input-group input.form-control, .dropdown-title, .input-group-lg > .form-control, .input-group-lg > .input-group-addon, .input-group-lg > .input-group-btn > .btn {
+  height: 44px;
+}
+
+/* line 31, ../sass/main.scss */
+.input-group-lg > .form-control, .input-group-lg > .input-group-addon, .input-group-lg > .input-group-btn > .btn {
+  padding: 8px 16px;
+}
+
+/* line 35, ../sass/main.scss */
+ul.title-dropdown .text-container {
+  width: 87%;
+}
+/* line 37, ../sass/main.scss */
+ul.title-dropdown .text-container img {
+  width: 15%;
+  float: left;
+}
+/* line 41, ../sass/main.scss */
+ul.title-dropdown .text-container p {
+  width: 85%;
+  padding-top: 2px;
+  float: left;
+}
+
+/* line 49, ../sass/main.scss */
+ul li.with-menu .input-group-addon {
+  border-bottom-left-radius: 0;
+  background: transparent;
+  border-bottom: none;
+}
+/* line 54, ../sass/main.scss */
+ul li.with-menu .dropdown-title {
+  border-bottom-right-radius: 0;
+  border-bottom: none;
+  border-left: none;
+  padding-left: 0;
+}
+/* line 59, ../sass/main.scss */
+ul li.with-menu .dropdown-title p.default-text {
+  border-left: 1px solid #ccc;
+  padding-left: 20px;
+}
+
+/* line 66, ../sass/main.scss */
+ul.countries {
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+  display: none;
+}
+
+/* line 72, ../sass/main.scss */
+.text-container {
+  float: left;
+  width: 80%;
+}
+
+/* line 77, ../sass/main.scss */
+.text-container p {
+  padding-left: 20px;
+  float: left;
+}
+
+/* line 82, ../sass/main.scss */
+ul li.country .dropdown-title {
+  background-color: white;
+  border-top: 0;
+  border-radius: 0;
+  border-bottom: 0;
+  padding: 0 16px;
+}
+/* line 88, ../sass/main.scss */
+ul li.country .dropdown-title .text-container {
+  cursor: pointer;
+  border-top: 1px solid #ccc;
+  padding: 3px 0 5px;
+  width: 100%;
+}
+/* line 93, ../sass/main.scss */
+ul li.country .dropdown-title .text-container p {
+  padding-top: 6px;
+}
+/* line 96, ../sass/main.scss */
+ul li.country .dropdown-title .text-container img {
+  width: 15%;
+  display: inline-block;
+  float: left;
+}
+/* line 103, ../sass/main.scss */
+ul li.country.last .dropdown-title {
+  border-bottom: 1px solid #ccc;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+/* line 111, ../sass/main.scss */
+.application-logo-circle {
+  float: left;
+  width: 34%;
+}
+
+/* line 115, ../sass/main.scss */
+.mobile-circle {
+  float: right;
+  width: 34%;
+  margin-top: 3%;
+}
+/* line 119, ../sass/main.scss */
+.mobile-circle p {
+  padding: 3% 0 0 0;
+}
+
+/* line 123, ../sass/main.scss */
+.switch-arrow {
+  float: left;
+  margin: 8% 6%;
+  width: 20%;
+}
+
+/* Register create stuff */
+/* line 132, ../sass/main.scss */
+.icons-container, #carousel-example-generic {
+  margin: 3% 0;
+}
+/* line 134, ../sass/main.scss */
+.icons-container img, #carousel-example-generic img {
+  float: left;
+  width: 23%;
+  margin-right: 2%;
+}
+
+/* line 140, ../sass/main.scss */
+#carousel-example-generic {
+  margin-bottom: 12%;
+}
+
+/* line 143, ../sass/main.scss */
+.carousel-indicators li {
+  background-color: #ccc;
+  border-color: #ccc;
+}
+
+/* line 147, ../sass/main.scss */
+.carousel-indicators {
+  bottom: -40px;
+}
+
+/* line 150, ../sass/main.scss */
+.carousel-indicators .active {
+  background-color: green;
+  border: none;
+}
+
+/* line 154, ../sass/main.scss */
+.divider {
+  margin: 3% 0 0 3%;
+}
+/* line 156, ../sass/main.scss */
+.divider span {
+  display: inline-block;
+  float: left;
+}
+/* line 160, ../sass/main.scss */
+.divider .arrow {
+  height: 1px;
+  width: 40%;
+  background-color: #ccc;
+  margin: 3% 0;
+}
+/* line 166, ../sass/main.scss */
+.divider .content {
+  margin: 0 5%;
+  width: 10%;
+}
+
+/* line 171, ../sass/main.scss */
+.register p.info {
+  padding-top: 10%;
+}
+/* line 173, ../sass/main.scss */
+.register p.info span {
+  color: #406ab6;
+}
+
+/* line 179, ../sass/main.scss */
+.register .checkbox label {
+  float: left;
+}
+/* line 181, ../sass/main.scss */
+.register .checkbox label a {
+  color: #adc742;
+}
+/* line 185, ../sass/main.scss */
+.register .checkbox input {
+  margin-top: 2px;
+}
+
+/* Terms and Condition page */
+/* line 191, ../sass/main.scss */
+.terms-and-condition {
+  height: 300px;
+  width : 100%; 
+}
+/* line 195, ../sass/main.scss */
+.terms-and-condition h2 {
+  font-size: 150%;
+}
+
+/* Error Fatal */
+/* line 202, ../sass/main.scss */
+.container.main.error {
+  padding-top: 15%;
+  padding-bottom: 15%;
+  background-color: #fef2e4;
+}
+
+/* line 207, ../sass/main.scss */
+.error-close {
+  width: 20%;
+  margin: 3% auto;
+}
+
+/* line 211, ../sass/main.scss */
+.error-text {
+  color: #d01b1b;
+  font-size: 125%;
+  border-bottom: 1px solid #f7dcb7;
+  margin-bottom: 5%;
+  padding-bottom: 3%;
+}
+
+/* Tabs page */
+/* line 220, ../sass/main.scss */
+.salir_section {
+  float: right;
+  width: 20%;
+  padding-top: 3%;
+}
+/* line 224, ../sass/main.scss */
+.salir_section a {
+  color: white;
+}
+
+/* line 229, ../sass/main.scss */
+.tabs button {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+  width: 100%;
+}
+/* line 234, ../sass/main.scss */
+.tabs button.next {
+  padding: 6px 12px;
+}
+/* line 236, ../sass/main.scss */
+.tabs button.next span {
+  float: left;
+}
+/* line 238, ../sass/main.scss */
+.tabs button.next span.password {
+  padding-top: 4px;
+}
+/* line 241, ../sass/main.scss */
+.tabs button.next span.text {
+  float: right;
+}
+/* line 243, ../sass/main.scss */
+.tabs button.next span.text .glyphicon {
+  float: none;
+}
+/* line 251, ../sass/main.scss */
+.tabs .divider .arrow {
+  width: 35%;
+}
+/* line 254, ../sass/main.scss */
+.tabs .divider .content {
+  width: 30%;
+  margin: 0;
+  font-weight: bold;
+}
+/* line 260, ../sass/main.scss */
+.tabs .divider.second .arrow {
+  width: 18%;
+}
+/* line 263, ../sass/main.scss */
+.tabs .divider.second .content {
+  width: 64%;
+}
+/* line 268, ../sass/main.scss */
+.tabs .divider.third .arrow {
+  width: 6%;
+}
+/* line 271, ../sass/main.scss */
+.tabs .divider.third .content {
+  width: 88%;
+}
+
+/* line 277, ../sass/main.scss */
+.tabs .profile {
+  margin: 20px 0;
+}
+/* line 279, ../sass/main.scss */
+.tabs .profile img {
+  display: inline-block;
+  float: left;
+  margin-top: 5%;
+  width: 25%;
+}
+/* line 285, ../sass/main.scss */
+.tabs .profile .details {
+  float: right;
+  text-align: left;
+  width: 70%;
+}
+/* line 289, ../sass/main.scss */
+.tabs .profile .details p, .tabs .profile .details span.value {
+  color: #4d74b8;
+}
+/* line 292, ../sass/main.scss */
+.tabs .profile .details p {
+  font-size: 120%;
+}
+/* line 295, ../sass/main.scss */
+.tabs .profile .details span.name {
+  display: inline-block;
+  float: left;
+  width: 35%;
+}
+/* line 300, ../sass/main.scss */
+.tabs .profile .details button {
+  margin-top: 5px;
+  padding: 2px 12px;
+}
+
+/* line 307, ../sass/main.scss */
+.tabs .nav-tabs li {
+  width: 50%;
+  background: #f2f2f2;
+}
+/* line 310, ../sass/main.scss */
+.tabs .nav-tabs li a {
+  color: #666666;
+  margin-right: 0;
+  border-radius: 0;
+}
+/* line 316, ../sass/main.scss */
+.tabs .nav-tabs li.active a {
+  border-left: 0;
+  border-top: 2px solid #426ab2;
+  color: #4d74b8;
+}
+/* line 321, ../sass/main.scss */
+.tabs .nav-tabs li:last-child.active a {
+  border-left: 1px solid #ccc;
+  border-right: 0;
+}
+
+/* line 326, ../sass/main.scss */
+.tabs .applications > .application {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+/* line 329, ../sass/main.scss */
+.tabs .applications > .application img {
+  float: left;
+  width: 15%;
+}
+/* line 333, ../sass/main.scss */
+.tabs .applications > .application .details {
+  float: left;
+  margin-left: 5%;
+  text-align: left;
+  width: 70%;
+}
+/* line 338, ../sass/main.scss */
+.tabs .applications > .application .details p {
+  margin-bottom: 0;
+}
+/* line 340, ../sass/main.scss */
+.tabs .applications > .application .details p.name {
+  font-size: 120%;
+}
+/* line 343, ../sass/main.scss */
+.tabs .applications > .application .details p.application {
+  color: #666;
+}
+/* line 348, ../sass/main.scss */
+.tabs .applications > .application > span {
+  padding: 5% 0 0;
+}

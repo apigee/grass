@@ -14,43 +14,39 @@ exports.index = function(req, res) {
 
   var userid = req.query.userid;
 
-  if (req.query.renderConsentScreen == "false") {
+  var requestedDisplay = req.query.display;
+
+  
+  console.log("in exports.index....");
+  var renderConsentScreen = req.query.renderConsentScreen;
+  if (renderConsentScreen == null) {
+    renderConsentScreen = true;
+  }
+
+  if (renderConsentScreen == "false") {
 
     res.redirect("/openid/redirect/" + req.query.sessionid)
   }
 
   else if (userid != null && userid != "") {
+    console.log("userid != null");
 
   if (req.query.open_id != "true") {
 
     res.redirect("/openid/profile?sessionid="+req.query.sessionid);
 
   } else {
-      var sessionid = req.param("sessionid");
-      res.render('consent', {
-        title : 'Consent',
-        authenticated : false,
-        sessionid : req.param("sessionid"),
-        appName : req.query.appName,
-        scope : req.query.scope,
-        redirectURL : redirect_uri + '?error=refused'
-      })
+      console.log("render consent");
+      handleConsent(req,res,redirect_uri,false);
     }
 
   } else {
-    var sessionid = req.param("sessionid");
-    console.log("req.param: " + req.param("sessionid"));
-    res.render('index', {
-      title : 'Home',
-      authenticated : false,
-      sessionid : req.param("sessionid"),
-      redirectURL : redirect_uri + '?error=refused',
-      showInvalidLoginMessage : "none" ,
-      showInvalidMsisdnMessage : "none" ,
-      activeTab : "normal-login"
-    })
+
+    handleIndex(req,res,redirect_uri,"none", "none");
 
   }
+
+
 
 };
 
@@ -80,6 +76,149 @@ exports.errorflow = function(req, res) {
   })
 };
 
+
+function handleIndex(req,res, redirect_uri, invalidLogin, invalidMsisdn) {
+    var sessionid = req.param("sessionid");
+    console.log("req.param: " + req.param("sessionid"));
+    var requestedDisplay = req.query.display;
+
+    var appName = req.query.appName;
+
+    var socialLogin = true;
+    var smsLogin = true;
+    var emailLogin = true;
+
+    if (appName != null) {
+
+        appName = appName.trim();
+        if (appName != "") {
+          if (appName.toUpperCase() == "IDENTITYAPP") {
+              socialLogin = true;
+              emailLogin = true;
+              smsLogin = false;
+            console.log("Identity App");
+          } else if (appName.toUpperCase() == "BANKAPP") {
+              smsLogin = true;
+              socialLogin = false;
+              emailLogin = false;
+          }
+        }
+
+    }
+
+    res.render('index', {
+      title : 'Home',
+      req : req,
+      layout: template_layout,
+      authenticated : false,
+      showUserInfoDiv: false,
+      sessionid : sessionid,
+      redirectURL : redirect_uri + '?error=refused',
+      display : requestedDisplay,
+      logged_in_user_email:"",
+      logged_in_user_first_name:"",
+      logged_in_user_surname:"",
+      logged_in_user_email:"",
+      logged_in_user_image: "",
+      showInvalidLoginMessage : invalidLogin,
+      showInvalidMsisdnMessage : invalidMsisdn ,
+      activeTab : "normal-login",
+      socialLoginVisible : socialLogin,
+      smsLoginVisible : smsLogin,
+      emailLoginVisible : emailLogin,
+      email_to_prefill:""
+    })
+}
+
+
+function handleConsent(req, res, redirect_uri, isAuthenticated) {
+
+  var user_attribute="";
+  var scopes = req.query.scopes;
+  var userid = req.query.userid;
+
+  var requestedDisplay = req.query.display;
+
+  var scope_icon="";
+  var scope_class="img-circle";
+  var app_logo_url =null;
+  var userEmail = "";
+  var firstName = "";
+  var lastName = "";
+
+  console.log("before scope check");
+  if (scopes != null ){
+       var scope_array= (scopes.trim()).split(" ") 
+       if (scope_array.indexOf("profile") != -1 ){
+         scope_icon= req.query.logged_in_user_image || req.query.basepath+"/ui/images/icons/img_smart.jpg";
+         user_attribute = req.query.logged_in_user_first_name;
+       }else if ( scope_array.indexOf("email") != -1){
+         scope_icon= req.query.logged_in_user_image || req.query.basepath+"/ui/images/icons/img_smart.jpg";
+         user_attribute = req.query.logged_in_user_email;
+       }
+       else {
+           for(var i=0; i<scope_array.length ; i++) {
+               
+               if (scope_array[i] == "mobileid" || scope_array[i] == "phone" ) {
+                 user_attribute="+"+req.query.formatted_user_msisdn;
+                 scope_icon= req.query.basepath+"/ui/images/mobile-circle.png";
+                 scope_class="close-img";
+                 break;
+               }
+          }
+      } 
+  }
+
+  console.log("after scope check");
+
+  var isShowUserDiv = false;
+  if (isAuthenticated == true) {
+    isShowUserDiv = true;
+  }
+  if (userid != null && userid != "") {
+    userEmail = userid;
+    isShowUserDiv = true;
+  }
+
+  tempName = req.query.firstName;
+  if (tempName != null) {
+    firstName = tempName;
+  }
+
+  tempName = req.query.lastName;
+  if (tempName != null) {
+    lastName = tempName;
+  }
+
+  console.log("before rendering consent ui");
+  console.log("scope_icon: " + scope_icon);
+  console.log("user_attribute : " + user_attribute);
+  console.log("isShowUserDiv : " + isShowUserDiv);
+
+   var sessionid = req.param("sessionid");
+      res.render('consent', {
+        title : 'Consent',
+        req : req,
+        display : requestedDisplay || '',
+        logged_in_user_email : userEmail,
+        logged_in_user_first_name: firstName,
+        logged_in_user_surname : lastName,
+        logged_in_user_image: "",
+        authenticated : isAuthenticated,
+        sessionid : req.param("sessionid"),
+        appName : req.query.appName,
+        scope : req.query.scope,
+        app_logo_url : "",
+        scope_icon : scope_icon,
+        scope_class : scope_class,
+        showUserInfoDiv:isShowUserDiv,
+        user_attribute : user_attribute,
+        redirectURL : redirect_uri + '?error=refused'
+      });
+
+
+}
+
 exports.login = function(req, res) {
 
   
@@ -89,23 +228,20 @@ exports.login = function(req, res) {
     redirect_uri="/openid/index";
   }
   
+  // var sess = req.session;
+  // requestedDisplay = sess.display;
+
   if (req.query.renderConsentScreen == "false") {
 
-    res.redirect("/openid/redirect/" + req.query.sessionid)
-  }
+    console.log("renderConsentScreen == false");
+    res.redirect("/openid/redirect/" + req.query.sessionid);
 
+  }
+  
   else if (req.query.userid == null || req.query.userid == "") {
-    var sessionid = req.param("sessionid");
-    console.log("req.param: " + req.param("sessionid"));
-    res.render('index', {
-      title : 'Home',
-      authenticated : false,
-      sessionid : req.param("sessionid"),
-      redirectURL : redirect_uri + '?error=refused',
-      showInvalidLoginMessage : "true" ,
-      showInvalidMsisdnMessage : "none" ,
-      activeTab : "normal-login"
-    })
+    handleIndex(req,res,redirect_uri,"true","none");
+
+
 
   } else {
     // success — user has been logged in
@@ -114,37 +250,46 @@ exports.login = function(req, res) {
       res.redirect("/openid/profile?sessionid="+req.query.sessionid);
 
     } else {
+        handleConsent(req,res,redirect_uri,true);
 
-      res.render('consent', {
-        title : 'Consent',
-        authenticated : true,
-        sessionid : req.param("sessionid"),
-        appName : req.query.appName,
-        scope : req.query.scope,
-        redirectURL : redirect_uri + '?error=refused'
-      })
     }
   }
 };
 
 exports.create = function(req, res) {
 
+  console.log("in create...");
+  console.log("open_id: " + req.query.open_id);
   if(req.query.open_id == "true"){
     redirect_uri=req.query.redirect_uri;
   }else {
     redirect_uri="/openid/index";
   }
   
+  // var sess = req.session;
+  // requestedDisplay = sess.display;
+  // redirect_uri = sess.redirect_uri;
+
   var error = req.query.error;
   if (error != null) {
-    
+    console.log("error != null");
     var sessionid = req.param("sessionid");
 
+     console.log("Error: " + error);
     res.render('register', {
       title : 'Register',
       authenticated : false,
       sessionid : req.param("sessionid"),
       showErrorMessage : "true" ,
+      req : req,
+      display : req.query.display || '',
+      logged_in_user_email:"",
+      logged_in_user_first_name:"",
+      logged_in_user_surname:"",
+      logged_in_user_email:"",
+      logged_in_user_image: "",
+      showUserInfoDiv: false,
+      redirectURL: redirect_uri + '?error=refused',
       error : error
       
     })
@@ -158,9 +303,18 @@ exports.create = function(req, res) {
     })
   } else {
 
+    console.log("in else");
     res.render('pin', {
       title : 'Pin',
+      req : req,
+      display : req.query.display || '',
+      logged_in_user_email:"",
+      logged_in_user_first_name:"",
+      logged_in_user_surname:"",
+      logged_in_user_email:"",
+      logged_in_user_image: "",
       authenticated : false,
+      showUserInfoDiv: false,
       sessionid : req.param("sessionid"),
       redirectURL : redirect_uri + '?error=refused',
       showErrorMessage : "none" 
@@ -172,6 +326,9 @@ exports.create = function(req, res) {
 
 exports.reset = function(req, res) {
   
+  // var sess = req.session;
+  // requestedDisplay = sess.display;
+
   if(req.query.open_id == "true"){
     redirect_uri=req.query.redirect_uri;
   }else {
@@ -184,7 +341,15 @@ exports.reset = function(req, res) {
 
     res.render('recovery', {
       title : 'Forget Password',
+      req : req,
+      display : req.query.display,
+      logged_in_user_email:"",
+      logged_in_user_first_name:"",
+      logged_in_user_surname:"",
+      logged_in_user_email:"",
+      logged_in_user_image: "",
       authenticated : false,
+      showUserInfoDiv: false,
       sessionid : req.param("sessionid"),
       showErrorMessage : "true" ,
       error : error
@@ -193,8 +358,16 @@ exports.reset = function(req, res) {
   } else {
     res.render('pin', {
       title : 'Pin',
+      req : req,
+      display : req.query.display,
+      logged_in_user_email:"",
+      logged_in_user_first_name:"",
+      logged_in_user_surname:"",
+      logged_in_user_email:"",
+      logged_in_user_image: "",
       sessionid : req.param("sessionid"),
       authenticated : false,
+      showUserInfoDiv: false,
       redirectURL : redirect_uri + '?error=refused',
       showErrorMessage : "none" 
       
@@ -211,12 +384,29 @@ exports.register = function(req, res) {
   if ('OPTIONS' == req.method) {
     res.send(200);
   }
+
+
+if(req.query.open_id == "true"){
+    redirect_uri=req.query.redirect_uri;
+  }else {
+    redirect_uri="/openid/index";
+  }
+
   var sessionid = req.param("sessionid");
   console.log("req.param: " + req.param("sessionid"));
   res.render('register', {
     title : 'Register',
     authenticated : false,
     sessionid : req.param("sessionid"),
+    req : req,
+    redirectURL : redirect_uri + '?error=refused',
+    display : req.query.display,
+    logged_in_user_email:"",
+    logged_in_user_first_name:"",
+    logged_in_user_surname:"",
+    logged_in_user_email:"",
+    logged_in_user_image: "",
+    showUserInfoDiv:false,
     showErrorMessage : "none" ,
     error : req.query.error
     
@@ -231,11 +421,28 @@ exports.recovery = function(req, res) {
   if ('OPTIONS' == req.method) {
     res.send(200);
   }
+
+  if(req.query.open_id == "true"){
+    redirect_uri=req.query.redirect_uri;
+  }else {
+    redirect_uri="/openid/index";
+  }
+
+
   var sessionid = req.param("sessionid");
   console.log("req.param: " + req.param("sessionid"));
   res.render('recovery', {
     title : 'Forget Password',
     authenticated : false,
+    req : req,
+    redirectURL : redirect_uri + '?error=refused',
+    display : req.query.display,
+    logged_in_user_email:"",
+    logged_in_user_first_name:"",
+    logged_in_user_surname:"",
+    logged_in_user_email:"",
+    logged_in_user_image: "",
+    showUserInfoDiv: false,
     sessionid : req.param("sessionid"),
     showErrorMessage : "none" ,
     error : ""
@@ -252,7 +459,8 @@ exports.pinSubmit = function(req, res) {
     redirect_uri="/openid/index";
   }
   
-  
+
+  Console.log('error: ' + error);
 
   if (req.query.renderConsentScreen == "false") {
     res.redirect("/openid/redirect/" + req.query.sessionid)
@@ -272,7 +480,15 @@ exports.pinSubmit = function(req, res) {
       title : 'Pin',
       authenticated : false,
       sessionid : req.param("sessionid"),
-      redirectURL : redirect_uri + '?error=refused',
+      req : req,
+      display : req.query.display,
+      logged_in_user_email:"",
+      logged_in_user_first_name:"",
+      logged_in_user_surname:"",
+      logged_in_user_email:"",
+      logged_in_user_image: "",
+      showUserInfoDiv: false,
+    redirectURL : redirect_uri + '?error=refused',
       showErrorMessage : "true" 
     })
     
@@ -280,15 +496,8 @@ exports.pinSubmit = function(req, res) {
     res.redirect("/openid/profile?sessionid="+req.query.sessionid);
 
   } else {
+    handleConsent(req,res,redirect_uri,false);
 
-    res.render('consent', {
-      title : 'Consent',
-      authenticated : false,
-      sessionid : req.param("sessionid"),
-      appName : req.query.appName,
-      scope : req.query.scope,
-      redirectURL : req.query.redirect_uri + '?error=refused'
-    })
   }
 
 };
@@ -301,22 +510,25 @@ exports.msisdnsubmit = function(req, res) {
     redirect_uri="/openid/index";
   }
 
+  // var sess = req.session;
+  // requestedDisplay = sess.display;
+
   if (req.query.userid == null || req.query.userid == "") {
-  var sessionid = req.param("sessionid");
-  console.log("req.param: " + req.param("sessionid"));
-  res.render('index', {
-    title : 'Home',
-    authenticated : false,
-    sessionid : req.param("sessionid"),
-    redirectURL : redirect_uri + '?error=refused',
-    showInvalidLoginMessage : "none" ,
-    showInvalidMsisdnMessage : "true" ,
-    activeTab : "sms-login"
-  })
+  
+      handleIndex(req,res,redirect_uri,"none","true");
+
 } else {
   res.render('pin', {
     title : 'Pin',
+    req : req,
+    display : req.query.display,
+    logged_in_user_email:"",
+    logged_in_user_first_name:"",
+    logged_in_user_surname:"",
+    logged_in_user_email:"",
+    logged_in_user_image: "",
     authenticated : false,
+    showUserInfoDiv: false,
     sessionid : req.param("sessionid"),
     redirectURL : redirect_uri + '?error=refused',
     showErrorMessage : "none" 
@@ -328,6 +540,11 @@ exports.msisdnsubmit = function(req, res) {
 
 exports.myapps = function(req, res) {
 
+ if(req.query.open_id == "true"){
+    redirect_uri=req.query.redirect_uri;
+  }else {
+    redirect_uri="/openid/index";
+  }
   var applications = [];
   var consents = req.body.consents;
 
@@ -345,7 +562,16 @@ exports.myapps = function(req, res) {
     }
   }
 
-  res.render('myapps', {title: "My Applications", authenticated : true, applications:applications , sessionid: req.query.sessionid });
+  res.render('myapps', {title: "My Applications", authenticated : true, applications:applications , sessionid: req.query.sessionid, 
+          req : req,
+          display : req.query.display || '',
+          logged_in_user_email : req.query.email || '',
+          logged_in_user_first_name: req.query.first_name,
+          logged_in_user_surname : req.query.surname,
+          logged_in_user_image: "",
+          redirectURL : redirect_uri +'?error=refused',
+          showUserInfoDiv : true
+      });
 }
 
 exports.revokeConsent = function(req, res) {
@@ -359,6 +585,11 @@ exports.Profileupdate=  function(req, res) {
 }
 
 exports.Profile=  function(req, res) {
+   if(req.query.open_id == "true"){
+    redirect_uri=req.query.redirect_uri;
+  }else {
+    redirect_uri="/openid/index";
+  }
   res.render('myprofile',
       {
           title: "My Profile",
@@ -376,7 +607,15 @@ exports.Profile=  function(req, res) {
           city: req.query.city || '',
           state: req.query.state || '',
           country: req.query.country || '',
-          sessionid: req.query.sessionid
+          sessionid: req.query.sessionid,
+           req : req,
+          display : req.query.display || '',
+          logged_in_user_email : req.query.email || '',
+          logged_in_user_first_name: req.query.first_name,
+          logged_in_user_surname : req.query.surname,
+          logged_in_user_image: "",
+          redirectURL : redirect_uri +'?error=refused',
+          showUserInfoDiv : true
           });
 }
 
@@ -394,7 +633,15 @@ exports.profileEdit=  function(req, res) {
     state : req.query.state || "",
     city : req.query.city || "",
     addr1 : req.query.house || "",
-    addr2 : req.query.street || ""
+    addr2 : req.query.street || "",
+    req : req,
+    display : req.query.display || '',
+    logged_in_user_email : req.query.email || '',
+    logged_in_user_first_name: req.query.first_name,
+    logged_in_user_surname : req.query.surname,
+    logged_in_user_image: "",
+    redirectURL : redirect_uri +'?error=refused',
+    showUserInfoDiv : true
   })
 
 }

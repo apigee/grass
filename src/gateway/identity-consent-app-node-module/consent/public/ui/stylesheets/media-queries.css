@@ -1,0 +1,145 @@
+@media (min-width: 220px) {
+  /* line 2, ../sass/media-queries.scss */
+  .header-close {
+    display: none;
+  }
+}
+/* line 6, ../sass/media-queries.scss */
+.outer-container.feature-phone {
+  width: 220px;
+}
+/* line 8, ../sass/media-queries.scss */
+.outer-container.feature-phone * {
+  font-family: Arial;
+  border-radius: 0;
+}
+/* line 12, ../sass/media-queries.scss */
+.outer-container.feature-phone .main.container {
+  border-radius: 0;
+}
+/* line 15, ../sass/media-queries.scss */
+.outer-container.feature-phone .header-close {
+  display: none;
+}
+/* line 18, ../sass/media-queries.scss */
+.outer-container.feature-phone header .header-country select {
+  background-color: #fff;
+  color: #000;
+  width: 77%;
+  padding: 3px;
+  height: 24px;
+  margin-right: 0;
+}
+/* line 27, ../sass/media-queries.scss */
+.outer-container.feature-phone .user-info.bottom a {
+  display: inline-block;
+  margin: 2% 0;
+  text-decoration: underline;
+}
+/* line 32, ../sass/media-queries.scss */
+.outer-container.feature-phone .user-info img {
+  margin: 7% 0;
+}
+/* line 35, ../sass/media-queries.scss */
+.outer-container.feature-phone .user-info .details {
+  width: 85%;
+  border-right: 0;
+}
+/* line 39, ../sass/media-queries.scss */
+.outer-container.feature-phone .user-info a.re-login {
+  padding: 0;
+  width: 100%;
+}
+/* line 44, ../sass/media-queries.scss */
+.outer-container.feature-phone .main.container h1 {
+  font-size: 125%;
+}
+/* line 47, ../sass/media-queries.scss */
+.outer-container.feature-phone label {
+  color: #999;
+  font-size: 85%;
+  font-weight: normal;
+  text-align: left;
+  width: 100%;
+}
+/* line 54, ../sass/media-queries.scss */
+.outer-container.feature-phone footer {
+  border-radius: 0;
+}
+/* line 56, ../sass/media-queries.scss */
+.outer-container.feature-phone footer .footer-text {
+  color: white;
+  float: right;
+  font-size: 70%;
+  padding-right: 3%;
+  text-align: right;
+  width: 68%;
+}
+/* line 65, ../sass/media-queries.scss */
+.outer-container.feature-phone span.mobile-number {
+  font-size: 150%;
+  color: #000;
+}
+/* line 68, ../sass/media-queries.scss */
+.outer-container.feature-phone span.mobile-number.normal {
+  font-size: 100%;
+}
+/* line 72, ../sass/media-queries.scss */
+.outer-container.feature-phone .help-text-medium {
+  font-size: 90%;
+}
+/* line 74, ../sass/media-queries.scss */
+.outer-container.feature-phone .help-text-medium a {
+  color: #426ab2;
+}
+/* line 78, ../sass/media-queries.scss */
+.outer-container.feature-phone .authorization .help-text-medium {
+  text-align: left;
+  margin-bottom: 5%;
+}
+/* line 82, ../sass/media-queries.scss */
+.outer-container.feature-phone .outer-container.feature-phone {
+  font-size: 95%;
+}
+/* line 85, ../sass/media-queries.scss */
+.outer-container.feature-phone .rular {
+  height: 1px;
+}
+/* line 88, ../sass/media-queries.scss */
+.outer-container.feature-phone .authorization .btn {
+  font-size: 100%;
+}
+/* line 91, ../sass/media-queries.scss */
+.outer-container.feature-phone #carousel-example-generic {
+  margin-bottom: 5%;
+}
+/* line 93, ../sass/media-queries.scss */
+.outer-container.feature-phone #carousel-example-generic .regiter-icons-link {
+  display: inline-block;
+  padding: 3% 0 0 0;
+}
+/* line 98, ../sass/media-queries.scss */
+.outer-container.feature-phone .register .checkbox label a {
+  color: #426ab2;
+  font-size: 90%;
+}
+
+/*@media (min-width: 767px) {
+  .home-img {
+    margin-top: 25px;
+  }
+  .close-img {
+    margin-top: 25px;
+  }
+  .lang-select {
+    margin-top: 35px;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-nav > li > a {
+    line-height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}*/

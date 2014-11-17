@@ -13,6 +13,10 @@ $(document).ready(function() {
             $("#grassModal .modal-title").html(modalTitle);
             $("#grassModal .modal-body").html(modalContent);
             $("#grassModal").modal();
+            $("#grassModal").show();
+
+
+
         
     });
     

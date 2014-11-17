@@ -13,9 +13,21 @@ engine= require('ejs')
   , path = require('path')
 
 
+
+var i18n = require("i18n");
+
 var app = module.exports = express.createServer();
 
+
 // Configuration
+
+i18n.configure({
+    locales: ['es', 'en'],
+    //cookie: 'lang',
+    directory: __dirname+'/public/ui/locales',
+    defaultLocale: 'en'
+
+  });
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
@@ -23,7 +35,9 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(require('stylus').middleware({ src: __dirname + '/public' }));
-  app.use(app.router);
+  app.use(i18n.init);
+  
+ 
   app.use(express.static(__dirname + '/public'));
 });
 
@@ -35,6 +49,25 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
+
+
+
+//commented newly added to check cookie issue
+ app.use(function(req, res, next) {
+     device_type = "";
+     template_layout = "layout.ejs"
+     if (req.query.basepath == null || req.query.basepath == "")
+         req.query.basepath = '/openid';
+			//req.query.basepath = "";
+
+   if (req.query.is_expired == "true") {
+     routes.sessionExpire(req, res);
+   } else {
+     next();
+   }
+ });
+
+app.use(app.router);
 // Routes
 
 app.get('/index', routes.index);

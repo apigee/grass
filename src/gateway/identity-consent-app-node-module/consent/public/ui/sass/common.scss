@@ -1,0 +1,166 @@
+$font-stack     : "Myriad Pro";
+$green-color    : #adc742;
+
+@mixin gradient($start, $end) {
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from($start), to($end));
+    background: -moz-linear-gradient(100% 0% 270deg,$start, $end);
+    background-image:linear-gradient(top, $start, $end);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='$start', endColorstr='$end', GradientType=0);
+}
+/*@mixin circle($radius, $color) { 
+    width: $radius; 
+    height: $radius; 
+    background: $color;
+    border-radius: $radius / 2; 
+}*/
+
+html, body * {
+    font-family: $font-stack;
+}
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+input {
+    text-align: left;
+}
+ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.outer-container { 
+    width: 320px;
+    margin: 50px auto;
+    background: transparent;
+    z-index: 999;
+    height: auto;
+    position: relative;
+    
+}
+.container {
+    width: 100%;
+}
+.main.container {
+    padding: 6%;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 0 0 6px 6px;
+    background-color: white;
+    h1 {
+        font-size: 190%;
+    }
+    &.register h1 {
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+}
+p.help-text, p.help-text-medium {
+    color: #999;
+    font-size: 81%;
+    margin: 0;
+    &.bottom {
+        padding: 5% 0 0 0;
+    }
+    &.register-bottom {
+        padding: 2% 0 5% 0;
+    }
+}
+p.help-text-medium {
+    font-size: 125%;
+    padding-top: 3%;
+    a {
+        color: $green-color;
+    }
+}
+a.mobile-no {
+    color: #67963D;
+    font-size: 150%;
+    margin: 3% 0;
+    display: inline-block;
+}
+
+    
+
+#overlay_shield {
+    background-color: #000000;
+    color: #FF0000;
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}    
+
+
+    
+.btn-success {
+    background-color: $green-color;
+}
+.btn-block {
+    margin: 10px 0;
+    border: none;
+}
+.authorization {
+    text-align: left;
+}
+.authorization ul {
+    margin-left: 20px; 
+}
+.authorization ul, .authorization ul li {
+    text-align: left;
+    list-style: disc;
+}
+.authorization h3 {
+    text-align: left;
+}        
+.authorization ul li.disabled {
+    color: #ccc;
+}
+.rular {
+    height:7px;
+    width: 100%;
+    background-color: #ccc;
+    @include gradient(#fff, #ccc);
+    margin: 15px 0;
+}
+.authorization .btn.agree {
+    background-color: $green-color;
+    border: none;
+    width: 48%;
+}
+.authorization .btn.disagree {
+    background-color: #f2f2f2;
+    border: none;
+    width: 48%;
+}
+
+.caret-container {
+    cursor: pointer;
+}
+#error-container {
+    background-color: #feba4f;
+    color: white;
+    border-radius: 3px;
+    padding: 3%;    
+    img, p {
+        float: left;
+    }
+    img {
+        width: 10%;
+        margin-top: 1%;
+    }
+    p {
+        width: 80%;
+        margin: 0 5%;
+        font-size: 90%;
+        text-align: left;
+    }
+}
+
+/*.circle {
+    @include circle(100px, blue);
+}*/

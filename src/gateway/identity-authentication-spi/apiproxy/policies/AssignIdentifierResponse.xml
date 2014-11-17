@@ -14,7 +14,7 @@
 			<Header name="Access-Control-Max-Age">86400</Header>
 		</Headers>
 		<Payload contentType="application/json" variablePrefix="%"
-			variableSuffix="#">{"user_identifier_id" : "123456"}</Payload>
+			variableSuffix="#">{"user_identifier_id" : "123456", "first_name" : "Test", "last_name" : "Test", "email" : "test@xyz.com"}</Payload>
 
 		<StatusCode>200</StatusCode>
 	</Set>

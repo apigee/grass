@@ -1,0 +1,269 @@
+.modal {
+    width: 900px;
+    margin: 50px auto;
+}
+.outer-container { 
+    width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    z-index: 999;
+    height: auto;
+    position: relative;
+    
+}
+.modal .outer-container {
+    width: 100%;
+}
+.container {
+    width: 100%;
+}
+.main.container {
+    padding: 30px;
+    text-align: center;
+}
+#overlay_shield {
+    background-color: #000000;
+    color: #FF0000;
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}    
+.user-info {
+    background-color: #efefef;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+}
+.user-info h3 {
+    padding: 0;
+    margin: 0;
+}
+
+.user {
+    float: left;
+    width: 80%;
+    
+}
+.user span.user-image {
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    float: left;
+    -webkit-border-radius: 150px;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .3); 
+	margin-left : 10px;
+	
+	   
+}   
+
+.user span.user-email {
+font-size: 10px;
+COLOR: #787878;
+margin-left: 10px;
+margin-top: 100px;
+}
+ 
+
+.user b{
+	margin-left : 10px;
+}
+
+
+.application-logo-circle {
+    float: left;
+    background-color: #D5CCCC;
+    -webkit-border-radius: 150px;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+	display: inline-block;
+	height: 90px;
+	width: 90px ; 
+}
+
+.application-logo-circle p {
+    margin-top: 110px
+}
+
+.mobile-circle {
+    float: right;
+    background: url(../images/mobile-circle.png) no-repeat center top;
+    width: 150px;
+    height: 140px;
+}
+.mobile-circle h4 {
+    margin-top: 112px
+}
+ul.countries {
+    display: none;
+}
+
+/*.cricle-container .circle {
+	width: 100px;
+	height: 100px;
+	background: #45b0e3;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+}
+.cricle-container .circle .icon {
+    background: url(../images/twitter.png) no-repeat;
+    width: 65px;
+    height: 54px;
+    position: relative;
+    top: 10px
+}    
+.hexagon-container {
+    float: right;
+}
+.hexagon-container .hexagon {
+	width: 100px;
+	height: 55px;
+	background: #4295d1;
+	position: relative;
+    top: 25px;
+}
+.hexagon-container .hexagon:before {
+	content: "";
+	position: absolute;
+	top: -25px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	border-bottom: 25px solid #4295d1;
+}
+.hexagon-container .hexagon:after {
+	content: "";
+	position: absolute;
+	bottom: -25px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	border-top: 25px solid #4295d1;
+}
+*/
+.hexagon-container h4 {
+    margin-top: 55px;
+}
+.switch-arrow {
+    background: url(../images/Switch.png) no-repeat;
+    width: 61px;
+    height: 45px;
+    float: left;
+    margin: 30px 0 0 75px
+}
+    
+.btn-success {
+    background-color: #adc742;
+}
+.btn-block {
+    margin: 10px 0;
+    border: none;
+}
+ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.authorization {
+    text-align: left;
+}
+.authorization ul {
+    margin-left: 20px; 
+}
+.authorization ul, .authorization ul li {
+    text-align: left;
+    list-style: disc;
+}
+.authorization h3 {
+    text-align: left;
+}        
+.authorization ul li.disabled {
+    color: #ccc;
+}
+.rular {
+    height:5px;
+    width: 100%;
+    background-color: #ccc;
+    margin: 15px 0;
+}
+.authorization .btn.agree {
+    background-color: #adc742;
+    border: none;
+    width: 48%;
+}
+.authorization .btn.disagree {
+    background-color: #f2f2f2;
+    border: none;
+    width: 48%;
+}
+
+ul.countries {
+    margin-bottom: 10px;
+}
+input {
+    text-align: left;
+}
+.dropdown-title {
+    font-size: 18px;
+    height: 46px;
+    line-height: 1.33;
+    padding: 10px 16px;
+    float: left;
+    margin-bottom: 0;
+    position: relative;
+    width: 100%;    
+    border: 1px solid #CCCCCC;
+    border-radius: 0 6px 6px 0;
+}
+ul li.with-menu .input-group-addon {
+    border-bottom-left-radius: 0;
+}
+ul li.with-menu .dropdown-title {
+    border-bottom-right-radius: 0;
+}
+ul li.country .dropdown-title {
+    border-top: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #cccccc;
+}
+.dropdown-title .default-text {
+    width: 80%;
+    float: left;
+    color: #cccccc;
+    text-align: left;
+    padding-left: 20px;
+}
+.text-container {
+    float: left;
+    width: 80%;
+    
+}
+.text-container span.flag {
+    width: 30px;
+    height: 23px;
+    display: inline-block;
+    float: left;
+}    
+.text-container span.flag.el-salvador {
+    background: url(../images/El-Salvador.png) no-repeat;
+}
+.text-container span.flag.colombia {
+    background: url(../images/Colombia.png) no-repeat;
+}
+
+.text-container p {
+    padding-left: 20px;
+    float: left;
+}
+.caret-container {
+    float: right;
+}

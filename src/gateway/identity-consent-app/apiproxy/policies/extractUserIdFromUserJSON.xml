@@ -8,7 +8,31 @@
     <JSONPayload> 
 		<Variable name="userid">  
 			<JSONPath>$.userid</JSONPath>
-		</Variable>			
+		</Variable>	
+        <Variable name="create_msisdn">  
+            <JSONPath>$.create_msisdn</JSONPath>
+        </Variable>     
+         <Variable name="create_name">  
+            <JSONPath>$.create_name</JSONPath>
+        </Variable>     
+         <Variable name="create_lastName">  
+            <JSONPath>$.create_lastName</JSONPath>
+        </Variable> 
+        <Variable name="create_email">  
+            <JSONPath>$.create_email</JSONPath>
+        </Variable> 
+        <Variable name="socialLoginDetails">  
+            <JSONPath>$.socialLoginDetails</JSONPath>
+        </Variable>
+        <Variable name="previousflow">  
+            <JSONPath>$.previousflow</JSONPath>
+        </Variable> 
+        <Variable name="display">  
+            <JSONPath>$.display</JSONPath>
+        </Variable> 
+        <Variable name="appName">  
+            <JSONPath>$.appName</JSONPath>
+        </Variable> 		
      </JSONPayload>
 </ExtractVariables>
 

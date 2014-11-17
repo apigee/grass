@@ -1,7 +1,6 @@
 <% layout('layout') -%>  
-<div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+<div class="container main login" style="width: 100%; height:auto">
+    
         <div>
           <h4>Your Application Consents</h4>
         </div>
@@ -21,13 +20,14 @@
                 <p>The application
                   <strong><%= applications[i].name %></strong> can access your</p>
                 <ul class="list-group">
-                  <% for (var j=0 ; j< applications[i].scopes.length ; j++) {%>
+                  <% 
+                    for (var j=0 ; j< applications[i].scopes.length ; j++) {%>
                     <% if(applications[i].scopes[j] == 'openid') continue; %>
                   <li class="list-group-item"><%= applications[i].scopes[j] %></li>
+                      
                   <% } %>
                 </ul>
-
-                <label class="label label-success revoke-consent" data-consent-id="<%= applications[i].consentid%>">Revoke</label>
+                    <label class="label label-success revoke-consent" data-consent-id="<%= applications[i].consentid%>">Revoke</label> 
               </div>
             </div>
           </div>
@@ -37,6 +37,6 @@
         <div class="alert alert-info">You have not given consents to any applications</div>
         <% } %>
 
-      </div>
-    </div>
   </div>
+
+

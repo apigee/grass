@@ -9,6 +9,10 @@
 		<QueryParams>
 			<QueryParam name="userid">{userid}</QueryParam>
 			<QueryParam name="renderConsentScreen">{renderConsentScreen}</QueryParam>
+			<QueryParam name="display">{display}</QueryParam>
+			<QueryParam name="firstName">{create_name}</QueryParam>
+			<QueryParam name="lastName">{create_lastName}</QueryParam>
+			<QueryParam name="userEmail">{create_email}</QueryParam>
 		</QueryParams>
 	</Add>
 </AssignMessage>

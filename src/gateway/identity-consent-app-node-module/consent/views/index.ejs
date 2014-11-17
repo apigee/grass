@@ -1,88 +1,139 @@
 <% layout('layout') -%> 
 
-    <div class="container">
-      <div class="row">
-        <div class="login-page-wrapper col-xs-12 col-sm-6 col-sm-offset-3">
-          <ul class="nav nav-tabs">
-            <li class="active"><a href="#normal-login" data-toggle="tab">Login</a>
-            </li>
-            <li><a href="#sms-login" data-toggle="tab">SMS Login</a>
-            </li>
-            <li><a href="#social-login" data-toggle="tab">Social Login</a>
-            </li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="normal-login">
-              <div class="grass-form-wrapper">
-            	<div style="display: <%= showInvalidLoginMessage%>;"><font color="red">Invalid username or password</font></div>
-                <form role="form" action="/openid/login?sessionid=<%= sessionid%>" method="post">
-                  <div class="form-group">
-                    <input name="username" class="form-control" placeholder="Your Username" type="text" value="">
+
+<div class="container main login" style="width: 100%; height:auto">
+    
+  
+      <h1><%=  req.__('text.login.login') %> </h1>
+  
+     <!-- Social Login -->
+
+      <% if (socialLoginVisible == true) { %>
+            <p class="help-text register-bottom">
+                <%=  req.__('text.login.login_with_social') %>
+            </p>       
+                      
+           <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="1818188">
+            <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+              </ol>
+            
+              <div class="carousel-inner clearfix">
+                  <div class="item active social-login">
+                    <img value="facebook" class="img-responsive" src="<%= req.query.basepath%>/ui/images/facebook-circle.png"></a>
+                    <img value="twitter" class="img-responsive" src="<%= req.query.basepath%>/ui/images/twitter-circle.png"></a>
+                    <img value="googleplus" class="img-responsive" src="<%= req.query.basepath%>/ui/images/google+-circle.png"></a>
+                    <img value="linkedin" class="img-responsive" src="<%= req.query.basepath%>/ui/images/linkedin-circle.png"></a>
                   </div>
-                  <div class="form-group">
-                    <input name="password" class="form-control" placeholder="Your Password" type="password">
+                  <div class="item social-login">
+                    <img value="yahoo" class="img-responsive" src="<%= req.query.basepath%>/ui/images/yahoo.png"></a>
+                     <img value="messenger" class="img-responsive" src="<%= req.query.basepath%>/ui/images/msn.png"></a>
+                    
                   </div>
-                <div class="col-xs-6">
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary grass-btn">Sign In</button>
-                </div>
               </div>
-                <div class="col-xs-6">
-                <div class="form-group">
-                    <button type="button" class="btn btn-error grass-btn" onclick="window.location='<%= redirectURL%>'">Cancel</button>
-                </div>
-              </div>
-                </form>
-                <div class="login-form-links">
-                  <div class="register-link">
-                    <a href="/openid/register?sessionid=<%= sessionid%>">Register now</a>
-                  </div>
-                  <div class="password-reset-link">
-                    <a href="/openid/recovery?sessionid=<%= sessionid%>">Forgot your password?</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane" id="sms-login">
-              <div class="grass-form-wrapper">
-                <form role="form" action="/openid/msisdnsubmit?sessionid=<%= sessionid%>" method="post">
-                  <div class="form-group">
-                    <p>
-                      <strong>Enter your mobile number in the box below</strong>
-                    </p>
-                      <div style="display: <%= showInvalidMsisdnMessage%>;"><font color="red">Invalid phone number</font></div>
+
+           </div>
+
+      <% } %>
+
+      
+
+   <!-- SMS Login -->
+
+   <% if (smsLoginVisible == true) { %>
+         
+        <div class="divider clearfix">
+            <span class="arrow"></span>
+            <span class="content">ó</span>
+            <span class="arrow"></span>
+        </div>
+        <p class="help-text register-bottom">
+            <%=  req.__('text.register.if_prefer_phone') %>
+        </p>       
+
+         <form role="form" action="<%=req.query.basepath%>/msisdnsubmit?sessionid=<%= sessionid%>" method="post">
+                  <div class="input-group-container">
+                  
+                  <div style="display: <%= showInvalidMsisdnMessage%>;"><font color="red">Invalid phone number</font></div>
                     <input class="form-control" placeholder="+4973517390347" name="msisdn" type="text">
                     <span class="help-block">By clicking on ''Submit'', a text message with a PIN code will be sent to your mobile. Standard message and data rates may apply.</span>
                   </div>
-                <div class="col-xs-6">
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary grass-btn">Submit</button>
-                </div>
-              </div>
-              <div class="col-xs-6">
-                <div class="form-group">
-                    <button type="button" class="btn btn-error grass-btn" onclick="window.location='<%= redirectURL%>'">Cancel</button>
-                </div>
-              </div>
-                </form>
-              </div>
-            </div>
-            <div class="tab-pane" id="social-login">
-              <div class="social-login">Social Login</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      
-      
-      <script>
-         $(document).ready(function(){
-        activaTab('<%= activeTab%>');
-    });
+                  <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
+            
+              
+          </form>
 
-    function activaTab(tab){
-        $('.nav-tabs a[href="#' + tab + '"]').tab('show');
-    };
-      
-     </script>
+    <% } %>
+
+
+<!-- Email Login -->
+
+    <% if (emailLoginVisible == true) { %>
+
+        <div class="divider clearfix">
+            <span class="arrow"></span>
+            <span class="content">ó</span>
+            <span class="arrow"></span>
+        </div>
+        <p class="help-text register-bottom">
+            <%=  req.__('text.register.if_prefer_email') %>
+        </p>       
+        <div id="error-container" class="clearfix" style="display: <%= showInvalidLoginMessage%>;">
+            <img class="img-responsive close-img" src="<%= req.query.basepath%>/ui/images/error-info.png">
+            <p><%=  req.__('text.login.invalid_username_or_password') %></p>
+        </div>
+          
+        <form role="form" action="<%=req.query.basepath%>/login?sessionid=<%= sessionid%>" method="post">
+            <div class="input-group-container">
+                 <div class="input-group input-group-lg">
+                      <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-envelope"></span></span>
+                      <input type="text" id="txtName" name="username" class="form-control" value="<%= email_to_prefill%>" placeholder="<%=  req.__('text.placeholder.eg_email') %>"/>
+                </div> 
+                 <div class="inline-error">
+                    <p><%= req.__('text.error.email_field_empty')%></p>
+                </div>                
+                    
+            </div>
+            <div class="input-group-container">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-lock"></span></span>
+                    <input type="password" id="txtPassword" name="password" class="form-control" placeholder="<%=  req.__('text.placeholder.password') %>"/>
+                </div>   
+                 <div class="inline-error">
+                    <p><%= req.__('text.error.password_field_empty')%></p>
+                </div>                
+             </div> 
+                <a href="<%=req.query.basepath%>/recovery?sessionid=<%= sessionid%>"> <%=  req.__('text.login.forgot_password') %></a>
+                <button type="Submit" id="btnLogin" class="btn btn-success btn-lg btn-block"><%=  req.__('text.login.login_with_grass') %></button>
+         </form>
+          <div class="login-bottom">
+               <p ><%=  req.__('text.layout.have_grass_id') %> <a href="<%=req.query.basepath%>/register?sessionid=<%= sessionid%>"><%=  req.__('text.layout.register') %></a></p></div>
+          </div>
+
+      <% } %>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

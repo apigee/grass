@@ -1,60 +1,57 @@
 <% layout('layout') %>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-        <div class="panel panel-default">
+  <div class="container main login" style="width: 100%; height:auto">
+    
           <div class="panel-heading">
             <h3>My Profile</h3>
           </div>
-          <div class="panel-body">
-            <ul class="list-group">
-              <li class="list-group-item">
-                <span class="label label-default">Username:</span>
-                <span><%= username %></span>
-              </li>
-              <li class="list-group-item">
-                <span class="label label-default">First Name:</span>
-                <span><%= first_name%></span>
-              </li>
-              <li class="list-group-item">
-                <span class="label label-default">Last Name:</span>
-                <span><%= surname %></span>
-              </li>
-              <li class="list-group-item">
-                <span class="label label-default">Email:</span>
-                <span><%= email%></span>
-              </li>
-              <li class="list-group-item">
-                <span class="label label-default">Phone No:</span>
-                <span><%= msisdn %></span>
-              </li>
-              <li class="list-group-item">
-                <span class="label label-default">Address:</span>
+          <div class="input-group-container">
+            
+            <table style="width: 100%; height:auto; margin: 0">
+            <!-- <ul class="list-group row"> -->
+            <tr>
+              
+                <td style=" width:25%; text-align:right;"><span class="label label-primary " style="text-align:right;">Username:</span></td></td>
+                <td style=" width:75%; text-align:left;"><span class="width:75%" style="text-align: left; margin-left:5px;"><%= username %></span></td></td>
+              
+            </tr>
+              <tr >
+                <td style=" width:25%; text-align:right;"><span class="label label-primary" >First Name:</span> </td></td>
+                <td style=" width:75%; text-align:left;"><span class="margin-left:5px;"><%= first_name%></span></td></td>
+              </tr>
+              <tr >
+                <td style=" width:25%; text-align:right;"><span class="label label-primary width:25%" style="text-align: right;">Last Name:</span></td>
+                <td style=" width:75%; text-align:left;"><span class="width:75%" style="text-align: left; margin-left:5px;"><%= surname %></span></td>
+              </tr>
+              <tr >
+                <td style=" width:25%; text-align:right;"><span class="label label-primary width:25%" style="text-align: right;">Email:</span></td>
+                <td style=" width:75%; text-align:left;"><span class="width:75%" style="text-align: left; margin-left:5px;"><%= email%></span></td>
+              </tr>
+              <tr >
+                <td style=" width:25%; text-align:right;"><span class="label label-primary width:25%" style="text-align: right;">Phone No:</span></td>
+                <td style=" width:75%; text-align:left;"><span class="width:75%" style="text-align: left; margin-left:5px;"><%= msisdn %></span></td>
+              </tr>
+              <tr >
+                <td style=" width:25%; text-align:right;"><span class="label label-primary width:25%" style="text-align: right;">Address:</span></td>
+                <td style=" width:75%; text-align:left;">
+
                 <address>
-                  <strong>House:</strong>
                   <span><%= house %></span>
                   <br>
-                  <strong>Street:</strong>
                   <span><%= street %></span>
                   <br>
-                  <strong>City:</strong>
                   <span><%= city%></span>
                   <br>
-                  <strong>State:</strong>
                   <span><%= state%></span>
                   <br>
-                  <strong>Country:</strong>
                   <span><%= country %></span>
                   <br>
-                </address>
-              </li>
-            </ul>
+                </address></td>
+              </tr>
+            </table>
             <div class="edit-profile-button">
-              <a href="/openid/edit-profile?sessionid=<%=sessionid%>" class="btn btn-default grass-btn">Edit Profile</a>
+              <a href="<%=req.query.basepath%>/edit-profile?sessionid=<%=sessionid%>" class="btn btn-default grass-btn">Edit Profile</a>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+  
   </div>

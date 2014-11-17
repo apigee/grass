@@ -1,0 +1,233 @@
+@import "common";
+@import "media-queries";
+@import "header";
+
+.user-info {
+    background-color: #efefef;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    h3 {
+        font-size: 150%;
+        padding: 0;
+        margin: 0;
+    }
+}
+.dropdown-container {
+    position: relative;
+    margin-bottom: 3%;
+}
+
+.dropdown-title {
+    border: 1px solid #ccc;
+    border-radius: 0 6px 6px 0;
+    float: left;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 0;
+    padding: 10px 16px;
+    position: relative;
+    width: 100%;    
+    .default-text {
+        width: 80%;
+        float: left;
+        color: #ccc;
+        text-align: left;
+        padding-left: 0;
+    }
+}
+.input-group input.form-control, .dropdown-title, .input-group-lg > .form-control, .input-group-lg > .input-group-addon, .input-group-lg > .input-group-btn > .btn { 
+    height: 44px;
+}
+.input-group-lg > .form-control, .input-group-lg > .input-group-addon, .input-group-lg > .input-group-btn > .btn {
+    padding: 8px 16px;
+}
+ul.title-dropdown {
+    .text-container {
+        width: 85%;
+        img {
+            width: 15%;
+            float: left;
+        }
+        p {
+            width: 85%;
+            padding-top: 2px;
+            float: left;
+        }
+    }
+}
+ul li.with-menu {
+    .input-group-addon {
+        border-bottom-left-radius: 0;
+        background: transparent;
+        border-bottom: none;
+    }
+    .dropdown-title {
+        border-bottom-right-radius: 0;
+        border-bottom: none;
+        border-left: none;
+        padding-left: 0;
+        p.default-text {
+            border-left: 1px solid #ccc;
+            padding-left: 20px;
+        }
+    }
+}
+
+ul.countries {
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    display: none;
+}
+.text-container {
+    float: left;
+    width: 80%;
+}
+
+.text-container p {
+    padding-left: 20px;
+    float: left;
+}
+ul li.country {
+    .dropdown-title {
+        background-color: white;
+        border-top: 0;
+        border-radius: 0;
+        border-bottom: 0;
+        padding: 0 16px;
+        .text-container {
+            cursor: pointer;
+            border-top: 1px solid #ccc;
+            padding: 3px 0 5px;
+            width: 100%;
+            p {
+                padding-top: 6px;
+            }
+            img {
+                width: 15%;
+                display: inline-block;
+                float: left;
+            }    
+        }
+    }
+    &.last .dropdown-title {
+        border-bottom: 1px solid #ccc;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+}
+
+
+.twitter-circle {
+    float: left;
+    width: 34%;
+}
+.mobile-circle {
+    float: right;
+    width: 34%;
+    margin-top: 3%;
+    p {
+        padding: 3% 0 0 0;
+    }
+}
+.switch-arrow {
+    float: left;
+    margin: 8% 6%;
+    width: 20%;    
+}
+
+
+/* Register create stuff */
+
+.icons-container, #carousel-example-generic {
+    margin: 3% 0;
+    img {
+        float: left;
+        width: 23%;
+        margin-right: 2%;   
+    }
+}
+#carousel-example-generic {
+    margin-bottom: 15%;
+}
+.carousel-indicators li {
+    background-color: #ccc;
+    border-color: #ccc;
+}
+.carousel-indicators {
+    bottom: -40px;
+}
+.carousel-indicators .active {
+    background-color: green;
+    border: none;
+}
+.divider {
+    margin: 3% 0 0 3%;
+    span {
+        display: inline-block;
+        float: left;
+    }
+    .arrow {
+        height: 1px;
+        width: 40%;
+        background-color: #ccc;
+        margin: 3% 0;
+    }
+    .content {
+        margin: 0 5%;
+        width: 10%;
+    }
+}
+.register p.info {
+    padding-top: 10%;
+    span {
+        color: #406ab6;
+    }
+    
+}
+.register, .login {
+    .input-group-lg {
+        margin-bottom: 5%;
+    }
+}
+.register .checkbox {
+    label {
+        float: left;
+        a {
+            color: $green-color;
+        }
+    }
+    input {
+        margin-top: 2px;
+    }
+}
+
+/* Terms and Condition page */
+.terms-and-condition {
+    text-align: left;
+    overflow-y: scroll;
+    height: 300px;
+    h2 {
+        font-size: 150%;
+    }
+}
+
+/* Error Fatal */
+
+.container.main.error {
+    padding-top: 15% ;
+    padding-bottom: 15% ;
+    background-color: #fef2e4;
+}
+.error-close {
+    width: 20%;
+    margin: 3% auto;
+}
+.error-text {
+    color: #d01b1b;
+    font-size: 125%;
+    border-bottom: 1px solid #f7dcb7;
+    margin-bottom: 5%;
+    padding-bottom: 3%;
+}

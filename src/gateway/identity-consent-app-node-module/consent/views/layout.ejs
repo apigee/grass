@@ -6,9 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><%= title %></title>
-  <link rel="stylesheet" href="/openid/stylesheets/normalize.css">
-  <link href="/openid/stylesheets/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/openid/stylesheets/style.css">
+
+  <% if (display == "page" || display == "" || display == null) {%>
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+            <% } %>
+             <% if (display == "touch") {%>
+              <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="mobile-web-app-capable" content="yes">
+            <% } %> 
+
+  <link href="<%= req.query.basepath%>/ui/stylesheets/main.css" rel="stylesheet">
+  <link href="<%= req.query.basepath%>/ui/stylesheets/bootstrap.min.css" rel="stylesheet">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -16,67 +25,69 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-  <script src="/openid/js/jquery-1.10.2.js"></script>
-  <script src="/openid/js/bootstrap.min.js"></script>
-  <script src="/openid/js/app.js"></script>
+    <% console.log("Basepath " + req.query.basepath); %>
+
+   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="<%= req.query.basepath%>/ui/js/bootstrap.min.js"></script>
+  <script src="<%= req.query.basepath%>/js/app.js"></script>
+
+
 </head>
 
 <body>
-  <div class="container-fluid header">
-    <nav class="navbar navbar-default navbar-static-top grass-header-nav" role="navigation">
-      <div class="container-fluid">
- 
-  <% if(authenticated) { %>
-        <div class="grass-menu pull-right">
-          <div class="dropdown">
-            <div class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
-              <span class="glyphicon glyphicon-list"></span>
-            </div>
-            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
-              <li role="presentation">
-                <a role="menu-item" href="/openid/profile?sessionid=<%= sessionid %>">My Profile</a>
-              </li>
-              <li role="presentation">
-                <a role="menu-item" href="/openid/edit-profile?sessionid=<%= sessionid %>">Edit Profile</a>
-              </li>
-              <li role="presentation">
-                <a role="menu-item" href="/openid/myapps?sessionid=<%= sessionid %>">My apps</a>
-              </li>
-              <li role="presentation">
-                <a role="menu-item" href="/openid/logout">Logout</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <% } %>
-       </div>
-    </nav>
-  </div>
-  
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-6 col-xs-offset-3">
-        <div class="logo-wrapper">
-          <a href="#">
-            <img class="img-responsive" src="/openid/images/logo.png">
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+       <% if (display != "popup") {%> <div id="overlay_shield"></div> <% } %>
+        <div class="outer-container" <% if (display == "popup") {%> style="width: auto; min-width: 320px;" <% } %>>
+            <header class="clearfix">
+                <a class="navbar-brand" href="#"><img class="img-responsive logo-img" src="<%= req.query.basepath%>/ui/images/logo.png"></a>
+                <div class="header-country">      
+                    <!-- <a class="link-globe" href="#"><img class="img-responsive home-img" src="<%= req.query.basepath%>/ui/images/globe-icon.png"></a> -->
+                          <form class "" action="<%= req.query.basepath%>/locale" method="post" >
+                            <input type="hidden" class="next" name="next">
+                            <select onchange="this.form.submit()" name="locale" class="bg-select select-locale">
+                                        <option value="es">Espanol</option>
+                                        <option value="en">English</option>
+                            </select> 
+                            </form>
+                         <% if (redirectURL != null && redirectURL != "" && display != "popup" ) {%>            
+                   <a href="<%= redirectURL%>"><img class="img-responsive close-img close-winodw" src="<%= req.query.basepath%>/ui/images/close-icon.png"></a>
+                   <% } %>  
+                </div>                    
+            </header>
+         
+            <% console.log("after displaying header..."); 
+                console.log("showUserInfoDiv: " + showUserInfoDiv);
+            %>
 
+    <div class="user-info clearfix" style="display: <%=showUserInfoDiv?'visible':'none' %>">
+               <% if(logged_in_user_email != null && logged_in_user_email != "") { %>  
+               <% if(logged_in_user_image == null || logged_in_user_image == "") {
+               logged_in_user_image = req.query.basepath+"/ui/images/icons/img_smart.jpg"
+                }%>                           
+       <div class="logged-in-container">
+                    <img class="img-responsive img-circle" src="<%= logged_in_user_image%>">
+                    <div class="details">
+                        <p data-role="name"><%= logged_in_user_first_name%>  <%= logged_in_user_surname%></p>
+                        <p data-role="email"><%= logged_in_user_email%></p>
+                    </div>
+                    <a href="<%= req.query.basepath%>/myapps?sessionid=<%= sessionid%>">
+                    <img class="img-responsive img-circle" src="<%= req.query.basepath%>/ui/images/icons/aplicacion.png" alt="Consented Apps"/>
+                    </a>
+                    
+                </div>
+            
+         <% } %>
+              
+            </div>
+
+            <% console.log("after ui display, before scripts..."); %>
 
     <!-- Body -->
     <%- body %>
 
+</div>
 
-
-    <footer class="footer">
-
-    </footer>
-
-
-<!-- Modal -->
 <div class="modal fade" id="grassModal" tabindex="-1" role="dialog" aria-labelledby="grassModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -94,6 +105,28 @@
     </div>
   </div>
 </div>
+
+
+<% if (display == "popup") {%>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+         <script>
+                    $(function() {
+                        $(".close-window").click(function(){
+                    window.opener.location.href="<%= redirectURL%>";
+                   self.close();
+                        });
+                    });
+                </script>
+                               <% } %>  
+                               
+                </script>
+                <script>
+                $( document ).ready(function() {
+                      $(".next").val(window.location.href);
+           $('.select-locale').val('<%=  req.getLocale() %>');                      
+          });
+           </script>
+      <script src="<%= req.query.basepath%>/ui/js/validations.js"></script>
   </body>
 
 </html>

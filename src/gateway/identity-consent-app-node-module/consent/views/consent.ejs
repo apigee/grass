@@ -1,52 +1,43 @@
 <% layout('layout') -%> 
 
-<div class="container">
+<div class="container main login" style="width: 100%; height:auto">
+   
+<h1><%=  req.__('text.consent.authorization_required') %></h1>
     <!-- Consent Page Template -->
-    <div class="row">
-      <div class="col-xs-12 col-md-6 col-md-offset-3">
-        <div class="consent-page-wrapper">
-          <div class="consent-page">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h2>Access authorization</h2>
-              </div>
-              <div class="panel-body">
-                <div class="consent-content">
-                  <p>Application
-                    <strong><%= appName%></strong> is requesting your permission to share the following details</p>
-           
-                  
-         <% var scopes= scope.split(" ") %>
-         <% for(var i=0; i<scopes.length ; i++) { %>
-         <%if (scopes[i] !="openid") {%>   
-         
-        <li class="list-group-item"> <%= scopes[i] %>
-        </li>
-         <%}%>
-    <% } %>
-                  <p>Please press
-                    <strong>Allow</strong>to authenticate else press
-                    <strong>Cancel</strong>
-                  </p>
-                  <div class="consent-button">
-                    <form action="/openid/redirect/<%= sessionid%>" role="form">
-               <div class="col-xs-6">
-                <div class="form-group">
-                      <button type="submit" class="btn btn-primary grass-btn">Allow</button>
-                </div>
-              </div>
-               <div class="col-xs-6">
-                <div class="form-group">
-                      <button type="button" class="btn btn-primary btn-error" onclick="window.location='<%= redirectURL%>'">Cancel</button>
-                </div>
-              </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
+     <!-- <div class="clearfix">
+          <div class="application-logo-circle">
+              <img class="img-responsive close-img" src="<%= app_logo_url%>"  style="width: 100%;">
+              <p class="caption"><%= appName%></p>
           </div>
+          <div class="switch-arrow">
+              <img class="img-responsive close-img" src="<%= req.query.basepath%>/ui/images/Switch.png">
+          </div>
+          <div class="mobile-circle">
+              <img class="img-responsive <%= scope_class %>" src="<%= scope_icon %>">                        
+              <p class="caption"><%= user_attribute%><p>
+          </div>
+      </div> -->
+    
+       <h3><small><%=  req.__('text.consent.the_application') %> <%= appName%> <%=  req.__('text.consent.require_access') %></small>
+      </h3>
+ 
+             <% var scopes= scope.split(" ") %>
+             <% for(var i=0; i<scopes.length ; i++) { %>
+             <%if (scopes[i] !="openid") {%>   
+             
+            <li class="list-group-item"> <%= scopes[i] %>
+            </li>
+             <%}%>
+        <% } %>
+               
+              <div class="rular"></div>  
+        <div >
+          <form action="/openid/redirect/<%= sessionid%>" role="form">
+     
+                <button type="button" class="btn btn-lg btn-default disagree close-window"  onclick="window.location='<%= redirectURL%>'"><%=  req.__('text.consent.no_thanks') %></button>
+                <button type="submit" class="btn btn-lg btn-primary agree"><%=  req.__('text.consent.agree') %></button>   
+
+          </form>
         </div>
-      </div>
-    </div>
+ 
   </div>

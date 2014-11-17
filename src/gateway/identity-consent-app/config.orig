@@ -28,7 +28,7 @@
                     "tokens": [
                         {
                             "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
-                            "value": "Basic __AUTH__"
+                            "value": "ClientCredential __AUTH__"
                         },
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
@@ -80,7 +80,7 @@
                         },
                         {
                             "xpath": "/ServiceCallout/Request/Set/Headers/Header[@name='Authorization']",
-                            "value": "Basic __AUTH__"
+                            "value": "ClientCredential __AUTH__"
                         }
                     ]
                 },
@@ -118,7 +118,7 @@
                         },
                         {
                             "xpath": "/ServiceCallout/Request/Set/Headers/Header[@name='Authorization']",
-                            "value": "Basic __AUTH__"
+                            "value": "ClientCredential __AUTH__"
                         }
                     ]
                 },{

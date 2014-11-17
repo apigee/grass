@@ -1,34 +1,26 @@
-   <div class="container">
+   <div class="container main login" style="width: 100%; height:auto">
       <!-- Verify SMS Pin Page template -->
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-          <div class="verify-pin-wrapper">
-            <div class="grass-form-wrapper">
+     
               <form role="form" action="/openid/pinSubmit?sessionid=<%= sessionid%>" method="POST">
-                <div class="form-group">
+                <div class="input-group-container">
                   <p>
                     <strong>Verify your mobile number</strong>
                   </p>
                   	<div style="display: <%= showErrorMessage%>;"><font color="red">Invalid PIN. Please enter the correct PIN</font></div>
-                  <input name="pin" class="form-control" placeholder="One time password" type="password" >
+                  <div class="input-group input-group-lg">
+                      <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-lock"></span></span>
+                      <input name="pin" class="form-control" placeholder="One time password" type="password" >
+                  </div>
                   <span class="help-block">
                     Please enter the
                     <strong>One Time Password</strong>sent to your registered mobile number.
                   </span>
                 </div>
-                <div class="col-xs-6">
-                <div class="form-group">
-                  <button type="submit" class="btn btn-primary grass-btn">Verify PIN</button>
+                <div class="input-group-container">
+                  <button type="submit" class="btn btn-success btn-group-lg btn-block">Verify PIN</button>
+               
+                  <button type="button" class="btn btn-success btn-group-lg btn-block" onclick="window.location='<%= redirectURL%>'">Cancel</button>
                 </div>
-              </div>
-              <div class="col-xs-6">
-                <div class="form-group">
-                  <button type="button" class="btn btn-primary btn-error" onclick="window.location='<%= redirectURL%>'">Cancel</button>
-                </div>
-              </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+              
+          </form>
     </div>

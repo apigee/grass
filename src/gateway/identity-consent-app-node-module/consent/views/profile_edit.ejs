@@ -1,62 +1,81 @@
 
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-          <div class="grass-form-wrapper">
-            <form role="form" action="/openid/profile/update?sessionid=<%= sessionid%>" method="post" >
-              <div class="form-group">
-                <input class="form-control" placeholder="" type="hidden" name="email"  value="<%= email%>">
-              </div>
-              <div class="form-group">
-                <label>First Name:</label>
-                <input class="form-control" placeholder="" type="text" name="first_name"  value="<%= name%>">
-              </div>
-              <div class="form-group">
-                <label>Last Name:</label>
-                <input class="form-control" placeholder="" type="text" name="surname"  value="<%= surname%>">
-              </div>
-              <div class="form-group">
-                <input class="form-control" placeholder="" type="hidden" name="msisdn"  value="<%= msisdn%>">
-              </div>
-              <div class="address-label">
-                <strong>Address:</strong>
-              </div>
-              <div class="form-group">
-                <label>House:</label>
-                <input class="form-control" placeholder="" type="text" name="house"  value="<%= addr1%>">
-              </div>
-              <div class="form-group">
-                <label>Street</label>
-                <input class="form-control" placeholder="" type="text" name="street"  value="<%= addr2%>">
-              </div>
-              <div class="form-group">
-                <label>City:</label>
-                <input class="form-control" placeholder="" type="text" name="city"  value="<%= city%>" >
-              </div>
-              <div class="form-group">
-                <label>State:</label>
-                <input class="form-control" placeholder="" type="text" name="state"  value="<%= state%>">
-              </div>
-              <div class="form-group">
-                <label>Country</label>
-                <input class="form-control" placeholder="" type="text" name="country"   value="<%= country%>" >
-              </div>
-              <div class="row">
-                <div class="col-xs-6">
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary grass-btn">Update Info</button>
-                  </div>
-                </div>
-                <div class="col-xs-6">
-                  <div class="form-group">
-                    <button type="button" class="btn btn-primary grass-btn">Cancel</button>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+    <div class="container main login" style="width: 100%; height:auto">
+      
+        <form role="form" action="/openid/profile/update?sessionid=<%= sessionid%>" method="post" >
+            <div class="input-group-container">
+              <table style="width: 100%; height:auto; margin: 0">
+
+                <tr>
+                  <td style=" width:25%; text-align:right;"> <label>Email:</label></td>
+                  <td style=" width:75%; text-align:left; margin-left:5px;">
+             
+                    <input class="form-control" placeholder="" type="text" name="email"  value="<%= email%>" readonly>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style=" width:25%; text-align:right;"> <label>First Name:</label></td>
+                  <td style=" width:75%; text-align:left; margin-left:5px;">
+             
+                    <input class="form-control" placeholder="" type="text" name="first_name"  value="<%= name%>">
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style=" width:25%; text-align:right;"> <label>Last Name:</label></td>
+                  <td style=" width:75%; text-align:left; margin-left:5px;">
+             
+                    <input class="form-control" placeholder="" type="text" name="surname"  value="<%= surname%>">
+                  </td>
+                </tr>
+             
+                <tr>
+                  <td style=" width:25%; text-align:right;"> <label>Phone No:</label></td>
+                  <td style=" width:75%; text-align:left; margin-left:5px;">
+             
+                    <input class="form-control" placeholder="" type="text" name="msisdn"  value="<%= msisdn%>" readonly>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td style=" width:25%; text-align:right;"> <label>Address:</label></td>
+                  <td style=" width:75%; text-align:left; margin-left:5px;">
+                      <table>
+                        <tr><td> 
+                            <label>House:</label>
+                            <input class="form-control" placeholder="" type="text" name="house"  value="<%= addr1%>">
+                        </td></tr>
+                        <tr><td> 
+                            <label>Street</label>
+                            <input class="form-control" placeholder="" type="text" name="street"  value="<%= addr2%>">
+                        </td></tr>
+                        <tr><td> 
+                            <label>City:</label>
+                            <input class="form-control" placeholder="" type="text" name="city"  value="<%= city%>" >
+                        </td></tr>
+                        <tr><td> 
+                            <label>State:</label>
+                            <input class="form-control" placeholder="" type="text" name="state"  value="<%= state%>">
+                        </td></tr>
+                        <tr><td> 
+                            <label>Country</label>
+                            <input class="form-control" placeholder="" type="text" name="country"   value="<%= country%>" >
+                        </td></tr>
+                      </table>
+             
+                    <input class="form-control" placeholder="" type="hidden" name="msisdn"  value="<%= msisdn%>" readonly>
+                  </td>
+                </tr>
+
+              </table>
+            </div>
+            <div class="input-group-container">
+                <button type="submit" class="btn btn-success btn-group-lg btn-block">Update Info</button>
+                <button type="button" class="btn btn-success btn-group-lg btn-block" onclick="window.location='<%=req.query.basepath%>/index?sessionid=<%= sessionid%>'" >Cancel</button>
+
+            </div>
+        </form>
+   
     </div>	
 
 
