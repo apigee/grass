@@ -25,7 +25,6 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <% console.log("Basepath " + req.query.basepath); %>
 
    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -56,9 +55,6 @@
                 </div>                    
             </header>
          
-            <% console.log("after displaying header..."); 
-                console.log("showUserInfoDiv: " + showUserInfoDiv);
-            %>
 
     <div class="user-info clearfix" style="display: <%=showUserInfoDiv?'visible':'none' %>">
                <% if(logged_in_user_email != null && logged_in_user_email != "") { %>  
@@ -80,8 +76,6 @@
          <% } %>
               
             </div>
-
-            <% console.log("after ui display, before scripts..."); %>
 
     <!-- Body -->
     <%- body %>

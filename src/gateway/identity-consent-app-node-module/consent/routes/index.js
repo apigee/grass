@@ -16,8 +16,7 @@ exports.index = function(req, res) {
 
   var requestedDisplay = req.query.display;
 
-  
-  console.log("in exports.index....");
+
   var renderConsentScreen = req.query.renderConsentScreen;
   if (renderConsentScreen == null) {
     renderConsentScreen = true;
@@ -29,14 +28,12 @@ exports.index = function(req, res) {
   }
 
   else if (userid != null && userid != "") {
-    console.log("userid != null");
 
   if (req.query.open_id != "true") {
 
     res.redirect("/openid/profile?sessionid="+req.query.sessionid);
 
   } else {
-      console.log("render consent");
       handleConsent(req,res,redirect_uri,false);
     }
 
@@ -66,20 +63,12 @@ exports.errorflow = function(req, res) {
   if ('OPTIONS' == req.method) {
     res.send(200);
   }
-  res.render('errorflow', {
-    title : 'Error',
-    authenticated : false,
-    error : req.param("error"),
-    description : req.param("description"),
-    redirectURL : req.query.redirect_uri,
-    header : 'Error'
-  })
-};
+  handleError(req,res,req.query.redirect_uri,req.param("error"),req.param("description"));
 
 
+}
 function handleIndex(req,res, redirect_uri, invalidLogin, invalidMsisdn) {
     var sessionid = req.param("sessionid");
-    console.log("req.param: " + req.param("sessionid"));
     var requestedDisplay = req.query.display;
 
     var appName = req.query.appName;
@@ -89,14 +78,14 @@ function handleIndex(req,res, redirect_uri, invalidLogin, invalidMsisdn) {
     var emailLogin = true;
 
     if (appName != null) {
-
+        //TODO instead compare the App's AuthPreference custom attribute
         appName = appName.trim();
         if (appName != "") {
           if (appName.toUpperCase() == "IDENTITYAPP") {
+
               socialLogin = true;
               emailLogin = true;
               smsLogin = false;
-            console.log("Identity App");
           } else if (appName.toUpperCase() == "BANKAPP") {
               smsLogin = true;
               socialLogin = false;
@@ -146,7 +135,6 @@ function handleConsent(req, res, redirect_uri, isAuthenticated) {
   var firstName = "";
   var lastName = "";
 
-  console.log("before scope check");
   if (scopes != null ){
        var scope_array= (scopes.trim()).split(" ") 
        if (scope_array.indexOf("profile") != -1 ){
@@ -169,7 +157,6 @@ function handleConsent(req, res, redirect_uri, isAuthenticated) {
       } 
   }
 
-  console.log("after scope check");
 
   var isShowUserDiv = false;
   if (isAuthenticated == true) {
@@ -190,10 +177,6 @@ function handleConsent(req, res, redirect_uri, isAuthenticated) {
     lastName = tempName;
   }
 
-  console.log("before rendering consent ui");
-  console.log("scope_icon: " + scope_icon);
-  console.log("user_attribute : " + user_attribute);
-  console.log("isShowUserDiv : " + isShowUserDiv);
 
    var sessionid = req.param("sessionid");
       res.render('consent', {
@@ -219,6 +202,29 @@ function handleConsent(req, res, redirect_uri, isAuthenticated) {
 
 }
 
+function handleError(req, res, redirect_uri, error, description) {
+
+
+
+
+  res.render('errorflow', {
+    title : 'Error',
+    authenticated : false,
+    error : error,
+    description : description || '',
+    req : req,
+    display : req.query.display || '',
+    logged_in_user_email:"",
+    logged_in_user_first_name:"",
+    logged_in_user_surname:"",
+    logged_in_user_email:"",
+    logged_in_user_image: "",
+    showUserInfoDiv: false,
+    redirectURL : redirect_uri + '?error=true'
+  });
+
+}
+
 exports.login = function(req, res) {
 
   
@@ -233,7 +239,6 @@ exports.login = function(req, res) {
 
   if (req.query.renderConsentScreen == "false") {
 
-    console.log("renderConsentScreen == false");
     res.redirect("/openid/redirect/" + req.query.sessionid);
 
   }
@@ -258,24 +263,17 @@ exports.login = function(req, res) {
 
 exports.create = function(req, res) {
 
-  console.log("in create...");
-  console.log("open_id: " + req.query.open_id);
   if(req.query.open_id == "true"){
     redirect_uri=req.query.redirect_uri;
   }else {
     redirect_uri="/openid/index";
   }
-  
-  // var sess = req.session;
-  // requestedDisplay = sess.display;
-  // redirect_uri = sess.redirect_uri;
+
 
   var error = req.query.error;
   if (error != null) {
-    console.log("error != null");
     var sessionid = req.param("sessionid");
 
-     console.log("Error: " + error);
     res.render('register', {
       title : 'Register',
       authenticated : false,
@@ -295,15 +293,10 @@ exports.create = function(req, res) {
     })
 
 
-    res.render('errorflow', {
-      title : 'Error',
-      authenticated : false,
-      error : error,
-      redirectURL : req.query.redirect_uri + '?error=true'
-    })
+    handleError(req,res,req.query.redirect_uri + '?error=true',error,"");
+
   } else {
 
-    console.log("in else");
     res.render('pin', {
       title : 'Pin',
       req : req,
@@ -393,7 +386,6 @@ if(req.query.open_id == "true"){
   }
 
   var sessionid = req.param("sessionid");
-  console.log("req.param: " + req.param("sessionid"));
   res.render('register', {
     title : 'Register',
     authenticated : false,
@@ -430,7 +422,6 @@ exports.recovery = function(req, res) {
 
 
   var sessionid = req.param("sessionid");
-  console.log("req.param: " + req.param("sessionid"));
   res.render('recovery', {
     title : 'Forget Password',
     authenticated : false,
@@ -460,19 +451,15 @@ exports.pinSubmit = function(req, res) {
   }
   
 
-  Console.log('error: ' + error);
 
   if (req.query.renderConsentScreen == "false") {
     res.redirect("/openid/redirect/" + req.query.sessionid)
   }
 
   else if (error != null || req.query.areMaxTokenTriesExceeded == "true") {
-    res.render('errorflow', {
-      title : 'Error',
-      authenticated : false,
-      error : "Maximum attempts are exceeded",
-      redirectURL : redirect_uri + '?error=true'
-    })
+
+    handleError(req,res,redirect_uri + '?error=true',"Maximum attempts are exceeded","");
+
 
   } else if (req.query.isTokenValidationThrough == "false"){
     
@@ -490,7 +477,7 @@ exports.pinSubmit = function(req, res) {
       showUserInfoDiv: false,
     redirectURL : redirect_uri + '?error=refused',
       showErrorMessage : "true" 
-    })
+    });
     
   }  else if (req.query.open_id != "true") {
     res.redirect("/openid/profile?sessionid="+req.query.sessionid);
@@ -510,8 +497,6 @@ exports.msisdnsubmit = function(req, res) {
     redirect_uri="/openid/index";
   }
 
-  // var sess = req.session;
-  // requestedDisplay = sess.display;
 
   if (req.query.userid == null || req.query.userid == "") {
   
@@ -533,7 +518,7 @@ exports.msisdnsubmit = function(req, res) {
     redirectURL : redirect_uri + '?error=refused',
     showErrorMessage : "none" 
 
-  })
+  });
 }
 };
 
