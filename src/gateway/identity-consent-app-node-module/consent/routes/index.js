@@ -204,9 +204,6 @@ function handleConsent(req, res, redirect_uri, isAuthenticated) {
 
 function handleError(req, res, redirect_uri, error, description) {
 
-
-
-
   res.render('errorflow', {
     title : 'Error',
     authenticated : false,
@@ -321,7 +318,6 @@ exports.reset = function(req, res) {
   
   // var sess = req.session;
   // requestedDisplay = sess.display;
-
   if(req.query.open_id == "true"){
     redirect_uri=req.query.redirect_uri;
   }else {
@@ -332,9 +328,11 @@ exports.reset = function(req, res) {
   if (error != null) {
     var sessionid = req.param("sessionid");
 
+
     res.render('recovery', {
       title : 'Forget Password',
       req : req,
+      redirectURL : redirect_uri + '?error=refused',
       display : req.query.display,
       logged_in_user_email:"",
       logged_in_user_first_name:"",
@@ -346,7 +344,7 @@ exports.reset = function(req, res) {
       sessionid : req.param("sessionid"),
       showErrorMessage : "true" ,
       error : error
-    })
+    });
 
   } else {
     res.render('pin', {
@@ -364,10 +362,10 @@ exports.reset = function(req, res) {
       redirectURL : redirect_uri + '?error=refused',
       showErrorMessage : "none" 
       
-    })
+    });
 
   }
-};
+}
 
 exports.register = function(req, res) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -403,7 +401,7 @@ if(req.query.open_id == "true"){
     error : req.query.error
     
   })
-};
+}
 
 exports.recovery = function(req, res) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -438,7 +436,11 @@ exports.recovery = function(req, res) {
     showErrorMessage : "none" ,
     error : ""
 
-  })
+  });
+
+
+
+
 };
 
 exports.pinSubmit = function(req, res) {
@@ -520,7 +522,7 @@ exports.msisdnsubmit = function(req, res) {
 
   });
 }
-};
+}
 
 
 exports.myapps = function(req, res) {

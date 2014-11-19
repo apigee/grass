@@ -1,11 +1,9 @@
 
   	    <div class="container main login" style="width: 100%; height:auto">
     <!-- Reset Password page template -->
-
           <form role="form" class="form-signin" action="/openid/reset?sessionid=<%= sessionid%>"  onsubmit="" method="post">
-            <h4 class="regi ster-form-title">Reset your password</h4>
-
-	        <div style="display: <%= showErrorMessage%>;"><font color="red"><%= error%></font></div>
+            <h4 class="register-form-title">Reset your password</h4>
+	         <div style="display: <%= showErrorMessage%>"><font color="red"><%= error%></font></div>
             <div class="form-group">
               <input name="username" class="form-control" placeholder="Your registered phonenumber" type="text">
             </div>
