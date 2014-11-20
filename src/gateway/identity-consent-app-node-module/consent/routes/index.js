@@ -67,160 +67,6 @@ exports.errorflow = function(req, res) {
 
 
 }
-function handleIndex(req,res, redirect_uri, invalidLogin, invalidMsisdn) {
-    var sessionid = req.param("sessionid");
-    var requestedDisplay = req.query.display;
-
-    var appName = req.query.appName;
-
-    var socialLogin = true;
-    var smsLogin = true;
-    var emailLogin = true;
-
-    if (appName != null) {
-        //TODO instead compare the App's AuthPreference custom attribute
-        appName = appName.trim();
-        if (appName != "") {
-          if (appName.toUpperCase() == "IDENTITYAPP") {
-
-              socialLogin = true;
-              emailLogin = true;
-              smsLogin = false;
-          } else if (appName.toUpperCase() == "BANKAPP") {
-              smsLogin = true;
-              socialLogin = false;
-              emailLogin = false;
-          }
-        }
-
-    }
-
-    res.render('index', {
-      title : 'Home',
-      req : req,
-      layout: template_layout,
-      authenticated : false,
-      showUserInfoDiv: false,
-      sessionid : sessionid,
-      redirectURL : redirect_uri + '?error=refused',
-      display : requestedDisplay,
-      logged_in_user_email:"",
-      logged_in_user_first_name:"",
-      logged_in_user_surname:"",
-      logged_in_user_email:"",
-      logged_in_user_image: "",
-      showInvalidLoginMessage : invalidLogin,
-      showInvalidMsisdnMessage : invalidMsisdn ,
-      activeTab : "normal-login",
-      socialLoginVisible : socialLogin,
-      smsLoginVisible : smsLogin,
-      emailLoginVisible : emailLogin,
-      email_to_prefill:""
-    })
-}
-
-
-function handleConsent(req, res, redirect_uri, isAuthenticated) {
-
-  var user_attribute="";
-  var scopes = req.query.scopes;
-  var userid = req.query.userid;
-
-  var requestedDisplay = req.query.display;
-
-  var scope_icon="";
-  var scope_class="img-circle";
-  var app_logo_url =null;
-  var userEmail = "";
-  var firstName = "";
-  var lastName = "";
-
-  if (scopes != null ){
-       var scope_array= (scopes.trim()).split(" ") 
-       if (scope_array.indexOf("profile") != -1 ){
-         scope_icon= req.query.logged_in_user_image || req.query.basepath+"/ui/images/icons/img_smart.jpg";
-         user_attribute = req.query.logged_in_user_first_name;
-       }else if ( scope_array.indexOf("email") != -1){
-         scope_icon= req.query.logged_in_user_image || req.query.basepath+"/ui/images/icons/img_smart.jpg";
-         user_attribute = req.query.logged_in_user_email;
-       }
-       else {
-           for(var i=0; i<scope_array.length ; i++) {
-               
-               if (scope_array[i] == "mobileid" || scope_array[i] == "phone" ) {
-                 user_attribute="+"+req.query.formatted_user_msisdn;
-                 scope_icon= req.query.basepath+"/ui/images/mobile-circle.png";
-                 scope_class="close-img";
-                 break;
-               }
-          }
-      } 
-  }
-
-
-  var isShowUserDiv = false;
-  if (isAuthenticated == true) {
-    isShowUserDiv = true;
-  }
-  if (userid != null && userid != "") {
-    userEmail = userid;
-    isShowUserDiv = true;
-  }
-
-  tempName = req.query.firstName;
-  if (tempName != null) {
-    firstName = tempName;
-  }
-
-  tempName = req.query.lastName;
-  if (tempName != null) {
-    lastName = tempName;
-  }
-
-
-   var sessionid = req.param("sessionid");
-      res.render('consent', {
-        title : 'Consent',
-        req : req,
-        display : requestedDisplay || '',
-        logged_in_user_email : userEmail,
-        logged_in_user_first_name: firstName,
-        logged_in_user_surname : lastName,
-        logged_in_user_image: "",
-        authenticated : isAuthenticated,
-        sessionid : req.param("sessionid"),
-        appName : req.query.appName,
-        scope : req.query.scope,
-        app_logo_url : "",
-        scope_icon : scope_icon,
-        scope_class : scope_class,
-        showUserInfoDiv:isShowUserDiv,
-        user_attribute : user_attribute,
-        redirectURL : redirect_uri + '?error=refused'
-      });
-
-
-}
-
-function handleError(req, res, redirect_uri, error, description) {
-
-  res.render('errorflow', {
-    title : 'Error',
-    authenticated : false,
-    error : error,
-    description : description || '',
-    req : req,
-    display : req.query.display || '',
-    logged_in_user_email:"",
-    logged_in_user_first_name:"",
-    logged_in_user_surname:"",
-    logged_in_user_email:"",
-    logged_in_user_image: "",
-    showUserInfoDiv: false,
-    redirectURL : redirect_uri + '?error=true'
-  });
-
-}
 
 exports.login = function(req, res) {
 
@@ -258,6 +104,7 @@ exports.login = function(req, res) {
   }
 };
 
+
 exports.create = function(req, res) {
 
   if(req.query.open_id == "true"){
@@ -271,45 +118,14 @@ exports.create = function(req, res) {
   if (error != null) {
     var sessionid = req.param("sessionid");
 
-    res.render('register', {
-      title : 'Register',
-      authenticated : false,
-      sessionid : req.param("sessionid"),
-      showErrorMessage : "true" ,
-      req : req,
-      display : req.query.display || '',
-      logged_in_user_email:"",
-      logged_in_user_first_name:"",
-      logged_in_user_surname:"",
-      logged_in_user_email:"",
-      logged_in_user_image: "",
-      showUserInfoDiv: false,
-      redirectURL: redirect_uri + '?error=refused',
-      error : error
-      
-    })
-
+    handleRegister(req,res,redirect_uri,"true",error);
 
     handleError(req,res,req.query.redirect_uri + '?error=true',error,"");
 
   } else {
 
-    res.render('pin', {
-      title : 'Pin',
-      req : req,
-      display : req.query.display || '',
-      logged_in_user_email:"",
-      logged_in_user_first_name:"",
-      logged_in_user_surname:"",
-      logged_in_user_email:"",
-      logged_in_user_image: "",
-      authenticated : false,
-      showUserInfoDiv: false,
-      sessionid : req.param("sessionid"),
-      redirectURL : redirect_uri + '?error=refused',
-      showErrorMessage : "none" 
+    handlePin(req,res,redirect_uri,"none");
 
-    })
 
   }
 };
@@ -347,22 +163,9 @@ exports.reset = function(req, res) {
     });
 
   } else {
-    res.render('pin', {
-      title : 'Pin',
-      req : req,
-      display : req.query.display,
-      logged_in_user_email:"",
-      logged_in_user_first_name:"",
-      logged_in_user_surname:"",
-      logged_in_user_email:"",
-      logged_in_user_image: "",
-      sessionid : req.param("sessionid"),
-      authenticated : false,
-      showUserInfoDiv: false,
-      redirectURL : redirect_uri + '?error=refused',
-      showErrorMessage : "none" 
-      
-    });
+
+    handlePin(req,res,redirect_uri,"none");
+
 
   }
 }
@@ -384,23 +187,8 @@ if(req.query.open_id == "true"){
   }
 
   var sessionid = req.param("sessionid");
-  res.render('register', {
-    title : 'Register',
-    authenticated : false,
-    sessionid : req.param("sessionid"),
-    req : req,
-    redirectURL : redirect_uri + '?error=refused',
-    display : req.query.display,
-    logged_in_user_email:"",
-    logged_in_user_first_name:"",
-    logged_in_user_surname:"",
-    logged_in_user_email:"",
-    logged_in_user_image: "",
-    showUserInfoDiv:false,
-    showErrorMessage : "none" ,
-    error : req.query.error
-    
-  })
+
+  handleRegister(req,res,redirect_uri,"none","");
 }
 
 exports.recovery = function(req, res) {
@@ -465,22 +253,9 @@ exports.pinSubmit = function(req, res) {
 
   } else if (req.query.isTokenValidationThrough == "false"){
     
-    res.render('pin', {
-      title : 'Pin',
-      authenticated : false,
-      sessionid : req.param("sessionid"),
-      req : req,
-      display : req.query.display,
-      logged_in_user_email:"",
-      logged_in_user_first_name:"",
-      logged_in_user_surname:"",
-      logged_in_user_email:"",
-      logged_in_user_image: "",
-      showUserInfoDiv: false,
-    redirectURL : redirect_uri + '?error=refused',
-      showErrorMessage : "true" 
-    });
-    
+    handlePin(req,res,redirect_uri,"true");
+
+
   }  else if (req.query.open_id != "true") {
     res.redirect("/openid/profile?sessionid="+req.query.sessionid);
 
@@ -505,22 +280,8 @@ exports.msisdnsubmit = function(req, res) {
       handleIndex(req,res,redirect_uri,"none","true");
 
 } else {
-  res.render('pin', {
-    title : 'Pin',
-    req : req,
-    display : req.query.display,
-    logged_in_user_email:"",
-    logged_in_user_first_name:"",
-    logged_in_user_surname:"",
-    logged_in_user_email:"",
-    logged_in_user_image: "",
-    authenticated : false,
-    showUserInfoDiv: false,
-    sessionid : req.param("sessionid"),
-    redirectURL : redirect_uri + '?error=refused',
-    showErrorMessage : "none" 
 
-  });
+    handlePin(req,res,redirect_uri,"none");
 }
 }
 
@@ -630,5 +391,204 @@ exports.profileEdit=  function(req, res) {
     redirectURL : redirect_uri +'?error=refused',
     showUserInfoDiv : true
   })
+
+}
+
+function handleIndex(req,res, redirect_uri, invalidLogin, invalidMsisdn) {
+  var sessionid = req.param("sessionid");
+  var requestedDisplay = req.query.display;
+
+  var appName = req.query.appName;
+
+  var socialLogin = true;
+  var smsLogin = true;
+  var emailLogin = true;
+
+  if (appName != null) {
+    //TODO instead compare the App's AuthPreference custom attribute
+    appName = appName.trim();
+    if (appName != "") {
+      if (appName.toUpperCase() == "IDENTITYAPP") {
+
+        socialLogin = true;
+        emailLogin = true;
+        smsLogin = false;
+      } else if (appName.toUpperCase() == "BANKAPP") {
+        smsLogin = true;
+        socialLogin = false;
+        emailLogin = false;
+      }
+    }
+
+  }
+
+  res.render('index', {
+    title : 'Home',
+    req : req,
+    layout: template_layout,
+    authenticated : false,
+    showUserInfoDiv: false,
+    sessionid : sessionid,
+    redirectURL : redirect_uri + '?error=refused',
+    display : requestedDisplay,
+    logged_in_user_email:"",
+    logged_in_user_first_name:"",
+    logged_in_user_surname:"",
+    logged_in_user_email:"",
+    logged_in_user_image: "",
+    showInvalidLoginMessage : invalidLogin,
+    showInvalidMsisdnMessage : invalidMsisdn ,
+    activeTab : "normal-login",
+    socialLoginVisible : socialLogin,
+    smsLoginVisible : smsLogin,
+    emailLoginVisible : emailLogin,
+    email_to_prefill:""
+  })
+}
+
+
+function handleConsent(req, res, redirect_uri, isAuthenticated) {
+
+  var user_attribute="";
+  var scopes = req.query.scopes;
+  var userid = req.query.userid;
+
+  var requestedDisplay = req.query.display;
+
+  var scope_icon="";
+  var scope_class="img-circle";
+  var app_logo_url =null;
+  var userEmail = "";
+  var firstName = "";
+  var lastName = "";
+
+  if (scopes != null ){
+    var scope_array= (scopes.trim()).split(" ")
+    if (scope_array.indexOf("profile") != -1 ){
+      scope_icon= req.query.logged_in_user_image || req.query.basepath+"/ui/images/icons/img_smart.jpg";
+      user_attribute = req.query.logged_in_user_first_name;
+    }else if ( scope_array.indexOf("email") != -1){
+      scope_icon= req.query.logged_in_user_image || req.query.basepath+"/ui/images/icons/img_smart.jpg";
+      user_attribute = req.query.logged_in_user_email;
+    }
+    else {
+      for(var i=0; i<scope_array.length ; i++) {
+
+        if (scope_array[i] == "mobileid" || scope_array[i] == "phone" ) {
+          user_attribute="+"+req.query.formatted_user_msisdn;
+          scope_icon= req.query.basepath+"/ui/images/mobile-circle.png";
+          scope_class="close-img";
+          break;
+        }
+      }
+    }
+  }
+
+
+  var isShowUserDiv = false;
+  if (isAuthenticated == true) {
+    isShowUserDiv = true;
+  }
+  if (userid != null && userid != "") {
+    userEmail = userid;
+    isShowUserDiv = true;
+  }
+
+  tempName = req.query.firstName;
+  if (tempName != null) {
+    firstName = tempName;
+  }
+
+  tempName = req.query.lastName;
+  if (tempName != null) {
+    lastName = tempName;
+  }
+
+
+  var sessionid = req.param("sessionid");
+  res.render('consent', {
+    title : 'Consent',
+    req : req,
+    display : requestedDisplay || '',
+    logged_in_user_email : userEmail,
+    logged_in_user_first_name: firstName,
+    logged_in_user_surname : lastName,
+    logged_in_user_image: "",
+    authenticated : isAuthenticated,
+    sessionid : req.param("sessionid"),
+    appName : req.query.appName,
+    scope : req.query.scope,
+    app_logo_url : "",
+    scope_icon : scope_icon,
+    scope_class : scope_class,
+    showUserInfoDiv:isShowUserDiv,
+    user_attribute : user_attribute,
+    redirectURL : redirect_uri + '?error=refused'
+  });
+
+
+}
+
+function handleError(req, res, redirect_uri, error, description) {
+
+  res.render('errorflow', {
+    title : 'Error',
+    authenticated : false,
+    error : error,
+    description : description || '',
+    req : req,
+    display : req.query.display || '',
+    logged_in_user_email:"",
+    logged_in_user_first_name:"",
+    logged_in_user_surname:"",
+    logged_in_user_email:"",
+    logged_in_user_image: "",
+    showUserInfoDiv: false,
+    redirectURL : redirect_uri + '?error=true'
+  });
+
+}
+
+
+function handleRegister(req, res, redirect_uri, showError, error) {
+  res.render('register', {
+    title : 'Register',
+    authenticated : false,
+    sessionid : req.param("sessionid"),
+    showErrorMessage : showError ,
+    req : req,
+    display : req.query.display || '',
+    logged_in_user_email:"",
+    logged_in_user_first_name:"",
+    logged_in_user_surname:"",
+    logged_in_user_email:"",
+    logged_in_user_image: "",
+    showUserInfoDiv: false,
+    redirectURL: redirect_uri + '?error=refused',
+    error : error
+
+  });
+
+}
+
+function handlePin(req,res,redirect_uri,showError) {
+  res.render('pin', {
+    title : 'Pin',
+    req : req,
+    display : req.query.display || '',
+    logged_in_user_email:"",
+    logged_in_user_first_name:"",
+    logged_in_user_surname:"",
+    logged_in_user_email:"",
+    logged_in_user_image: "",
+    authenticated : false,
+    showUserInfoDiv: false,
+    sessionid : req.param("sessionid"),
+    redirectURL : redirect_uri + '?error=refused',
+    showErrorMessage : showError
+
+  });
+
+
 
 }

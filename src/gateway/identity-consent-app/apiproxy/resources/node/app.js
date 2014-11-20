@@ -4,22 +4,21 @@
  * Module dependencies.
  */
 
-var express = require('express')
+var express = require('express')//framework
   , routes = require('./routes')
 , http = require('http'),
 engine= require('ejs')
 	, store = new express.session.MemoryStore
-	, store = new express.session.MemoryStore
   , path = require('path')
 
 
-
+//for Internalization
 var i18n = require("i18n");
 
 var app = module.exports = express.createServer();
 
 
-// Configuration
+// Internalization Configuration
 
 i18n.configure({
     locales: ['es', 'en'],
@@ -29,6 +28,7 @@ i18n.configure({
 
   });
 
+
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
@@ -36,9 +36,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(require('stylus').middleware({ src: __dirname + '/public' }));
   app.use(i18n.init);
-  
- 
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(__dirname + '/public'));//all static html contents
 });
 
 app.configure('development', function(){
@@ -58,7 +56,7 @@ app.configure('production', function(){
      template_layout = "layout.ejs"
      if (req.query.basepath == null || req.query.basepath == "")
          req.query.basepath = '/openid';
-			//req.query.basepath = "";
+			//req.query.basepath = ""; //used for testing locally
 
    if (req.query.is_expired == "true") {
      routes.sessionExpire(req, res);
