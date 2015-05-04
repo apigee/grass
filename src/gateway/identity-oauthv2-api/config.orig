@@ -9,7 +9,7 @@
                     "tokens": [
                         {
                             "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
-                            "value": "http://__HOST__/openid/index?sessionid={sessionid}"
+                            "value": "http://__HOST__/openid/onnet?sessionid={sessionid}"
                         }
                     ]
                 },
@@ -64,7 +64,7 @@
                     "tokens": [
                         {
                             "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
-                            "value": "http://__HOST__/openid/index?sessionid={sessionid}"
+                            "value": "http://__HOST__/openid/onnet?sessionid={sessionid}"
                         }
                     ]
                 },

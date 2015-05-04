@@ -106,6 +106,40 @@
             <Condition>(proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;) and (request.verb = &quot;POST&quot;)</Condition>
         </Flow>
 
+        <Flow name="OnNet flow">
+            <Description>This flow is for SMS log in</Description>
+            <Request>
+                <Step>
+                    <Name>GetMsisdnFromHeader</Name>
+                </Step>
+                <Step>
+                    <Condition>(msisdn != null)</Condition>
+                    <Name>CheckMSISDNExists.ServiceCallout</Name>
+                </Step>
+                <Step>
+                    <Condition>userManagement.response.status.code = "200"</Condition>
+                    <Name>ExtractUserIdFromResponse</Name>
+                </Step>
+
+                <Step>
+                    <Condition>(userid != null)</Condition>
+                    <Name>SetVariablesInSession</Name>
+                </Step>
+                <Step>
+                    <Condition>(userid != null)</Condition>
+                    <Name>Session.SetInCache</Name>
+                </Step>
+            </Request>
+            <Response>
+                <!-- Authorization Successful Response -->
+                <Step>
+                    <FaultRules/>
+                    <Name>redirectToConsent</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath &quot;/onnet&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+        </Flow>
+
 		<Flow name="Password login Flow">
 		<Description>This flow is for Allow Consent</Description>
 		<Request>
@@ -574,7 +608,7 @@
                 <Name>CORSPreflight</Name>
             </Step>
             <Step>
-                <Condition>(proxy.pathsuffix MatchesPath &quot;/index&quot;) or (proxy.pathsuffix MatchesPath "/edit-profile") or(proxy.pathsuffix MatchesPath &quot;/profile/update&quot;) or (proxy.pathsuffix MatchesPath "/profile") or (proxy.pathsuffix MatchesPath &quot;/logout&quot;) or (proxy.pathsuffix MatchesPath "/myapps") or (proxy.pathsuffix MatchesPath &quot;/recovery&quot;)or (proxy.pathsuffix MatchesPath &quot;/register&quot;) or (proxy.pathsuffix MatchesPath &quot;/reset&quot;) or (proxy.pathsuffix MatchesPath &quot;/login&quot;)  or (proxy.pathsuffix MatchesPath &quot;/create&quot;) or (proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;) or (proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;) </Condition> 
+                <Condition>(proxy.pathsuffix MatchesPath &quot;/onnet&quot;) or (proxy.pathsuffix MatchesPath &quot;/index&quot;) or (proxy.pathsuffix MatchesPath "/edit-profile") or(proxy.pathsuffix MatchesPath &quot;/profile/update&quot;) or (proxy.pathsuffix MatchesPath "/profile") or (proxy.pathsuffix MatchesPath &quot;/logout&quot;) or (proxy.pathsuffix MatchesPath "/myapps") or (proxy.pathsuffix MatchesPath &quot;/recovery&quot;)or (proxy.pathsuffix MatchesPath &quot;/register&quot;) or (proxy.pathsuffix MatchesPath &quot;/reset&quot;) or (proxy.pathsuffix MatchesPath &quot;/login&quot;)  or (proxy.pathsuffix MatchesPath &quot;/create&quot;) or (proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;) or (proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;) </Condition>
                 <Name>ExtractSessionId</Name>
             </Step>
             <Step>
@@ -590,15 +624,15 @@
                 <Name>ExtractSessionIdFromURL</Name>
             </Step>
             <Step>
-                <Condition>(isUserProfileFlow != "true") and (proxy.pathsuffix MatchesPath &quot;/redirect/{sessionid}&quot;)or (proxy.pathsuffix MatchesPath "/edit-profile") or (proxy.pathsuffix MatchesPath "/edit-profile") or (proxy.pathsuffix MatchesPath "/profile") or ((proxy.pathsuffix MatchesPath &quot;/profile/update&quot;)) or (proxy.pathsuffix MatchesPath "/myapps") or (proxy.pathsuffix MatchesPath &quot;/reset&quot;) or (proxy.pathsuffix MatchesPath &quot;/index&quot;) or (proxy.pathsuffix MatchesPath &quot;/login&quot;)   or (proxy.pathsuffix MatchesPath &quot;/create&quot;) or (proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;) or (proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;)</Condition>
+                <Condition>(isUserProfileFlow != "true") and (proxy.pathsuffix MatchesPath &quot;/redirect/{sessionid}&quot;)or (proxy.pathsuffix MatchesPath "/edit-profile") or (proxy.pathsuffix MatchesPath "/edit-profile") or (proxy.pathsuffix MatchesPath "/profile") or ((proxy.pathsuffix MatchesPath &quot;/profile/update&quot;)) or (proxy.pathsuffix MatchesPath "/myapps") or (proxy.pathsuffix MatchesPath &quot;/reset&quot;) or (proxy.pathsuffix MatchesPath &quot;/index&quot;) or (proxy.pathsuffix MatchesPath &quot;/onnet&quot;) or (proxy.pathsuffix MatchesPath &quot;/login&quot;)   or (proxy.pathsuffix MatchesPath &quot;/create&quot;) or (proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;) or (proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;)</Condition>
                 <Name>Session.GetFromCache</Name>
             </Step>
             <Step>
-                <Condition>(isUserProfileFlow != "true") and ((session.Payload = null) or (session.Payload = "")) and ((proxy.pathsuffix MatchesPath &quot;/redirect/{sessionid}&quot;) or (proxy.pathsuffix MatchesPath "/edit-profile")  or (proxy.pathsuffix MatchesPath "/profile") or (proxy.pathsuffix MatchesPath &quot;/profile/update&quot;) or (proxy.pathsuffix MatchesPath "/myapps") or (proxy.pathsuffix MatchesPath &quot;/reset&quot;) or (proxy.pathsuffix MatchesPath &quot;/index&quot;) or (proxy.pathsuffix MatchesPath &quot;/login&quot;)  or (proxy.pathsuffix MatchesPath &quot;/create&quot;) or (proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;) or (proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;))</Condition>
+                <Condition>(isUserProfileFlow != "true") and ((session.Payload = null) or (session.Payload = "")) and ((proxy.pathsuffix MatchesPath &quot;/redirect/{sessionid}&quot;) or (proxy.pathsuffix MatchesPath "/edit-profile")  or (proxy.pathsuffix MatchesPath "/profile") or (proxy.pathsuffix MatchesPath &quot;/profile/update&quot;) or (proxy.pathsuffix MatchesPath "/myapps") or (proxy.pathsuffix MatchesPath &quot;/reset&quot;) or (proxy.pathsuffix MatchesPath &quot;/index&quot;) or (proxy.pathsuffix MatchesPath &quot;/onnet&quot;) or (proxy.pathsuffix MatchesPath &quot;/login&quot;)  or (proxy.pathsuffix MatchesPath &quot;/create&quot;) or (proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;) or (proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;))</Condition>
                 <Name>SetSessionError</Name>
             </Step>
             <Step>
-                <Condition>(isUserProfileFlow != "true") and (flowError = null) and ((proxy.pathsuffix MatchesPath &quot;/redirect/{sessionid}&quot;) or (proxy.pathsuffix MatchesPath &quot;/reset&quot;) or (proxy.pathsuffix MatchesPath "/profile") or (proxy.pathsuffix MatchesPath "/edit-profile") or ((proxy.pathsuffix MatchesPath &quot;/profile/update&quot;)) or (proxy.pathsuffix MatchesPath "/myapps")  or (proxy.pathsuffix MatchesPath &quot;/index&quot;) or (proxy.pathsuffix MatchesPath &quot;/login&quot;)   or (proxy.pathsuffix MatchesPath &quot;/create&quot;) or (proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;) or (proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;) )</Condition>
+                <Condition>(isUserProfileFlow != "true") and (flowError = null) and ((proxy.pathsuffix MatchesPath &quot;/redirect/{sessionid}&quot;) or (proxy.pathsuffix MatchesPath &quot;/reset&quot;) or (proxy.pathsuffix MatchesPath "/profile") or (proxy.pathsuffix MatchesPath "/edit-profile") or ((proxy.pathsuffix MatchesPath &quot;/profile/update&quot;)) or (proxy.pathsuffix MatchesPath "/myapps")  or (proxy.pathsuffix MatchesPath &quot;/index&quot;) or (proxy.pathsuffix MatchesPath &quot;/onnet&quot;) or (proxy.pathsuffix MatchesPath &quot;/login&quot;)   or (proxy.pathsuffix MatchesPath &quot;/create&quot;) or (proxy.pathsuffix MatchesPath &quot;/msisdnsubmit&quot;) or (proxy.pathsuffix MatchesPath &quot;/pinSubmit&quot;) )</Condition>
                 <Name>ExtractSessionVariables</Name>
             </Step>
 			<Step>
@@ -625,6 +659,9 @@
 		<BasePath>/openid</BasePath>
 		<VirtualHost>default</VirtualHost>
 	</HTTPProxyConnection>
+    <RouteRule name="onnet">
+        <Condition>(proxy.pathsuffix MatchesPath &quot;/onnet&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+    </RouteRule>
 	<RouteRule name="default">
 		<TargetEndpoint>default</TargetEndpoint>
 	</RouteRule>

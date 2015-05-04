@@ -15,6 +15,15 @@
 
          "policies":[
           {
+                              "name": "redirectToConsent.xml",
+                              "tokens": [
+                                  {
+                                      "xpath": "/AssignMessage/Set/Headers/Header[@name='Location']",
+                                      "value": "http://__HOST__/openid/index?sessionid={sessionid}"
+                                  }
+                              ]
+                          },
+          {
                     "name": "AssignSendSMSAPIRequest.xml",
                     "tokens": [
                         {

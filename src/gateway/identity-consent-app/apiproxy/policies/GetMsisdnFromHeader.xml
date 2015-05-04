@@ -1,0 +1,7 @@
+<AssignMessage enabled="true" continueOnError="true"
+               async="false" name="GetMsisdnFromHeader">
+    <AssignVariable>
+        <Name>msisdn</Name>
+        <Ref>request.header.x-msisdn</Ref>
+    </AssignVariable>
+</AssignMessage>
