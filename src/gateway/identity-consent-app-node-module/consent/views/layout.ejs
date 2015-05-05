@@ -62,7 +62,9 @@
                logged_in_user_image = req.query.basepath+"/ui/images/icons/img_smart.jpg"
                 }%>                           
        <div class="logged-in-container">
+                    <a href="<%= req.query.basepath%>/profile?sessionid=<%= sessionid%>">
                     <img class="img-responsive img-circle" src="<%= logged_in_user_image%>">
+                    </a>
                     <div class="details">
                         <p data-role="name"><%= logged_in_user_first_name%>  <%= logged_in_user_surname%></p>
                         <p data-role="email"><%= logged_in_user_email%></p>

@@ -1,0 +1,6 @@
+<Javascript timeLimit="0" enabled="true" continueOnError="false" async="false" name="SetMSISDNRegisterVariablesScript">
+    <DisplayName>SetMSISDNRegisterVariablesScript</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <ResourceURL>jsc://SetRegisterMSISDNVariables.js</ResourceURL>
+</Javascript>

@@ -108,11 +108,13 @@
                 <a href="<%=req.query.basepath%>/recovery?sessionid=<%= sessionid%>"> <%=  req.__('text.login.forgot_password') %></a>
                 <button type="Submit" id="btnLogin" class="btn btn-success btn-lg btn-block"><%=  req.__('text.login.login_with_grass') %></button>
          </form>
-          <div class="login-bottom">
-               <p ><%=  req.__('text.layout.have_grass_id') %> <a href="<%=req.query.basepath%>/register?sessionid=<%= sessionid%>"><%=  req.__('text.layout.register') %></a></p></div>
-          </div>
 
       <% } %>
+
+        <div class="login-bottom">
+            <p ><%=  req.__('text.layout.have_grass_id') %> <a href="<%=req.query.basepath%>/register?sessionid=<%= sessionid%>"><%=  req.__('text.layout.register') %></a></p></div>
+        </div>
+
     </div>
 
 </div>

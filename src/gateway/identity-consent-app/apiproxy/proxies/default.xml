@@ -77,12 +77,16 @@
                 </Step>               
                 <Step>
                     <Condition>userManagement.response.status.code != "200"</Condition>
-                    <Name>AssignInvalidMSISDNError</Name>
+                    <Name>SetMSISDNRegisterVariablesScript</Name>
                 </Step>      
                 <Step>
-                    <Condition>(userid != null)</Condition>
+                    <Condition>(userManagement.response.status.code = "200") and (userid != null)</Condition>
                     <Name>ModifyNodeTargetRequestForIdentifiedUser</Name>
-                </Step>     
+                </Step>
+                <Step>
+                    <Condition>(userManagement.response.status.code != "200") and (msisdnNotFound = true)</Condition>
+                    <Name>ModifyReqToRegisterUser</Name>
+                </Step>
               	 <Step>
                     <Condition>(userManagement.response.status.code = "200")and (userid != null)</Condition>
                     <Name>AssignSendSMSAPIRequest</Name>

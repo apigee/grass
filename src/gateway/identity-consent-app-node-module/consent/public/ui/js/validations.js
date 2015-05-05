@@ -32,18 +32,18 @@ $(function() {
               if( !checkEmpty("txtName", "UserName"))
             	  return false;
           
-              if( ! checkEmpty("txtPassword", "Password"))
-            	  return false;
-
-                if($("#txtPassword").val().length < 6) {
-                	$("#txtPassword").parent().next(".inline-error").show();
-            		return false;
-                }
-
-                if($("#txtPassword").val() != $("#txtConfirmPassword").val()){
-                $("#txtConfirmPassword").parent().next(".inline-error").show();
-                return false;
-                }
+              //if( ! checkEmpty("txtPassword", "Password"))
+            	//  return false;
+              //
+              //  if($("#txtPassword").val().length < 6) {
+              //  	$("#txtPassword").parent().next(".inline-error").show();
+            	//	return false;
+              //  }
+              //
+              //  if($("#txtPassword").val() != $("#txtConfirmPassword").val()){
+              //  $("#txtConfirmPassword").parent().next(".inline-error").show();
+              //  return false;
+              //  }
                 
             });    
 

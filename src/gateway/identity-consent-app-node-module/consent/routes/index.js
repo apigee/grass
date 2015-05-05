@@ -2,6 +2,8 @@
  * GET home page.
  */
 
+var Config = require("../config");
+
 exports.index = function(req, res) {
 
   
@@ -118,7 +120,7 @@ exports.create = function(req, res) {
   if (error != null) {
     var sessionid = req.param("sessionid");
 
-    handleRegister(req,res,redirect_uri,"true",error);
+    handleRegister(req,res,redirect_uri,"true",error,null);
 
     handleError(req,res,req.query.redirect_uri + '?error=true',error,"");
 
@@ -188,7 +190,7 @@ if(req.query.open_id == "true"){
 
   var sessionid = req.param("sessionid");
 
-  handleRegister(req,res,redirect_uri,"none","");
+  handleRegister(req,res,redirect_uri,"none","",null);
 }
 
 exports.recovery = function(req, res) {
@@ -276,8 +278,32 @@ exports.msisdnsubmit = function(req, res) {
 
 
   if (req.query.userid == null || req.query.userid == "") {
+
+      if (req.query.process && req.query.process.toUpperCase() === "REGISTER") {
+          var regDetails = {
+
+          };
+          if (req.query.msisdn) {
+              regDetails.msisdn = req.query.msisdn;
+          };
+          if (req.query.name) {
+              regDetails.name = req.query.name;
+          };
+          if (req.query.lastName) {
+              regDetails.lastName = req.query.lastName;
+          };
+          if (req.query.password) {
+              regDetails.password = req.query.password;
+          };
+          if (req.query.username) {
+              regDetails.username = req.query.username;
+          };
+          handleRegister(req,res,redirect_uri,"none","",regDetails);
+      } else {
+          handleIndex(req,res,redirect_uri,"none","true");
+      }
   
-      handleIndex(req,res,redirect_uri,"none","true");
+
 
 } else {
 
@@ -404,23 +430,42 @@ function handleIndex(req,res, redirect_uri, invalidLogin, invalidMsisdn) {
   var smsLogin = true;
   var emailLogin = true;
 
-  if (appName != null) {
-    //TODO instead compare the App's AuthPreference custom attribute
-    appName = appName.trim();
-    if (appName != "") {
-      if (appName.toUpperCase() == "IDENTITYAPP") {
+  var authTypes = Config.authTypes;
 
-        socialLogin = true;
-        emailLogin = true;
-        smsLogin = false;
-      } else if (appName.toUpperCase() == "BANKAPP") {
-        smsLogin = true;
-        socialLogin = false;
-        emailLogin = false;
+  if (authTypes && authTypes.length > 0) {
+      socialLogin = false;
+      smsLogin = false;
+      emailLogin = false;
+      for (var i = 0; i < authTypes.length; i++) {
+          var aType = authTypes[i].toUpperCase();
+          if ( aType === "SMS") {
+              smsLogin = true;
+          }
+          else if (aType === "SOCIAL") {
+              socialLogin = true;
+          } else if (aType === "EMAIL") {
+              emailLogin = true;
+          }
       }
-    }
-
   }
+
+  //if (appName != null) {
+  //  //TODO instead compare the App's AuthPreference custom attribute
+  //  appName = appName.trim();
+  //  if (appName != "") {
+  //    if (appName.toUpperCase() == "IDENTITYAPP") {
+  //
+  //      socialLogin = true;
+  //      emailLogin = true;
+  //      smsLogin = false;
+  //    } else if (appName.toUpperCase() == "BANKAPP") {
+  //      smsLogin = true;
+  //      socialLogin = false;
+  //      emailLogin = false;
+  //    }
+  //  }
+  //
+  //}
 
   res.render('index', {
     title : 'Home',
@@ -550,7 +595,7 @@ function handleError(req, res, redirect_uri, error, description) {
 }
 
 
-function handleRegister(req, res, redirect_uri, showError, error) {
+function handleRegister(req, res, redirect_uri, showError, error,regDetails) {
   res.render('register', {
     title : 'Register',
     authenticated : false,
@@ -565,7 +610,8 @@ function handleRegister(req, res, redirect_uri, showError, error) {
     logged_in_user_image: "",
     showUserInfoDiv: false,
     redirectURL: redirect_uri + '?error=refused',
-    error : error
+    error : error,
+      regDetails : regDetails
 
   });
 

@@ -9,34 +9,35 @@
 
               <div class="input-group input-group-lg">
               <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-user"></span></span>
-              <input name="name" class="form-control" placeholder="FirstName" type="text">
+              <input name="name" class="form-control" placeholder="First Name" type="text" <%if (regDetails && regDetails.name) {%> value="<%=regDetails.name%>" <%}%>>
               </div> 
             
               <div class="input-group input-group-lg">
               <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-user "></span></span>
-              <input name="lastName" class="form-control" placeholder="Last Name" type="text">
+              <input name="lastName" class="form-control" placeholder="Last Name" type="text" <%if (regDetails && regDetails.lastName) {%> value="<%=regDetails.lastName%>" <%}%>>
               </div> 
             
               <div class="input-group input-group-lg">
               <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-envelope"></span></span>
-              <input name="username" class="form-control" placeholder="Email Id" type="email">
+              <input name="username" class="form-control" placeholder="Email Id" type="email" <%if (regDetails && regDetails.username) {%> value="<%=regDetails.username%>" <%}%>>
               </div> 
            
               <div class="input-group input-group-lg">  
                 <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-phone"></span></span>
-              <input name="msisdn" class="form-control" placeholder="Phone Number" type="tel">
+              <input name="msisdn" class="form-control" placeholder="Phone Number" type="tel" <%if (regDetails && regDetails.msisdn) {%> value="<%=regDetails.msisdn%>" <%}%>>
               </div> 
-            
-              <div class="input-group input-group-lg">
+
+             <!--
+                <div class="input-group input-group-lg">
               <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-lock"></span></span>
-              <input name="password" class="form-control" placeholder="Password" type="password">
+              <input name="password" class="form-control" placeholder="Password" type="password" >
             
               </div> 
 
               <div class="input-group input-group-lg">
               <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-lock"></span></span>
               <input name="confirmPass" class="form-control" placeholder="Confirm password" type="password">
-              </div> 
+              </div> -->
             </div>
             <div class="input-group-container">
                   <button type="submit" class="btn btn-success btn-group-lg btn-block">Register</button>
