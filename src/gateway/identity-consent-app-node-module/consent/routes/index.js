@@ -517,7 +517,7 @@ function handleConsent(req, res, redirect_uri, isAuthenticated) {
     authenticated : isAuthenticated,
     sessionid : req.param("sessionid"),
     appName : req.query.appName,
-    scope : req.query.scope,
+    profile_scopes : req.query.scope,
     app_logo_url : "",
     scope_icon : scope_icon,
     scope_class : scope_class,

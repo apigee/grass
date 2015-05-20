@@ -21,7 +21,7 @@
        <h3><small><%=  req.__('text.consent.the_application') %> <%= appName%> <%=  req.__('text.consent.require_access') %></small>
       </h3>
  
-             <% var scopes= scope.split(" ") %>
+             <% var scopes= profile_scopes.split(" ") %>
              <% for(var i=0; i<scopes.length ; i++) { %>
              <%if (scopes[i] !="openid") {%>   
              
