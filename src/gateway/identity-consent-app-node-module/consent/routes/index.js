@@ -2,6 +2,8 @@
  * GET home page.
  */
 
+var Config = require("../config");
+
 exports.index = function(req, res) {
 
   
@@ -404,23 +406,24 @@ function handleIndex(req,res, redirect_uri, invalidLogin, invalidMsisdn) {
   var smsLogin = true;
   var emailLogin = true;
 
-  if (appName != null) {
-    //TODO instead compare the App's AuthPreference custom attribute
-    appName = appName.trim();
-    if (appName != "") {
-      if (appName.toUpperCase() == "IDENTITYAPP") {
+    var authTypes = Config.authTypes;
 
-        socialLogin = true;
-        emailLogin = true;
-        smsLogin = false;
-      } else if (appName.toUpperCase() == "BANKAPP") {
-        smsLogin = true;
+    if (authTypes && authTypes.length > 0) {
         socialLogin = false;
+        smsLogin = false;
         emailLogin = false;
-      }
+        for (var i = 0; i < authTypes.length; i++) {
+            var aType = authTypes[i].toUpperCase();
+            if ( aType === "SMS") {
+                smsLogin = true;
+            }
+            else if (aType === "SOCIAL") {
+                socialLogin = true;
+            } else if (aType === "EMAIL") {
+                emailLogin = true;
+            }
+        }
     }
-
-  }
 
   res.render('index', {
     title : 'Home',
