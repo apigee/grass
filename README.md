@@ -42,7 +42,7 @@ Broadly the present Architecture can be modularised as follows:
         * Contributions required.
      * Identity-sms-token-api
         * Provide SMS token capabilities for Strong authentication
-        * [Details](https://github.com/apigeecs/grass/blob/master/docs/source/index.md)
+        * [Details](https://github.com/apigee/grass/blob/master/docs/source/token-validation-api.md)
    * External
      * Identity-Consentmgmt-api
         * Provides Consent Management support on Apigee Edge. 
