@@ -56,6 +56,9 @@ Broadly the present Architecture can be modularised as follows:
         * The key identity API based upon the OpenID spec.
         * Presently supports only the authorization code flow. 
         * [Details](https://github.com/apigeecs/grass/blob/master/docs/source/identity-api.md)
+    * Identity-demo-app
+        * This is demo app that runs on Apigee Gateway
+        * [Details] (https://github.com/apigee/grass/tree/master/src/gateway/identity-demo-app)
             
 
 
