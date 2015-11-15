@@ -57,7 +57,9 @@ Broadly the present Architecture can be modularised as follows:
         * Presently supports only the authorization code flow. 
         * [Details](https://github.com/apigeecs/grass/blob/master/docs/source/identity-api.md)
      * Identity-demo-app
-        * This is demo app that runs on Apigee Gateway
+        * This is a client app that demonstrates Open ID Connect 
+        * This runs as an application of Apigee Gateway
+        * You can access the demo app via <Apigee Gateway Base URL>/identity_app
         * [Details] (https://github.com/apigee/grass/tree/master/src/gateway/identity-demo-app)
             
 
