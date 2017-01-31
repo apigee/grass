@@ -2,11 +2,12 @@
  GET home page.
  */
 
-var Usergrid = require("usergrid");
-var pkginfo = require('../package')
+var Usergrid = require("usergrid_");
+var pkginfo = require('../package');
 
 
 var client = new Usergrid.client({
+  URI: pkginfo.baseUrl,
   orgName :  pkginfo.orgName,
   appName :  pkginfo.appName,
   authType : Usergrid.AUTH_CLIENT_ID,

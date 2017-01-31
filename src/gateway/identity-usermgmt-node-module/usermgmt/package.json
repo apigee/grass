@@ -26,5 +26,6 @@
   "org": "__APPORG__",
   "app": "__APPAPP__",
   "client_id": "__APPKEY__",
-  "client_secret": "__APPSECRET__"
+  "client_secret": "__APPSECRET__",
+  "baseUrl":"__BAASURI__"
 }

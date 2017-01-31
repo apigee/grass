@@ -15,12 +15,13 @@ cp ./usergrid.orig ./usergrid.sh
 URI="https://api.enterprise.apigee.com"
 
 usage() {
-  echo "Usage: $(basename $0) [-o <org name>] [-e <env name>] [-u <admin email>] [-p <admin password>]"
+  echo "Usage: $(basename $0) [-o <org name>] [-e <env name>] [-u <admin email>] [-p <admin password>] [-b <baas URI>]"
   echo "  -h | --help :                        Display usage information"
   echo "  -o | --org <orgname> :               Organisation Name"
   echo "  -e | --env <envname> :               Environment Name"
   echo "  -u | --username <adminusername> :    Admin Email"
   echo "  -p | --password <password> :         Admin Password"
+  echo "  -b | --baas <password> :         Baas URI"
   exit 0
 }
 
@@ -66,6 +67,15 @@ while [ $# -gt 0 ]; do
         usage
       fi
     ;;
+    -b|--baas)
+      if [ -n "$2" ]; then
+        BAASURI=$2
+        shift
+        shift
+      else
+        usage
+      fi
+    ;;
     -h|--help)
       usage
     ;;
@@ -92,6 +102,11 @@ fi
 if [ -z "${APW}" ]; then
     echo "Enter Apigee Enterprise PASSWORD, followed by [ENTER]:"
     read -s -r APW
+fi
+
+if [ -z "${BAASURI}" ]; then
+    echo "Enter Baas URI for the Org, followed by [ENTER]:"
+    read BAASURI
 fi
 
 HOST=$ORG-$ENV.apigee.net
@@ -188,9 +203,10 @@ sed -i "" "s/__KEY__/$apikey/g" ./config.sh
 sed -i "" "s/__SECRET__/$apisecret/g" ./config.sh
 sed -i "" "s/__ORG__/$ORG/g" ./config.sh
 sed -i "" "s/__ENV__/$ENV/g" ./config.sh
+sed -i "" "s,__BAASURL__,$BAASURI,g" ./config.sh
 sed -i "" "s/__ADMINEMAIL__/$ADMIN_EMAIL/g" ./usergrid.sh
+sed -i "" "s,__BAASURI__,$BAASURI,g" ./usergrid.sh
 sed -i "" "s/__APW__/$APW/g" ./usergrid.sh
-
 
 ### End - Create App Resources ###
 

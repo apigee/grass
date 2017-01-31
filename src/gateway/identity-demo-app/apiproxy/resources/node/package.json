@@ -3,8 +3,10 @@
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {
-      "express": "2.5.8"
-    , "stylus": ">= 0.0.1"
-    , "jade": ">= 0.0.1"
+  "express": "2.5.8",
+  "express-hbs": "latest",
+  "stylus": ">= 0.0.1",
+  "jade": ">= 0.0.1",
+  "ejs":"latest"
   }
 }

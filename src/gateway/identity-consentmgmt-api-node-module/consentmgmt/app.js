@@ -7,7 +7,7 @@ var express = require('express')
   , routes = require('./routes')
  , http = require('http')
 	, store = new express.session.MemoryStore
-  , path = require('path');;
+  , path = require('path');
 
 var app = module.exports = express.createServer();
 

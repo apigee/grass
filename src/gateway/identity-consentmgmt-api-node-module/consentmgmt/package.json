@@ -6,11 +6,13 @@
    "client_secret": "__APPSECRET__",
    "orgName": "__APPORG__",
    "appName": "__APPAPP__",
+   "baseUrl": "__BAASURI__",
 
    "dependencies": {
      "express": "2.5.8",
      "stylus": ">= 0.0.1",
-     "jade": ">= 0.0.1"
+     "jade": ">= 0.0.1",
+     "usergrid_":"latest"
   }
-  }
+}
 

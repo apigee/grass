@@ -24,7 +24,7 @@
                         },
                         {
                             "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
-                            "value": "https://api.usergrid.com/__APPORG__/__APPAPP__/consents"
+                            "value": "__BAASURI__/__APPORG__/__APPAPP__/consents"
                         }
                     ]
                 }],
