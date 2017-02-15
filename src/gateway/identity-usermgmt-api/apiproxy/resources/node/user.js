@@ -14,7 +14,7 @@ var https = require('https')
   , utilf = require('util')
   , url   = require('url');
 
-var pkginfo = require('../package');
+var pkginfo = require('./package');
 
 /**
  * User prototype.
@@ -67,17 +67,17 @@ var dataregex = new RegExp('PUT|POST', 'i')
  */
 
 function User(opts) {
-  'use strict';
-  opts = opts || {};
-  var parsedBaasUrl = url.parse(pkginfo.baseUrl, true, true);
-  this.host = opts.host || parsedBaasUrl.hostname;
-  this.port = opts.port || 443;
-  this.protocol = opts.protocol || parsedBaasUrl.protocol;
-  this.org = opts.org;
-  this.app = opts.app;
-  this.basepath = utilf.format(parsedBaasUrl.pathname+'/%s/%s/users', this.org, this.app);
-  this.client_id = opts.client_id;
-  this.client_secret = opts.client_secret;
+    'use strict';
+    opts = opts || {};
+    var parsedBaasUrl = url.parse(pkginfo.baseUrl, true, true);
+    this.host = opts.host || parsedBaasUrl.hostname;
+    this.port = opts.port || 443;
+    this.protocol = opts.protocol || parsedBaasUrl.protocol;
+    this.org = opts.org;
+    this.app = opts.app;
+    this.basepath = utilf.format(parsedBaasUrl.pathname+'%s/%s/users', this.org, this.app);
+    this.client_id = opts.client_id;
+    this.client_secret = opts.client_secret;
 }
 
 

@@ -46,7 +46,7 @@ sed -i "" "s/__APPORG__/$apporg/g" ../identity-usermgmt-node-module/usermgmt/pac
 sed -i "" "s/__APPAPP__/$appapp/g" ../identity-usermgmt-node-module/usermgmt/package.json
 sed -i "" "s/__APPKEY__/$appkey/g" ../identity-usermgmt-node-module/usermgmt/package.json
 sed -i "" "s/__APPSECRET__/$appsecret/g" ../identity-usermgmt-node-module/usermgmt/package.json
-sed -i "" "s,__BAASURI__,$baasuri,g" ../identity-usermgmt-api/usermgmt/package.json
+sed -i "" "s,__BAASURI__,$baasuri,g" ../identity-usermgmt-node-module/usermgmt/package.json
 
 #identity-demo-app config.json
 sed -i "" "s/__HOST__/$host/g" ../identity-demo-app/config.json
