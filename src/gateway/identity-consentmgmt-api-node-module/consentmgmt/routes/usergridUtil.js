@@ -177,7 +177,7 @@ Usergrid.Client.prototype.createEntity = function (options, callback) {
     var entity = new Usergrid.Entity(options);
     entity.fetch(function (err, data) {
         //if the fetch doesn't find what we are looking for, or there is no error, do a save
-        var okToSave = (err && 'service_resource_not_found' === data.error || 'no_name_specified' === data.error || 'null_pointer' === data.error) || (!err && getOnExist);
+        var okToSave = (err && 'entity_not_found' === data.error || 'service_resource_not_found' === data.error || 'no_name_specified' === data.error || 'null_pointer' === data.error) || (!err && getOnExist);
         if (okToSave) {
             entity.set(options.data); //add the data again just in case
             entity.save(function (err, data) {
@@ -217,7 +217,7 @@ Usergrid.Client.prototype.get = function (key) {
         return localStorage.getItem(keyStore);
     }
     return null;
-}
+};
 
 Usergrid.Client.prototype.set = function (key, value) {
     var keyStore =  'apigee_' + key;
@@ -229,7 +229,7 @@ Usergrid.Client.prototype.set = function (key, value) {
             localStorage.removeItem(keyStore);
         }
     }
-}
+};
 
 /*
  *  A class to Model a Usergrid Entity.
@@ -436,6 +436,20 @@ Usergrid.Entity.prototype.fetch = function (callback) {
     });
 };
 
+
+/*
+ * Tests if the string is a uuid
+ *
+ * @public
+ * @method isUUID
+ * @param {string} uuid The string to test
+ * @returns {Boolean} true if string is uuid
+ */
+function isUUID (uuid) {
+    var uuidValueRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+    if (!uuid) return false;
+    return uuidValueRegex.test(uuid);
+}
 
 exports.client = Usergrid.Client;
 exports.entity = Usergrid.Entity;
