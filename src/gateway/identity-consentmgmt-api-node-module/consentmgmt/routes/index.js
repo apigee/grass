@@ -2,7 +2,7 @@
  GET home page.
  */
 
-var Usergrid = require("usergrid_");
+var Usergrid = require("./usergridUtil");
 var pkginfo = require('../package');
 
 

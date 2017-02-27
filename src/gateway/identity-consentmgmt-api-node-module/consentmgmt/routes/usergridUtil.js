@@ -209,6 +209,18 @@ Usergrid.Client.prototype.calcTimeDiff = function () {
     return seconds;
 };
 
+Usergrid.Client.prototype.set = function (key, value) {
+    var keyStore =  'apigee_' + key;
+    this[key] = value;
+    if(typeof(Storage)!=="undefined"){
+        if (value) {
+            localStorage.setItem(keyStore, value);
+        } else {
+            localStorage.removeItem(keyStore);
+        }
+    }
+}
+
 /*
  *  A class to Model a Usergrid Entity.
  *  Set the type and uuid of entity in the 'data' json object
