@@ -209,6 +209,16 @@ Usergrid.Client.prototype.calcTimeDiff = function () {
     return seconds;
 };
 
+Usergrid.Client.prototype.get = function (key) {
+    var keyStore = 'apigee_' + key;
+    if (this[key]) {
+        return this[key];
+    } else if(typeof(Storage)!=="undefined") {
+        return localStorage.getItem(keyStore);
+    }
+    return null;
+}
+
 Usergrid.Client.prototype.set = function (key, value) {
     var keyStore =  'apigee_' + key;
     this[key] = value;
