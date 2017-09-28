@@ -20,3 +20,7 @@ node_modules
 .classpath
 .project
 .settings
+
+/.idea/
+
+*.DS_Store
